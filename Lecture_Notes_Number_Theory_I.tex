@@ -84,10 +84,12 @@ A very simple consequence of this:
   \[ \alpha = \frac{x_0}{y_0},\]
   which is a contradiction due to the fact that $\alpha$ was supposed to be rational. \Lightning
 \end{pf}
-Typeset Question environment...
+\begin{question}{}{}
   Can we do better than $\nicefrac{1}{y^2}$ for some $\alpha \in \R^2$? I.e. do there exist infinitely many $(x,y) \in \Zprimtwo$ such that $y > 0$ and
   \[ \exists_{\delta > 0}:\left| \alpha - \frac{x}{y}\right| < \frac{1}{y^{2+\delta}}.\]
-  Answer: Yes, but it's rare. However, this is not the case if $\alpha$ is algebraic over $\Q$.
+\end{question}
+\begin{answertoquestion} Yes, but it's rare. However, this is not the case if $\alpha$ is algebraic over $\Q$.
+\end{answertoquestion}
   \begin{theorem}{Roth, 1955}{roth_1955}
     Let $\alpha \in \AA$ and $\delta > 0$. Then
     \[ \#\{ (x,y) \in \Zprimtwo: y > 0, |\alpha-\nicefrac{x}{y}| \leq \nicefrac{1}{y^{2+\delta}}\} < \aleph_0.\]
@@ -98,9 +100,10 @@ Typeset Question environment...
     \[ \#\{ (x,y) \in \Z^2: F(x,y) = m\} < \aleph_0.\]
   \end{theorem}
   Also, time permitted, Professor Yamagishi'd like to go through the details of Stanley Yao Xiao's proof of Büchi's problem.
-  Büchi's problem: Let $0 < x_1 < \dots < x_5$ be integers such that
+  \begin{problem}{Büchi}{büchi} Let $0 < x_1 < \dots < x_5$ be integers such that
   \[ x_{i+1}^2-2x_i^2 + x_{i-1}^2 = 2 \forall_{i \in \{ 2, \dots, 4\}}.\]
   Then there exists $x_0 \in \Z$ such that $x_i = x_0+i \forall_{1 \leq i \leq 5}$. \\
+  \end{problem}
   This leads to the following refinement of Hilbert's tenth problem:
   There is no algorithm which decides the existence of integer solutions to an arbitrary system of diagonal quadratic equations:
   \[ A\begin{pmatrix}
@@ -167,7 +170,7 @@ Typeset Question environment...
  Then, we have $U_0 \in M_n(\Z)$. We define the \define[Index of a Sublattice in a Lattice]{index} of $M$ in $L$ by
  \[ |L:M| = |\det U_0| = \frac{\det M}{\det L}.\]
  \emp{Note:} This does not depend on the choice of bases of $M$ and $L$. \\
- Example (example environment): Let
- \[ \Lambda_0 = \Span_\Z\left\{ \binom{1}{0}, \binom{0}{1}\right\} \text{ and } \Lambda = \Span_\Z\left\{ \binom{2}{0}, \binom{0}{2}\right\}.\]
-
+\begin{example} Let
+ \[ \Lambda_0 = \Span_\Z\left\{ \binom{1}{0}, \binom{0}{1}\right\} \text{ and } \Lambda = \Span_\Z\left\{ \binom{2}{0}, \binom{0}{2}\right\}. \qedhere\]
+\end{example}
 \end{document}

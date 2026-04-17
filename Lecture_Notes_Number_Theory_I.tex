@@ -1,0 +1,172 @@
+\documentclass{/home/hannesheimberger/Documents/LaTeX/Universität/Vorlesungstemplate_English} %Simon: c:/Users/sirio/Documents/LaTeX/Universität/2_SoSe_2025/Vorlesungstemplate, Hannes: /home/hannesheimberger/Dokumente/LaTeX/Universität/Vorlesungstemplate, Emanuele: /home/stundipper/documents/school/2_SoSe_25/Vorlesungstemplate, Simon widehat:
+
+\setcounter{usewhichtitle}{1} %1 heißt, dass der Vorlesungsname übernommen wird, 0 heißt, dass der gesetzte Titel übernommen wird
+\setcounter{booltranslate}{0}
+\setcounter{boolbibliography}{0}
+\setcounter{boolappendix}{1}
+\setcounter{boollecture}{1}
+\setcounter{boolalg}{0}
+\setcounter{boolmath}{1}
+\setcounter{booltoc}{1}
+\setcounter{booltitlepage}{1}
+\setcounter{boolheads}{1}
+\setcounter{boolchapnumbereddefs}{0}
+\setcounter{boolthirdauth}{0}
+\setcounter{boolgerman}{0}
+
+\addbibresource{Vorlesungsmitschrift.bib}
+\renewcommand{\aName}{Hannes Heimberger}
+\renewcommand{\instName}{Mathematisches Institut}
+\renewcommand{\Semester}{Summer 2026}
+\renewcommand{\LectureName}{Number Theory I}
+%\renewcommand{\LectureSubtitle}{}
+\renewcommand{\ProfName}{Prof. Dr. Shuntaro Yamagishi}
+\renewcommand{\groupNum}{\ }
+\renewcommand{\titel}{Lecture Notes as of \today}
+\renewcommand{\thanks}{I also thank Daniel Emse for providing me with his template, which I adapted for these notes.}
+
+\newcommand{\Nzero}{\mathbb{N}}
+\renewcommand{\N}{\mathbb{N}_{\geq 1}}
+\newcommand{\Zprimtwo}{\Z_{\text{prim}}^2}
+\renewcommand{\AA}{\mathbb{A}}
+
+\begin{document}
+\chapter*{Notations and conventions}
+\section*{Number sets}
+\begin{itemize}
+  \item The natural numbers, denoted by $\Nzero$, contain $0$ (which is in accord with \emph{DIN 5473} (\emph{German Industrial Norm}) -- Welcome to Germany! xD).
+\end{itemize}
+\section*{Subsets and -structures}
+\begin{itemize}
+  \item If we write $A \subset B$, we mean $A \subseteq B$ and $A \neq B$ (see \emph{DIN 5473}).
+  \item We write $\subspace$ or $\subspaceeq$ for substructures (subfields, linear subspaces of vector spaces, etc.) of algebraic structures (didn't yet make it into \emph{DIN 5473} :().
+\end{itemize}
+For $f: \C \times \cdots \to \C$, we define
+\[ \index{$N(f)$}{\color{red} N(f)} = \{ s \in \C: f(s, -) = 0\}\]
+and
+\[ \index{$N^*(f)$}{\color{red} N^*(f)} = \{ s \in [0,1] \times \R \subset \C: f(s, -) = 0\}.\]
+\section*{Quantors}
+\begin{itemize}
+  \item If we write $\widehat{\forall}_{\dots}$, we mean something holds for almost all $\dots$
+\end{itemize}
+
+\chapter{Geometry of Numbers}
+\section{Introduction}
+\newLecture{15th April 2026}
+\begin{definition}{$\Z_{\text{prim}}^2$}{z_prim_2}
+  We denote
+  \[ \index{$\Z_{\text{prim}}^2$} {\color{red} \Z_{\text{prim}}^2} = \{ (x,y) \in \Z^2 : (x,y) = 1\}.\]
+\end{definition}
+\begin{theorem}{Dirichlet, 1842}{dirichlet_1842}
+  Let $\alpha \in \R$. Then, for every integer $Q \geq 2$, there exists $(x,y) \in \Z^2_{\text{prim}}$ such that $0 < y \leq Q$ and $|x-\alpha y| \leq \nicefrac{1}{Q}$.
+\end{theorem}
+\begin{pf}
+  Consider the $Q+1$ numbers $0, \alpha-\lf\alpha\rf, 2\alpha-\lf 2\alpha\rf, \dots, Q\alpha-\lf Q\alpha\rf$. Each of these is in the interval $[0,1)$. Partition the interval $[0,1)$ into $Q$ subintervals of length $\nicefrac{1}{Q}$. Now, we can apply the pigeonhole principle to deduce that
+  \[\exists_{0 \leq i \leq j \leq Q}: |(j\alpha-\lf j\alpha\rf)-(i\alpha-\lf i\alpha\rf)| \leq \frac{1}{Q}.\]
+  This implies
+  \[ |(j-i)\alpha - (\lf j\alpha\rf -\lf i\alpha\rf)| \leq \frac{1}{Q}.\]
+  Let $\widetilde{y} = j-i$ and $\widetilde{x} = \lf j\alpha\rf - \lf i\alpha \rf$. Then $|\widetilde{y}\alpha-\widetilde{x}| \leq \nicefrac{1}{Q}$. Let $d = (\widetilde{y}, \widetilde{x})$, $y = \nicefrac{\widetilde{y}}{d}$ and $x = \nicefrac{\widetilde{x}}{d}$ and divide through by d to get that
+  \[ |y\alpha-x| \leq \frac{1}{dQ} \leq \frac{1}{Q}. \qedhere\]
+\end{pf}
+A very simple consequence of this:
+\begin{corollary}{}{}
+  Let $\alpha \in \R \setminus \Q$. Then there exist infinitely many $(x,y) \in \Z_{\text{prim}}^2$ such that $y > 0$ and
+  \[ \left|\alpha-\frac{x}{y}\right| \leq \frac{1}{y^2}.\]
+\end{corollary}
+\begin{pf}
+  For each $Q \geq 2$, let $(x_Q, y_Q) \in \Zprimtwo$ be such that $0 < y_Q \leq Q$ and $|x_Q-y_Q\alpha| \leq \nicefrac{1}{Q}$, which we know to exist from Theorem \ref{thm:dirichlet_1842}. This implies
+  \[ \left| \alpha-\frac{x_Q}{y_Q}\right| \leq \frac{1}{Qy_Q} \leq \frac{1}{y_Q^2}.\]
+  Suppose the set
+  \[ S = \{ (x_Q,y_Q): Q \geq 2\}\]
+  is finite. Then there exists $(x_0,y_0) \in \Zprimtwo$ such that $(x_Q,y_Q) = (x_0,y_0) \widehat{\forall}_{Q \geq Q_0}$ for some $Q_0$. This means
+  \[ \left| \alpha-\frac{x_Q}{y_Q}\right| = \left| \alpha - \frac{x_0}{y_0}\right| \leq \frac{1}{Q} \widehat{\forall}_{Q \geq Q_0}.\]
+  Taking the limit $Q \to \infty$ gives
+  \[ \alpha = \frac{x_0}{y_0},\]
+  which is a contradiction due to the fact that $\alpha$ was supposed to be rational. \Lightning
+\end{pf}
+Typeset Question environment...
+  Can we do better than $\nicefrac{1}{y^2}$ for some $\alpha \in \R^2$? I.e. do there exist infinitely many $(x,y) \in \Zprimtwo$ such that $y > 0$ and
+  \[ \exists_{\delta > 0}:\left| \alpha - \frac{x}{y}\right| < \frac{1}{y^{2+\delta}}.\]
+  Answer: Yes, but it's rare. However, this is not the case if $\alpha$ is algebraic over $\Q$.
+  \begin{theorem}{Roth, 1955}{roth_1955}
+    Let $\alpha \in \AA$ and $\delta > 0$. Then
+    \[ \#\{ (x,y) \in \Zprimtwo: y > 0, |\alpha-\nicefrac{x}{y}| \leq \nicefrac{1}{y^{2+\delta}}\} < \aleph_0.\]
+  \end{theorem}
+  Proving this is one of the main goals of this course. Another important result we will prove is Thue's theorem.
+  \begin{theorem}{Thue, 1909}{thue_1909}
+    Let $F \in \Z[X,Y]$ be a binary form (hence homogenious) of degree $d$. Suppose $\deg F(X,1) = d$ and that $F(X,1)$ has at least three distinct zeroes in $\C$. Let $m \in \Z \setminus \{ 0\}$. Then
+    \[ \#\{ (x,y) \in \Z^2: F(x,y) = m\} < \aleph_0.\]
+  \end{theorem}
+  Also, time permitted, Professor Yamagishi'd like to go through the details of Stanley Yao Xiao's proof of Büchi's problem.
+  Büchi's problem: Let $0 < x_1 < \dots < x_5$ be integers such that
+  \[ x_{i+1}^2-2x_i^2 + x_{i-1}^2 = 2 \forall_{i \in \{ 2, \dots, 4\}}.\]
+  Then there exists $x_0 \in \Z$ such that $x_i = x_0+i \forall_{1 \leq i \leq 5}$. \\
+  This leads to the following refinement of Hilbert's tenth problem:
+  There is no algorithm which decides the existence of integer solutions to an arbitrary system of diagonal quadratic equations:
+  \[ A\begin{pmatrix}
+    x_1^2 \\
+    \vdots \\
+    x_n^2
+  \end{pmatrix} = b.\]
+  Professor Yamagishi: This is a paper by a friend of mine. Actually, it has nothing to do with geometry of numbers. But I want to do it anyway. \\
+  Do lecture subtitle!
+ \\
+ Professor Yamagishi recommends the book \emp{An introduction to the geometry of numbers} by Cassels. He also recommend a course on \emp{Prime Numbers} taught next semester (Selected Topics in Number Theory). Tutorial times are \emp{Monday at 14:00} and \emp{Tuesday at 12:00}. You can register for these \emp{Tomorrow at 16:00}.
+ \newLecture{17th April 2026}
+ \section{Geometry of numbers}
+ Let $n \geq 2$. Given $x_1, \dots, x_n \in \R^n$, we say that they are linearly independent over $\R$, if $c_1x_1 + \dots + c_rx_r \neq 0 \forall_{(c_1, \dots, c_r)^t \in \R^r \setminus \{ 0\}}$. We consider the usual topology on $\R^n$ generated by the Euclidean metric. For subsets of $\R^n$, we consider the subspace topology induced by this: We say a subset $\Lambda \subseteq \R^n$ is \emp{discrete}\index{Discrete Subset of $\R^n$} if $\#\Lambda \cap B < \aleph_0$ for every bounded subset $B \subseteq \R^n$. Furthermore, $\Lambda$ is a \define[Discrete Subgroup of $\R^n$]{discrete subgroup} if it is discrete and $c_1x_1 + c_2x_2 \in \Lambda \forall_{c_1,c_2 \in \Z, x_1,x_2 \in \Lambda}$. In this case, we define \index{Rank of a Discrete Subgroup of $\R^n$}${\color{red} \rank(\Lambda)} = r$ as the maximal number $r$ such that $\Lambda$ contains $r$ linearly independent vectors over $\R$. A \define[Basis of a Discrete Subgroup of $\R^n$]{basis} of $\Lambda$ is a set $\{ v_1, \dots, v_r\}$ of linearly independent vectors over $\R$ such that $\Lambda = \{ c_1v_1 + \dots + c_rv_r: c_1, \dots, c_r \in \Z\}$.
+ \begin{lemma}{}{}
+   Let $\Lambda$ be a discrete subgroup of $\R^n$ and $\rank(r) = r \geq 1$. Also assume that $\{ w_1, \dots, w_r\} \subseteq \Lambda$ is linearly independent over $\R$. Then there exists a basis $\{ v_1, \dots, v_r\}$ of $\Lambda$ such that for all $1 \leq k \leq r$, we have
+   \[ v_k = \alpha_kw_1 + \dots + \alpha_kw_k \forall_{\alpha_{k,1}, \dots, \alpha_{k, k} \in [0,1] \text{ and } \alpha_{k,k} \neq 0}.\]
+ \end{lemma}
+ \begin{pf}
+   Let $1 \leq k \leq r$. We define
+   \[ S_k = \{ \alpha_1w_1 + \dots + \alpha_kw_k: a_1, \dots, a_k \in [0,1], \alpha_k \neq 0\}.\]
+   Since $\Lambda$ is discrete and $S_k$ is bounded,
+   \[ \underbrace{0 <}_{w_k \in \Lambda \cap S_k} \#(\Lambda \cap S_k) \ll 1.\]
+   We choose $v_k$ to be a vector from $\Lambda \cap S_k$ with the minimal $\alpha_k$. Let us write
+   \[ v_k = \alpha_{k,1}w_1 + \dots + a_{k,k}w_k.\]
+   Then for any
+    \[ \alpha_1w_1 + \dots + a_kw_k \in \Lambda \cap S_k,\]
+    we have $0 < \alpha_{k,k} \leq \alpha_k \leq 1$. It is clear that $\{ v_1, \dots, v_r\}$ is linearly independent over $\R$. For each $0 \leq k \leq r$, let
+    \[ M_k = \Lambda \cap \left\{ \sum_{j=1}^k \alpha_jw_j: \alpha_1, \dots, \alpha_k \in \R\right\} \text{ with } M_0 = \{ 0\}.\]
+    Note that $M_r = \Lambda$. We now use induction to show that $M_k = \{ c_1v_1 + \dots + c_kv_k: c_1, \dots, c_k \in \Z\} \forall_{0 \leq k \leq r}$. When $k = 0$, the statement is trivially true. Suppose the statement holds for $k-1$. \\
+    Let
+    \[ x = \sum_{j=1}^k \beta_jw_j \in M_k \subseteq \Lambda \text{ and set } z_k = \lf \frac{\beta_k}{\alpha_{k,k}}\rf \in \Z.\]
+    Then, $0 \leq \beta_k - z_k\alpha_{k,k} < \alpha_{k,k}$. Consider $x - z_k\underbrace{v_k}_{\in \Lambda} \in \Lambda$. Also, \begin{align*}
+    & x-z_kv_k = \sum_{j=1}^k (\beta_j-z_k\alpha_{k,j})w_j \\
+    = \quad & \underbrace{\sum_{j=1}^k \lf \beta_j-z_k\alpha_{k,j}\rf w_j}_{\in \Lambda} + u,\end{align*}
+    where
+    \[ u = \sum_{j=1}^{k-1} \{\beta_j-z_k\alpha_{k,j}\}w_j+(\beta_k-z_k\alpha_{k,k}w_k).\]
+    It is clear that $u \in \Lambda$. Also, if $\beta_k-z_k\alpha_{k,k} > 0$, then $u \in S_k$ (because $\{ \beta_j-z_k\alpha_{k,j}\} \in [0,1]$ and $0 < \beta_k-z_k\alpha_{k,k} < \alpha_{k,k} \leq 1$), which implies $u \in \Lambda \cap S_k$. But this contradicts the minimality of $\alpha_{k,k}$ \Lightning. Hence, $\beta_k = z_k\alpha_{k,k}$. Then,
+    \[ x-z_kv_k = \sum_{j=1}^{k-1} (\beta_j-z_k\alpha_{k,j})w_j \in M_{k-1}.\]
+    This concludes the induction.
+ \end{pf}
+ \begin{definition}{(Full) Lattice}{lat}
+   A \define[(Full) Lattice]{(full) lattice} in $\R^n$ is a discrete sugroup of $\R^n$ which has rank $n$.
+ \end{definition}
+ \titremark{Bases of Lattices} If $\Lambda$ is a lattice in $\R^n$, then by the previous lemma, there exists a basis $\{ v_1, \dots, v_n\}$ such that $\Lambda = \{ c_1v_1 + \dots + c_nv_n: c_1, \dots, c_n \in \Z\}$.
+ \begin{definition}{Determinant of a Lattice}{det_lat}
+   We define the \define[Determinant of a Lattice]{determinant} of $\Lambda$ to be
+   \[ \det(\Lambda) = \left| \det(v_1 \cdots v_n)\right|.\]
+ \end{definition}
+ Recall that $\GL_n(\Z)$ is the multiplicative group of $n \times n$-matrices over $\Z$ with determinant $\pm 1$.
+ \begin{lemma}{}{}
+   Let $\Lambda \subseteq \R^n$ be a lattice. Suppose that $\{ v_1, \dots, v_n\}$ and $\{ w_1, \dots, w_n\}$ are two bases of $\Lambda$. Then there exists $u = (u_{i,j})_{i,j \in \{ 1, \dots, n\}} \in \GL_n(\Z)$ such that
+   \[ w_i = \sum_{j=1}^n n_{i,j}v_j \forall_{1 \leq i \leq n}.\]
+   In particular,
+   \[ |\det(w_1 \cdots w_n)| = |\det(v_1 \cdots v_n)|.\]
+ \end{lemma}
+ \begin{pf}
+   Let us define $U = (u_{i,j})_{i,j \in \{ 1, \dots, n\}}$ by
+   \[ w_i = \sum_{j=1}^n u_{i,j}v_j \forall_{1 \leq i \leq n}.\]
+   Since $w_i \in \Lambda$ and $\{ v_1, \dots, v_n\}$ is a basis of $\Lambda$, we get $u_{i,j} \in \Z \forall_{1 \leq i,j \leq n}$, which ensures $\det(U)\in \Z$. By the same argument, we define $\widetilde{U} = (\widetilde{u}_{i,j})_{i,j \in \{ 1, \dots, n\}}$ analogously. Note that $U^{-1} = \widetilde{U}$. Hence, $\det(\widetilde{U}) = \det(U) = \pm1$.
+ \end{pf}
+ Let $M,L$ be two lattices in $\R^n$ with $M \subseteq L$ and. Further let $\{ v_1, \dots, v_n\}$ be a basis of $L$ and $\{ w_1, \dots, w_m\}$ be a basis of $M$. Define $U_0$ as the $n\times n$ matrix that fulfils
+ \[ (w_1 \cdots w_n) = (v_1 \cdots v_n)U_0.\]
+ Then, we have $U_0 \in M_n(\Z)$. We define the \define[Index of a Sublattice in a Lattice]{index} of $M$ in $L$ by
+ \[ |L:M| = |\det U_0| = \frac{\det M}{\det L}.\]
+ \emp{Note:} This does not depend on the choice of bases of $M$ and $L$. \\
+ Example (example environment): Let
+ \[ \Lambda_0 = \Span_\Z\left\{ \binom{1}{0}, \binom{0}{1}\right\} \text{ and } \Lambda = \Span_\Z\left\{ \binom{2}{0}, \binom{0}{2}\right\}.\]
+\end{document}

@@ -1,0 +1,1 @@
+These are lecture notes for the course "V4A9 - Number Theory I" held at the University of Bonn in the Summer of 2026. The lecturer is Professor Yamagishi. These notes were made privately by me, they are not official.

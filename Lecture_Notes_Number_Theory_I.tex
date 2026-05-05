@@ -185,7 +185,7 @@ A very simple consequence of this:
   \[ \{ tx+(1-t)y: t \in [0,1]\} \subseteq C.\]
 \end{definition}
 \begin{definition}{Central Symmetric Convex Body in $\R^n$}{cent_symm_conv_bod_rn}
-  A \define[Central Symmetric Convex Body in $\R^n$]{central symmetric convex body} in $\R^n$ is a closed bounded convex $C \subseteq \R^n$ fulfilling $0 \in C$ and $x \in C \iff -x\in C$.
+  A \define[Central Symmetric Convex Body in $\R^n$]{central symmetric convex body} in $\R^n$ is a closed bounded convex $C \subseteq \R^n$ fulfilling $0 \in C^\circ$ and $x \in C \iff -x\in C$.
 \end{definition}
 \begin{example}
   Consider any norm on $\R^n$. Then the set
@@ -234,9 +234,9 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
      \[ \vol(\phi(S)) = |\det\phi|\vol(S).\]
      \item The function $\vol$ is $\sigma$-additive.
   \end{itemize}
-  Let $\Lambda$ be a full lattice inside of $\R^n$ and $\{ v_1, \dots, v_n\}$ be a basis. Then
+  Let $\Lambda$ be a full lattice inside of $\R^n$ and $\{ v_1, \dots, v_n\}$ be a basis. We call
   \[ F = \{ \alpha_1v_1+ \dots + \alpha_nv_n: 0 \leq \alpha_1, \dots, \alpha_n < 1\}\]
-  is a fundamental parallel piped of $\Lambda$. Then
+   a \define[Fundamental Parallel Piped of $\Lambda$]{fundamental parallel} piped of $\Lambda$ (or a \define[Fundamental Domain]{fundamental domain}). Then
   \[ \R^n = \bigcup_{u \in \Lambda} u+F,\]
   where the $u+F$ are pairwise disjoint. Also,
   \[ \vol(F) = \int_{[0,1)^n} |\det[v_1 \cdots v_n]|\dl{\alpha_1}\cdots\dl{\alpha_n} = \det\Lambda.\]
@@ -266,7 +266,7 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
     it follows from the previous case that there exists
     \[ 0 \neq x_m \in (1+\nicefrac{1}{m})C \cap \Lambda \subseteq 2C\cap\Lambda \forall_{m \in \N}.\]
     We know that $2C$ is bounded, so $2C \cap \Lambda$ is finite. Therefore, there exists an infinite sequence $m_1 < \cdots$ such that $0 \neq x_0 = x_{m_1} = x_{m_2} = \dots$. Since $x_0 = x_{m_i} \in ((1+\nicefrac{1}{m_i})C) \cap \Lambda$, we have
-    \[ \left(1+\frac{1}{m}\right)^{-1}x_0 \in C \forall_{i \in \N}.\]
+    \[ \left(1+\frac{1}{m_i}\right)^{-1}x_0 \in C \forall_{i \in \N}.\]
     Hence, $0 \neq x_0 \in \Lambda \cap C$.
   \end{pf}
   \begin{lemma}{Cardinality Formula for Lattice-Body Intersections}{card_form_lat_bod_int}
@@ -289,9 +289,9 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
     \[ (x-\sigma)^n\vol(C) \leq \vol(S) \leq (x+\sigma)^n\vol(C),\]
     which can be rewritten as
     \[ \vol(S) = x^n\vol(C)+\O(x^{n-1}).\]
-    Then just divide by $\vol(F)$.
+    Then just divide by $\vol(F) = \det\Lambda$ (see above).
     \begin{pf}[Proof of the claim]
-      Given any $x \in \R^n$, let us write $x = u + y$ with $u \in \Lambda$ and $y \in F$. Then $(x-\sigma)C \subseteq S$, because $\|x\|_C \leq x-\sigma$, which implies $\|u\| \leq x$ (use the triangle inequality $\|u\|_C \leq \|x-u\| + \|x\|_C = \|y\|_C+\|x\|_C \leq \sigma + x-\sigma = x$). Similarly, $S \subseteq (x+\sigma)C$ follows from $\|u\|_C \leq x$, which implies $\|x\|_C \leq x+\sigma$ (again triangle inequality).
+      Given any $\widehat{x} \in \R^n$, let us write $\widehat{x} = u + y$ with $u \in \Lambda$ and $y \in F$. Then $(x-\sigma)C \subseteq S$, because if $\|\widehat{x}\|_C \leq x-\sigma$, then this implies $\|u\|_C \leq x$ (use the triangle inequality $\|u\|_C \leq \|\widehat{x}-u\|_C + \|\widehat{x}\|_C = \|y\|_C+\|\widehat{x}\|_C \leq \sigma + x-\sigma = x$). Similarly, $S \subseteq (x+\sigma)C$ follows from $\|u\|_C \leq x$, which implies $\|\widehat{x}\|_C \leq x+\sigma$ (again triangle inequality).
     \end{pf}
     This completes the proof.
   \end{pf}
@@ -307,16 +307,16 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
       \#(mC \cap \Lambda) = \quad & \frac{\vol(C)}{\det(\Lambda)}m^n + \O(m^{n-1}) \\
       > \quad & 2^n(1+\epsilon)m^n,
     \end{align*}
-    provided that $m$ is sufficiently large. Hence, there exists $a \in \{ 0, \dots, 2m-1\}^n$ such that $\Lambda_a \cap mC$ contains at least two distinct vectors $u,v$. Then $0 \neq 2m(u-v) \in \Lambda$. Since we have $u,v \in mC$, we also have $u,-v \in mC$, which implies $\nicefrac{1}{2}u-\nicefrac{1}{2}v \in mC$. Finally, $\nicefrac{1}{2m}(u-v) \in C$, which completes the proof.
+    provided that $m$ is sufficiently large. Hence, there exists $a \in \{ 0, \dots, 2m-1\}^n$ such that $\Lambda_a \cap mC$ contains at least two distinct vectors $u,v$. Then $0 \neq \nicefrac{1}{2m}(u-v) \in \Lambda$. Since we have $u,v \in mC$, we also have $u,-v \in mC$, which implies $\nicefrac{1}{2}u-\nicefrac{1}{2}v \in mC$. Finally, $\nicefrac{1}{2m}(u-v) \in C$, which completes the proof.
   \end{pf}
   \begin{corollary}{}{1.4.4}
-    Let $\alpha_{i,j} \in \R$ for $1 \leq i,j \leq n$ and $L_i(x) = \alpha_{i,1}x_1 + \dots + \alpha_{i,n}x_n$. Suppose that $0 < |\det[a_{i,j}]| \leq A_1\cdots A_n$, where $A_1, \dots, A_n > 0$. \\
+    Let $\alpha_{i,j} \in \R$ for $1 \leq i,j \leq n$ and $L_i(x) = \alpha_{i,1}x_1 + \dots + \alpha_{i,n}x_n$. Suppose that $0 < |\det[\alpha_{i,j}]| \leq A_1\cdots A_n$, where $A_1, \dots, A_n > 0$. \\
     Then, there exists $x \in \Z^n \setminus \{ 0\}$ such that
     \[ |L_i(x)| \leq A_i \forall_{i \in \{ 1, \dots, n\}}.\]
   \end{corollary}
   \begin{pf}
     Let $\mathfrak{B} = [-1,1]^n$ and $\Lambda = \left\{ \left(\frac{L_1(x)}{A_1}, \dots, \frac{L_n(x)}{A_n}\right): x \in \Z^n\right\}$. Then this is a lattice inside $\R^n$. Also,
-    \[ \left\{ \begin{pmatrix}
+    \[ \Lambda = \left\{ \begin{pmatrix}
       \frac{\alpha_{1,1}}{A_1} & \cdots & \frac{\alpha_{1,n}}{A_1} \\
       \vdots & & \vdots \\
       \frac{\alpha_{n,1}}{A_n} & \cdots & \frac{\alpha_{n,n}}{A_n}
@@ -326,14 +326,14 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
       x_n
     \end{pmatrix}: x \in \Z^n \right\}.\]
     We have
-    \[ \det\Lambda = \frac{|\det[a_{i,j}]|}{A_1\cdots A_n} \leq 1,\]
+    \[ \det\Lambda = \frac{|\det[\alpha_{i,j}]|}{A_1\cdots A_n} \leq 1,\]
     which implies
-    \[ \frac{\vol(B)}{\det(\Lambda)} = \frac{2^n}{\det\Lambda} \geq 2^n.\]
+    \[ \frac{\vol(\mathfrak{B})}{\det(\Lambda)} = \frac{2^n}{\det\Lambda} \geq 2^n.\]
     By Minkowski's first theorem, there exists $0 \neq x \in \Lambda \cap \mathfrak{B}$.
   \end{pf}
   \begin{corollary}{}{1.4.5}
     Let $\alpha_1, \dots, \alpha_n \in \R$, not all in $\Q$. Then,
-    \[ \# \{ (x_1, \dots, x_n,y) \in \Zprim{n+1}: y >0, \left| \alpha_i+\frac{x_i}{y}\right| \leq y^{-1-\nicefrac{1}{n}} \forall_{1 \leq i \leq n}.\]
+    \[ \# \left\{ (x_1, \dots, x_n,y) \in \Zprim{n+1}: y >0, \left| \alpha_i-\frac{x_i}{y}\right| \leq y^{-1-\nicefrac{1}{n}} \right\} = \aleph_0 \forall_{1 \leq i \leq n}.\]
     (Denote $\Zprim{n} = \{ (x_1, \dots, x_n) \in \Z^n: \gcd(x_1, \dots, x_n) = 1\}$.)
   \end{corollary}
   \begin{pf}
@@ -343,12 +343,12 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
     \[ \begin{pmatrix}
       L_1(x,y) \\
       \vdots \\
-      L_n(x,y)
+      L_{n+1}(x,y)
     \end{pmatrix} = \underbrace{\begin{pmatrix}
       1 & 0 & \cdots & 0 & -\alpha_1 \\
       0 & \ddots & \ddots & \vdots & \vdots \\
       \vdots & \ddots & \ddots & 0 & -\alpha_{n-2} \\
-      \vdots & \dots & \ddots & \ddots & -\alpha_{n-1} \\
+      \vdots & & \ddots & \ddots & -\alpha_{n} \\
       0 & \cdots & \cdots & 0 & 1\end{pmatrix}}_{\coloneq \widehat{A}}\begin{pmatrix}
         x_1 \\
         \vdots \\
@@ -367,39 +367,39 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
   From Corollary \ref{cor:1.4.5}, for $\alpha_1,\alpha_2 \in \R$, not both in $\Q$, we get
   \begin{align*}
     & \# \{ y \in \N: \|\alpha_1y\| \leq y^{-\nicefrac{1}{2}}, \|\alpha_2y\| \leq y^{-\nicefrac{1}{2}}\} = \aleph_0 \\
-    \implies & \#\{ y \in \N: y\|\alpha_1y\|\|\alpha_2y| \leq 1\} = \aleph_0
+    \implies & \#\{ y \in \N: y\|\alpha_1y\|\|\alpha_2y\| \leq 1\} = \aleph_0
   \end{align*}
   (note that this also holds for $\alpha_1,\alpha_2 \in \Q$).
   \begin{hypothesis}{Littlewood}{littlewood}
     Let $\alpha_1,\alpha_2 \in \R$. For any $\epsilon > 0$, there exists $y \in \N$ such that
-    \[ y\|\alpha_1\|\|\alpha_2\| < \epsilon.\]
+    \[ y\|\alpha_1y\|\|\alpha_2y\| < \epsilon.\]
   \end{hypothesis}
   \section{Minkowski's Second Theorem}
-  Let $\Lambda$ be a lattice and $C$ a central symmetric convex body in $\R^n$. The successive minima $0 < \lambda_1 \leq \lambda_2 \leq \dots \leq \lambda_n$ of $\Lambda$ with respect to $C$ are defined as
+  Let $\Lambda$ be a lattice and $C$ a central symmetric convex body in $\R^n$. The \define[Successive Minima of a Lattice with respect to a Central Symmetric Convex Body]{successive minima} $0 < \lambda_1 \leq \lambda_2 \leq \dots \leq \lambda_n$ of $\Lambda$ with respect to $C$ are defined as
   \[ \lambda_i = \min\{ \lambda \in \R_{\geq 0}: \dim\Span_\R(\lambda C \cap \Lambda) \geq i\} \forall_{1 \leq i \leq n}.\]
-  \begin{lemma}{}{2.8}
+  \begin{lemma}{Well-definedness and Construction of the Successive Minima}{2.8}
     The successive $0 < \lambda_1 \leq \dots \leq \lambda_n < \infty$ are well-defined. Also, there are $v_1, \dots, v_n \in \Lambda$, which are linearly independent over $\R$, such that $v_i \in \lambda_iC \forall_{1 \leq i \leq n}$.
   \end{lemma}
   \begin{pf}
     Recall that
-    \[ \|x\|_C = \min\{ \lambda \in \R_{\geq 0}L x \in \lambda C\} \text{ and } \lambda C = \{ x \in \R^n: \|x\|_C \leq \lambda\}.\]
+    \[ \|x\|_C = \min\{ \lambda \in \R_{\geq 0}: x \in \lambda C\} \text{ and } \lambda C = \{ x \in \R^n: \|x\|_C \leq \lambda\}.\]
     Let $\Lambda \setminus \{ 0\} = \{ x_1, \dots\}$, where $0 < \| x_1 \|_C \leq \dots$. Also note that given any $m \in \N$, there are finitely many $i$ such that $m-1 \leq \|x_i\|_C \leq m$ (because $mC$ is bounded and $\lambda$ is discrete). Let $\lambda_1 = \|x_1\|_C$. For $i\in \{ 2, \dots, n\}$, define
-    \[ k_i = \min\{ k \in \N: \dim\Span_\R\{ x_1, \dots, x_k\} = i\} \text{ and set } v_i=x_k \text{ as well as } \lambda_i = \|x_i\|_C.\]
-    Clearly, $v_i \in \lambda_iC \cap \Lambda$ and $0 < \lambda_1 \leq \dots \leq \lambda_n < 0$. Finally, we show that these are indeed the successive minima: By construction, the
+    \[ k_i = \min\{ k \in \N: \dim\Span_\R\{ x_1, \dots, x_k\} = i\} \text{, set } v_i=x_i \text{ and let } \lambda_i = \|x_i\|_C.\]
+    Clearly, $v_i \in \lambda_iC \cap \Lambda$ and $0 < \lambda_1 \leq \dots \leq \lambda_n < \infty$. Finally, we show that these are indeed the successive minima: By construction, the
     \[ v_1, \dots, v_i \in \lambda_iC \cap \Lambda \text{ are linearly independent over } \R.\]
     Take $0 < \lambda < \lambda_i$ and let $\ell$ be the largest number such that $x_{\ell} \in \lambda C \cap \Lambda$. Then, we have $\ell < k_i$, and by the definition of the $k_i$, it follows that
     \[ \dim\Span_\R(\lambda C \cap \Lambda) = \dim\Span_\R\{ x_1, \dots, x_{\ell}\} < i.\]
     This shows that $\lambda_i$ is indeed the successive minimum.
     \end{pf}
     \begin{theorem}{Minkowski's Second Convex Body Theorem}{mink_sec_conv_bod_thm}
-      Let $Lambda \subseteq \R^n$ be a lattice and $C \subseteq \R^n$ a central symmetric convex body. Further assume that $\lambda_i, \dots, \lambda_n$ are the successive minima of $\Lambda$ with respect to $C$. Then, we have
+      Let $\Lambda \subseteq \R^n$ be a lattice and $C \subseteq \R^n$ a central symmetric convex body. Further assume that $\lambda_1, \dots, \lambda_n$ are the successive minima of $\Lambda$ with respect to $C$. Then, we have
       \[ \frac{2^n}{n!}\frac{\det\Lambda}{\vol(C)} \leq \lambda_1\cdots\lambda_n \leq 2^n\frac{\det\Lambda}{\vol(C)}.\]
     \end{theorem}
     Before we prove this, let us study a couple of examples to highlight the importance of this result.
     \begin{example}
       Let $n \geq 2$ and
       \[ \mathfrak B = B_1^n(0).\]
-      Further let $\Lambda \subseteq \R^n$ be a lattice and $\lambda_1, \dots, \lambda_n$ be the successive minima of $\Lambda$ with respect to $\mathfrak B$. It follows from Lemma \ref{lem:2.8} that there exist $x_1, \dots, x_n \in \Lambda$, which are linearly independent over $\R$ and fulfil $x_i \in \lambda_i\mathfrak B \cap \Lambda$. Hence, we have $\|x_i\|_{\mathfrak B} = \lambda_i \iff |x_i|=\lambda_i$. Theorem \ref{thm:mink_sec_conv_bod_thm}
+      Further let $\Lambda \subseteq \R^n$ be a lattice and $\lambda_1, \dots, \lambda_n$ be the successive minima of $\Lambda$ with respect to $\mathfrak B$. It follows from Lemma \ref{lem:2.8} that there exist $x_1, \dots, x_n \in \Lambda$, which are linearly independent over $\R$ and fulfil $x_i \in \lambda_i\mathfrak B \cap \Lambda$. By construction, we have $\|x_i\|_{\mathfrak B} = \lambda_i \iff |x_i|=\lambda_i$. Theorem \ref{thm:mink_sec_conv_bod_thm} implies
       \[ \prod_{i=1}^n |x_i| \leq \frac{2^n\det\Lambda}{V_n},\]
       where
       \[ V_n = \vol(\mathfrak B) = \begin{cases}
@@ -414,18 +414,115 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
       \[ \vol(C) = \frac{2^n}{\lambda_1\cdots\lambda_n}. \hfill (*)\]
       Let us now show that the $\lambda_j$ are the successive minima of $\Lambda$ with respect to $C$. For $\lambda \geq 0$, we have
       \[ \lambda C = \{ x \in \R^n: |x_i| \leq \nicefrac{\lambda}{\lambda_i} \forall_{1 \leq i \leq n}\}.\]
-      Then $e_1, \dots, e_j \in \lambda_jC$ are linearly independent over $\R$. Suppose that $0 < \lambda < \lambda_j$ and $y \in \Z^n \cap \lambda C$. Necessarily, $y_{i+1}=\dots=y_n = 0$. Therefore,
-      \[ \Z^n \cap \lambda C \subseteq \Z^{j-i} \times \{ (0,\dots, 0) \in \Z^{n-j+1}\}.\]
-      This can contain $j$ linearly independent vectors. Hence, $\lambda_j$ is the successive minimum. Thus,
+      Then $e_1, \dots, e_j \in \lambda_jC$ are linearly independent over $\R$. Suppose that $0 < \lambda < \lambda_j$ and $y \in \Z^n \cap \lambda C$. Necessarily, $y_{j}=\dots=y_n = 0$. Therefore,
+      \[ \Z^n \cap \lambda C \subseteq \Z^{j-1} \times \{ (0,\dots, 0) \in \Z^{n-j+1}\}.\]
+      This cannot contain $j$ linearly independent vectors. Hence, $\lambda_j$ is the successive minimum. Thus,
       \[ \lambda_1\cdots\lambda_n \stackrel{(*)}{=} \frac{2^n}{\vol(C)} = \frac{2^n\det\Lambda}{\vol(C)}.\]
       This proves that the upper bound is sharp.
     \end{example}
     \begin{example}
       Take $\Lambda = \Z^n$, \[C = \left\{ x \in \R^n: \sum_{i=1}^n |x_i| \leq 1\right\}.\]
       \begin{exercise}{}{}
-        Show that $\vol(C = \frac{2^n}{n!})$ and $\lambda_1 = \dots = \lambda_n = 1$.
+        Show that $\vol(C) = \frac{2^n}{n!}$ and $\lambda_1 = \dots = \lambda_n = 1$.
       \end{exercise}
       This proves that the lower bound in Theorem \ref{thm:mink_sec_conv_bod_thm} is sharp.
     \end{example}
     \newLecture{29th April 2026}
+    \begin{lemma}{}{2.10}
+    Let $w_1, \dots, w_r \in \R^n$ and define
+    \[C(w_1, \dots, w_r) = \left\{ \sum_{i=1}^r x_iw_i: (x_1, \dots, x_r) \in \R^r, \sum_{i=1}^r |x_i|\leq 1\right\}.\]
+    Then $C(w_1, \dots, w_r)$ is the smallest convex subset in $\R^n$ which contains $w_1, \dots, w_r$ and is symmetric about $0$.
+    \end{lemma}
+    \begin{pf}
+      This is an easy exercise.
+    \end{pf}
+    \begin{lemma}{}{2.11}
+      Let $\lambda_1, \dots, \lambda_n$ be the successive minima of $\Lambda$ with respect to $C$. Then there exists a basis $\{ b_1, \dots, b_n\}$ of $\Lambda$ such that if
+      \[ x = u_1b_1+\dots+u_nb_n\]
+      with $\|x\|_C < \lambda_j$ for some $j \in \{ 1, \dots, n\}$, then
+      \[ x = u_1b_1+\dots+u_{j-1}b_{j-1}.\]
+    \end{lemma}
+    \begin{pf}
+      Let $\mu_1<\cdots<\mu_s$ be such that $\mu_1 = \lambda_1 = \dots = \lambda_{k_1}$, $\mu_2 = \lambda_{k_1+1} = \dots = \lambda_{k_2}$ and so on with $k_s = n$. \\
+      By the definition of the successive minima, $a \in \Lambda$, $\|a\|_C < \mu \implies a = 0$. Since $\mu_2 > \lambda_{k_1}$, by Lemma \ref{lem:2.8}, there exist linearly independent $a_1, \dots, a_n \in \Lambda$ such that $\|a_1|_C, \dots, \|a_{k_1}\|_C \leq \lambda_{k_1} < \mu_2$. And given any $x \in \Lambda$ with $\|x\|_C < \mu_2$, then
+      \[ \exists_{u_1, \dots, u_{k_1} \in \R}: x = u_1a_1 + \dots + u_{k_1}a_{k_1}\]
+      (again use the definition of successive minima). We may continue in this manner (extend $a_1, \dots, a_{k_1}$) to obtain linearly independent $a_1, \dots, a_n \in \Lambda$ with the following property:
+      \[ \forall_{1 \leq t \leq s}: a_1, \dots, a_{k_{t-1}} \text{ are linearly independent over }\R \text{ and } \|a_j\|_C < \mu_t \forall_{1 \leq j \leq k_{t-1}}.\]
+      Given any $x \in \Lambda$ with $\|x\|_C < \mu_t$, we have
+      \[ x = u_1a_1 + \dots + u_{k_{t-1}}a_{k_{t-1}}\]
+      for some $u_i \in \R$. \\
+      Then, by Lemma \ref{lem:lat_base_transf}, we obtain a basis $\{ b_1, \dots, b_n\}$ of $\Lambda$ such that
+      \begin{align*}
+        b_1 = \quad & \xi_{1,1}a_1 & & \\
+        b_2 = \quad & \xi_{2,1}a_1 + \quad & \xi_{2,2}a_2 & \\
+        \vdots \qquad & & & \\
+        b_n = \quad & \xi_{n,1}a_1 + \quad & \dots + \quad & \xi_{n,n}a_n
+      \end{align*}
+      with $\xi_{i,j} \in \R, \xi_{i,i} \neq 0 \forall_{1 \leq i,j \leq n}$. This basis satisfies the desired property. Verifying this is an easy exercise.
+    \end{pf}
+    We shall now prove Minkowski's Second Theorem:
+    \begin{pf}[Proof of Theorem \ref{thm:mink_sec_conv_bod_thm}]
+      We prove the correctness of the lower and upper bound separately.
+      \begin{enumerate}[(i)]
+        \item{\textbf{Lower Bound} \\
+        Let $v_1, \dots, v_n \in \Lambda$ be linearly independent over $\R$ such that $v_i \in \lambda_i C \forall_{1 \leq i \leq n}$ (Lemma \ref{lem:2.8}). By definition, we have $\lambda_i^{-1}v_i \in C \forall_{1 \leq i \leq n}$. \\
+        Define
+        \[ D = C(\lambda_1^{-1}v_1, \dots, \lambda_n^{-1}v_n) \subseteq C\]
+        and note that this has the properties stated in Lemma \ref{lem:2.10}. Now, let $\phi: \R^n \to \R^n$ be a linear transformation by $\phi(e_i) = \lambda_i^{-1}v_i \forall_{1 \leq i \leq n}$. Then $D = \phi(\mathfrak{B}_1)$, where
+        \[ \mathfrak{B}_1 = \left\{ x \in \R^n: \sum_{i=1}^n |x_i| \leq 1\right\}.\]
+        Hence,
+        \begin{align*}
+          \vol(D) = \quad & |\det\phi|\vol(\mathfrak{B}_1) \\
+          = \quad & \frac{|\det[v_1\cdots v_n]|}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!} \\
+          = \quad & \frac{\det\widetilde{\Lambda}}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!},
+        \end{align*}
+        where $\widetilde{\Lambda}$ is a lattice with basis $\{ v_1, \dots, v_n\}$. Since $\{ v_1, \dots, v_n\} \subseteq V$, $\widetilde{\Lambda}$ is a sublattice of $\Lambda$.
+        This implies that
+        \[ \det\widetilde{\Lambda} = [\Lambda:\widetilde{\Lambda}]\det\Lambda \geq \det\Lambda.\]
+        We combine everything to get
+        \[ \vol(C) \geq \vol(D) = \frac{\det\widetilde{\Lambda}}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!} \geq \frac{\det\Lambda}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!}.\]Thus,
+        \[ \lambda_1\cdots\lambda_n \geq \frac{\det\Lambda}{\vol(C)}\frac{2^n}{n!}.\]}
+        \item{\textbf{Upper Bound} \\
+        Let $\Lambda$ be a lattice inside $\R^n$ and $C$ a central symmetric convex body inside $\R^n$. Given $t > 0$, let
+        \[ S(t) = S_F(t) = \{ \eta \in F \mid \exists_{x \in \Lambda}:\eta+x \in tC\}.\]
+        where $F$ is the fundamental parallel piped by $\Lambda$.
+        \begin{theorem}{}{2.12}
+          We have
+          \[ \vol(S(t)) \geq \begin{cases}
+            t^n\vol(C) & \text{if } t\leq\frac{\lambda_1}{2}, \\
+            \frac{\lambda_1}{2}+\dots+\frac{\lambda_j}{2}t^{n-j}\vol(C) & \text{if }\frac{\lambda_j}{2} \leq t \leq \frac{\lambda_{j+1}}{2} (1 \leq j \leq n-1), \\
+            \frac{\lambda_1}{2}\cdots\frac{\lambda_n}{2}\vol(C) & \text{if } t \geq \frac{\lambda_n}{2}.
+          \end{cases}\]
+        \end{theorem}
+        \emp{Note:} This is actually about $\nicefrac{\R^n}{\Lambda}$. Theorem \ref{thm:2.12} is about how much of the fundamental domain is covered by $tC \mod \Lambda$.}
+        \begin{example}
+          Take $\Lambda = \Z^2$. Missing here...
+        \end{example}
+        The assertion follows from this theorem by applying it with $t = \nicefrac{\lambda}{2}$. We have
+        \begin{align*}
+          \det\Lambda = \vol(F) \geq \vol(S(\nicefrac{\lambda}{2})) \geq \frac{\lambda_1}{2}\cdots\frac{\lambda_n}{2}\vol(C),
+        \end{align*}
+        which can be transformed into the statement.
+        \begin{pf}[Proof of Theorem \ref{thm:2.12}]
+          We can reduce the prolem to the case where the basis $\{ b-1, \dots, b_n\}$ given in Lemma \ref{lem:2.11} is $\{ e_1, \dots, e_n\}$ (Exercise sheet 3). In particular, $\Lambda = \Z^n$. Let $1 \leq j \leq n-1$ and $x_1 = (x_{1,1}, x_{1,n}), x_2 = (x_{2,1}, \dots, x_{2,n})$ be two vectors in $tC$ with $t < \nicefrac{\lambda_{j+1}}{2}$, such that $x_1-x_2 \in \Lambda$. Then
+          \begin{align*}
+            \underbrace{\|x_1-x_2\|_C}_{\in \Z^n} \leq \quad & \|x_1\|_C + \|x_2\|_C \leq 2t < \lambda_{j+1}. \hfill (1)
+          \end{align*}
+          This implies $x_1-x_2 \in \Z^j \times \{ (0,\dots, 0)\}$. Denote
+          \[ S_j(t,z) = \{ (\eta_1, \dots, \eta_n) \in [0,1]^j \mid \exists_{(m_1, \dots, m_j) \in \Z^j}: \|\underbrace{(\eta_1+m_1, \dots, \eta_j+m_j,z)}_{\in tC}\|_C \leq t\}.\]
+          Recall that
+          \[ S(t) = \{ \eta \in [0,1)^n \mid \exists_{m \in \Z^n}: \|\eta+m\|_C \leq t\}.\]
+          Let $\eta \in [0,1)^n$ and $t < \nicefrac{\lambda_{j+1}}{2}$. Supppose that we have $m, m' \in \Z^n$ such that
+          \[ \|\eta+m\|_C \leq t \text{ and } \|\eta+m'\|_C \leq t.\]
+          Then, by (1), we get $(m_{j+1}, \dots, m_n) = (m'_{j+1}, \dots, m'_n)$. Thus, for each $\eta \in [0,1)^n$ from the definition of $S(t)$, the last $n-1$ coordinates of $m$ are unique. We partition $S(t)$ based on this.
+          Write
+          \[ S(t) = \bigsqcup_{m_{j+1}, \dots, m_n \in \Z}\bigsqcup_{\eta_{j+1}, \eta_n \in [0,1)} \{ \eta \in [0,1)^n: \exists_{(m_1, \dots, m_j) \in \Z^j: \|\eta+m\|_C \subseteq t}\}.\]
+          (Here $m=(m_1, \dots, m_n)$).
+          Therefore,
+          \begin{align*}
+            \vol(S(t)) = \quad & \int_{\R^{n-j}} \vol_J(s_j(t,z)) \dl{z} \forall_{t < \frac{\lambda_{j+1}}{2}}.\hfill (2)
+          \end{align*}
+        \end{pf}
+      \end{enumerate}
+    \end{pf}
 \end{document}

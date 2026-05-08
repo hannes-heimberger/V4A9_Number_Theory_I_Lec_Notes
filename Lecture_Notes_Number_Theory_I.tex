@@ -428,15 +428,16 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
       This proves that the lower bound in Theorem \ref{thm:mink_sec_conv_bod_thm} is sharp.
     \end{example}
     \newLecture{29th April 2026}
-    \begin{lemma}{}{2.10}
+    \begin{lemma}{Convex Hull}{2.10}
     Let $w_1, \dots, w_r \in \R^n$ and define
     \[C(w_1, \dots, w_r) = \left\{ \sum_{i=1}^r x_iw_i: (x_1, \dots, x_r) \in \R^r, \sum_{i=1}^r |x_i|\leq 1\right\}.\]
     Then $C(w_1, \dots, w_r)$ is the smallest convex subset in $\R^n$ which contains $w_1, \dots, w_r$ and is symmetric about $0$.
+    We call $C(w_1, \dots, w_r)$ the \define[Convex Hull]{convex hull} of $w_1, \dots, w_r$.
     \end{lemma}
     \begin{pf}
       This is an easy exercise.
     \end{pf}
-    \begin{lemma}{}{2.11}
+    \begin{lemma}{Lattice-Base Ordering Compatible with Successive Minima}{2.11}
       Let $\lambda_1, \dots, \lambda_n$ be the successive minima of $\Lambda$ with respect to $C$. Then there exists a basis $\{ b_1, \dots, b_n\}$ of $\Lambda$ such that if
       \[ x = u_1b_1+\dots+u_nb_n\]
       with $\|x\|_C < \lambda_j$ for some $j \in \{ 1, \dots, n\}$, then
@@ -444,19 +445,19 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
     \end{lemma}
     \begin{pf}
       Let $\mu_1<\cdots<\mu_s$ be such that $\mu_1 = \lambda_1 = \dots = \lambda_{k_1}$, $\mu_2 = \lambda_{k_1+1} = \dots = \lambda_{k_2}$ and so on with $k_s = n$. \\
-      By the definition of the successive minima, $a \in \Lambda$, $\|a\|_C < \mu \implies a = 0$. Since $\mu_2 > \lambda_{k_1}$, by Lemma \ref{lem:2.8}, there exist linearly independent $a_1, \dots, a_n \in \Lambda$ such that $\|a_1|_C, \dots, \|a_{k_1}\|_C \leq \lambda_{k_1} < \mu_2$. And given any $x \in \Lambda$ with $\|x\|_C < \mu_2$, then
+      By the definition of the successive minima, $a = 0\forall_{a \in \Lambda: \|a\|_C < \mu_1}$. Since $\mu_2 > \lambda_{k_1}$, by Lemma \ref{lem:2.8}, there exist linearly independent $a_1, \dots, a_n \in \Lambda$ such that $\|a_1\|_C, \dots, \|a_{k_1}\|_C \leq \lambda_{k_1} < \mu_2$. And given any $x \in \Lambda$ with $\|x\|_C < \mu_2$, then
       \[ \exists_{u_1, \dots, u_{k_1} \in \R}: x = u_1a_1 + \dots + u_{k_1}a_{k_1}\]
       (again use the definition of successive minima). We may continue in this manner (extend $a_1, \dots, a_{k_1}$) to obtain linearly independent $a_1, \dots, a_n \in \Lambda$ with the following property:
       \[ \forall_{1 \leq t \leq s}: a_1, \dots, a_{k_{t-1}} \text{ are linearly independent over }\R \text{ and } \|a_j\|_C < \mu_t \forall_{1 \leq j \leq k_{t-1}}.\]
       Given any $x \in \Lambda$ with $\|x\|_C < \mu_t$, we have
       \[ x = u_1a_1 + \dots + u_{k_{t-1}}a_{k_{t-1}}\]
-      for some $u_i \in \R$. \\
-      Then, by Lemma \ref{lem:lat_base_transf}, we obtain a basis $\{ b_1, \dots, b_n\}$ of $\Lambda$ such that
+      for some $u_i \in \R$ (!). \\
+      Then, by Lemma \ref{lem:lat_base_trans}, we obtain a basis $\{ b_1, \dots, b_n\}$ of $\Lambda$ such that
       \begin{align*}
-        b_1 = \quad & \xi_{1,1}a_1 & & \\
-        b_2 = \quad & \xi_{2,1}a_1 + \quad & \xi_{2,2}a_2 & \\
-        \vdots \qquad & & & \\
-        b_n = \quad & \xi_{n,1}a_1 + \quad & \dots + \quad & \xi_{n,n}a_n
+        b_1 = \quad & \xi_{1,1}a_1 \\
+        b_2 = \quad & \xi_{2,1}a_1 + \quad  \xi_{2,2}a_2 \\
+        \vdots \qquad \ & \\
+        b_n = \quad & \xi_{n,1}a_1 + \quad  \dots + \quad  \xi_{n,n}a_n
       \end{align*}
       with $\xi_{i,j} \in \R, \xi_{i,i} \neq 0 \forall_{1 \leq i,j \leq n}$. This basis satisfies the desired property. Verifying this is an easy exercise.
     \end{pf}
@@ -486,43 +487,417 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
         Let $\Lambda$ be a lattice inside $\R^n$ and $C$ a central symmetric convex body inside $\R^n$. Given $t > 0$, let
         \[ S(t) = S_F(t) = \{ \eta \in F \mid \exists_{x \in \Lambda}:\eta+x \in tC\}.\]
         where $F$ is the fundamental parallel piped by $\Lambda$.
-        \begin{theorem}{}{2.12}
-          We have
-          \[ \vol(S(t)) \geq \begin{cases}
-            t^n\vol(C) & \text{if } t\leq\frac{\lambda_1}{2}, \\
-            \frac{\lambda_1}{2}+\dots+\frac{\lambda_j}{2}t^{n-j}\vol(C) & \text{if }\frac{\lambda_j}{2} \leq t \leq \frac{\lambda_{j+1}}{2} (1 \leq j \leq n-1), \\
-            \frac{\lambda_1}{2}\cdots\frac{\lambda_n}{2}\vol(C) & \text{if } t \geq \frac{\lambda_n}{2}.
-          \end{cases}\]
-        \end{theorem}
-        \emp{Note:} This is actually about $\nicefrac{\R^n}{\Lambda}$. Theorem \ref{thm:2.12} is about how much of the fundamental domain is covered by $tC \mod \Lambda$.}
-        \begin{example}
-          Take $\Lambda = \Z^2$. Missing here...
-        \end{example}
-        The assertion follows from this theorem by applying it with $t = \nicefrac{\lambda}{2}$. We have
+        The assertion follows from Theorem \ref{thm:volthm_st} by applying it with $t = \nicefrac{\lambda}{2}$. We have
         \begin{align*}
           \det\Lambda = \vol(F) \geq \vol(S(\nicefrac{\lambda}{2})) \geq \frac{\lambda_1}{2}\cdots\frac{\lambda_n}{2}\vol(C),
         \end{align*}
-        which can be transformed into the statement.
-        \begin{pf}[Proof of Theorem \ref{thm:2.12}]
-          We can reduce the prolem to the case where the basis $\{ b-1, \dots, b_n\}$ given in Lemma \ref{lem:2.11} is $\{ e_1, \dots, e_n\}$ (Exercise sheet 3). In particular, $\Lambda = \Z^n$. Let $1 \leq j \leq n-1$ and $x_1 = (x_{1,1}, x_{1,n}), x_2 = (x_{2,1}, \dots, x_{2,n})$ be two vectors in $tC$ with $t < \nicefrac{\lambda_{j+1}}{2}$, such that $x_1-x_2 \in \Lambda$. Then
-          \begin{align*}
-            \underbrace{\|x_1-x_2\|_C}_{\in \Z^n} \leq \quad & \|x_1\|_C + \|x_2\|_C \leq 2t < \lambda_{j+1}. \hfill (1)
-          \end{align*}
-          This implies $x_1-x_2 \in \Z^j \times \{ (0,\dots, 0)\}$. Denote
-          \[ S_j(t,z) = \{ (\eta_1, \dots, \eta_n) \in [0,1]^j \mid \exists_{(m_1, \dots, m_j) \in \Z^j}: \|\underbrace{(\eta_1+m_1, \dots, \eta_j+m_j,z)}_{\in tC}\|_C \leq t\}.\]
-          Recall that
-          \[ S(t) = \{ \eta \in [0,1)^n \mid \exists_{m \in \Z^n}: \|\eta+m\|_C \leq t\}.\]
-          Let $\eta \in [0,1)^n$ and $t < \nicefrac{\lambda_{j+1}}{2}$. Supppose that we have $m, m' \in \Z^n$ such that
-          \[ \|\eta+m\|_C \leq t \text{ and } \|\eta+m'\|_C \leq t.\]
-          Then, by (1), we get $(m_{j+1}, \dots, m_n) = (m'_{j+1}, \dots, m'_n)$. Thus, for each $\eta \in [0,1)^n$ from the definition of $S(t)$, the last $n-1$ coordinates of $m$ are unique. We partition $S(t)$ based on this.
-          Write
-          \[ S(t) = \bigsqcup_{m_{j+1}, \dots, m_n \in \Z}\bigsqcup_{\eta_{j+1}, \eta_n \in [0,1)} \{ \eta \in [0,1)^n: \exists_{(m_1, \dots, m_j) \in \Z^j: \|\eta+m\|_C \subseteq t}\}.\]
-          (Here $m=(m_1, \dots, m_n)$).
-          Therefore,
-          \begin{align*}
-            \vol(S(t)) = \quad & \int_{\R^{n-j}} \vol_J(s_j(t,z)) \dl{z} \forall_{t < \frac{\lambda_{j+1}}{2}}.\hfill (2)
-          \end{align*}
-        \end{pf}
+        which can be transformed into the statement.}
       \end{enumerate}
     \end{pf}
+
+  \begin{pf}[Proof of Theorem \ref{thm:2.12}]
+      We can reduce the prolem to the case where the basis $\{ b-1, \dots, b_n\}$ given in Lemma \ref{lem:2.11} is $\{ e_1, \dots, e_n\}$ (Exercise sheet 3). In particular, $\Lambda = \Z^n$. Let $1 \leq j \leq n-1$ and $x_1 = (x_{1,1}, x_{1,n}), x_2 = (x_{2,1}, \dots, x_{2,n})$ be two vectors in $tC$ with $t < \nicefrac{\lambda_{j+1}}{2}$, such that $x_1-x_2 \in \Lambda$. Then
+      \begin{align*}
+        \underbrace{\|x_1-x_2\|_C}_{\in \Z^n} \leq \quad & \|x_1\|_C + \|x_2\|_C \leq 2t < \lambda_{j+1}. \hfill (1)
+      \end{align*}
+      This implies $x_1-x_2 \in \Z^j \times \{ (0,\dots, 0)\}$. Denote
+      \[ S_j(t,z) = \{ (\eta_1, \dots, \eta_n) \in [0,1]^j \mid \exists_{(m_1, \dots, m_j) \in \Z^j}: \|\underbrace{(\eta_1+m_1, \dots, \eta_j+m_j,z)}_{\in tC}\|_C \leq t\}.\]
+      Recall that
+      \[ S(t) = \{ \eta \in [0,1)^n \mid \exists_{m \in \Z^n}: \|\eta+m\|_C \leq t\}.\]
+      Let $\eta \in [0,1)^n$ and $t < \nicefrac{\lambda_{j+1}}{2}$. Supppose that we have $m, m' \in \Z^n$ such that
+      \[ \|\eta+m\|_C \leq t \text{ and } \|\eta+m'\|_C \leq t.\]
+      Then, by (1), we get $(m_{j+1}, \dots, m_n) = (m'_{j+1}, \dots, m'_n)$. Thus, for each $\eta \in [0,1)^n$ from the definition of $S(t)$, the last $n-1$ coordinates of $m$ are unique. We partition $S(t)$ based on this.
+      Write
+      \[ S(t) = \bigsqcup_{m_{j+1}, \dots, m_n \in \Z}\bigsqcup_{\eta_{j+1}, \eta_n \in [0,1)} \{ \eta \in [0,1)^n: \exists_{(m_1, \dots, m_j) \in \Z^j: \|\eta+m\|_C \subseteq t}\}.\]
+      (Here $m=(m_1, \dots, m_n)$).
+      Therefore,
+      \begin{align*}
+        \vol(S(t)) = \quad & \int_{\R^{n-j}} \vol_J(s_j(t,z)) \dl{z} \forall_{t < \frac{\lambda_{j+1}}{2}}.\hfill (2)
+      \end{align*}
+    \end{pf}
+\newLecture{6th May 2026}
+
+Let \(\Lambda\) be a lattice inside~\(\R^n\) and let \(C\) be a central symmetric convex body.
+Given \(t > 0\), let
+\begin{equation*}
+    S(t)
+    = \{ \eta \in F \mid \eta + x \in F \text{ for some } x \in \Lambda\}.
+\end{equation*}
+
+\begin{theorem}{Volume of $S(t)$}{volthm_st}
+    We have
+    \begin{equation*}
+        \vol(S(t)) \ge
+        \begin{cases*}
+            t^n \vol(C) & if \(t \le \frac{\lambda_1}{2}\), \\
+            \frac{\lambda_1}{2} \dotsm \frac{\lambda_j}{2} t^{n-j} \vol(C) & if \(\frac{\lambda_j}{2} \le t \le \frac{\lambda_{j+1}}{2}\), \\
+            \frac{\lambda_1}{2} \dotsm \frac{\lambda_n}{2} \vol(C) & if \(t \ge \frac{\lambda_n}{2}\).
+        \end{cases*}
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    We reduced to the case case where the \glqq nice\grqq basis given in Lem.~2.11 is \(\{e_1, \dots, e_n\}\).
+    In particular, \(\Lambda = \Z^n\).
+    Let \(1 \le j \le n-1\).
+    Denote
+    \begin{equation*}
+        S_j(t_1 z)
+        = \{(\eta_1, \dots, \eta_j) \in [0,1)^j \mid \text{there is } (m_1, \dots, m_j) \in \Z^j \text{ such that } \|(\eta_1 + m_1, \dots, \eta_j + m_j, z)\|_C \le t\}.
+    \end{equation*}
+    We showed that
+    \begin{equation}
+        \vol(S(t))
+        = \int_{\R^{n-j}} \vol_j(S_j(t, z)) \dl{z} \tag{2}
+        \label{eqn:minkowski2:2}
+    \end{equation}
+    for any \(t < \lambda_{j+1} / 2\).
+
+    Now, take any \(\alpha \ge 1\).
+    Claim: \(\vol(S_j(\alpha t, \alpha z)) \ge \vol(S_j(t, z))\) for any \(z \in \R^{n-j}\).
+
+    If the right hand side is~\(0\), then there is nothing to prove.
+    Suppose otherwise that there is \(y_0 = (y_{0,1}, \dots, y_{0,j}) \in \R^j\) such that \(\|(y_0, z)\|_C \le t\).
+    Given any \(y \in \R^j\) such that \(\|(y, z)\|_C \le t\), then
+    \begin{equation}
+        \|(y + (\alpha - 1) y_0, \alpha z)\|_C
+        = \|(y, z) + (\alpha - 1) (y_0, z)\|_C
+        \le \|(y, z)\|_C + (\alpha - 1) \|(y_0, z)\|_C
+        \le t + (\alpha - 1) t
+        = \alpha t. \tag{3}
+        \label{eqn:minkowski2:3}
+    \end{equation}
+    Let us define a notation: given \(y \in \R^j\), let
+    \begin{equation*}
+        \{y\}
+        = (y_1 - \lf y_1\rf, \dots, y_j - \lf y_j\rf) \in [0,1)^j.
+    \end{equation*}
+    Then
+    \begin{equation*}
+        S_j(t, z)
+        = \{\{y \}\in [0,1)^j \mid y \in \R^j, \|(y, z)\|_C \le t\}.
+    \end{equation*}
+    Now, we define
+    \begin{equation*}
+        W
+        = \{\{y + (\alpha - 1) y_0\} \in [0,1)^j \mid y \in \R^j, \|(y, z)\|_C \le t\}.
+    \end{equation*}
+    Then \(\vol(S_j(t, z)) = \vol(W)\) (check this!).
+    Furthermore, by~\cref{eqn:minkowski2:3}, we have
+    \begin{equation*}
+        W
+        \subseteq \{\{y + (\alpha - 1) y_0\} \in [0,1)^n \mid y \in \R^j, \|(y + (\alpha - 1) y_0, \alpha z)\|_C \le \alpha t\}
+        = \{\{y\} \in [0,1)^j \mid y \in \R^j, \|(y, \alpha z)\|_C \le \alpha t\}
+        = S_j(\alpha t, \alpha z).
+    \end{equation*}
+    Take the volume to obtain
+    \begin{equation*}
+        \vol(S_j(t, z))
+        = \vol(W)
+        \le \vol(S_j(\alpha t, \alpha z)),
+    \end{equation*}
+    proving the claim.
+
+    Suppose that \(0 < t \le \alpha t < \lambda_{j+1} / 2\).
+    Then by \cref{eqn:minkowski2:2} and the claim,
+    \begin{equation*}
+        \vol(S(\alpha t))
+        = \int_{\R^{n-j}} \vol(S_j(\alpha t, z)) \dl{z}
+        = \alpha^{n-j} \int_{\R^{n-j}} \vol(S_j(\alpha t, \alpha z)) \dl{z}
+        \ge \alpha^{n-j} \int_{\R^{n-j}} \vol(S(t, z)) \dl{z}.
+    \end{equation*}
+    This gives
+    \begin{equation}
+        \vol(S(\alpha t)) \\
+        \ge \alpha^{n-j} \vol(S(t)). \tag{4}
+        \label{eqn:minkowski2:4}
+    \end{equation}
+
+    We are ready to prove the theorem.
+    When \(t < \lambda_1 / 2\), we have
+    \begin{equation*}
+        \vol(S(t))
+        = \vol(tC)
+        = t^n \vol(C).
+    \end{equation*}
+    This is because if \(\vec{\eta} + \vec{m}, \vec{\eta} + \vec{m}' \in tC\) with \(\vec{m}, \vec{m}' \in \Z^n\), then
+    \begin{equation*}
+        \|\vec{m} - \vec{m}'\|_C
+        = \|(\vec{\eta} + \vec{m}) - (\vec{\eta} + \vec{m}')\|_C
+        \le \|\vec{\eta} + \vec{m}\|_C + \|\vec{\eta} + \vec{m}'\|_C
+        \le 2t
+        < \lambda_1,
+    \end{equation*}
+    so \(\vec{m} = \vec{m}'\).
+    Therefore, \(\vol(S(t)) = \vol(tC) = t^n \vol(C)\) if \(t < \lambda_1 / 2\).
+    Since \(S(t) \subseteq S(\lambda_1 / 2)\) for any \(t \le \lambda_1 / 2\), we have \(\vol(S(\lambda_1 / 2)) \ge (\lambda_1 / 2)^n \vol(C)\).
+
+    We now use induction to prove the statement for \(1 \le j \le n-1\).
+    Suppose that the statement holds for any \(t \le \lambda_j / 2\) for some~\(j\).
+    Consider \(\lambda_j / 2 \le t < \lambda_{j+1} / 2\).
+    Set \(t_0 = \lambda_j / 2\) and \(\alpha \in [1, \lambda_{j+1} / \lambda_j)\) such that \(t = \alpha t_0\).
+    Then
+    \begin{equation*}
+        \vol(S(t))
+        = \vol(S(\alpha t_0))
+        \ge \alpha^{n-j} \vol(S(t_0))
+        \ge \alpha^{n-j} \left(\frac{\lambda_1}{2} \dotsm \frac{\lambda_{j-1}}{2}\right) t_0^{n-j+1} \vol(C)
+        = t^{n-j} \left(\frac{\lambda_1}{2} \dotsm \frac{\lambda_{j-1}}{2} \frac{\lambda_j}{2}\right) \vol(C).
+    \end{equation*}
+    And for \(t = \lambda_{j+1} / 2\), this holds by taking the limit since \(S(t) \subseteq S(\lambda_{j+1} / 2)\) if \(t \le \lambda_{j+1} / 2\).
+    This completes induction and gives us the statement for all \(t \le \lambda_n / 2\).
+
+    Finally, suppose that \(t \ge \lambda_n / 2\).
+    Then \(S(\lambda_n / 2) \subseteq S(t)\), and so
+    \begin{equation*}
+        \vol(S(t))
+        \ge \vol(S(\lambda_n / 2))
+        \ge \frac{\lambda_1}{2} \dotsm \frac{\lambda_n}{2} \vol(C).
+    \end{equation*}
+    (This follows from the case \(t = \lambda_n / 2\)\@.)
+\end{proof}
+
+This prove is, largely exaggerated, just a very technical induction.
+The proof of Roth's theorem will be also, largely exaggerated, a~very technical induction.
+
+\section{Dual lattice}
+
+Let \(\Lambda\) be a lattice in~\(\R^n\).
+We define the dual lattice~\(\Lambda^*\) to be
+\begin{equation*}
+    \Lambda^*
+    = \{\vec{x} \in \R^n \mid \langle\vec{x},y\rangle \in \Z \text{ for all } y \in \Lambda\}.
+\end{equation*}
+Let \(\{\vec{v}_1, \dots, \vec{v}_n\}\) be a basis of~\(\Lambda\) and let \(A = \begin{pmatrix} \vec{v}_1 & \cdots & \vec{v}_n\end{pmatrix} \).
+Then
+\begin{equation*}
+    \begin{split}
+        \Lambda^*
+        &= \{\vec{x} \in \R^n \mid \inp{\vec{x}}{y} \in \Z \text{ for all } y \in \Lambda\} \\
+        &= \{\vec{x} \in \R^n \mid \inp{\vec{x}}{A z} \in \Z z \in \Z^n\} \\
+        &= \{\vec{x} \in \R^n \mid \inp{A^t \vec{x}}{z} \in \Z z \in \Z^n\} \\
+        &= \{\vec{x} \in \R^n \mid A^t \vec{x} \in \Z^n\} \\
+        &= \{(A^t)^{-1} \vec{w} \mid \vec{w} \in \Z^n\}.
+    \end{split}
+\end{equation*}
+Hence,
+\begin{equation*}
+    \det \Lambda^*
+    = \|\det(A^t)^{-1}\|
+    = \frac{1}{\abs{\det A}}
+    = \frac{1}{\det \Lambda}
+\end{equation*}
+
+\begin{theorem}
+    Let \(\Lambda\) be a lattice in~\(\R^n\) and let \(\lambda_1, \dots, \lambda_n\) be its successive minima w.\,r.\,t.\ \(B = \{\vec{x} \in \R^n \mid \|\vec{x}\|_2 \le 1\}\).
+    Let \(\Lambda^*\) be its dual, and let \(\lambda_1^*, \dots, \lambda_n^*\) be the successive minima of~\(\Lambda^*\) w.\,r.\,t.~\(B\).
+    Then
+    \begin{equation*}
+        1
+        \le \lambda_i \lambda_{n-i+1}^*
+        \le c(n)
+    \end{equation*}
+    for all \(1 \le i \le n\) where \(c(n)\) is a constant that depends only on~\(n\).
+\end{theorem}
+
+Successive minima for dual lattices are only considered w.\,r.\,t.\ the unit ball.
+
+\begin{proof}
+    We begin with the lower bound.
+    Let \(\vec{v}_1, \dots, \vec{v}_n \in \Lambda\) be linearly independent over~\(\R\) and \(\|\vec{v}_i\|_2 = \lambda_i\) for all \(1 \le i \le n\) (from Lem.~2.8).
+    Similarly, take \(\vec{v}_1^*, \dots, \vec{v}_n^* \in \Lambda^*\) linearly independent over~\(\R\) with \(\|\vec{v}_i^*\|_2 = \lambda_i^*\) for all \(1 \le i \le n\).
+    Take \(1 \le i \le n\).
+    Define
+    \begin{equation*}
+        V_i
+        = \{\vec{x} \in \R^n \mid \inp{\vec{x}}{\vec{v}_k} = 0 \text{ for each } 1 \le k \le i\}.
+    \end{equation*}
+    Since \(\vec{v}_1, \dots, \vec{v}_i\) are linearly independent over~\(\R\), we obtain \(\dim V_i = n-i\).
+    Therefore, at least one of \(\vec{v}_1^*, \dots, \vec{v}_{n+1-i}^*\) is not in~\(V_i\).
+    Thus, there is \(1 \le i_0 \le i\) and \(1 \le k_0 \le n+1-i\) such that \(\inp{\vec{v}_{i_0}}{\vec{v}_{k_0}^*} \ne 0\).
+    From the definition of~\(\Lambda^*\), we have \(\abs{\inp{\vec{v}_{i_0}}{\vec{v}_{i_0}^*}} \in \Z\) and
+    \begin{equation*}
+        1
+        \le \abs{\inp{\vec{v}_{i_0}}{\vec{v}_{i_0}^*}}
+        \le \|\vec{v}_{i_0}\|_2 \dotsm \|\vec{v}_{k_0}^*\|_2
+        = \lambda_{i_0} \lambda_{k_0}^*
+        < \lambda_i \lambda_{n+1-i}^*.
+    \end{equation*}
+
+    Next, the upper bound.
+    By Theorem \ref{thm:mink_sec_conv_bod_thm}, we have
+    \begin{equation*}
+        \lambda_1 \dotsm \lambda_n
+        \le \frac{2^n}{\vol(B)} \det \Lambda, \qquad
+        \lambda_1^* \dotsm \lambda_n^*
+        \le \frac{2^n}{\vol(B)} \det \Lambda^*.
+    \end{equation*}
+    This gives
+    \begin{equation*}
+        \prod_{i=!}^n \lambda_i \lambda_{n+1-i}^*
+        = \frac{4^n}{\vol(B)^2} \det \Lambda \det \Lambda^*
+        = \frac{4^n}{\vol(B)^2}.
+    \end{equation*}
+    Take any \(1 \le i_0 \le n\).
+    Then
+    \begin{equation*}
+        \lambda_{i_0} \lambda_{n+1-i_0}^*
+        = \frac{4^n}{\vol(B)^2} \frac{1}{\prod_{i \ne i_0} \underbrace{\lambda_i \lambda_{n+1-i}^*}_{\ge 1}}
+        \le \frac{4^n}{\vol(B)^2}. \qedhere
+    \end{equation*}
+\end{proof}
+
+As an application, we will show that there is no \enquote{small} vector in~\(\Lambda^*\).
+This gives a good approximation of vectors in~\(\R^n\) by~\(\Lambda\).
+
+\begin{corollary}
+    Let us use the same notation as in Theorem~2.13.
+    Suppose that \(0 < R \le \lambda_1^*\).
+    Then, given any \(\vec{b} \in \R^n\), there is \(\vec{x} \in \Lambda\) such that
+    \begin{equation*}
+        \|\vec{b} - \vec{x}\|_2
+        \le \frac{n c(n)}{2R}.
+    \end{equation*}
+\end{corollary}
+
+\begin{proof}
+    Since \(\lambda_1^* \ge R\), by Theorem~2.13, we obtain
+    \begin{equation*}
+        \lambda_n
+        \le \frac{c(n)}{\lambda_1^*}
+        \le \frac{c(n)}{R}.
+    \end{equation*}
+    Let \(\vec{v}_1, \dots, \vec{v}_n \in \Lambda\) be linearly independent over~\(\R\) with \(\|\vec{v}_i\|_2 = \lambda_i \le \lambda_n \le c(n) / R\) for all \(1 \le i \le n\).
+    Take any \(\vec{b} \in \R^n\), and write \(\vec{b} = \xi_1 \vec{v}_1 + \dots + \xi_n \vec{v}_n\).
+    Let \(m_1, \dots, m_n \in \Z\) such that \(\abs{\xi_i - m_i} \le \frac{1}{2}\).
+    Then \(\vec{x} = m_1 \vec{v}_1 + \dots + m_n \vec{v}_n \in \Lambda\).
+    We have
+    \begin{equation*}
+        \|\vec{x} - \vec{b}\|_2
+        = \|(\xi_1 - m_1) \vec{v}_1 + \dots + (\xi_n - m_n) \vec{v}_n\|_2
+        \le \frac{1}{2} (\|\vec{v}_1\|_2 + \dots + \|\vec{v}_n\|_2)
+        \le \frac{n}{2} \frac{c(n)}{R}. \qedhere
+    \end{equation*}
+\end{proof}
+\newLecture{8th May 2026}
+Recall from last time... \\
+Given a lattice $\Lambda$, we defined the dual lattice
+\[ \Lambda^* = \{ x \in \R^n: \langle x,y\rangle \in \Z, y \in \Lambda \}.\]
+If $\Lambda = A\Z^n$, then $\Lambda^* = (A^t)^{-1}\Z^n$.
+\begin{corollary}{}{2.14}
+  Using the same notation as in Theorem \ref{thm:2.13}, suppose $0 < R \leq \lambda_1^*$. Then given any $b \in \R^n$, there exists $x \in \Lambda$ such that \[\| b - x \|_2 \leq \frac{nC(n)}{2R}.\]
+\end{corollary}
+\begin{theorem}{}{2.15}
+  Let $\alpha_1, \dots, \alpha_n, \theta_1, \dots, \theta_n \in \R$. Suppose that $\{ 1, \alpha_1, \dots, \alpha_n\}$ are linearly independent over $\Q$. Then, for any constant $\epsilon > 0$, there exist infinitely many $(x_1, \dots, x_n, y) \in \Z^{n+1}$ such that
+  \[ |\alpha_iy - x_i-\theta_i| \leq \epsilon \forall_{1 \leq i \leq n}.\]
+\end{theorem}
+\noindent \textbf{Remark:} Recall Corollary \ref{cor:2.7}, which was a multi-dim Dirichlet's theorem. This is a version with a shift $\theta$ (inhomogeneous), and a nice application of the concept of a dual lattice. Also note that the condition of the linear independence is necessary (exercise).
+\begin{pf}
+  Let $M$ be a sufficiently large integer. Also let
+  \[ A = \begin{pmatrix}
+    & & & -\alpha_1 \\
+    & I_n & & \cdots \\
+    & & & -\alpha_n \\
+    0 & \dots & 0 & M^{-1}
+  \end{pmatrix}\]
+  and
+  \[ \Lambda_M = \{ Az: z = (x_1, \dots, x_n,y) \in \Z^{n+1}\} = \{ (x_1-\alpha_1y, \dots, x_n-\alpha_ny, M^{-1}y): (x_1, \dots, x_n, y) \in \Z^{n+1}\}.\]
+  Write
+  \[ b = \begin{pmatrix}
+    \theta_1 \\
+    \vdots \\
+    \theta_n \\
+    2\epsilon
+  \end{pmatrix}.\]
+  The goal is to show that \[\exists_{z \in \Z^{n+1}}: \|b-Az\| \leq \epsilon. \hfill (*)\]
+  This would imply
+  \[ \epsilon \geq \sqrt{(x_1-\alpha_1y-\theta_1)^2 + \dots + (x_n-a_ny-\theta_n)^2 + (M^{-1}y-2\epsilon)^2} \geq \begin{cases}
+    |x_i-\alpha_iy-\theta_i| & \forall_{1 \leq i \leq n}, \\
+    |M^{-1}y-2\epsilon & i=n+1.
+  \end{cases}\]
+  The latter is equivalent to $\epsilon M \leq y \leq 3\epsilon M$. Hence, we can generate infinitely many $(x_1, \dots, x_n, y) \in \Z^{n+1}$ that satisfy the statement of the theorem. We have
+  \[ (A^t)^{-1} = \begin{pmatrix}
+    & & & 0 \\
+    & I_n & & \vdots \\
+    & & & 0 \\
+    M\alpha_1 & \dots & M\alpha_n & M
+  \end{pmatrix}.\]
+  Therefore, our dual lattice is
+  \[ \Lambda_M^* = (A^t)^{-1}\Z^{n+1} = \{ (x_1, \dots, x_n, M(\alpha_1x_1+\dots+\alpha_nx_n+y)): x_1, \dots, x_n,y \in \Z\}.\]
+  Let
+  \[ R = \frac{(n+1)C(n+1)}{2\epsilon}\]
+  and
+  \[ \mu = \min_{(x_1, \dots, x_n,y) \in S} |\alpha_1x_1+\dots+\alpha_nx_n+y|,\]
+  where
+  \[ S = \{ (x_1, \dots, x_n,y) \in \Z^{n+1} \setminus \{ 0\}. |x_i| < R \forall_{1 \leq i \leq n}, |\alpha_1x_1+\dots+\alpha_nx_n+y| \leq 1\}.\]
+  The set $S$ is clearly finite. Recall that $\alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$. Hence, $\mu > 0$. We choose
+  \[ M > \max\left\{ \frac{R}{\mu}, R\right\}.\]
+  Then, given any $u \in \Lambda_M^* \setminus \{ 0\}$, we have
+  \[ \|u\|_2 = \sqrt{x_1^2+\dots+x_n^2+M^2(\alpha_1x_1+\dots+\alpha_nx_n+y)^2} \geq R,\]
+  which we can prove by considering the following three cases:
+  \begin{enumerate}[(i)]
+    \item $\exists_{1 \leq i \leq n}: |x_i| \geq R \checkmark$.
+    \item $\forall_{1 \leq i \leq n}: |x_i| < R, (x_1, \dots, x_n,y) \notin S$ \\
+    Use $M > R$.
+    \item $\forall_{1 \leq i \leq n}: |x_i| < R, (x_1, \dots, x_n,y) \in S$ \\
+    Use $M > \nicefrac{R}{\mu}$.
+  \end{enumerate}
+  This means that $\lambda_1^* > R$ (first minimum of $\Lambda_M^*$ with respect to the unit ball). We can then apply Corollary \ref{cor:2.14} to deduce that
+  \[ \exists_{v = Az \in \Lambda_M^*}: \|b-Az\|_2 \leq \frac{(n+1)C(n+1)}{2R} = \epsilon.\]
+  This is the bound $(*)$, which finishes the proof.
+\end{pf}
+\section{Lagrange's Four Square Theorem}
+\begin{theorem}{Lagrange, 1770}{2.16}
+  Given $n \in \N$, $\exists_{a,b,c,d \in \Nzero}$ such that
+  \[ n = a^2+b^2+c^2+d^2.\]
+\end{theorem}
+We'll do a Geometry of Numbers-style proof of this. We begin with a simple lemma:
+\begin{lemma}{}{2.17}
+  Given any $p \in \PP$, there exist $a,b \in \Z$ such that
+  \[ a^2+b^2 \equiv -1 \mod p.\]
+\end{lemma}
+\begin{pf}
+  If $p=2$, then $(a,b)=(1,0)$ works. For $p > 2$, define
+  \[ \A = \{ a^2 \smod p: 0 \leq a \leq \nicefrac{p}{2}\}.\]
+  The elements of $\A$ are distinct because
+  \[ a^2 \equiv \widehat{a}^2 \mod p \implies p \mid a^2-\widehat{a}^2 = (a+\widehat{a})(a-\widehat{a}),\]
+  from which we can immediately deduce that $p \mid a-\widehat{a}$, i.e. $a \equiv \widehat{a} \mod p$. Therefore,
+  \[ \#\A = \frac{p-1}{2}+1 = \frac{p+1}{2}.\]
+  Similarly, we define
+  \[ \mathfrak{B} = \{ -1-b^2 \smod p: 0 \leq b < \nicefrac{p}{2}\}.\]
+  By the same argument,
+  \[ \#\mathfrak B = \frac{p+1}{2}.\]
+  Therefore, we can use the pigeonhole principle to deduce that $\A \cap \mathfrak B \neq \varnothing$, i.e.
+  \[ \exists_{a \in \A, b \in \mathfrak B}: a^2 \equiv -1-b^2 \mod p. \qedhere\]
+\end{pf}
+We also need the following lemma, the proof of which will be on the next exercise sheet.
+\begin{lemma}{}{2.18}
+  Let $k_1, \dots, k_n \in \N$, $m \geq 1$. Assume that $L_1(x), \dots, L_m(x) \in \Z[x]$ are linear forms. Define
+  \[ \Lambda = \{ x \in \Z^n: L_j(x) \equiv 0 \smod k_j \forall_{1 \leq j \leq m}\}.\]
+  Then $\Lambda$ is a lattice with $\det\Lambda \leq k_1\cdots k_m$.
+\end{lemma}
+\begin{pf}
+  Exercise.
+\end{pf}
+These two lemmata allow us to prove Theorem \ref{thm:2.16}.
+\begin{pf}[Proof of Theorem \ref{thm:2.16}]
+  For $n=1$, the statement is trivial. Otherwise, write $n = m^2p_1\cdots p_r$, where $p_1, \dots, p_r$. Writing $\widetilde{a} = ma, \dots, \widetilde{d} = md$, it suffices to consider $n=p_1\cdots p_r$. We define
+  \[ \{ (u_1, \dots, u_4) \in \Z^4: u_1-a_pu_3-b_pu_4 \equiv 0 \smod p, u_2-b_pu_3+a_pu_4 \equiv 0 \smod p \forall_{\PP \ni p \mid n}\},\]
+  where $a_p, b_p$ are such that $a_p^2+b_p^2 \equiv -1 \mod p$ (use Lemma \ref{lem:2.17}). Then $\Lambda$ is a lattice with $\det\Lambda \leq n^2$. Let $\epsilon > 0$ be sufficiently small with respect to $n$. Define
+  \[ C = B^4_{\sqrt{2(n-\epsilon)}}(0).\]
+  Then
+  \[ \vol(C) = \frac{\pi^2}{2}\sqrt{2(n-\epsilon)^4} =2\pi^2(n-\epsilon)^2 >  16n^2 \geq 2^4\det\Lambda.\]
+  Now, Minkowski's First Theorem \ref{thm:mink_first_conv_bod_thm} implies that there exists $0 \neq u \in \Lambda \cap C$. In particular,
+  \[ 0 < U_1^2+u_2^2+u_3^2+u_4^2 \leq 2(n-\epsilon) <2n.\]
+  We also have $u \in \Lambda$, which means that
+  \begin{align*} u_1^2+u_2^2+u_3^2+u_4^2 \equiv \quad &  (a_pu_3+b_pu_4)^2+(b_pu_3-a_pu_4)^2+u_3^2+u_4^2 \\
+  \equiv \quad & (a_p^2+b_p^2+1)u_3^2 + (a_p^2+b_p^2+1)u_4^2 \\
+  \equiv \quad & 0 \hspace{9cm} \mod p\end{align*}
+  for each $\PP \ni p \mid n$. \\
+  Hence, $p \mid u_1^2+u_2^2+u_3^2+u_4^2 \forall_{\PP \ni p \mid n}$, which implies $n \mid u_1^2+u_2^2+u_3^2+u_4^2$. Combining this with the upper bound on $n$ yields
+  \[ n = u_1^2+u_2^2+u_3^2+u_4^2.\]
+\end{pf}
+\section{Short Vectors in a Lattice}
+Apparently, finding the shortest vector in a lattice is an important (and quite difficult) problem in cryptography. Some cryptographic schemes rely on this fact. The secret corresponds to the shortest vector. Though we cannot do this in general, we can find a \glqq pretty short\grqq \ vector (LLL-Algorithm). We will do this next week.
+\newLecture{13th May 2026}
 \end{document}

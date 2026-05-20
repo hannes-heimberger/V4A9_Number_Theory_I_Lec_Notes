@@ -1010,4 +1010,87 @@ Note that $\Span_{\mathbb{R}} \{ \vec{b}_1, \dots, \vec{b}_n \} = \Span_{\mathbb
     \[ \|\vec{b}_i\|_2^2 \le 2^{n-1} \max \{ \|\vec{x}_1\|_2^2, \dots, \|\vec{x}_\ell\|_2^2 \} \quad \text{for all } 1 \le i \le \ell. \]
 \end{proposition}
 \newLecture{15th May 2026}
+\section{The LLL Algorithm}
+
+The \textbf{LLL (Lenstra-Lenstra-Lovász) algorithm} turns a basis into a reduced basis (and thus gives a "short" vector in $\Lambda$, recall Proposition 2.20).
+
+\begin{definition}{Property (k)}{def:prop_k}
+    Let $2 \le k \le n+1$. We say a basis $\{ \vec{b}_1, \dots, \vec{b}_n \}$ satisfies \define{Property (k)} if:
+    \begin{enumerate}[label=\roman*)]
+        \item $|\mu_{i,j}| \le \frac{1}{2}$ for all $1 \le j < i < k$.
+        \item $||\vec{b}_i' + \mu_{i,i-1}\vec{b}_{i-1}'||_2^2 \ge \frac{3}{4} ||\vec{b}_{i-1}'||_2^2$ for all $2 \le i < k$.
+    \end{enumerate}
+\end{definition}
+
+\titremark{Note} Property ($n+1$) means the basis is reduced. And Property (2) holds trivially for any basis.
+
+\section*{How the algorithm works}
+
+We start with a basis $B_0 = \{ \vec{b}_1, \dots, \vec{b}_n \}$ of $\Lambda$. In particular, it satisfies Property (2).
+The algorithm proceeds in steps, producing a sequence of bases:
+$$ B_0 \xrightarrow{\text{Prop}(2)} B_1 \xrightarrow{\text{Prop}(k_1)} B_2 \xrightarrow{\text{Prop}(k_2)} \dots \to B_{\text{final}} \xrightarrow{\text{Prop}(n+1)} $$
+where $k_{i+1} = k_i \pm 1$. Once we reach Property ($n+1$), we get a reduced basis. Done! As we shall see, $k$ can go down only a finite number of times, so the algorithm terminates.
+
+\titremark{Note on efficiency} The algorithm is efficient. If we start with a basis $\{ \vec{b}_1, \dots, \vec{b}_n \}$ with $||\vec{b}_i||_2 \le B$ ($1 \le i \le n$), then the number of arithmetical operations (addition, subtraction, multiplication, division) needed in the algorithm is $\mathcal{O}(n^4 \log B)$, and the algorithm runs in polynomial time in $B$.
+
+\section*{Algorithm Steps}
+
+\paragraph{Initial step.} Let $2 \le k \le n$. Assume we have a partial basis satisfying Property (k). We first achieve:
+$$ |\mu_{k,k-1}| \le \frac{1}{2} \quad (*) $$
+If $(*)$ does not hold, let $r \in \mathbb{Z}$ be such that $|\mu_{k,k-1} - r| \le \frac{1}{2}$. We replace $\vec{b}_k$ with $\vec{b}_k - r\vec{b}_{k-1}$. This has the effect of changing $\mu_{k,k-1}$ to $\mu_{k,k-1} - r$. Since $|\mu_{k,k-1} - r| \le \frac{1}{2}$, the new basis satisfies $(*)$.
+
+\begin{addcalc}
+Extra explanation: If we write $\vec{c}_k = \vec{b}_k - r\vec{b}_{k-1}$, then its Gram-Schmidt vector is:
+$$ \vec{c}_k' = \vec{c}_k - \sum_{j=1}^{k-1} \frac{\langle \vec{c}_k, \vec{b}_j' \rangle}{\langle \vec{b}_j', \vec{b}_j' \rangle} \vec{b}_j' = \vec{c}_k - \sum_{j=1}^{k-1} (\mu_{k,j} - r\mu_{k-1,j}) \vec{b}_j' = \vec{b}_k' $$
+Note: $\vec{b}_i$, $\vec{b}_i'$ and $\mu_{i,j}$ are not affected for $1 \le i \le k-1$.
+\end{addcalc}
+
+Now we have a basis $\{ \vec{b}_1, \dots, \vec{b}_n \}$ satisfying Property (k) and $(*)$. We distinguish two main cases:
+
+\paragraph{Case 1 (Swap Step):} If $k \ge 2$ and
+$$ ||\vec{b}_k' + \mu_{k,k-1}\vec{b}_{k-1}'||_2^2 < \frac{3}{4} ||\vec{b}_{k-1}'||_2^2 \quad (**) $$
+Then we switch $\vec{b}_k$ and $\vec{b}_{k-1}$ while keeping the rest the same. Our new basis is $\vec{c}_1, \dots, \vec{c}_n$ with $\vec{c}_{k-1} = \vec{b}_k$, $\vec{c}_k = \vec{b}_{k-1}$, and $\vec{c}_i = \vec{b}_i$ otherwise.
+This changes $\mu_{i,j}$ and $\vec{c}_i'$, but it does NOT affect $\vec{b}_i, \vec{b}_i', \mu_{i,j}$ for $1 \le i \le k-2$. The new basis still satisfies Property (k-1).
+
+Now $\vec{c}_{k-1}'$ is the projection of $\vec{c}_{k-1} = \vec{b}_k$ onto $(\Span_{\mathbb{R}}\{\vec{b}_1', \dots, \vec{b}_{k-2}'\})^\perp$, i.e.,
+$$ \vec{c}_{k-1}' = \vec{b}_k' + \mu_{k,k-1}\vec{b}_{k-1}' $$
+From $(**)$, we get $||\vec{c}_{k-1}'||_2^2 < \frac{3}{4} ||\vec{b}_{k-1}'||_2^2$. So the length of the "new" $\vec{c}_{k-1}'$ is shorter than the "old" $\vec{b}_{k-1}'$ by a factor of $3/4$.
+\titremark{Note} This is what is used to show that $k$ can go down only finitely many times.
+
+\paragraph{Case 2 (Size Reduction Step):} If $k \ge 2$ and
+$$ ||\vec{b}_k' + \mu_{k,k-1}\vec{b}_{k-1}'||_2^2 \ge \frac{3}{4} ||\vec{b}_{k-1}'||_2^2 \quad (***) $$
+First note that we already have $|\mu_{k,k-1}| \le 1/2$ (from $(*)$). Let $l$ be the largest integer such that $|\mu_{k,l}| > 1/2$. (Recall $\mu_{i,j}$ is only defined for $1 \le j < i \le n$). Let $r \in \mathbb{Z}$ be such that $|\mu_{k,l} - r| \le 1/2$. We then replace $\vec{b}_k$ with $\vec{b}_k - r\vec{b}_l$. Thus $\mu_{k,l}$ becomes $\mu_{k,l} - r$.
+
+This change affects other $\mu_{k,j}$ for $j < l$, but it does not affect $\vec{b}_i, \vec{b}_i', \mu_{i,j}$ for $i < k$. It also doesn't affect $(***)$, as $l < k-1$. We repeat this process until we obtain that the basis satisfies $|\mu_{k,j}| \le 1/2$ for all $1 \le j \le k-1$. The final basis satisfies Property (k+1).
+
+\section*{Proof of Termination}
+
+We introduce the following quantity. For each $1 \le i \le n$, let
+$$ D_i = \det \left( [\vec{b}_1 \dots \vec{b}_i]^T [\vec{b}_1 \dots \vec{b}_i] \right) = \det \left( [\vec{b}_1' \dots \vec{b}_i']^T [\vec{b}_1' \dots \vec{b}_i'] \right) $$
+and define $\Delta = \Delta(\vec{b}_1, \dots, \vec{b}_n) = D_1 \cdots D_n$.
+
+It is clear that $D_n = (\det \Lambda)^2$. Furthermore,
+$$ D_i = ||\vec{b}_1'||_2^2 \cdots ||\vec{b}_i'||_2^2 = (\det \Lambda_i)^2 $$
+where $\Lambda_i = [\vec{b}_1 \dots \vec{b}_i \vec{v}_{i+1} \dots \vec{v}_n] \mathbb{Z}^n$ with $\langle \vec{b}_j, \vec{v}_t \rangle = 0$ and $\{ \vec{v}_{i+1}, \dots, \vec{v}_n \}$ orthonormal (Gram-Schmidt sheet 3).
+
+It can be checked that in both Cases 0 and 2, $D_1, \dots, D_n$ (and hence $\Delta$) do not change. (It only involves modification of the form $\vec{b}_k \to \vec{b}_k - c\vec{b}_i$ for some $i < k$).
+
+And, in Case 1 only $D_{k-1}$ changes:
+$$ D_{k-1} = ||\vec{b}_1'||_2^2 \cdots ||\vec{b}_{k-1}'||_2^2 \to ||\vec{c}_1'||_2^2 \cdots ||\vec{c}_{k-1}'||_2^2 $$
+$$ = ||\vec{b}_1'||_2^2 \cdots ||\vec{c}_{k-1}'||_2^2 < \frac{3}{4} ||\vec{b}_1'||_2^2 \cdots ||\vec{b}_{k-1}'||_2^2 = \frac{3}{4} D_{k-1, \text{old}} $$
+But all the other $D_i$ do not change $\Rightarrow \Delta_{\text{new}} < \frac{3}{4} \Delta_{\text{old}}$.
+
+But $\Delta$ cannot get arbitrarily small:
+
+\begin{lemma}{Lower Bound for $\Delta$}{lem:2.21}
+    Let $\{ \vec{b}_1, \dots, \vec{b}_n \}$ be a basis of $\Lambda$. Then
+    $$ \Delta(\vec{b}_1, \dots, \vec{b}_n) \ge \frac{m(\Lambda)^{n^2}}{4^{n^2} V_n^{2n}} $$
+    where $m(\Lambda) = \min \{ \langle \vec{x}, \vec{x} \rangle : \vec{x} \in \Lambda \setminus \{\vec{0}\} \}$ and $V_n$ is the volume of the unit ball in $\mathbb{R}^n$.
+\end{lemma}
+
+\begin{pf}
+    Exercise sheet 5.
+\end{pf}
+
+\paragraph{Conclusion:} The RHS depends only on $\Lambda$ and $n$. Therefore, in the algorithm, Case 1 can only occur finitely many times (i.e. $k \to k-1$ only bounded number of times), and hence $k$ must reach $n+1$ and the algorithm terminates!
 \end{document}

@@ -644,16 +644,16 @@ Let \(\Lambda\) be a lattice in~\(\R^n\).
 We define the dual lattice~\(\Lambda^*\) to be
 \begin{equation*}
     \Lambda^*
-    = \{x \in \R^n \mid \langle x,y\rangle \in \Z \text{ for all } y \in \Lambda\}.
+    = \{x \in \R^n \mid \langle x,y\rangle \in \Z \forall_{y \in \Lambda}\}.
 \end{equation*}
 Let \(\{v_1, \dots, v_n\}\) be a basis of~\(\Lambda\) and let \(A = \begin{pmatrix} v_1 & \cdots & v_n\end{pmatrix} \).
 Then
 \begin{equation*}
     \begin{split}
         \Lambda^*
-        &= \{x \in \R^n \mid \inp{x}{y} \in \Z \text{ for all } y \in \Lambda\} \\
-        &= \{x \in \R^n \mid \inp{x}{A z} \in \Z z \in \Z^n\} \\
-        &= \{x \in \R^n \mid \inp{A^t x}{z} \in \Z z \in \Z^n\} \\
+        &= \{x \in \R^n \mid \inp{x}{y} \in \Z \forall_{y \in \Lambda}\} \\
+        &= \{x \in \R^n \mid \inp{x}{A z} \in \Z\forall_{z \in \Z^n}\} \\
+        &= \{x \in \R^n \mid \inp{A^t x}{z} \in \Z\forall_{z \in \Z^n}\} \\
         &= \{x \in \R^n \mid A^t x \in \Z^n\} \\
         &= \{(A^t)^{-1} w \mid w \in \Z^n\}.
     \end{split}
@@ -661,14 +661,14 @@ Then
 Hence,
 \begin{equation*}
     \det \Lambda^*
-    = \|\det(A^t)^{-1}\|
+    = |\det(A^t)^{-1}|
     = \frac{1}{\abs{\det A}}
-    = \frac{1}{\det \Lambda}
+    = \frac{1}{\det \Lambda}.
 \end{equation*}
 
-\begin{theorem}{}{}
-    Let \(\Lambda\) be a lattice in~\(\R^n\) and let \(\lambda_1, \dots, \lambda_n\) be its successive minima w.\,r.\,t.\ \(B = \{x \in \R^n \mid \|x\|_2 \le 1\}\).
-    Let \(\Lambda^*\) be its dual, and let \(\lambda_1^*, \dots, \lambda_n^*\) be the successive minima of~\(\Lambda^*\) w.\,r.\,t.~\(B\).
+\begin{theorem}{Estimate for Products of Successive Minima and Dual Successive Minima}{2.13}
+    Let \(\Lambda\) be a lattice in~\(\R^n\) and let \(\lambda_1, \dots, \lambda_n\) be its successive minima with respect to \(B = \{x \in \R^n \mid \|x\|_2 \le 1\}\).
+    Let \(\Lambda^*\) be its dual, and let \(\lambda_1^*, \dots, \lambda_n^*\) be the successive minima of~\(\Lambda^*\) with respect to \(B\).
     Then
     \begin{equation*}
         1
@@ -678,11 +678,11 @@ Hence,
     for all \(1 \le i \le n\) where \(c(n)\) is a constant that depends only on~\(n\).
 \end{theorem}
 
-Successive minima for dual lattices are only considered w.\,r.\,t.\ the unit ball.
+\noindent Successive minima for dual lattices are only considered with respect to the unit ball.
 
-\begin{proof}
+\begin{pf}
     We begin with the lower bound.
-    Let \(v_1, \dots, v_n \in \Lambda\) be linearly independent over~\(\R\) and \(\|v_i\|_2 = \lambda_i\) for all \(1 \le i \le n\) (from Lem.~2.8).
+    Let \(v_1, \dots, v_n \in \Lambda\) be linearly independent over~\(\R\) and \(\|v_i\|_2 = \lambda_i\) for all \(1 \le i \le n\) (from Lemma \ref{lem:2.8}).
     Similarly, take \(v_1^*, \dots, v_n^* \in \Lambda^*\) linearly independent over~\(\R\) with \(\|v_i^*\|_2 = \lambda_i^*\) for all \(1 \le i \le n\).
     Take \(1 \le i \le n\).
     Define
@@ -697,9 +697,9 @@ Successive minima for dual lattices are only considered w.\,r.\,t.\ the unit bal
     \begin{equation*}
         1
         \le \abs{\inp{v_{i_0}}{v_{i_0}^*}}
-        \le \|v_{i_0}\|_2 \dotsm \|v_{k_0}^*\|_2
+        \stackrel{\text{C.-S. I.}}{\le} \|v_{i_0}\|_2 \cdot \|v_{k_0}^*\|_2
         = \lambda_{i_0} \lambda_{k_0}^*
-        < \lambda_i \lambda_{n+1-i}^*.
+        \leq \lambda_i \lambda_{n+1-i}^*.
     \end{equation*}
 
     Next, the upper bound.
@@ -712,8 +712,8 @@ Successive minima for dual lattices are only considered w.\,r.\,t.\ the unit bal
     \end{equation*}
     This gives
     \begin{equation*}
-        \prod_{i=!}^n \lambda_i \lambda_{n+1-i}^*
-        = \frac{4^n}{\vol(B)^2} \det \Lambda \det \Lambda^*
+        \prod_{i=1}^n \lambda_i \lambda_{n+1-i}^*
+        \leq \frac{4^n}{\vol(B)^2} \det \Lambda \det \Lambda^*
         = \frac{4^n}{\vol(B)^2}.
     \end{equation*}
     Take any \(1 \le i_0 \le n\).
@@ -723,23 +723,23 @@ Successive minima for dual lattices are only considered w.\,r.\,t.\ the unit bal
         = \frac{4^n}{\vol(B)^2} \frac{1}{\prod_{i \ne i_0} \underbrace{\lambda_i \lambda_{n+1-i}^*}_{\ge 1}}
         \le \frac{4^n}{\vol(B)^2}. \qedhere
     \end{equation*}
-\end{proof}
+\end{pf}
 
-As an application, we will show that there is no \enquote{small} vector in~\(\Lambda^*\).
+\noindent As an application, we will show that there is no \glqq small\grqq \ vector in~\(\Lambda^*\).
 This gives a good approximation of vectors in~\(\R^n\) by~\(\Lambda\).
 
-\begin{corollary}
-    Let us use the same notation as in Theorem~2.13.
+\begin{corollary}{Approximation of Vectors in $\R^n$ with Lattice Vectors}{2.14}
+    Let us use the same notation as in Theorem \ref{thm:2.13}.
     Suppose that \(0 < R \le \lambda_1^*\).
-    Then, given any \(b \in \R^n\), there is \(x \in \Lambda\) such that
+    Then, given any \(b \in \R^n\),
     \begin{equation*}
-        \|b - x\|_2
+        \exists_{x \in \Lambda}: \|b - x\|_2
         \le \frac{n c(n)}{2R}.
     \end{equation*}
 \end{corollary}
 
-\begin{proof}
-    Since \(\lambda_1^* \ge R\), by Theorem~2.13, we obtain
+\begin{pf}
+    Since \(\lambda_1^* \ge R\), by Theorem \ref{thm:2.13}, we obtain
     \begin{equation*}
         \lambda_n
         \le \frac{c(n)}{\lambda_1^*}
@@ -756,30 +756,31 @@ This gives a good approximation of vectors in~\(\R^n\) by~\(\Lambda\).
         \le \frac{1}{2} (\|v_1\|_2 + \dots + \|v_n\|_2)
         \le \frac{n}{2} \frac{c(n)}{R}. \qedhere
     \end{equation*}
-\end{proof}
+\end{pf}
 \newLecture{8th May 2026}
 Recall from last time... \\
 Given a lattice $\Lambda$, we defined the dual lattice
 \[ \Lambda^* = \{ x \in \R^n: \langle x,y\rangle \in \Z, y \in \Lambda \}.\]
 If $\Lambda = A\Z^n$, then $\Lambda^* = (A^t)^{-1}\Z^n$.
-\begin{corollary}{}{2.14}
+\begin{corollary*}{}
   Using the same notation as in Theorem \ref{thm:2.13}, suppose $0 < R \leq \lambda_1^*$. Then given any $b \in \R^n$, there exists $x \in \Lambda$ such that \[\| b - x \|_2 \leq \frac{nC(n)}{2R}.\]
-\end{corollary}
-\begin{theorem}{}{2.15}
+\end{corollary*}
+\begin{theorem}{Shifted Simultaneous Diophantine Approximation}{2.15}
   Let $\alpha_1, \dots, \alpha_n, \theta_1, \dots, \theta_n \in \R$. Suppose that $\{ 1, \alpha_1, \dots, \alpha_n\}$ are linearly independent over $\Q$. Then, for any constant $\epsilon > 0$, there exist infinitely many $(x_1, \dots, x_n, y) \in \Z^{n+1}$ such that
   \[ |\alpha_iy - x_i-\theta_i| \leq \epsilon \forall_{1 \leq i \leq n}.\]
 \end{theorem}
-\noindent \textbf{Remark:} Recall Corollary \ref{cor:2.7}, which was a multi-dim Dirichlet's theorem. This is a version with a shift $\theta$ (inhomogeneous), and a nice application of the concept of a dual lattice. Also note that the condition of the linear independence is necessary (exercise).
+\noindent \textbf{Remark:} Recall Corollary \ref{cor:2.7}, which was a multi-dimensional Dirichlet's theorem. This is a version with a shift $\theta$ (inhomogeneous), and a nice application of the concept of a dual lattice. Also note that the condition of the linear independence is necessary (exercise).
 \begin{pf}
   Let $M$ be a sufficiently large integer. Also let
   \[ A = \begin{pmatrix}
     & & & -\alpha_1 \\
-    & I_n & & \cdots \\
+    & \1_n & & \vdots \\
     & & & -\alpha_n \\
-    0 & \dots & 0 & M^{-1}
+    0 & \cdots & 0 & M^{-1}
   \end{pmatrix}\]
   and
-  \[ \Lambda_M = \{ Az: z = (x_1, \dots, x_n,y) \in \Z^{n+1}\} = \{ (x_1-\alpha_1y, \dots, x_n-\alpha_ny, M^{-1}y): (x_1, \dots, x_n, y) \in \Z^{n+1}\}.\]
+  \begin{align*} \Lambda_M = \quad & \{ Az: z = (x_1, \dots, x_n,y) \in \Z^{n+1}\} \\
+  = \quad & \{ (x_1-\alpha_1y, \dots, x_n-\alpha_ny, M^{-1}y): (x_1, \dots, x_n, y) \in \Z^{n+1}\}.\end{align*}
   Write
   \[ b = \begin{pmatrix}
     \theta_1 \\
@@ -789,14 +790,15 @@ If $\Lambda = A\Z^n$, then $\Lambda^* = (A^t)^{-1}\Z^n$.
   \end{pmatrix}.\]
   The goal is to show that \[\exists_{z \in \Z^{n+1}}: \|b-Az\| \leq \epsilon. \hfill (*)\]
   This would imply
-  \[ \epsilon \geq \sqrt{(x_1-\alpha_1y-\theta_1)^2 + \dots + (x_n-a_ny-\theta_n)^2 + (M^{-1}y-2\epsilon)^2} \geq \begin{cases}
-    |x_i-\alpha_iy-\theta_i| & \forall_{1 \leq i \leq n}, \\
-    |M^{-1}y-2\epsilon & i=n+1.
-  \end{cases}\]
+  \begin{align*} \epsilon \geq \quad & \sqrt{(x_1-\alpha_1y-\theta_1)^2 + \dots + (x_n-a_ny-\theta_n)^2 + (M^{-1}y-2\epsilon)^2} \\
+   \geq \quad & \begin{cases}
+    |x_i-\alpha_iy-\theta_i| & 1 \leq i \leq n, \\
+    |M^{-1}y-2\epsilon| & i=n+1.
+  \end{cases}\end{align*}
   The latter is equivalent to $\epsilon M \leq y \leq 3\epsilon M$. Hence, we can generate infinitely many $(x_1, \dots, x_n, y) \in \Z^{n+1}$ that satisfy the statement of the theorem. We have
   \[ (A^t)^{-1} = \begin{pmatrix}
     & & & 0 \\
-    & I_n & & \vdots \\
+    & \1_n & & \vdots \\
     & & & 0 \\
     M\alpha_1 & \dots & M\alpha_n & M
   \end{pmatrix}.\]
@@ -807,14 +809,14 @@ If $\Lambda = A\Z^n$, then $\Lambda^* = (A^t)^{-1}\Z^n$.
   and
   \[ \mu = \min_{(x_1, \dots, x_n,y) \in S} |\alpha_1x_1+\dots+\alpha_nx_n+y|,\]
   where
-  \[ S = \{ (x_1, \dots, x_n,y) \in \Z^{n+1} \setminus \{ 0\}. |x_i| < R \forall_{1 \leq i \leq n}, |\alpha_1x_1+\dots+\alpha_nx_n+y| \leq 1\}.\]
+  \[ S = \{ (x_1, \dots, x_n,y) \in \Z^{n+1} \setminus \{ 0\} : |x_i| < R \forall_{1 \leq i \leq n} \land |\alpha_1x_1+\dots+\alpha_nx_n+y| \leq 1\}.\]
   The set $S$ is clearly finite. Recall that $\alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$. Hence, $\mu > 0$. We choose
   \[ M > \max\left\{ \frac{R}{\mu}, R\right\}.\]
-  Then, given any $u \in \Lambda_M^* \setminus \{ 0\}$, we have
+  Then, given any $u = (x_1, \dots, x_n, y) \in \Lambda_M^* \setminus \{ 0\}$, we have
   \[ \|u\|_2 = \sqrt{x_1^2+\dots+x_n^2+M^2(\alpha_1x_1+\dots+\alpha_nx_n+y)^2} \geq R,\]
   which we can prove by considering the following three cases:
   \begin{enumerate}[(i)]
-    \item $\exists_{1 \leq i \leq n}: |x_i| \geq R \checkmark$.
+    \item $\exists_{1 \leq i \leq n}: |x_i| \geq R. \ \checkmark$
     \item $\forall_{1 \leq i \leq n}: |x_i| < R, (x_1, \dots, x_n,y) \notin S$ \\
     Use $M > R$.
     \item $\forall_{1 \leq i \leq n}: |x_i| < R, (x_1, \dots, x_n,y) \in S$ \\
@@ -825,55 +827,55 @@ If $\Lambda = A\Z^n$, then $\Lambda^* = (A^t)^{-1}\Z^n$.
   This is the bound $(*)$, which finishes the proof.
 \end{pf}
 \section{Lagrange's Four Square Theorem}
-\begin{theorem}{Lagrange, 1770}{2.16}
+\begin{theorem}{Lagrange's Four Square Theorem, 1770}{2.16}
   Given $n \in \N$, $\exists_{a,b,c,d \in \Nzero}$ such that
   \[ n = a^2+b^2+c^2+d^2.\]
 \end{theorem}
-We'll do a Geometry of Numbers-style proof of this. We begin with a simple lemma:
-\begin{lemma}{}{2.17}
+\noindent We'll do a Geometry of Numbers-style proof of this. We begin with a simple lemma:
+\begin{lemma}{Two Square Residue Lemma}{2.17}
   Given any $p \in \PP$, there exist $a,b \in \Z$ such that
   \[ a^2+b^2 \equiv -1 \mod p.\]
 \end{lemma}
 \begin{pf}
   If $p=2$, then $(a,b)=(1,0)$ works. For $p > 2$, define
-  \[ \A = \{ a^2 \smod p: 0 \leq a \leq \nicefrac{p}{2}\}.\]
+  \[ \A = \{ a^2 \smod p: 0 \leq a < \nicefrac{p}{2}\}.\]
   The elements of $\A$ are distinct because
   \[ a^2 \equiv \widehat{a}^2 \mod p \implies p \mid a^2-\widehat{a}^2 = (a+\widehat{a})(a-\widehat{a}),\]
-  from which we can immediately deduce that $p \mid a-\widehat{a}$, i.e. $a \equiv \widehat{a} \mod p$. Therefore,
+  from which we can immediately deduce that $p \mid a-\widehat{a}$, id est $a \equiv \widehat{a} \mod p$. Therefore,
   \[ \#\A = \frac{p-1}{2}+1 = \frac{p+1}{2}.\]
   Similarly, we define
   \[ \mathfrak{B} = \{ -1-b^2 \smod p: 0 \leq b < \nicefrac{p}{2}\}.\]
   By the same argument,
   \[ \#\mathfrak B = \frac{p+1}{2}.\]
-  Therefore, we can use the pigeonhole principle to deduce that $\A \cap \mathfrak B \neq \varnothing$, i.e.
+  Therefore, we can use the pigeonhole principle to deduce that $\A \cap \mathfrak B \neq \varnothing$, which means that
   \[ \exists_{a \in \A, b \in \mathfrak B}: a^2 \equiv -1-b^2 \mod p. \qedhere\]
 \end{pf}
-We also need the following lemma, the proof of which will be on the next exercise sheet.
-\begin{lemma}{}{2.18}
-  Let $k_1, \dots, k_n \in \N$, $m \geq 1$. Assume that $L_1(x), \dots, L_m(x) \in \Z[x]$ are linear forms. Define
+\noindent We also need the following lemma, the proof of which will be on the next exercise sheet.
+\begin{lemma}{Lattice Generated by Linear Forms}{2.18}
+  Let $k_1, \dots, k_m \in \N$, $m \geq 1$. Assume that $L_1(x), \dots, L_m(x) \in \Z[x]$ are linear forms. Define
   \[ \Lambda = \{ x \in \Z^n: L_j(x) \equiv 0 \smod k_j \forall_{1 \leq j \leq m}\}.\]
   Then $\Lambda$ is a lattice with $\det\Lambda \leq k_1\cdots k_m$.
 \end{lemma}
 \begin{pf}
   Exercise.
 \end{pf}
-These two lemmata allow us to prove Theorem \ref{thm:2.16}.
+\noindent These two lemmata allow us to prove Theorem \ref{thm:2.16}.
 \begin{pf}[Proof of Theorem \ref{thm:2.16}]
-  For $n=1$, the statement is trivial. Otherwise, write $n = m^2p_1\cdots p_r$, where $p_1, \dots, p_r$. Writing $\widetilde{a} = ma, \dots, \widetilde{d} = md$, it suffices to consider $n=p_1\cdots p_r$. We define
+  For $n=1$, the statement is trivial. Otherwise, write $n = m^2p_1\cdots p_r$, where $p_1 \neq \cdots \neq p_r \in \PP$. Writing $\widetilde{a} = ma, \dots, \widetilde{d} = md$, it suffices to consider $n=p_1\cdots p_r$. We define
   \[ \{ (u_1, \dots, u_4) \in \Z^4: u_1-a_pu_3-b_pu_4 \equiv 0 \smod p, u_2-b_pu_3+a_pu_4 \equiv 0 \smod p \forall_{\PP \ni p \mid n}\},\]
   where $a_p, b_p$ are such that $a_p^2+b_p^2 \equiv -1 \mod p$ (use Lemma \ref{lem:2.17}). Then $\Lambda$ is a lattice with $\det\Lambda \leq n^2$. Let $\epsilon > 0$ be sufficiently small with respect to $n$. Define
   \[ C = B^4_{\sqrt{2(n-\epsilon)}}(0).\]
   Then
-  \[ \vol(C) = \frac{\pi^2}{2}\sqrt{2(n-\epsilon)^4} =2\pi^2(n-\epsilon)^2 >  16n^2 \geq 2^4\det\Lambda.\]
+  \[ \vol(C) = \frac{\pi^2}{2}\sqrt{2(n-\epsilon)}^4 =2\pi^2(n-\epsilon)^2 >  16n^2 \geq 2^4\det\Lambda.\]
   Now, Minkowski's First Theorem \ref{thm:mink_first_conv_bod_thm} implies that there exists $0 \neq u \in \Lambda \cap C$. In particular,
-  \[ 0 < U_1^2+u_2^2+u_3^2+u_4^2 \leq 2(n-\epsilon) <2n.\]
+  \[ 0 < u_1^2+u_2^2+u_3^2+u_4^2 \leq 2(n-\epsilon) <2n.\]
   We also have $u \in \Lambda$, which means that
   \begin{align*} u_1^2+u_2^2+u_3^2+u_4^2 \equiv \quad &  (a_pu_3+b_pu_4)^2+(b_pu_3-a_pu_4)^2+u_3^2+u_4^2 \\
   \equiv \quad & (a_p^2+b_p^2+1)u_3^2 + (a_p^2+b_p^2+1)u_4^2 \\
   \equiv \quad & 0 \hspace{9cm} \mod p\end{align*}
   for each $\PP \ni p \mid n$. \\
   Hence, $p \mid u_1^2+u_2^2+u_3^2+u_4^2 \forall_{\PP \ni p \mid n}$, which implies $n \mid u_1^2+u_2^2+u_3^2+u_4^2$. Combining this with the upper bound on $n$ yields
-  \[ n = u_1^2+u_2^2+u_3^2+u_4^2.\]
+  \[ n = u_1^2+u_2^2+u_3^2+u_4^2. \qedhere\]
 \end{pf}
 \section{Short Vectors in a Lattice}
 Apparently, finding the shortest vector in a lattice is an important (and quite difficult) problem in cryptography. Some cryptographic schemes rely on this fact. The secret corresponds to the shortest vector. Though we cannot do this in general, we can find a \glqq pretty short\grqq \ vector (LLL-Algorithm). We will do this next week.
@@ -889,7 +891,7 @@ b_1' = b_1,
 b_2' = b_2 - \mu_{2,1}b_1',
 \]
 \[
-\vdots
+\quad \  \vdots
 \]
 \[
 b_i'
@@ -899,7 +901,7 @@ b_i
 \sum_{j=1}^{i-1}\mu_{i,j}b_j',
 \]
 \[
-\vdots
+\quad \ \vdots
 \]
 \[
 b_n'
@@ -923,50 +925,47 @@ These vectors satisfy
 \inp{b_i'}{b_j'} = 0
 \qquad \text{for } i \neq j.
 \]
-Recall that we can write
-\[ b_i = b_i' + \underbrace{\sum_{j=1}^{i-1} \mu_{i,j} b_j'}_{\text{Projection of } b_i \text{ onto } \Span_{\R} \{b_1', \dots, b_{i-1}'\}} \]
-and
-\[ \Span_{\R} \{b_1, \dots, b_n\} = \Span_{\R} \{b_1', \dots, b_n'\}. \]
-
 \para{Recall:}
-We can write the vector $b_i$ as:
-\[ b_i = b_i' + \sum_{j=1}^{i-1} \mu_{i,j} b_j' \]
-where $\sum_{j=1}^{i-1} \mu_{i,j} b_j'$ is the projection of $b_i$ onto $\Span_{\mathbb{R}} \{ b_1, \dots, b_{i-1} \}$.
-Note that $\Span_{\mathbb{R}} \{ b_1, \dots, b_n \} = \Span_{\mathbb{R}} \{ b_1', \dots, b_n' \}$.
+We can write the vector $b_i$ as
+\[ b_i = b_i' + \sum_{j=1}^{i-1} \mu_{i,j} b_j', \]
+where $\displaystyle \sum_{j=1}^{i-1} \mu_{i,j} b_j'$ is the projection of $b_i$ onto $\Span_{\mathbb{R}} \{ b_1, \dots, b_{i-1} \}$.
+Note that we have $\Span_{\mathbb{R}} \{ b_1, \dots, b_n \} = \Span_{\mathbb{R}} \{ b_1', \dots, b_n' \}$.
 
-\begin{definition}{Reduced Basis}{reduced_basis}
-    A basis $\{ b_1, \dots, b_n \}$ of a lattice $\Lambda \subseteq \mathbb{R}^n$ is \textbf{reduced} if:
-    \begin{enumerate}[label=\roman*)]
+\begin{definition}{Reduced Basis}{2.18}
+    A basis $\{ b_1, \dots, b_n \}$ of a lattice $\Lambda \subseteq \mathbb{R}^n$ is \define[Reduced Basis of a Lattice]{reduced} if
+    \begin{enumerate}[(i)]
         \item $|\mu_{i,j}| \le \frac{1}{2}$ for $1 \le j < i \le n$.
         \item $\|b_i' + \mu_{i,i-1} b_{i-1}'\|_2^2 \ge \frac{3}{4} \|b_{i-1}'\|_2^2$ for $2 \le i \le n$.
     \end{enumerate}
 \end{definition}
 
-\titremark{The constant $3/4$} The choice of the constant $\frac{3}{4}$ is not crucial; any real number in the interval $(\frac{1}{4}, 1)$ works. Condition ii) essentially says that the highlighted portion of $b_i$ is longer (up to a constant factor) than $b_{i-1}'$.
+\titremark{The constant $3/4$} The choice of the constant $\frac{3}{4}$ is not crucial; any real number in the interval $(\frac{1}{4}, 1)$ works. Also,
+\[ b_i = {\color{red} b_i' + \mu_{i,i-1}b_{i-1}'} + \sum_{j=1}^{i-2}\mu_{i,j}b_j',\]
+so condition (ii) essentially says that the highlighted portion of $b_i$ is longer (up to a constant factor) than $b_{i-1}'$.
 
 \begin{proposition}{Properties of Reduced Bases}{2.19}
     Let $\{ b_1, \dots, b_n \}$ be a reduced basis of $\Lambda$. Let $\{ b_1', \dots, b_n' \}$ be the Gram-Schmidt orthogonalization. Then:
-    \begin{enumerate}
+    \begin{enumerate}[(i)]
         \item $\|b_l\|_2^2 \le 2^{i-1} \|b_i'\|_2^2$ for $1 \le l \le i \le n$.
         \item $\det \Lambda \le \|b_1\|_2 \cdots \|b_n\|_2 \le 2^{\frac{n(n-1)}{4}} \det \Lambda$.
         \item $\|b_1\|_2 \le 2^{\frac{n-1}{4}} (\det \Lambda)^{1/n}$.
     \end{enumerate}
 \end{proposition}
 
-\begin{pf}
-    \textbf{(1)} This follows from the definition. The statement is trivial for $i=1$.
-    For $2 \le i \le n$, condition ii) implies:
+\begin{pf} \hfill
+    \begin{enumerate}[(i)] \item This follows from the definition. The statement is trivial for $i=1$.
+    For $2 \le i \le n$, condition (ii) in Definition \ref{def:2.18} implies:
     \[ \|b_i'\|_2^2 + \mu_{i,i-1}^2 \|b_{i-1}'\|_2^2 \ge \frac{3}{4} \|b_{i-1}'\|_2^2 \]
     Since $|\mu_{i,i-1}| \le \frac{1}{2}$, we have $\mu_{i,i-1}^2 \le \frac{1}{4}$, which gives:
     \[ \|b_i'\|_2^2 \ge \left( \frac{3}{4} - \frac{1}{4} \right) \|b_{i-1}'\|_2^2 = \frac{1}{2} \|b_{i-1}'\|_2^2 \]
-    By induction, $2^{i-l} \|b_i'\|_2^2 \ge \|b_l'\|_2^2$ for $1 \le l \le i$ ($\star$).
+    By induction, we have \[2^{i-l} \|b_i'\|_2^2 \ge \|b_l'\|_2^2\text{ for }1 \le l \le i. \hfill (\star)\]
     Now, relating $\|b_l\|_2$ to $\|b_l'\|_2$:
     \[ \|b_l\|_2^2 = \|b_l'\|_2^2 + \sum_{j=1}^{l-1} \mu_{l,j}^2 \|b_j'\|_2^2 \le \|b_l'\|_2^2 + \sum_{j=1}^{l-1} \frac{1}{4} \cdot 2^{l-j} \|b_l'\|_2^2 \]
     Summing the geometric series yields $\|b_l\|_2^2 \le 2^{l-1} \|b_l'\|_2^2$. Combined with ($\star$), we get the result.
 
-    \textbf{(2)} The lower bound is Hadamard's inequality. For the upper bound, we use $\|b_i\|_2 \le 2^{\frac{i-1}{2}} \|b_i'\|_2$ and the fact that $\det \Lambda = \prod \|b_i'\|_2$.
-
-    \textbf{(3)} Applying (1) with $l=1$ gives $\|b_1\|_2^2 \le 2^{i-1} \|b_i'\|_2^2$. Taking the product over $i=1, \dots, n$ leads to the bound.
+    \item The lower bound is Hadamard's inequality. For the upper bound, we use $\|b_i\|_2 \le 2^{\frac{i-1}{2}} \|b_i'\|_2$ and the fact that \[\det \Lambda = \prod_{i \in \{ 1, \dots, n\}} \|b_i'\|_2.\]
+    \item Applying (i) with $l=1$ gives $\|b_1\|_2^2 \le 2^{i-1} \|b_i'\|_2^2$. Taking the product over $i=1, \dots, n$ and then the $2n$-th root leads to the bound. \qedhere
+    \end{enumerate}
 \end{pf}
 
 \begin{proposition}{Shortest Vector Approximation}{2.20}
@@ -974,19 +973,80 @@ Note that $\Span_{\mathbb{R}} \{ b_1, \dots, b_n \} = \Span_{\mathbb{R}} \{ b_1'
     \[ \|b_1\|_2^2 \le 2^{n-1} \|x\|_2^2 \]
 \end{proposition}
 
-\titremark{Remark} This implies that $b_1$ is within a factor of $2^{\frac{n-1}{2}}$ of the shortest vector. The LLL algorithm computes such a basis efficiently. In modern cryptography, $n$ often ranges from 256 to over 1024.
+\noindent \textbf{Remark:} This implies that $b_1$ is within a factor of $2^{\frac{n-1}{2}}$ of the shortest vector. The LLL algorithm computes such a basis efficiently. In modern cryptography, $n$ often ranges from 256 to over 1024.
 
+% --- SEITE 10 ---
 \begin{pf}
-    Write $x = \sum_{i=1}^n m_i b_i$ with $m_i \in \mathbb{Z}$. Let $j_0$ be the largest index such that $m_{j_0} \neq 0$.
-    Then $x = \sum_{i=1}^{j_0} \alpha_i b_i'$ where $\alpha_{j_0} = m_{j_0}$.
-    Thus $\|x\|_2^2 \ge \alpha_{j_0}^2 \|b_{j_0}'\|_2^2 \ge \|b_{j_0}'\|_2^2$.
-    Using Prop \ref{prop:2.19}(1), we have $\|b_{j_0}'\|_2^2 \ge 2^{-(j_0-1)} \|b_1\|_2^2$, which completes the proof.
+Write
+\[ x = m_{1}b_{1} + \dots + m_{n}b_{n} \quad \text{w/ } m_{1}, \dots, m_{n} \in \mathbb{Z} \]
+\[ = \alpha_{1}b_{1}^{\prime} + \dots + \alpha_{n}b_{n}^{\prime} \quad \text{w/ } \alpha_{1}, \dots, \alpha_{n} \in \mathbb{R}. \]
+Let $j_{0}$ be the largest index s.t.
+\[ m_{j_{0}} \neq 0. \]
+
+Then
+\[ \Span_{\mathbb{R}}\{b_{1}, \dots, b_{j_{0}}\} = \Span_{\mathbb{R}}\{b_{1}^{\prime}, \dots, b_{j_{0}}^{\prime}\} \]
+and it follows from the defn of $b_{1}^{\prime}, \dots, b_{n}^{\prime}$ that $m_{j_{0}} = \alpha_{j_{0}}$. And, also
+\[ \alpha_{j_{0}+1} = \dots = \alpha_{n} = 0. \]
+
+Then
+\begin{align*}
+\|x\|_{2}^{2} &\ge \alpha_{j_{0}}^{2} \|b_{j_{0}}^{\prime}\|_{2}^{2} \\
+&\ge \|b_{j_{0}}^{\prime}\|_{2}^{2} \\
+&\ge 2^{-(j_{0}-1)} \cdot \|b_{1}\|_{2}^{2} \quad \text{\raggedleft (by Prop 2.19 \textcircled{1})}
+\end{align*}
+\[ \Rightarrow \|b_{1}\|_{2} \le 2^{\frac{j_{0}-1}{2}} \|x\|_{2} \le 2^{\frac{n-1}{2}} \|x\|_{2}. \]
 \end{pf}
 
-\begin{proposition}{Generalization}{2.21}
-    Let $\{ b_1, \dots, b_n \}$ be a reduced basis. If $x_1, \dots, x_\ell \in \Lambda$ are linearly independent, then:
-    \[ \|b_i\|_2^2 \le 2^{n-1} \max \{ \|x_1\|_2^2, \dots, \|x_\ell\|_2^2 \} \quad \text{for all } 1 \le i \le \ell. \]
+
+% --- SEITE 11 ---
+\para{A small generalisation of the previous proposition.}
+
+\begin{proposition}{}{prop2.21}
+Let $\{b_{1}, \dots, b_{n}\}$ be a reduced basis of a lattice $\Lambda$. Let $1 \le \ell \le n$ and $x_{1}, \dots, x_{\ell} \in \Lambda$ be LI/$\mathbb{R}$.
+
+Then
+\[ \|b_{i}\|_{2}^{2} \le 2^{n-1} \cdot \max \{ \|x_{1}\|_{2}^{2}, \dots, \|x_{\ell}\|_{2}^{2} \} \]
+for all $1 \le i \le \ell$.
 \end{proposition}
+
+\begin{pf}
+For each $x_{i}$, write
+\[ x_{i} = m_{i,1}b_{1} + \dots + m_{i,n}b_{n} \quad \text{w/ } m_{i,j} \in \mathbb{Z} \]
+\[ = \alpha_{i,1}b_{1}^{\prime} + \dots + \alpha_{i,n}b_{n}^{\prime} \quad \text{w/ } \alpha_{i,j} \in \mathbb{R}. \]
+Let $j_{0}(i)$ be the largest $j$ s.t. $m_{i,j} \neq 0$.
+
+
+% --- SEITE 12 ---
+Then, by the defn of $\{b_{1}^{\prime}, \dots, b_{n}^{\prime}\}$, it follows that
+\[ \alpha_{i, j_{0}(i)+1} = \dots = \alpha_{i,n} = 0 \quad \text{and} \]
+\[ 0 \neq m_{i, j_{0}(i)} = \alpha_{i, j_{0}(i)}, \text{ as before.} \]
+
+We have
+\[ \|x_{i}\|_{2}^{2} \ge \alpha_{i, j_{0}(i)}^{2} \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} \ge \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} \quad \dots (1) \]
+
+Without loss of gen. (relabel $x_{1}, \dots, x_{\ell}$, if necessary) we assume
+\[ j_{0}(1) \le \dots \le j_{0}(\ell). \]
+
+
+% --- SEITE 13 ---
+For each $1 \le i \le \ell$,
+
+\para{Claim:} We have $i \le j_{0}(i)$.
+
+Suppose otherwise. Then $j_{0}(i) < i$.
+\[ \Rightarrow \{x_{1}, \dots, x_{i}\} \subseteq \bigcup_{h=1}^{i} \Span_{\mathbb{R}}\{b_{1}, \dots, b_{j_{0}(h)}\} = \Span_{\mathbb{R}}\{b_{1}, \dots, b_{j_{0}(i)}\} \]
+BUT This is LI/$\mathbb{R}$. $\to\leftarrow$
+
+$\therefore i \le j_{0}(i)$.
+
+Using this, (1) becomes
+\begin{align*}
+\|x_{i}\|_{2}^{2} \ge \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} &\ge 2^{-(j_{0}(i)-1)} \|b_{i}\|_{2}^{2} \quad \text{\raggedleft (by Prop 2.19 \textcircled{1})} \\
+\Rightarrow \|b_{i}\|_{2} &\le 2^{\frac{j_{0}(i)-1}{2}} \|x_{i}\|_{2} \le 2^{\frac{n-1}{2}} \|x_{i}\|_{2} \\
+&\le 2^{\frac{n-1}{2}} \cdot \max \{ \|x_{1}\|_{2}, \dots, \|x_{\ell}\|_{2} \}
+\end{align*}
+And this holds for any $1 \le i \le \ell$. $\hfill \square$
+\end{pf}
 \newLecture{15th May 2026}
 \section{The LLL Algorithm}
 
@@ -996,7 +1056,7 @@ The \textbf{LLL (Lenstra-Lenstra-Lovász) algorithm} turns a basis into a reduce
     Let $2 \le k \le n+1$. We say a basis $\{ b_1, \dots, b_n \}$ satisfies \define{Property (k)} if:
     \begin{enumerate}[label=\roman*)]
         \item $|\mu_{i,j}| \le \frac{1}{2}$ for all $1 \le j < i < k$.
-        \item $||b_i' + \mu_{i,i-1}b_{i-1}'||_2^2 \ge \frac{3}{4} ||b_{i-1}'||_2^2$ for all $2 \le i < k$.
+        \item $\|b_i' + \mu_{i,i-1}b_{i-1}'\|_2^2 \ge \frac{3}{4} \|b_{i-1}'\|_2^2$ for all $2 \le i < k$.
     \end{enumerate}
 \end{definition}
 
@@ -1009,7 +1069,7 @@ The algorithm proceeds in steps, producing a sequence of bases:
 $$ B_0 \xrightarrow{\text{Prop}(2)} B_1 \xrightarrow{\text{Prop}(k_1)} B_2 \xrightarrow{\text{Prop}(k_2)} \dots \to B_{\text{final}} \xrightarrow{\text{Prop}(n+1)} $$
 where $k_{i+1} = k_i \pm 1$. Once we reach Property ($n+1$), we get a reduced basis. Done! As we shall see, $k$ can go down only a finite number of times, so the algorithm terminates.
 
-\titremark{Note on efficiency} The algorithm is efficient. If we start with a basis $\{ b_1, \dots, b_n \}$ with $||b_i||_2 \le B$ ($1 \le i \le n$), then the number of arithmetical operations (addition, subtraction, multiplication, division) needed in the algorithm is $\mathcal{O}(n^4 \log B)$, and the algorithm runs in polynomial time in $B$.
+\titremark{Note on efficiency} The algorithm is efficient. If we start with a basis $\{ b_1, \dots, b_n \}$ with $\|b_i\|_2 \le B$ ($1 \le i \le n$), then the number of arithmetical operations (addition, subtraction, multiplication, division) needed in the algorithm is $\mathcal{O}(n^4 \log B)$, and the algorithm runs in polynomial time in $B$.
 
 \section*{Algorithm Steps}
 
@@ -1026,17 +1086,17 @@ Note: $b_i$, $b_i'$ and $\mu_{i,j}$ are not affected for $1 \le i \le k-1$.
 Now we have a basis $\{ b_1, \dots, b_n \}$ satisfying Property (k) and $(*)$. We distinguish two main cases:
 
 \paragraph{Case 1 (Swap Step):} If $k \ge 2$ and
-$$ ||b_k' + \mu_{k,k-1}b_{k-1}'||_2^2 < \frac{3}{4} ||b_{k-1}'||_2^2 \quad (**) $$
+$$ \|b_k' + \mu_{k,k-1}b_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2 \quad (**) $$
 Then we switch $b_k$ and $b_{k-1}$ while keeping the rest the same. Our new basis is $c_1, \dots, c_n$ with $c_{k-1} = b_k$, $c_k = b_{k-1}$, and $c_i = b_i$ otherwise.
 This changes $\mu_{i,j}$ and $c_i'$, but it does NOT affect $b_i, b_i', \mu_{i,j}$ for $1 \le i \le k-2$. The new basis still satisfies Property (k-1).
 
 Now $c_{k-1}'$ is the projection of $c_{k-1} = b_k$ onto $(\Span_{\mathbb{R}}\{b_1', \dots, b_{k-2}'\})^\perp$, i.e.,
 $$ c_{k-1}' = b_k' + \mu_{k,k-1}b_{k-1}' $$
-From $(**)$, we get $||c_{k-1}'||_2^2 < \frac{3}{4} ||b_{k-1}'||_2^2$. So the length of the "new" $c_{k-1}'$ is shorter than the "old" $b_{k-1}'$ by a factor of $3/4$.
+From $(**)$, we get $\|c_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2$. So the length of the "new" $c_{k-1}'$ is shorter than the "old" $b_{k-1}'$ by a factor of $3/4$.
 \titremark{Note} This is what is used to show that $k$ can go down only finitely many times.
 
 \paragraph{Case 2 (Size Reduction Step):} If $k \ge 2$ and
-$$ ||b_k' + \mu_{k,k-1}b_{k-1}'||_2^2 \ge \frac{3}{4} ||b_{k-1}'||_2^2 \quad (***) $$
+$$ \|b_k' + \mu_{k,k-1}b_{k-1}'\|_2^2 \ge \frac{3}{4} \|b_{k-1}'\|_2^2 \quad (***) $$
 First note that we already have $|\mu_{k,k-1}| \le 1/2$ (from $(*)$). Let $l$ be the largest integer such that $|\mu_{k,l}| > 1/2$. (Recall $\mu_{i,j}$ is only defined for $1 \le j < i \le n$). Let $r \in \mathbb{Z}$ be such that $|\mu_{k,l} - r| \le 1/2$. We then replace $b_k$ with $b_k - rb_l$. Thus $\mu_{k,l}$ becomes $\mu_{k,l} - r$.
 
 This change affects other $\mu_{k,j}$ for $j < l$, but it does not affect $b_i, b_i', \mu_{i,j}$ for $i < k$. It also doesn't affect $(***)$, as $l < k-1$. We repeat this process until we obtain that the basis satisfies $|\mu_{k,j}| \le 1/2$ for all $1 \le j \le k-1$. The final basis satisfies Property (k+1).
@@ -1048,14 +1108,14 @@ $$ D_i = \det \left( [b_1 \dots b_i]^T [b_1 \dots b_i] \right) = \det \left( [b_
 and define $\Delta = \Delta(b_1, \dots, b_n) = D_1 \cdots D_n$.
 
 It is clear that $D_n = (\det \Lambda)^2$. Furthermore,
-$$ D_i = ||b_1'||_2^2 \cdots ||b_i'||_2^2 = (\det \Lambda_i)^2 $$
+$$ D_i = \|b_1'\|_2^2 \cdots \|b_i'\|_2^2 = (\det \Lambda_i)^2 $$
 where $\Lambda_i = [b_1 \dots b_i v_{i+1} \dots v_n] \mathbb{Z}^n$ with $\langle b_j, v_t \rangle = 0$ and $\{ v_{i+1}, \dots, v_n \}$ orthonormal (Gram-Schmidt sheet 3).
 
 It can be checked that in both Cases 0 and 2, $D_1, \dots, D_n$ (and hence $\Delta$) do not change. (It only involves modification of the form $b_k \to b_k - cb_i$ for some $i < k$).
 
 And, in Case 1 only $D_{k-1}$ changes:
-$$ D_{k-1} = ||b_1'||_2^2 \cdots ||b_{k-1}'||_2^2 \to ||c_1'||_2^2 \cdots ||c_{k-1}'||_2^2 $$
-$$ = ||b_1'||_2^2 \cdots ||c_{k-1}'||_2^2 < \frac{3}{4} ||b_1'||_2^2 \cdots ||b_{k-1}'||_2^2 = \frac{3}{4} D_{k-1, \text{old}} $$
+$$ D_{k-1} = \|b_1'\|_2^2 \cdots \|b_{k-1}'\|_2^2 \to \|c_1'\|_2^2 \cdots \|c_{k-1}'\|_2^2 $$
+$$ = \|b_1'\|_2^2 \cdots \|c_{k-1}'\|_2^2 < \frac{3}{4} \|b_1'\|_2^2 \cdots \|b_{k-1}'\|_2^2 = \frac{3}{4} D_{k-1, \text{old}} $$
 But all the other $D_i$ do not change $\Rightarrow \Delta_{\text{new}} < \frac{3}{4} \Delta_{\text{old}}$.
 
 But $\Delta$ cannot get arbitrarily small:
@@ -1071,4 +1131,90 @@ But $\Delta$ cannot get arbitrarily small:
 \end{pf}
 
 \paragraph{Conclusion:} The RHS depends only on $\Lambda$ and $n$. Therefore, in the algorithm, Case 1 can only occur finitely many times (i.e. $k \to k-1$ only bounded number of times), and hence $k$ must reach $n+1$ and the algorithm terminates!
+\newLecture{22nd May 2026}
+\begin{example}
+  Let $\alpha_1, \dots, \alpha_n \in \R$, not all in $\Q$. Also let $\epsilon > 0$ be small. Suppose we want to find $q \in \N$ and $x_1, \dots, x_n \in \Z$ such that \begin{equation}\label{eq:ex_lll_1}
+    |q\alpha_i-x_i| \leq \epsilon \forall_{1 \leq i \leq n}. \tag{1}
+  \end{equation}
+  Recall that in the proof of Corollary \ref{cor:2.7}, we proved that given $Q > 1$, $\exists_{(x_1, \dots, x_n) \in \Zprim{n+1}}: 0 < q \leq Q \land |a\alpha_i-x_i| \leq Q^{-\nicefrac{1}{n}}$. Applying this with $Q^{-\nicefrac{1}{n}}=\epsilon$, we can solve (\ref{eq:ex_lll_1}) with \begin{equation}\label{eq:ex_lll_2} 0 < q \leq \epsilon^{-n}.\tag{2}\end{equation}
+  Next, let's see what we get using LLL. Consider
+  \begin{equation*}
+    \Lambda = \begin{pmatrix}
+      & & & -\alpha_1 \\
+      & \1_n & & \vdots \\
+      & & & -\alpha_n \\
+      0 & \cdots & 0 & \delta
+    \end{pmatrix}\Z^{n+1},
+  \end{equation*}
+  with $\delta > 0$ to be chosen later. Then $\Lambda = \{ (x_1-q\alpha_1, \dots, x_n-q\alpha_n, \delta q): x_1, \dots, x_n,q \in \Z\}$. Recall that LLL efficiently produces a reduced basis $\{ b_1, \dots, b_{n+1}\}$ of $\Lambda$, satisfying
+  \[ \|b_1\|_2 \leq 2^{\frac{n}{4}}\det\Lambda^{\frac{1}{n+1}} = 2^{\frac{n}{4}}\delta^{\frac{1}{n+1}}.\]
+  This was Proposition \ref{prop:2.19}(iii), one of the properties of a reduced basis. Let us choose $\delta$ such that
+  \[ 2^{\frac{n}{4}}\delta^{\frac{1}{n+1}} = \epsilon \iff \delta = \epsilon^{n+1}2^{\frac{-n(n+1)}{4}}.\]
+  Let us denote
+  \[ b_1 = \begin{pmatrix}
+    x_1-q\alpha_1 \\
+    \vdots \\
+    x_n-q\alpha_n \\
+    \delta q
+  \end{pmatrix}\]
+  (assume $q \geq 0$ without loss of generality). Then
+  \[ \sqrt{(x-q\alpha_1)^2+\dots+(x_n-q\alpha_n)^2+(\delta q)^2} \leq \epsilon,\]
+  which implies
+  \[ |x_i-q\alpha_i| \leq \epsilon \forall_{1 \leq i \leq n} \text{ and } 0 \leq q < \frac{\epsilon}{\delta} = \epsilon^{-n}2^{\frac{n(n+1)}{4}}.\]
+  Note that if $q=0$, we get a contradiction.
+\end{example}
+\chapter{The Bombieri-Pila Determinant Method}
+We have done a lot with lattice points inside a central symmetric convex body. In this section, we will count lattice points on a curve\footnote{Professor Yamagishi: For our intents and purposes, this is just a zero set of a two-variable polynomial. No schemes, sheaves, connected. None of these Algebraic Geometry adjectives. Any Algebraic Geometers here? No one? Yeah, no one's taking that course.}. Our goal in this chapter is to prove the following.
+\begin{theorem}{Bombieri-Pila, 1989}{3.1}
+  Let $F \in \R[x,y]$ be an irreducible polynomial of degree $d \geq 2$. Then there exists $N = N(d)$ such that
+  \[ \#\{ (x,y) \in [1,N]^2 \cap \Z^2: F(x,y) = 0\} \leq \log^{\O(d)}(N)N^{\frac{1}{d}}.\]
+\end{theorem}
+\noindent \textbf{Remarks:} The implicit constant in $\O(d)$ is absolute. In particular, it does not depend on the coefficients of $F$. Therefore, the bound holds uniformly over all irreducible $F \in \R[x,y]$ of degree $d$. Also, it is best possible up to the $\log^{\O(d)}(N)$ term (consider $F(x,y) = y-x^{\alpha}$).
+\begin{pf}[Very rough proof idea]
+Draw the rectangle as well as the solution curve. Cover the solution curve with a small number of tiles that look like
+\[ \{ (x,f(x)): x \in [a,b]\}\]
+for some $a < b \in \R$ and $f$ as well as its derivatives decaying rapidly. As we shall see, we will be able to bound the integer points of
+\[ \#\Z^2 \cap \{ (x,f(x)): x \in [a,b]\}\]
+efficiently.
+\end{pf}
+\section{Technical Preparation}
+Some notation for this chapter: The set $\mathfrak{M} \subset \R[x,y]$ is a finite set of monomials, id est $\mathfrak{M} = \{ x^{j_1}y^{j_2}: j = (j_1, j_2) \in S\}$ with a finite $S \subset \Nzero^2$. We also denote $S(\mathfrak{M}) = S$. Further, we define \[J_1 = J_1(\mathfrak{M}) = \sum_{x^{j_1}y^{j_2} \in \mathfrak{M}} j_1 = \sum_{(j_1,j_2) \in S(\mathfrak{M})}j_1 \text{ and } J_2 = J_2(M)\]
+analogously.
+\begin{lemma}{Technical Preparation for Bombieri-Pila}{3.2}
+  Let $\mathfrak{M}$ be as above and $D = \#\mathfrak{M}$. Assume that $I \subseteq [0,N]$ is a closed interval and $f \in \mathcal{C}^{D-1}(I)$. Further suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ satisfy that
+  \[ \left| \frac{f^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{0 \leq i < D, x \in I}.\]
+  If
+  \[ \lambda(I) < \frac{1}{4}\delta^{-1}((2N)^{J_1})(DX)^{J_2})^{-\frac{1}{\binom{D}{2}}},\]
+  then
+   \[\exists_{P \in \Span_{\R}(\mathfrak{M})}:\{ (x,f(x)): x \in I\} \cap \Z^2 \subseteq V(P).\]
+  Here,
+  \[ V(P)= \{ (x,y) \in \R^2: P(x,y) = 0\}.\]
+\end{lemma}
+\noindent \textbf{Remarks:} Given $z_1, \dots, z_m \in \R^2$ with $m < D$, it's easy to deduce that there exists $P \in \Span_{\R}(\mathfrak{M})$ such that $z_1, \dots, z_m \in V(P)$ from elementary linear algebra results. But this lemma allows us to find $P \in \R[x,y]$ such that $\Z^2 \cap \{ (x,f(x)): x \in I\} \subseteq V(P)$ with good quantitative properties ($\deg P$ and $\lambda(I)$).
+\subsection{Preparation and Proof of Lemma \ref{lem:3.2}}
+We will need several auxilliary lemmata.
+  \begin{lemma}{}{3.3}
+    Let $\mathfrak{M}$ be as above and $z_1, \dots, z_t \in \R^2$. If $\rank((z_i^j)_{\stackrel{1 \leq i \leq t}{j \in S(M)}}) < \# M$, then there exists
+    \[ 0 \neq P \in \Span_{\R}(\mathfrak{M}): z_1, \dots, z_t \in V(P).\]
+  \end{lemma}
+  \begin{pf}
+    Suppose that the rank of the matrix is $r$. Without loss of generality, we let
+    \[ \rank((z_i^j)_{\stackrel{1 \leq i \leq r}{j \in \mathfrak{N}}}) = r, \text{ where } \mathfrak{N} \subseteq \mathfrak{M} \text{ with } \#\mathfrak{N} = r.\]
+    By assumption, we have $r = \#\mathfrak N < \#\mathfrak M$, which means that there exists $k = (k_1, k_2) \in S(\mathfrak M) \setminus S(\mathfrak N)$. Consider $P \in \R[x,y]$ defined by
+    \begin{align*}
+      P(x,y) = \quad & \det A(x,y) \\
+      \coloneq \quad & \det\begin{pmatrix}
+        (x^{j_1}y^{j_2})_{j \in S(\mathfrak{N})} & x^{k_1}y^{k_2} \\
+        & z_1^{k} \\
+        [z_i^j]_{\stackrel{1 \leq i \leq r}{j \in S(\mathfrak{N})}} & \vdots \\
+        & z_r^k
+      \end{pmatrix} \\
+      = \quad & \sum_{j \in S(\mathfrak{N}) \setminus \{ k\}} \epsilon_j\det(A_j)x^{j_1}y^{j_2},
+    \end{align*}
+    where $\epsilon_j \in \{ \pm 1\}$ and $A_j$ is the matrix obtained from $A(x,y)$ by removing the top row and the column $j$. We know that at least one of the $\det A_j$ is nonzero, which ensures that our polynomial is nonzero. Therefore, we have
+    \[ P \in \Span_{\R}(\mathfrak N \cap \{ x^{k_1}y^{k_2}\}) \subseteq \Span_{\R}(\mathfrak M).\]
+    Finally, if $1 \leq i \leq r$, then $A(z_i)$ has a repeated row, which means that $P(z_i) = 0$. If $r+1 \leq i \leq t$, then $\det A(z_i) = 0$ because if $\rank A(z_i) = r+1$, this contradicts that
+    \[ r = \rank((z_i^j)_{\stackrel{1 \leq i \leq n}{j \in S(\mathfrak M)}}).\]
+    Hence, we have $z_1, \dots, z_t \in V(P).$
+\end{pf}
 \end{document}

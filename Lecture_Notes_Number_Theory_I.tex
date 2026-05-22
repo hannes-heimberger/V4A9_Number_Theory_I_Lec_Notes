@@ -978,31 +978,34 @@ so condition (ii) essentially says that the highlighted portion of $b_i$ is long
 % --- SEITE 10 ---
 \begin{pf}
 Write
-\[ x = m_{1}b_{1} + \dots + m_{n}b_{n} \quad \text{w/ } m_{1}, \dots, m_{n} \in \mathbb{Z} \]
-\[ = \alpha_{1}b_{1}^{\prime} + \dots + \alpha_{n}b_{n}^{\prime} \quad \text{w/ } \alpha_{1}, \dots, \alpha_{n} \in \mathbb{R}. \]
-Let $j_{0}$ be the largest index s.t.
+\begin{align*} x = \quad & m_{1}b_{1} + \dots + m_{n}b_{n} \\
+ = \quad & \alpha_{1}b_{1}^{\prime} + \dots + \alpha_{n}b_{n}^{\prime} \end{align*}
+ with $m_1, \dots, m_n \in \Z$ and $\alpha_{1}, \dots, \alpha_{n} \in \mathbb{R}$.
+Let $j_{0}$ be the largest index such that
 \[ m_{j_{0}} \neq 0. \]
 
 Then
 \[ \Span_{\mathbb{R}}\{b_{1}, \dots, b_{j_{0}}\} = \Span_{\mathbb{R}}\{b_{1}^{\prime}, \dots, b_{j_{0}}^{\prime}\} \]
-and it follows from the defn of $b_{1}^{\prime}, \dots, b_{n}^{\prime}$ that $m_{j_{0}} = \alpha_{j_{0}}$. And, also
+and it follows from the Definition of $b_{1}^{\prime}, \dots, b_{n}^{\prime}$ that $m_{j_{0}} = \alpha_{j_{0}}$. We further have
 \[ \alpha_{j_{0}+1} = \dots = \alpha_{n} = 0. \]
 
 Then
 \begin{align*}
 \|x\|_{2}^{2} &\ge \alpha_{j_{0}}^{2} \|b_{j_{0}}^{\prime}\|_{2}^{2} \\
 &\ge \|b_{j_{0}}^{\prime}\|_{2}^{2} \\
-&\ge 2^{-(j_{0}-1)} \cdot \|b_{1}\|_{2}^{2} \quad \text{\raggedleft (by Prop 2.19 \textcircled{1})}
+&\ge 2^{-(j_{0}-1)} \cdot \|b_{1}\|_{2}^{2}
 \end{align*}
-\[ \Rightarrow \|b_{1}\|_{2} \le 2^{\frac{j_{0}-1}{2}} \|x\|_{2} \le 2^{\frac{n-1}{2}} \|x\|_{2}. \]
+by Proposition \ref{prop:2.19}(i).
+This implies
+\[ \|b_{1}\|_{2} \le 2^{\frac{j_{0}-1}{2}} \|x\|_{2} \le 2^{\frac{n-1}{2}} \|x\|_{2}. \qedhere \]
 \end{pf}
 
 
 % --- SEITE 11 ---
-\para{A small generalisation of the previous proposition.}
+\noindent This is a small generalisation of the previous proposition.
 
-\begin{proposition}{}{prop2.21}
-Let $\{b_{1}, \dots, b_{n}\}$ be a reduced basis of a lattice $\Lambda$. Let $1 \le \ell \le n$ and $x_{1}, \dots, x_{\ell} \in \Lambda$ be LI/$\mathbb{R}$.
+\begin{proposition}{}{2.21}
+Let $\{b_{1}, \dots, b_{n}\}$ be a reduced basis of a lattice $\Lambda$. Let $1 \le \ell \le n$ and $x_{1}, \dots, x_{\ell} \in \Lambda$ be linearly independent over $\mathbb{R}$.
 
 Then
 \[ \|b_{i}\|_{2}^{2} \le 2^{n-1} \cdot \max \{ \|x_{1}\|_{2}^{2}, \dots, \|x_{\ell}\|_{2}^{2} \} \]
@@ -1011,98 +1014,109 @@ for all $1 \le i \le \ell$.
 
 \begin{pf}
 For each $x_{i}$, write
-\[ x_{i} = m_{i,1}b_{1} + \dots + m_{i,n}b_{n} \quad \text{w/ } m_{i,j} \in \mathbb{Z} \]
-\[ = \alpha_{i,1}b_{1}^{\prime} + \dots + \alpha_{i,n}b_{n}^{\prime} \quad \text{w/ } \alpha_{i,j} \in \mathbb{R}. \]
-Let $j_{0}(i)$ be the largest $j$ s.t. $m_{i,j} \neq 0$.
+\begin{align*} x_{i} = \quad & m_{i,1}b_{1} + \dots + m_{i,n}b_{n} \\
+ = \quad & \alpha_{i,1}b_{1}^{\prime} + \dots + \alpha_{i,n}b_{n}^{\prime} \end{align*}
+with $m_{i,j} \in \mathbb{Z}$ and $\alpha_{i,j} \in \mathbb{R}.$
+Let $j_{0}(i)$ be the largest $j$ such that $m_{i,j} \neq 0$.
 
 
 % --- SEITE 12 ---
-Then, by the defn of $\{b_{1}^{\prime}, \dots, b_{n}^{\prime}\}$, it follows that
-\[ \alpha_{i, j_{0}(i)+1} = \dots = \alpha_{i,n} = 0 \quad \text{and} \]
-\[ 0 \neq m_{i, j_{0}(i)} = \alpha_{i, j_{0}(i)}, \text{ as before.} \]
+Then, by the definition of $\{b_{1}^{\prime}, \dots, b_{n}^{\prime}\}$, it follows that
+\[ \alpha_{i, j_{0}(i)+1} = \dots = \alpha_{i,n} = 0 \]
+and
+\[ 0 \neq m_{i, j_{0}(i)} = \alpha_{i, j_{0}(i)},\]
+as before.
 
 We have
-\[ \|x_{i}\|_{2}^{2} \ge \alpha_{i, j_{0}(i)}^{2} \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} \ge \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} \quad \dots (1) \]
+\begin{equation}\label{eq:2.20_1} \|x_{i}\|_{2}^{2} \ge \alpha_{i, j_{0}(i)}^{2} \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} \ge \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} \tag{1} \end{equation}
 
-Without loss of gen. (relabel $x_{1}, \dots, x_{\ell}$, if necessary) we assume
+Without loss of generality (relabel $x_{1}, \dots, x_{\ell}$, if necessary) we assume
 \[ j_{0}(1) \le \dots \le j_{0}(\ell). \]
 
 
 % --- SEITE 13 ---
-For each $1 \le i \le \ell$,
 
-\para{Claim:} We have $i \le j_{0}(i)$.
+\begin{claim*}{} For each $1 \le i \le \ell$, we have $i \le j_{0}(i)$.
+\end{claim*}
 
-Suppose otherwise. Then $j_{0}(i) < i$.
-\[ \Rightarrow \{x_{1}, \dots, x_{i}\} \subseteq \bigcup_{h=1}^{i} \Span_{\mathbb{R}}\{b_{1}, \dots, b_{j_{0}(h)}\} = \Span_{\mathbb{R}}\{b_{1}, \dots, b_{j_{0}(i)}\} \]
-BUT This is LI/$\mathbb{R}$. $\to\leftarrow$
+Suppose otherwise. Then $j_{0}(i) < i$, but
+\[ \{x_{1}, \dots, x_{i}\} \subseteq \bigcup_{h=1}^{i} \Span_{\mathbb{R}}\{b_{1}, \dots, b_{j_{0}(h)}\} = \Span_{\mathbb{R}}\{b_{1}, \dots, b_{j_{0}(i)}\} \]
+The left side is, however, linearly independent over $\mathbb{R}$. \Lightning \\
+Hence, we have $i \le j_{0}(i)$.
 
-$\therefore i \le j_{0}(i)$.
-
-Using this, (1) becomes
-\begin{align*}
-\|x_{i}\|_{2}^{2} \ge \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} &\ge 2^{-(j_{0}(i)-1)} \|b_{i}\|_{2}^{2} \quad \text{\raggedleft (by Prop 2.19 \textcircled{1})} \\
-\Rightarrow \|b_{i}\|_{2} &\le 2^{\frac{j_{0}(i)-1}{2}} \|x_{i}\|_{2} \le 2^{\frac{n-1}{2}} \|x_{i}\|_{2} \\
-&\le 2^{\frac{n-1}{2}} \cdot \max \{ \|x_{1}\|_{2}, \dots, \|x_{\ell}\|_{2} \}
+Using this, (\ref{eq:2.20_1}) becomes
+\[ \|x_{i}\|_{2}^{2} \ge \|b_{j_{0}(i)}^{\prime}\|_{2}^{2} \ge 2^{-(j_{0}(i)-1)} \|b_{i}\|_{2}^{2} \]
+by Proposition \ref{prop:2.19}(i).
+This implies
+\begin{align*} \|b_{i}\|_{2} \le \quad & 2^{\frac{j_{0}(i)-1}{2}} \|x_{i}\|_{2} \\
+\le \quad & 2^{\frac{n-1}{2}} \|x_{i}\|_{2} \\
+\le \quad & 2^{\frac{n-1}{2}} \cdot \max \{ \|x_{1}\|_{2}, \dots, \|x_{\ell}\|_{2} \},
 \end{align*}
-And this holds for any $1 \le i \le \ell$. $\hfill \square$
+which holds for any $1 \le i \le \ell$.
 \end{pf}
 \newLecture{15th May 2026}
 \section{The LLL Algorithm}
 
-The \textbf{LLL (Lenstra-Lenstra-Lovász) algorithm} turns a basis into a reduced basis (and thus gives a "short" vector in $\Lambda$, recall Proposition 2.20).
+The \textbf{LLL (Lenstra-Lenstra-Lovász) algorithm} turns a basis into a reduced basis (and thus gives a \glqq short\grqq \ vector in $\Lambda$, recall Proposition \ref{prop:2.20}).
 
-\begin{definition}{Property (k)}{def:prop_k}
-    Let $2 \le k \le n+1$. We say a basis $\{ b_1, \dots, b_n \}$ satisfies \define{Property (k)} if:
-    \begin{enumerate}[label=\roman*)]
+\begin{definition}{Property($k$)}{prop_k}
+    Let $2 \le k \le n+1$. We say a basis $\{ b_1, \dots, b_n \}$ satisfies \define[$k$-th Property for Bases of Lattices]{Property($k$)} if:
+    \begin{enumerate}[(i)]
         \item $|\mu_{i,j}| \le \frac{1}{2}$ for all $1 \le j < i < k$.
         \item $\|b_i' + \mu_{i,i-1}b_{i-1}'\|_2^2 \ge \frac{3}{4} \|b_{i-1}'\|_2^2$ for all $2 \le i < k$.
     \end{enumerate}
 \end{definition}
 
-\titremark{Note} Property ($n+1$) means the basis is reduced. And Property (2) holds trivially for any basis.
+\noindent \textbf{Note:} Property$(n+1)$ means the basis is reduced. And Property$(2)$ holds trivially for any basis.
 
-\section*{How the algorithm works}
+\subsection{How the Algorithm Works}
 
-We start with a basis $B_0 = \{ b_1, \dots, b_n \}$ of $\Lambda$. In particular, it satisfies Property (2).
+We start with a basis $B_0 = \{ b_1, \dots, b_n \}$ of $\Lambda$. In particular, it satisfies Property$(2)$.
 The algorithm proceeds in steps, producing a sequence of bases:
 $$ B_0 \xrightarrow{\text{Prop}(2)} B_1 \xrightarrow{\text{Prop}(k_1)} B_2 \xrightarrow{\text{Prop}(k_2)} \dots \to B_{\text{final}} \xrightarrow{\text{Prop}(n+1)} $$
-where $k_{i+1} = k_i \pm 1$. Once we reach Property ($n+1$), we get a reduced basis. Done! As we shall see, $k$ can go down only a finite number of times, so the algorithm terminates.
+where $k_{i+1} = k_i \pm 1$. Once we reach Property$(n+1)$, we get a reduced basis. Done! As we shall see, $k$ can go down only a finite number of times, so the algorithm terminates.
 
-\titremark{Note on efficiency} The algorithm is efficient. If we start with a basis $\{ b_1, \dots, b_n \}$ with $\|b_i\|_2 \le B$ ($1 \le i \le n$), then the number of arithmetical operations (addition, subtraction, multiplication, division) needed in the algorithm is $\mathcal{O}(n^4 \log B)$, and the algorithm runs in polynomial time in $B$.
+\titremark{Efficiency of the Algorithm} The algorithm is efficient. If we start with a basis $\{ b_1, \dots, b_n \}$ with $\|b_i\|_2 \le B$ ($1 \le i \le n$), then the number of arithmetical operations (addition, subtraction, multiplication, division) needed in the algorithm is $\mathcal{O}(n^4 \log B)$, and the algorithm runs in polynomial time in $B$.
 
-\section*{Algorithm Steps}
-
-\paragraph{Initial step.} Let $2 \le k \le n$. Assume we have a partial basis satisfying Property (k). We first achieve:
-$$ |\mu_{k,k-1}| \le \frac{1}{2} \quad (*) $$
+\subsection{Steps of the Algorithm}
+\paragraph{Initial step:} Let $2 \le k \le n$. Assume we have a partial basis satisfying Property$(k)$. We first achieve
+\[ |\mu_{k,k-1}| \le \frac{1}{2}. \hfill (*) \]
 If $(*)$ does not hold, let $r \in \mathbb{Z}$ be such that $|\mu_{k,k-1} - r| \le \frac{1}{2}$. We replace $b_k$ with $b_k - rb_{k-1}$. This has the effect of changing $\mu_{k,k-1}$ to $\mu_{k,k-1} - r$. Since $|\mu_{k,k-1} - r| \le \frac{1}{2}$, the new basis satisfies $(*)$.
 
 \begin{addcalc}
-Extra explanation: If we write $c_k = b_k - rb_{k-1}$, then its Gram-Schmidt vector is:
-$$ c_k' = c_k - \sum_{j=1}^{k-1} \frac{\langle c_k, b_j' \rangle}{\langle b_j', b_j' \rangle} b_j' = c_k - \sum_{j=1}^{k-1} (\mu_{k,j} - r\mu_{k-1,j}) b_j' = b_k' $$
+If we write $c_k = b_k - rb_{k-1}$, then its Gram-Schmidt vector is:
+$$ c_k' = c_k - \sum_{j=1}^{k-1} \frac{\langle c_k, b_j' \rangle}{\langle b_j', b_j' \rangle} b_j' = c_k - \sum_{j=1}^{k-1} (\mu_{k,j} - r) b_j' = b_k' $$
 Note: $b_i$, $b_i'$ and $\mu_{i,j}$ are not affected for $1 \le i \le k-1$.
 \end{addcalc}
 
-Now we have a basis $\{ b_1, \dots, b_n \}$ satisfying Property (k) and $(*)$. We distinguish two main cases:
+\noindent Now we have a basis $\{ b_1, \dots, b_n \}$ satisfying Property$(k)$ and $(*)$. We distinguish two main cases:
 
 \paragraph{Case 1 (Swap Step):} If $k \ge 2$ and
-$$ \|b_k' + \mu_{k,k-1}b_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2 \quad (**) $$
+\[ \|b_k' + \mu_{k,k-1}b_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2 \hfill (\widehat{*}) \]
 Then we switch $b_k$ and $b_{k-1}$ while keeping the rest the same. Our new basis is $c_1, \dots, c_n$ with $c_{k-1} = b_k$, $c_k = b_{k-1}$, and $c_i = b_i$ otherwise.
-This changes $\mu_{i,j}$ and $c_i'$, but it does NOT affect $b_i, b_i', \mu_{i,j}$ for $1 \le i \le k-2$. The new basis still satisfies Property (k-1).
+This changes $\mu_{i,j}$ and $c_i'$, but it does NOT affect $b_i, b_i', \mu_{i,j}$ for $1 \le i \le k-2$. The new basis still satisfies Property$(k-1)$.
 
 Now $c_{k-1}'$ is the projection of $c_{k-1} = b_k$ onto $(\Span_{\mathbb{R}}\{b_1', \dots, b_{k-2}'\})^\perp$, i.e.,
 $$ c_{k-1}' = b_k' + \mu_{k,k-1}b_{k-1}' $$
-From $(**)$, we get $\|c_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2$. So the length of the "new" $c_{k-1}'$ is shorter than the "old" $b_{k-1}'$ by a factor of $3/4$.
+From $(\widehat{*})$, we get $\|c_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2$. So the length of the \glqq new\grqq \ $c_{k-1}'$ is shorter than the \glqq old\grqq \ $b_{k-1}'$ by a factor of $3/4$.
 \titremark{Note} This is what is used to show that $k$ can go down only finitely many times.
 
 \paragraph{Case 2 (Size Reduction Step):} If $k \ge 2$ and
-$$ \|b_k' + \mu_{k,k-1}b_{k-1}'\|_2^2 \ge \frac{3}{4} \|b_{k-1}'\|_2^2 \quad (***) $$
+\[ \|b_k' + \mu_{k,k-1}b_{k-1}'\|_2^2 \ge \frac{3}{4} \|b_{k-1}'\|_2^2 \hfill (\widetilde{*}) \]
 First note that we already have $|\mu_{k,k-1}| \le 1/2$ (from $(*)$). Let $l$ be the largest integer such that $|\mu_{k,l}| > 1/2$. (Recall $\mu_{i,j}$ is only defined for $1 \le j < i \le n$). Let $r \in \mathbb{Z}$ be such that $|\mu_{k,l} - r| \le 1/2$. We then replace $b_k$ with $b_k - rb_l$. Thus $\mu_{k,l}$ becomes $\mu_{k,l} - r$.
 
-This change affects other $\mu_{k,j}$ for $j < l$, but it does not affect $b_i, b_i', \mu_{i,j}$ for $i < k$. It also doesn't affect $(***)$, as $l < k-1$. We repeat this process until we obtain that the basis satisfies $|\mu_{k,j}| \le 1/2$ for all $1 \le j \le k-1$. The final basis satisfies Property (k+1).
-
-\section*{Proof of Termination}
-
+\noindent This change affects other $\mu_{k,j}$ for $j < l$, but it does not affect $b_i, b_i', \mu_{i,j}$ for $i < k$. It also doesn't affect $(\widetilde{*})$, as $l < k-1$. We repeat this process until we obtain that the basis satisfies $|\mu_{k,j}| \le 1/2$ for all $1 \le j \le k-1$. The final basis satisfies Property$k+1)$.
+To prove that the algorithm terminates, we need the following lemma, the proof of which will be on the next exercise sheet.
+\begin{lemma}{Lower Bound for $\Delta$}{2.21}
+    Let $\{ b_1, \dots, b_n \}$ be a basis of $\Lambda$. Then
+    $$ \Delta(b_1, \dots, b_n) \ge \frac{m(\Lambda)^{n^2}}{4^{n^2} V_n^{2n}} $$
+    where $m(\Lambda) = \min \{ \langle x, x \rangle : x \in \Lambda \setminus \{0\} \}$ and $V_n$ is the volume of the unit ball in $\mathbb{R}^n$.
+\end{lemma}
+\begin{pf}
+    Exercise sheet 5.
+\end{pf}
+\noindent We can now prove that the algorithm terminates.
+\begin{pf}[Proof that the LLL-Algorithm terminates]
 We introduce the following quantity. For each $1 \le i \le n$, let
 $$ D_i = \det \left( [b_1 \dots b_i]^T [b_1 \dots b_i] \right) = \det \left( [b_1' \dots b_i']^T [b_1' \dots b_i'] \right) $$
 and define $\Delta = \Delta(b_1, \dots, b_n) = D_1 \cdots D_n$.
@@ -1111,23 +1125,15 @@ It is clear that $D_n = (\det \Lambda)^2$. Furthermore,
 $$ D_i = \|b_1'\|_2^2 \cdots \|b_i'\|_2^2 = (\det \Lambda_i)^2 $$
 where $\Lambda_i = [b_1 \dots b_i v_{i+1} \dots v_n] \mathbb{Z}^n$ with $\langle b_j, v_t \rangle = 0$ and $\{ v_{i+1}, \dots, v_n \}$ orthonormal (Gram-Schmidt sheet 3).
 
-It can be checked that in both Cases 0 and 2, $D_1, \dots, D_n$ (and hence $\Delta$) do not change. (It only involves modification of the form $b_k \to b_k - cb_i$ for some $i < k$).
+It can be checked that in both cases 0 and 2, $D_1, \dots, D_n$ (and hence $\Delta$) do not change. (It only involves modification of the form $b_k \to b_k - cb_i$ for some $i < k$).
 
-And, in Case 1 only $D_{k-1}$ changes:
-$$ D_{k-1} = \|b_1'\|_2^2 \cdots \|b_{k-1}'\|_2^2 \to \|c_1'\|_2^2 \cdots \|c_{k-1}'\|_2^2 $$
-$$ = \|b_1'\|_2^2 \cdots \|c_{k-1}'\|_2^2 < \frac{3}{4} \|b_1'\|_2^2 \cdots \|b_{k-1}'\|_2^2 = \frac{3}{4} D_{k-1, \text{old}} $$
-But all the other $D_i$ do not change $\Rightarrow \Delta_{\text{new}} < \frac{3}{4} \Delta_{\text{old}}$.
-
-But $\Delta$ cannot get arbitrarily small:
-
-\begin{lemma}{Lower Bound for $\Delta$}{lem:2.21}
-    Let $\{ b_1, \dots, b_n \}$ be a basis of $\Lambda$. Then
-    $$ \Delta(b_1, \dots, b_n) \ge \frac{m(\Lambda)^{n^2}}{4^{n^2} V_n^{2n}} $$
-    where $m(\Lambda) = \min \{ \langle x, x \rangle : x \in \Lambda \setminus \{0\} \}$ and $V_n$ is the volume of the unit ball in $\mathbb{R}^n$.
-\end{lemma}
-
-\begin{pf}
-    Exercise sheet 5.
+In case 1, only $D_{k-1}$ changes:
+\begin{align*} D_{k-1} = \|b_1'\|_2^2 \cdots \|b_{k-1}'\|_2^2 \to \quad & \|c_1'\|_2^2 \cdots \|c_{k-1}'\|_2^2 \\
+= \quad & \|b_1'\|_2^2 \cdots \|c_{k-1}'\|_2^2 \\
+< \quad & \frac{3}{4} \|b_1'\|_2^2 \cdots \|b_{k-1}'\|_2^2 \\
+= \quad &\frac{3}{4} D_{k-1, \text{old}} \end{align*}
+But all the other $D_i$ do not change, which implies that $\Delta_{\text{new}} < \frac{3}{4} \Delta_{\text{old}}$.
+But $\Delta$ cannot get arbitrarily small due to Lemma \ref{lem:2.21}.
 \end{pf}
 
 \paragraph{Conclusion:} The RHS depends only on $\Lambda$ and $n$. Therefore, in the algorithm, Case 1 can only occur finitely many times (i.e. $k \to k-1$ only bounded number of times), and hence $k$ must reach $n+1$ and the algorithm terminates!
@@ -1199,20 +1205,20 @@ We will need several auxilliary lemmata.
   \end{lemma}
   \begin{pf}
     Suppose that the rank of the matrix is $r$. Without loss of generality, we let
-    \[ \rank((z_i^j)_{\stackrel{1 \leq i \leq r}{j \in \mathfrak{N}}}) = r, \text{ where } \mathfrak{N} \subseteq \mathfrak{M} \text{ with } \#\mathfrak{N} = r.\]
+    \[ \rank((z_i^j)_{\stackrel{1 \leq i \leq r}{j \in S(\mathfrak{N})}}) = r, \text{ where } \mathfrak{N} \subseteq \mathfrak{M} \text{ with } \#\mathfrak{N} = r.\]
     By assumption, we have $r = \#\mathfrak N < \#\mathfrak M$, which means that there exists $k = (k_1, k_2) \in S(\mathfrak M) \setminus S(\mathfrak N)$. Consider $P \in \R[x,y]$ defined by
     \begin{align*}
       P(x,y) = \quad & \det A(x,y) \\
       \coloneq \quad & \det\begin{pmatrix}
         (x^{j_1}y^{j_2})_{j \in S(\mathfrak{N})} & x^{k_1}y^{k_2} \\
         & z_1^{k} \\
-        [z_i^j]_{\stackrel{1 \leq i \leq r}{j \in S(\mathfrak{N})}} & \vdots \\
+        (z_i^j)_{\stackrel{1 \leq i \leq r}{j \in S(\mathfrak{N})}} & \vdots \\
         & z_r^k
       \end{pmatrix} \\
-      = \quad & \sum_{j \in S(\mathfrak{N}) \setminus \{ k\}} \epsilon_j\det(A_j)x^{j_1}y^{j_2},
+      = \quad & \sum_{j \in S(\mathfrak{N}) \cup \{ k\}} \epsilon_j\det(A_j)x^{j_1}y^{j_2},
     \end{align*}
     where $\epsilon_j \in \{ \pm 1\}$ and $A_j$ is the matrix obtained from $A(x,y)$ by removing the top row and the column $j$. We know that at least one of the $\det A_j$ is nonzero, which ensures that our polynomial is nonzero. Therefore, we have
-    \[ P \in \Span_{\R}(\mathfrak N \cap \{ x^{k_1}y^{k_2}\}) \subseteq \Span_{\R}(\mathfrak M).\]
+    \[ P \in \Span_{\R}(\mathfrak N \cup \{ x^{k_1}y^{k_2}\}) \subseteq \Span_{\R}(\mathfrak M).\]
     Finally, if $1 \leq i \leq r$, then $A(z_i)$ has a repeated row, which means that $P(z_i) = 0$. If $r+1 \leq i \leq t$, then $\det A(z_i) = 0$ because if $\rank A(z_i) = r+1$, this contradicts that
     \[ r = \rank((z_i^j)_{\stackrel{1 \leq i \leq n}{j \in S(\mathfrak M)}}).\]
     Hence, we have $z_1, \dots, z_t \in V(P).$

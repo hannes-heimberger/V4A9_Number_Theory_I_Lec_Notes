@@ -1,0 +1,27 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.w18
+*-blx.bib
+
+# Generated theorem/list files from the lecture template
+*.lem
+*.thm
+Lecture_Notes_Number_Theory_I.def
+
+# minted output
+_minted-*/

@@ -1,9 +1,0 @@
-This is makeindex, version 2.17 [TeX Live 2023] (kpathsea + Thai support).
-Scanning input file Lecture_Notes_Number_Theory_I.idx....
-!! Input index error (file = Lecture_Notes_Number_Theory_I.idx, line = 13):
-   -- Incomplete first argument (premature LFD).
-done (18 entries accepted, 1 rejected).
-Sorting entries....done (73 comparisons).
-Generating output file Lecture_Notes_Number_Theory_I.ind....done (45 lines written, 0 warnings).
-Output written in Lecture_Notes_Number_Theory_I.ind.
-Transcript written in Lecture_Notes_Number_Theory_I.ilg.

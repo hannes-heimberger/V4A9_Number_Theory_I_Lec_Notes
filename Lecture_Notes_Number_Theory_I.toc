@@ -1,0 +1,31 @@
+\babel@toc {british}{}\relax 
+\contentsline {part}{Number Theory I}{}{section*.4}%
+\contentsline {chapter}{\numberline {1}Geometry of Numbers}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduction}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Lattices and discrete subgroups}{4}{section.1.2}%
+\contentsline {paragraph}{\nonumberline Remark}{6}{paragraph*.14}%
+\contentsline {section}{\numberline {1.3}Convex Bodies}{7}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Minkowski's First Theorem}{8}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Minkowski's Second Theorem}{13}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Dual lattice}{19}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Lagrange's Four Square Theorem}{23}{section.1.7}%
+\contentsline {section}{\numberline {1.8}Short Vectors in a Lattice}{25}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}Reduced Basis}{25}{subsection.1.8.1}%
+\contentsline {paragraph}{\nonumberline Remark}{26}{paragraph*.22}%
+\contentsline {section}{\numberline {1.9}The LLL Algorithm}{29}{section.1.9}%
+\contentsline {subsection}{\numberline {1.9.1}How the Algorithm Works}{29}{subsection.1.9.1}%
+\contentsline {paragraph}{\nonumberline Remark}{30}{paragraph*.25}%
+\contentsline {subsection}{\numberline {1.9.2}Steps of the Algorithm}{30}{subsection.1.9.2}%
+\contentsline {paragraph}{\nonumberline Initial step:}{30}{paragraph*.27}%
+\contentsline {paragraph}{\nonumberline Case 1 (Swap Step):}{30}{paragraph*.29}%
+\contentsline {paragraph}{\nonumberline Remark}{30}{paragraph*.31}%
+\contentsline {paragraph}{\nonumberline Case 2 (Size Reduction Step):}{30}{paragraph*.33}%
+\contentsline {paragraph}{\nonumberline Conclusion:}{31}{paragraph*.35}%
+\contentsline {chapter}{\numberline {2}The Bombieri-Pila Determinant Method}{33}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Technical Preparation}{33}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Preparation and Proof of Lemma 3.2}{34}{subsection.2.1.1}%
+\contentsline {part}{Appendix}{}{tcb@cnt@definition.2.1.4}%
+\contentsline {chapter}{List of Definitions}{A}{part*.41}%
+\contentsline {chapter}{List of Theorems}{B}{chapter*.42}%
+\contentsline {chapter}{List of Lemmata}{C}{chapter*.43}%
+\contentsline {chapter}{Index}{D}{section*.45}%

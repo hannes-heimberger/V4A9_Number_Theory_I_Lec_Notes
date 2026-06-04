@@ -50,6 +50,8 @@
 \ProcessKeyvalOptions*
 \DeclareDefaultOption{\PassOptionsToClass{\Lec@ptsize}{scrartcl}}
 
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
 % Process all options
 \LoadClass[12pt,a4paper,numbers=noenddot,chapterprefix=true, bookmarkpackage=false]{scrreprt}
 
@@ -131,7 +133,7 @@
 \newenvironment{code}{\captionsetup{type=listing}}{}
 
 \usepackage{xargs}
-\usepackage[pdftex,dvipsnames]{xcolor}
+\RequirePackage{xcolor}
 \RequirePackage[normalem]{ulem}
 \usetikzlibrary{calc, automata, arrows, babel}
 \RequirePackage{tkz-euclide}

@@ -1171,11 +1171,11 @@ But $\Delta$ cannot get arbitrarily small due to Lemma \ref{lem:2.21}.
 \end{example}
 \chapter{The Bombieri-Pila Determinant Method}
 We have done a lot with lattice points inside a central symmetric convex body. In this section, we will count lattice points on a curve\footnote{Professor Yamagishi: For our intents and purposes, this is just a zero set of a two-variable polynomial. No schemes, sheaves, connected. None of these Algebraic Geometry adjectives. Any Algebraic Geometers here? No one? Yeah, no one's taking that course.}. Our goal in this chapter is to prove the following.
-\begin{theorem}{Bombieri-Pila, 1989}{3.1}
-  Let $F \in \R[x,y]$ be an irreducible polynomial of degree $d \geq 2$. Then there exists $N = N(d)$ such that
-  \[ \#\{ (x,y) \in [1,N]^2 \cap \Z^2: F(x,y) = 0\} \leq \log^{\O(d)}(N)N^{\frac{1}{d}}.\]
+\begin{theorem}{Bombieri-Pila, 1989 (manuscript 3.1)}{3.1}
+  Let $F \in \R[x,y]$ be an irreducible polynomial of degree $d \geq 2$. If $N$ is sufficiently large with respect only to $d$, then
+  \[ \#\{ (x,y) \in [1,N]^2 \cap \Z^2: F(x,y) = 0\} \leq (\log N)^{\O(d)}N^{\frac{1}{d}}.\]
 \end{theorem}
-\noindent \textbf{Remarks:} The implicit constant in $\O(d)$ is absolute. In particular, it does not depend on the coefficients of $F$. Therefore, the bound holds uniformly over all irreducible $F \in \R[x,y]$ of degree $d$. Also, it is best possible up to the $\log^{\O(d)}(N)$ term (consider $F(x,y) = y-x^{\alpha}$).
+\noindent \textbf{Remarks:} The implicit constant in $\O(d)$ is absolute. In particular, it does not depend on the coefficients of $F$. Therefore, the bound holds uniformly over all irreducible $F \in \R[x,y]$ of degree $d$. Also, it is best possible up to the $(\log N)^{\O(d)}$ term (consider $F(x,y) = y-x^{\alpha}$).
 \begin{pf}[Very rough proof idea]
 Draw the rectangle as well as the solution curve. Cover the solution curve with a small number of tiles that look like
 \[ \{ (x,f(x)): x \in [a,b]\}\]
@@ -1184,43 +1184,145 @@ for some $a < b \in \R$ and $f$ as well as its derivatives decaying rapidly. As 
 efficiently.
 \end{pf}
 \section{Technical Preparation}
-Some notation for this chapter: The set $\mathfrak{M} \subset \R[x,y]$ is a finite set of monomials, id est $\mathfrak{M} = \{ x^{j_1}y^{j_2}: j = (j_1, j_2) \in S\}$ with a finite $S \subset \Nzero^2$. We also denote $S(\mathfrak{M}) = S$. Further, we define \[J_1 = J_1(\mathfrak{M}) = \sum_{x^{j_1}y^{j_2} \in \mathfrak{M}} j_1 = \sum_{(j_1,j_2) \in S(\mathfrak{M})}j_1 \text{ and } J_2 = J_2(M)\]
-analogously.
-\begin{lemma}{Technical Preparation for Bombieri-Pila}{3.2}
-  Let $\mathfrak{M}$ be as above and $D = \#\mathfrak{M}$. Assume that $I \subseteq [0,N]$ is a closed interval and $f \in \mathcal{C}^{D-1}(I)$. Further suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ satisfy that
+Some notation for this chapter: The set $\mathcal{M} \subset \R[x,y]$ is a finite set of monomials, id est
+\[ \mathcal{M} = \{ x^{j_1}y^{j_2}: \vec j = (j_1, j_2) \in S\}\]
+with a finite $S \subset \Nzero^2$. We also denote $S(\mathcal{M}) = S$. Further, we define
+\[ J_1 = J_1(\mathcal{M}) = \sum_{x^{j_1}y^{j_2} \in \mathcal{M}} j_1 \text{ and } J_2 = J_2(\mathcal{M}) = \sum_{x^{j_1}y^{j_2} \in \mathcal{M}} j_2.\]
+\begin{lemma}{Technical Preparation for Bombieri-Pila (manuscript 3.2)}{3.2}
+  Let $\mathcal{M}$ be as above and $D = \#\mathcal{M} \geq 2$. Assume that $I \subseteq [0,N]$ is a closed interval and $f \in \mathcal{C}^{D-1}(I)$. Further suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ satisfy that
   \[ \left| \frac{f^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{0 \leq i < D, x \in I}.\]
   If
-  \[ \lambda(I) < \frac{1}{4}\delta^{-1}((2N)^{J_1})(DX)^{J_2})^{-\frac{1}{\binom{D}{2}}},\]
+  \[ |I| < \frac{1}{4}\delta^{-1}\left((2N)^{J_1}(DX)^{J_2}\right)^{-\frac{1}{\binom{D}{2}}},\]
   then
-   \[\exists_{P \in \Span_{\R}(\mathfrak{M})}:\{ (x,f(x)): x \in I\} \cap \Z^2 \subseteq V(P).\]
+   \[\exists_{0 \neq P \in \Span_{\R}(\mathcal{M})}:\{ (x,f(x)): x \in I\} \cap \Z^2 \subseteq V(P).\]
   Here,
   \[ V(P)= \{ (x,y) \in \R^2: P(x,y) = 0\}.\]
 \end{lemma}
-\noindent \textbf{Remarks:} Given $z_1, \dots, z_m \in \R^2$ with $m < D$, it's easy to deduce that there exists $P \in \Span_{\R}(\mathfrak{M})$ such that $z_1, \dots, z_m \in V(P)$ from elementary linear algebra results. But this lemma allows us to find $P \in \R[x,y]$ such that $\Z^2 \cap \{ (x,f(x)): x \in I\} \subseteq V(P)$ with good quantitative properties ($\deg P$ and $\lambda(I)$).
-\subsection{Preparation and Proof of Lemma \ref{lem:3.2}}
+\noindent \textbf{Remarks:} Given $z_1, \dots, z_m \in \R^2$ with $m < D$, it's easy to deduce that there exists $P \in \Span_{\R}(\mathcal{M})$ such that $z_1, \dots, z_m \in V(P)$ from elementary linear algebra results. But this lemma allows us to find $P \in \R[x,y]$ such that $\Z^2 \cap \{ (x,f(x)): x \in I\} \subseteq V(P)$ with good quantitative properties ($\deg P$ and $|I|$).
+\subsection{Preparation and Proof of Lemma 3.2}
 We will need several auxilliary lemmata.
-  \begin{lemma}{}{3.3}
-    Let $\mathfrak{M}$ be as above and $z_1, \dots, z_t \in \R^2$. If $\rank((z_i^j)_{\stackrel{1 \leq i \leq t}{j \in S(M)}}) < \# M$, then there exists
-    \[ 0 \neq P \in \Span_{\R}(\mathfrak{M}): z_1, \dots, z_t \in V(P).\]
+  \begin{lemma}{Rank Criterion (manuscript 3.3)}{3.3}
+    Let $\mathcal{M}$ be as above and $\vec z_1, \dots, \vec z_t \in \R^2$. If $\rank((\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq t}{\vec j \in S(\mathcal{M})}}) < \# \mathcal{M}$, then there exists
+    \[ 0 \neq P \in \Span_{\R}(\mathcal{M}): \vec z_1, \dots, \vec z_t \in V(P).\]
   \end{lemma}
   \begin{pf}
     Suppose that the rank of the matrix is $r$. Without loss of generality, we let
-    \[ \rank((z_i^j)_{\stackrel{1 \leq i \leq r}{j \in S(\mathfrak{N})}}) = r, \text{ where } \mathfrak{N} \subseteq \mathfrak{M} \text{ with } \#\mathfrak{N} = r.\]
-    By assumption, we have $r = \#\mathfrak N < \#\mathfrak M$, which means that there exists $k = (k_1, k_2) \in S(\mathfrak M) \setminus S(\mathfrak N)$. Consider $P \in \R[x,y]$ defined by
+    \[ \rank((\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq r}{\vec j \in S(\mathcal{N})}}) = r, \text{ where } \mathcal{N} \subseteq \mathcal{M} \text{ with } \#\mathcal{N} = r.\]
+    By assumption, we have $r = \#\mathcal{N} < \#\mathcal{M}$, which means that there exists $\vec k = (k_1, k_2) \in S(\mathcal{M}) \setminus S(\mathcal{N})$. Consider $P \in \R[x,y]$ defined by
     \begin{align*}
       P(x,y) = \quad & \det A(x,y) \\
       \coloneq \quad & \det\begin{pmatrix}
-        (x^{j_1}y^{j_2})_{j \in S(\mathfrak{N})} & x^{k_1}y^{k_2} \\
-        & z_1^{k} \\
-        (z_i^j)_{\stackrel{1 \leq i \leq r}{j \in S(\mathfrak{N})}} & \vdots \\
-        & z_r^k
+        (x^{j_1}y^{j_2})_{\vec j \in S(\mathcal{N})} & x^{k_1}y^{k_2} \\
+        & \vec z_1^{\vec k} \\
+        (\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq r}{\vec j \in S(\mathcal{N})}} & \vdots \\
+        & \vec z_r^{\vec k}
       \end{pmatrix} \\
-      = \quad & \sum_{j \in S(\mathfrak{N}) \cup \{ k\}} \epsilon_j\det(A_j)x^{j_1}y^{j_2},
+      = \quad & \sum_{\vec j \in S(\mathcal{N}) \cup \{ \vec k\}} \epsilon_{\vec j}\det(A_{\vec j})x^{j_1}y^{j_2},
     \end{align*}
-    where $\epsilon_j \in \{ \pm 1\}$ and $A_j$ is the matrix obtained from $A(x,y)$ by removing the top row and the column $j$. We know that at least one of the $\det A_j$ is nonzero, which ensures that our polynomial is nonzero. Therefore, we have
-    \[ P \in \Span_{\R}(\mathfrak N \cup \{ x^{k_1}y^{k_2}\}) \subseteq \Span_{\R}(\mathfrak M).\]
-    Finally, if $1 \leq i \leq r$, then $A(z_i)$ has a repeated row, which means that $P(z_i) = 0$. If $r+1 \leq i \leq t$, then $\det A(z_i) = 0$ because if $\rank A(z_i) = r+1$, this contradicts that
-    \[ r = \rank((z_i^j)_{\stackrel{1 \leq i \leq n}{j \in S(\mathfrak M)}}).\]
-    Hence, we have $z_1, \dots, z_t \in V(P).$
+    where $\epsilon_{\vec j} \in \{ \pm 1\}$ and $A_{\vec j}$ is the matrix obtained from $A(x,y)$ by removing the top row and the column $\vec j$. We know that at least one of the $\det A_{\vec j}$ is nonzero, which ensures that our polynomial is nonzero. Therefore, we have
+    \[ P \in \Span_{\R}(\mathcal{N} \cup \{ x^{k_1}y^{k_2}\}) \subseteq \Span_{\R}(\mathcal{M}).\]
+    Finally, if $1 \leq i \leq r$, then $A(\vec z_i)$ has a repeated row, which means that $P(\vec z_i) = 0$. If $r+1 \leq i \leq t$, then $\det A(\vec z_i) = 0$ because if $\rank A(\vec z_i) = r+1$, this contradicts that
+    \[ r = \rank((\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq t}{\vec j \in S(\mathcal{M})}}).\]
+    Hence, we have $\vec z_1, \dots, \vec z_t \in V(P).$
+\end{pf}
+\newLecture{3rd June 2026}
+\noindent We are in the middle of proving Lemma 3.2. Here is the rough idea of how the proof goes. Say
+\[ \{ (x_1,f(x_1)), \dots, (x_D,f(x_D))\} \subseteq \{ (x,f(x)): x \in I\}\cap \Z^2.\]
+If the matrix
+\[ \left(x_i^{j_1}f(x_i)^{j_2}\right)_{\stackrel{1 \leq i \leq D}{\vec j=(j_1,j_2) \in S(\mathcal{M})}}\]
+has full rank, then its determinant is nonzero. The derivative bounds for $f$ and the shortness of $I$ will show that this determinant is very small, but since all entries are integers, its absolute value is bounded below by $1$. This is a contradiction. Hence, the matrix does not have full rank, and Lemma 3.3 gives the desired polynomial.
+
+\begin{lemma}{Generalised Vandermonde Bound (manuscript 3.4)}{3.4}
+  Let $n \geq 1$, let $I \subseteq \R$ be a closed interval, and suppose $f_1, \dots, f_n \in \mathcal{C}^{n-1}(I)$. Let $A_{i,j} \geq 0$ be such that
+  \[ \max_{x \in I}\left| \frac{f_j^{(i-1)}(x)}{(i-1)!}\right| \leq A_{i,j} \forall_{1 \leq i,j \leq n}.\]
+  Then, for any $x_1, \dots, x_n \in I$, we have
+  \[ \left|\det(f_j(x_i))_{1 \leq i,j \leq n}\right| \leq \prod_{1 \leq m < i \leq n}|x_i-x_m| \cdot \sum_{\sigma \in S_n}\prod_{i=1}^n A_{i,\sigma(i)},\]
+  where $S_n$ denotes the group of permutations of $\{ 1, \dots, n\}$.
+\end{lemma}
+\begin{pf}
+  If $x_1, \dots, x_n$ are not distinct, then the result is trivial. Therefore, assume they are distinct.
+
+  First suppose $1 \leq i,j \leq n$. We can find $\xi_{i,j} \in I$ such that
+  \begin{equation}\label{eq:3.4_divided_difference}
+    \frac{f_j^{(i-1)}(\xi_{i,j})}{(i-1)!}
+    = \sum_{l=1}^i f_j(x_l)\prod_{\substack{1 \leq m \leq i \\ m \neq l}}\frac{1}{x_l-x_m}.
+    \tag{1}
+  \end{equation}
+  To see this, consider
+  \[ g(\xi) = \sum_{l=1}^i f_j(x_l)\prod_{\substack{1 \leq m \leq i \\ m \neq l}}\frac{\xi-x_m}{x_l-x_m}.\]
+  We have $\deg g<i$ and $g(x_l)=f_j(x_l)$ for all $1 \leq l \leq i$. Hence, by repeated applications of Rolle's theorem, there exists $\xi_{i,j} \in I$ such that
+  \[ \frac{d^{i-1}}{d\xi^{i-1}}(g-f_j)(\xi_{i,j}) = 0.\]
+  Thus,
+  \[ f_j^{(i-1)}(\xi_{i,j}) = g^{(i-1)}(\xi_{i,j}) = \sum_{l=1}^i f_j(x_l)(i-1)!\prod_{\substack{1 \leq m \leq i \\ m \neq l}}\frac{1}{x_l-x_m},\]
+  as desired.
+
+  For $1 \leq l \leq i$, let
+  \[ G_{l,i}(x_1,\dots,x_i) = (i-1)!\prod_{\substack{1 \leq m \leq i \\ m \neq l}}\frac{1}{x_l-x_m}.\]
+  Then from (1) we get
+  \[ f_j^{(i-1)}(\xi_{i,j}) = \sum_{l=1}^i f_j(x_l)G_{l,i}(x_1,\dots,x_i)\]
+  for some $\xi_{i,j}\in I$. Hence,
+  \begin{align*}
+    &\det\left(f_j^{(i-1)}(\xi_{i,j})\right)_{1 \leq i,j \leq n} \\
+    =\quad & \det\left(\sum_{l=1}^i f_j(x_l)G_{l,i}(x_1,\dots,x_i)\right)_{1 \leq i,j \leq n} \\
+    =\quad & \det\begin{pmatrix}
+      G_{1,1} & 0 & 0 & \cdots \\
+      G_{1,2} & G_{2,2} & 0 & \cdots \\
+      G_{1,3} & G_{2,3} & G_{3,3} & \cdots \\
+      \vdots & \vdots & \vdots & \ddots
+    \end{pmatrix}
+    \cdot \det(f_j(x_i))_{1 \leq i,j \leq n} \\
+    =\quad & \prod_{i=1}^n G_{i,i}(x_1,\dots,x_i)\cdot \det(f_j(x_i))_{1 \leq i,j \leq n}.
+  \end{align*}
+  Therefore,
+  \begin{align*}
+    \left|\det(f_j(x_i))_{1 \leq i,j \leq n}\right|
+    &= \prod_{i=1}^n |G_{i,i}(x_1,\dots,x_i)|^{-1}\cdot \left|\det\left(f_j^{(i-1)}(\xi_{i,j})\right)_{1 \leq i,j \leq n}\right| \\
+    &\leq \prod_{i=1}^n \frac{\prod_{1 \leq m < i}|x_i-x_m|}{(i-1)!}\cdot \sum_{\sigma \in S_n}\prod_{i=1}^n |f_{\sigma(i)}^{(i-1)}(\xi_{i,\sigma(i)})| \\
+    &\leq \prod_{1 \leq m < i \leq n}|x_i-x_m|\cdot \sum_{\sigma \in S_n}\prod_{i=1}^n A_{i,\sigma(i)}. \qedhere
+  \end{align*}
+\end{pf}
+
+We will use this lemma with functions of the form $x^{j_1}f(x)^{j_2}$.
+\begin{lemma}{Derivative Bounds for Monomials Along a Graph (manuscript 3.5)}{3.5}
+  Let $k \geq 1$, let $I \subseteq [0,N]$ be a closed interval, and let $f \in \mathcal{C}^k(I)$. Suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ are such that
+  \[ \max_{x \in I}\left| \frac{f^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{0 \leq i \leq k}.\]
+  Then, for any $\vec j=(j_1,j_2) \in \Z_{\geq 0}^2$, the function
+  \[ f_{\vec j}(x)=x^{j_1}f(x)^{j_2}\]
+  satisfies
+  \[ \max_{x \in I}\left|\frac{f_{\vec j}^{(i-1)}(x)}{(i-1)!}\right| \leq (2N)^{j_1}(iX)^{j_2}\delta^{i-1} \forall_{1 \leq i \leq k+1}.\]
+\end{lemma}
+\begin{pf}
+  Exercise sheet 6.
+\end{pf}
+
+\begin{pf}[Proof of Lemma 3.2]
+  Let
+  \[ \{ (x,f(x)): x \in I\} \cap \Z^2 = \{ \vec z_1, \dots, \vec z_t\},\]
+  where $\vec z_i=(x_i,f(x_i))$.
+  By Lemma 3.3, if the matrix
+  \[ A = (\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq t}{\vec j \in S(\mathcal{M})}}\]
+  satisfies $\rank A < D$, then we are done. Therefore, let us suppose $\rank A=D$. Without loss of generality, we assume
+  \[ 0 \neq \Delta = \det(\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq D}{\vec j \in S(\mathcal{M})}}.\]
+  Since each $\vec z_i \in \Z^2$, we have $|\Delta| \in \Z_{\geq 1}$.
+
+  Let $f_{\vec j}(x)=x^{j_1}f(x)^{j_2}$, so that $f_{\vec j}(x_i)=\vec z_i^{\vec j}$. By Lemma 3.5 with $k=D-1$ and the hypothesis on the derivatives of $f$, we get
+  \[ \max_{x \in I}\left|\frac{f_{\vec j}^{(i-1)}(x)}{(i-1)!}\right| \leq (2N)^{j_1}(DX)^{j_2}\delta^{i-1} \eqqcolon A_{i,\vec j}.\]
+  By Lemma 3.4, we get
+  \begin{align*}
+    1 \leq |\Delta|
+    &= \left|\det(f_{\vec j}(x_i))_{\stackrel{1 \leq i \leq D}{\vec j \in S(\mathcal{M})}}\right| \\
+    &\leq \prod_{1 \leq m < i \leq D}|x_i-x_m|\cdot \sum_{\sigma}\prod_{i=1}^D A_{i,\sigma(i)} \\
+    &\leq |I|^{\binom{D}{2}}\cdot \sum_{\sigma}\prod_{i=1}^D (2N)^{\sigma(i)_1}(DX)^{\sigma(i)_2}\delta^{i-1} \\
+    &\leq |I|^{\binom{D}{2}}\cdot D!\cdot (2N)^{J_1(\mathcal{M})}(DX)^{J_2(\mathcal{M})}\delta^{\binom{D}{2}},
+  \end{align*}
+  where the sum is over all bijections $\sigma:\{1,\dots,D\}\to S(\mathcal{M})$.
+
+  Thus,
+  \[ |I|^{\binom{D}{2}} \geq (D!)^{-1}\left((2N)^{J_1(\mathcal{M})}(DX)^{J_2(\mathcal{M})}\right)^{-1}\delta^{-\binom{D}{2}},\]
+  and so
+  \[ |I| \geq (D!)^{-\frac{1}{\binom{D}{2}}}\left((2N)^{J_1(\mathcal{M})}(DX)^{J_2(\mathcal{M})}\right)^{-\frac{1}{\binom{D}{2}}}\delta^{-1}.\]
+  Since $D! \leq D^D$ and $D^{-\frac{D}{\binom{D}{2}}} \geq \frac{1}{4}$ for all $D \geq 2$, we obtain
+  \[ |I| \geq \frac{1}{4}\delta^{-1}\left((2N)^{J_1(\mathcal{M})}(DX)^{J_2(\mathcal{M})}\right)^{-\frac{1}{\binom{D}{2}}},\]
+  which contradicts our assumption. Hence, $\rank(A)<D$, as desired.
 \end{pf}
 \end{document}

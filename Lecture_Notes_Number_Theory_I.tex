@@ -1325,4 +1325,87 @@ We will use this lemma with functions of the form $x^{j_1}f(x)^{j_2}$.
   \[ |I| \geq \frac{1}{4}\delta^{-1}\left((2N)^{J_1(\mathcal{M})}(DX)^{J_2(\mathcal{M})}\right)^{-\frac{1}{\binom{D}{2}}},\]
   which contradicts our assumption. Hence, $\rank(A)<D$, as desired.
 \end{pf}
+\newLecture{5th June 2026}
+We will use this in the following manner:
+\begin{lemma}{Alternative Formulation of the Main Technical Lemma}{3.2*}
+  Let $M \subseteq \R[x,y]$ be a finite set of monomials with $\# M = D \geq 2$. Also let $I \subseteq [0,N]$ be a closed interval and $f \in \mathcal{C}^{d-1}(I)$. Suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ are such that
+  \[ \max_{x \in I}\left| \frac{f^{(i)}(x)}{i!}\right| \leq x\delta^i \forall_{0 \leq i < D}.\]
+  Then $\{ (x,f(x)): x \in I\} \cap \Z^2$ is contained in the union of
+  \[ 4\delta\lambda^1(I)((2N)^{J_1(M)}(DX)^{J_2(M)})^{\frac{1}{\binom{D}{2}}} + 1\]
+  curves $V(P)$ with $0 \not\equiv P \in \Span_\R(M)$.
+\end{lemma}
+\titremark{Trivial Bound} We have the trivial bound $\lambda^1(I)+1$. So we do better if
+\[ \delta((2N)^{J_1(M)}(DX)^{J_2(M)})^{\frac{1}{\binom{D}{2}}} < \frac{1}{4}.\]
+\begin{pf}
+  Let $\{ (x,f(x)): x \in I\} = \{ z_1, \dots, z_t\}$, where $z_i = (x_i, f(x_i))$ with $x_1 < \cdots < x_t$. Define a sequence $(n_k)_{k \in \Nzero}$ by $n_0 = 1$, and then recursively define $n_{\ell}$ to be the largest number such that
+  \[ \{ z_i: n_{\ell-1} \leq i < n_{\ell}\} \subseteq V(P_{\ell}) \text{ for some } 0 \not\equiv P_{\ell} \in \Span_{\R}(M).\]
+  Suppose that the sequence terminates at $n_T$. Then
+  \[ \{ z_1, \dots, z_t\} \subseteq V(P_1) \cup \cdots \cup V(P_T) \cup \underbrace{\{ z_{n_T} , \dots, z_t\}}_{\subseteq V(P_{T+1})},\]
+  where the statement in the underbrace follows from the definition of $n_T$. Hence, $\{ (x, f(x)): x \in I\} \cap \Z^2$ is contained in $T+1$ curves in $\Span_{\R}(M)$. For each $0 \leq \ell < T$,
+  \[ \{ z_i: n_{\ell} \leq i \leq n_{\ell+1}\} \not\subseteq\]
+  for any $0 \not\equiv P \in \Span_{\R}(M)$. Use Lemma \ref{lem:3.2} with $ I = [x_{n_{\ell}}, x_{n_{\ell+1}}]$. This implies that
+  \begin{align*}
+    |x_{n_{\ell+1}}-x_{n_{\ell}}| \geq \quad & \frac{1}{4}\delta^{-1}((2N)^{J_1}(DX)^{J_2})^{-\frac{1}{\binom{D}{2}}}.
+  \end{align*}
+  We therefore have
+  \begin{align*}
+    \lambda^1(I) \geq \quad & |x_{n_T}-x_1| \\
+    = \quad & \sum_{\ell=0}^{T-1}|x_{n_{\ell+1}}-x_{n_{\ell}}| \\
+    \geq \quad & T\frac{1}{4}\delta^{-1}((2N)^{J_1}(DX)^{J_2})^{-\frac{1}{\binom{D}{2}}}.
+  \end{align*}
+  Rearrange this to get the bound for $T$.
+\end{pf}
+\noindent \textbf{Recall:}
+\begin{theorem}{Bézout}{3.6}
+  Let $F, G \in \R[x,y]$ be non-constant without a common divisor. Then there are at most $\deg(F)\deg(G)$ points $(\widehat{x},\widehat{y}) \in \R^2$, counted with multiplicity, such that $F(\widehat{x},\widehat{y}) = G(\widehat{x},\widehat{y}) = 0$. In particular, if $F$ is irreducible over $\R$ and $fF \nmid G$, then
+  \[ \#\{ (\widehat{x},\widehat{y}) \in \R^2: F(\widehat{x},\widehat{y}) = G(\widehat{x},\widehat{y}) = 0\} \leq \deg(F)\deg(G).\]
+\end{theorem}
+\section{Dividing the curve}
+We begin with the following lemma.
+\begin{lemma}{}{3.7}
+  Suppose that $F \in \R[x,y]$ is irreducible of degree $d$ over $\R$, with $\partial_yF(x,y) \not\equiv 0$. Let $I \subseteq \R$ be a closed interval (not a point), $k \geq 1$ and $f \in \mathcal{C}^{\infty}(I)$ satisfy $F(x,f(x)) = 0 \forall_{x \in I}$.
+  Suppose that $f$ is \emp{NOT} a degree $k$ polynomial. Then, we have
+  \[ \#\{ x \in I: f^{(k)}(x) = c\} \leq 2kd^2 \forall_{c \in \R^\times}.\]
+\end{lemma}
+\begin{pf}
+  We basically take the $k$-th derivative of $F(x,f(x)) = 0$ and see what happens. We show by induction that for each $k \geq 1$,
+  \[ \exists_{H_k \in \R[x,y]: \deg(H_k) \leq D_k = (k-1)(2d-3)+d-1}: H_k(x,f(x)) + \partial_yF(x,f(x))^{2k-1}f^{(k)}(x) = 0 \forall x \in I. \hfill (*).\]
+  For $k=1$, we have
+  \[ \partial_xF(x,f(x)) + \partial_yF(x,f(x))f^{(1)}(x) \equiv 0 \forall_{x \in I}.\]
+  Therefore, $(*)$ holds with $H_k(x,y) = \partial_xF(x,y)$ and $\deg(H_k) \leq d-1 = D_1$. Assume that $(*)$ hold for some $k \geq 1$. Take the derivative of $(*)$ to get
+  \[ 0 \equiv \partial_xH_k(x,f(x)) + \partial_yH_k(x,f(x))f'(x) + \partial_yF(x,f(x))^{2k-1}f^{(k+1)} + (2k-1)F_y(x,f(x))^{2k-2}f^{(k)}(\partial^2_{xy}F(x,f(x))+\partial^2_yF(x,f(x))f'(x)).\]
+  Multiply by $\partial_yF(x,f(x))^2$ (and simplify the notation) to get
+  \[ 0 = \partial_yF^2(\partial_xH_k + \partial_yH_kf') + \partial_yF^{2k+1}f^{(k+1)} + (2k-1)\partial_yF^{2k}f^{(k)}(\partial_{xy}^2F + \partial_y^2f').\]
+  Now use $(*)$ ($H_k = -\partial_yF^{2k-1}f^{(k)}$ and $\partial_xF = -\partial_yFf'$) to deduce that
+  \begin{align*} 0 = \quad & \partial_yF^2\partial_xH_k -\partial_xF\partial_yF\partial_yH_k + F_y^{2k+1}f^{(k+1)}-(2k-1)H_k\underbrace{\partial_yF(\partial_{xy}^2F + \partial_y^2Ff')}_{= \partial_yF\partial_{xy}^2F-\partial_xF\partial^2_{y}}F \\
+  = \quad & H_{k+1}(x,f(x)) + \partial_yF(x,f(x))^{2k+1}f^{k+1}(x) \forall x \in I.\end{align*}
+  Check that $\deg H_{k+1} \leq D_k + 2d-3 = D_{k+1}$. This proves $(*)$ for $k+1$.
+  It follows from $(*)$ that, given $x \in I$ and $c \in \R^{\times}$,
+  \[ f^{(k)}(x) = c \implies R_c(x,f(x)) = 0,\]
+  where $R_c(x,y) = H_k(x,y) + \partial_yF(x,y)^{2k-1}c$. Check that $\deg R_c \leq 2kd$. Therefore,
+  \begin{align*}
+    & \{ x \in I: f^{(k)}(x) = c\} \\
+    \subseteq \quad & \{ x \in I: R_c(x,f(x)) = 0\} \\
+    \subseteq \quad & \{ x \in I: R_c(x,y) = 0, F(x,y) = 0 \text{ for some } y \in \R\}.
+  \end{align*}
+  This implies that (under the assumption that $F \nmid R_c$, which we will prove later)
+  \begin{align*}
+    & \#\{ x \in I: f^{(k)}(c)\} \leq \#\{ (x,y) \in \R^2: F(x,y) = 0, R_c(x,y) = 0\} \\
+    \stackrel{F \nmid R_c, \text{ Thm. \ref{thm:3.6}} }{\leq} \quad & \deg(F)\deg(R_c) \\
+    \leq \quad & d2kd \\
+    = \quad & 2kd^2,
+  \end{align*}
+  as desired. It remains to show that $F \nmid R_c$. Let us suppose otherwise. We know that $F(x,f(x)) = 0$ implies $R_c(x,f(x)) = 0$, where we have
+  \[ R_c(x,f(x)) = H_k(x,f(x)) + \partial_yF(x,f(x))^{2k-1}c \stackrel{(*)}{=} -\partial_yF(x,f(x))^{2k-1}(f^{(k)}(x)-c).\]
+  By the same argument as before,
+  \begin{align*}
+    & \#\{ x \in I: \partial_yF(x,f(x)) = 0\} \\
+    \leq \quad & \{ (x,y) \in \R^2: F(x,y) = \partial_yF(x,y) = 0\} \\
+    \stackrel{F \nmid \partial_yFf}{\leq} \quad & \deg(F)\deg(\partial_yF) \\
+    \leq \quad & d(d-1).
+  \end{align*}
+  Hence, $f^{(k)}(x) = c \neq 0 \forall_{x \in I}$, except for at mosst $d^2$ points. Thus, $f$ is of degree $k$. \Lightning \\
+  This completes the proof.
+\end{pf}
+\newLecture{}
 \end{document}

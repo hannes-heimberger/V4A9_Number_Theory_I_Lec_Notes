@@ -1373,7 +1373,8 @@ We begin with the following lemma.
   For $k=1$, we have
   \[ \partial_xF(x,f(x)) + \partial_yF(x,f(x))f^{(1)}(x) \equiv 0 \forall_{x \in I}.\]
   Therefore, $(*)$ holds with $H_k(x,y) = \partial_xF(x,y)$ and $\deg(H_k) \leq d-1 = D_1$. Assume that $(*)$ hold for some $k \geq 1$. Take the derivative of $(*)$ to get
-  \[ 0 \equiv \partial_xH_k(x,f(x)) + \partial_yH_k(x,f(x))f'(x) + \partial_yF(x,f(x))^{2k-1}f^{(k+1)} + (2k-1)F_y(x,f(x))^{2k-2}f^{(k)}(\partial^2_{xy}F(x,f(x))+\partial^2_yF(x,f(x))f'(x)).\]
+  \begin{align*} 0 \equiv \quad & \partial_xH_k(x,f(x)) + \partial_yH_k(x,f(x))f'(x) + \partial_yF(x,f(x))^{2k-1}f^{(k+1)} + \\
+  \quad & (2k-1)F_y(x,f(x))^{2k-2}f^{(k)}(\partial^2_{xy}F(x,f(x))+\partial^2_yF(x,f(x))f'(x)).\end{align*}
   Multiply by $\partial_yF(x,f(x))^2$ (and simplify the notation) to get
   \[ 0 = \partial_yF^2(\partial_xH_k + \partial_yH_kf') + \partial_yF^{2k+1}f^{(k+1)} + (2k-1)\partial_yF^{2k}f^{(k)}(\partial_{xy}^2F + \partial_y^2f').\]
   Now use $(*)$ ($H_k = -\partial_yF^{2k-1}f^{(k)}$ and $\partial_xF = -\partial_yFf'$) to deduce that
@@ -1407,5 +1408,43 @@ We begin with the following lemma.
   Hence, $f^{(k)}(x) = c \neq 0 \forall_{x \in I}$, except for at mosst $d^2$ points. Thus, $f$ is of degree $k$. \Lightning \\
   This completes the proof.
 \end{pf}
-\newLecture{}
+\newLecture{10th June 2026}
+\begin{lemma}{}{3.8}
+  Suppose $F \in \R[x,y]$ is irreducible over $\R$ and of degree $d \geq 2$. Let $I$ be a closed interval and $f \in \mathcal{C}^{\infty}(I)$ be such that $F(x,f(x)) = 0 \forall_{x \in I}$. Let $k \geq 1$ and $A_1, \dots, A_k > 0$. Then, we may partition $I$ into $\O(k^2d^2)$ intervals $I_v$ such that for each $1 \leq i \leq k$ and $I_v$, we have either
+  \begin{enumerate}[(i)]
+    \item \[ \left|f^{(i)}(x)\right| \leq A_i \forall_{x \in I_v} \text{ or}\]
+    \item{\[ \left|f^{(i)}(x)\right| \geq A_i \forall_{x \in I_v}.\]}
+  \end{enumerate}
+\end{lemma}
+\begin{pf}
+  We consider two cases separately:
+  \begin{enumerate}[(1)]
+    \item{\textbf{The function $f$ is \emp{NOT} a polynomial of degree $\leq k$.} \\
+    Let \[\{ x_1 < \cdots < x_R\} = \bigcup_{1 \leq i \leq k}\{ x \in I: f^{(i)}(x) = \pm A_i\}.\]
+    By Lemma \ref{lem:3.7}, we have
+    \[ R \ll k^2d^2.\]
+    Denote $I \coloneq [x_0, x_{R+1}]$. Then $I_v = [x_v, x_{v+1}] $ for each $0 \leq v \leq R$ and these $I_v$ satisfy the property.}
+    \item{\textbf{The function $f$ is a polynomial of degree $h \leq k$.} \\
+    We have
+    \[ f^{(i)}(x) \equiv 0 \forall_{h < i \leq k}\]
+    and
+    \[ f^{(h)}(x) \equiv c \neq 0.\]
+    Therefore, we can apply the previous argument with $h-1$ in place of $k$ and the result follows. \qedhere}
+  \end{enumerate}
+\end{pf}
+We use this lemma to divide up the curve based on the derivative of $f$. If all derivatives are small, then we use Lemma \ref{lem:3.2*}. If not, we prove that $\lambda(I_v)$ is small (this is the easy case).
+\begin{lemma}{}{3.9}
+  Let $\ell \geq d \geq 2$ and $I \subseteq [0,N]$ be a cloed intervall. Fix $f \in \mathcal{C}^{\infty}(I)$ with $F(x,f(x)) = 0 \forall_{x \in I}$, $F$ being of degree $d$ and irreducible over $\R$. Suppose that $N > 0$ and $\delta \geq \frac{1}{\lambda(I)}$ satisfy
+  \[ \max_{x \in I}\left| \frac{f^{(i)}(x)}{i!}\right| \leq N\delta^i \forall_{0 \leq i \leq k = d(\ell-d+1)}.\]
+  Then
+  \[ \#\{ (x,f(x)): x \in I\} \cap \Z^2 \ll (d\ell)^cN^{\frac{1}{d} + \O\left(\frac{1}{\ell}\right)}\delta\lambda(I)\]
+  for some absolute $c, \ell, d > 0$.
+\end{lemma}
+\begin{pf}
+  Let $i_0$ be the largest $i$ such that $x^{d-i}y^i$ is a monomial appearing in $F$. Define $\mathcal M = \{ x^{j_1}y^{j_2}: d \leq j_1+j_2 \leq \ell, x^{d-i_0}y^{i_0} \nmid x^{j_1}y^{j_2}\}$. We shall now compute $\#\mathcal M$. We have
+  \begin{align*}
+    \#\mathcal M = \quad & \sum_{d \leq h \leq \ell} \#\{ (j_1,j_2) \in S(\mathcal M): h = j_1+j_2\}.
+  \end{align*}
+  Fix $d \leq h \leq \ell$. Clearly, $j_2 = h-j_1$. Now $x^{d-i_0}y^{i_0} \nmid x^{j_1}y^{j_2}$ implies that $d-i-0 > j_1$ or $i_0 > j_2$. Hence, $0 \leq j_1$ or $h-i_0<j_1 \leq h$. Since $h \geq d \geq i_0$, the number of choices for $j_1$ is $d-i_0+i_0 = d$. Therefore, \[\#\mathcal{M} =  \sum_{d \leq h \leq \ell} d = d(\ell-d+1) = k = d\ell + \O(d^2). \qedhere\]
+\end{pf}
 \end{document}

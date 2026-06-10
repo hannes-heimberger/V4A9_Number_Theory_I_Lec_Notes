@@ -1445,6 +1445,47 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
   \begin{align*}
     \#\mathcal M = \quad & \sum_{d \leq h \leq \ell} \#\{ (j_1,j_2) \in S(\mathcal M): h = j_1+j_2\}.
   \end{align*}
-  Fix $d \leq h \leq \ell$. Clearly, $j_2 = h-j_1$. Now $x^{d-i_0}y^{i_0} \nmid x^{j_1}y^{j_2}$ implies that $d-i-0 > j_1$ or $i_0 > j_2$. Hence, $0 \leq j_1$ or $h-i_0<j_1 \leq h$. Since $h \geq d \geq i_0$, the number of choices for $j_1$ is $d-i_0+i_0 = d$. Therefore, \[\#\mathcal{M} =  \sum_{d \leq h \leq \ell} d = d(\ell-d+1) = k = d\ell + \O(d^2). \qedhere\]
+  Fix $d \leq h \leq \ell$. Clearly, $j_2 = h-j_1$. Now $x^{d-i_0}y^{i_0} \nmid x^{j_1}y^{j_2}$ implies that $d-i-0 > j_1$ or $i_0 > j_2$. Hence, $0 \leq j_1$ or $h-i_0<j_1 \leq h$. Since $h \geq d \geq i_0$, the number of choices for $j_1$ is $d-i_0+i_0 = d$. Therefore, \[\#\mathcal{M} =  \sum_{d \leq h \leq \ell} d = d(\ell-d+1) = k = d\ell + \O(d^2).\]
+  Also, \begin{align*} J_1(M) + J_2(M) = \quad & \sum_{d \leq h \leq \ell} dh \\
+  = \quad & d\left(\frac{\ell(\ell+1)}{2}-\frac{d(d-1)}{2}\right) \\
+  \leq \quad & \frac{\ell^2d}{2} + \O(d\ell) \\
+  = \quad & \frac{k^2}{2} + \O\left(\frac{k^2}{\ell}\right).\end{align*}
+  This implies that
+  \begin{equation}\label{eq:lem3.9:1}
+    \frac{J_1(M)+J_2(M)}{\binom{k}{2}} \leq \frac{1}{d} + \O\left(\frac{1}{\ell}\right). \tag{1}
+  \end{equation}
+  Next, we show that $F \nmid P$ for any $0 \not\equiv P \in \Span_{\R}(M)$. Suppose that $F \mid P$. This implies that $P = FG$ with $\deg G = d'$. Let $i_0'$ be the largest $i$ such that $x^{d-i}y^i$ is a monomial appearing in $G$. Then $x^{d+d'-i_0-i_0'}y^{i_0+i_0'}$ is a monomial appearing in $P$. Therefore, we have
+  \[ x^{d+d'-i_0-i_0'} \in \mathcal M,\]
+  which is a contradiction because $x^{d-i_0}y^{i_0}$ divides this monomial. \Lightning \\
+  Under the hypothesis of this lemma, it follows from Lemma \ref{lem:3.2*} that
+  \begin{equation}\label{eq:lem3.9:2} \{ (x,f(x)): x \in I\} \cap \Z^2 \subseteq \bigcup_{P \in \mathfrak{P}} V(P),\tag{$*$}\end{equation}
+  where the union is over $\P \subseteq \Span_\R(\mathcal M)$ of size \begin{align*}\leq \quad &  4\delta\lambda(I)((2N)^{J_1(M)}(kN)^{J_2(M)})^{\frac{1}{\binom{k}{2}}} + 1 \\
+  \stackrel{\text{(\ref{eq:lem3.9:1})}}{\leq} \quad &  4\delta\lambda(I)N^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)}k^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)}+1.\end{align*}
+  We therefore have
+  \begin{align*}
+    \#\{ (x,f(x)): x \in I\} \cap \Z^2 \leq \quad & \sum_{P \in \P} \#\{ (x,y) \in \Z^2: F(x,y)=P(x,y)=0\} \\
+    \stackrel{\text{Bézout, } F \nmid P}{\leq} \quad & \sum_{P \in \P} \deg(F)\deg(P) \\
+    \ll \quad & (4\delta\lambda(I)N^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)}+k^{\frac{1}{d}+\O\left(\frac{1}{\ell}+1\right)})d\ell \\
+    \ll \quad & (d\ell)^c\delta\lambda(I)N^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)},
+  \end{align*}
+  where we used that the left hand side of (\ref{eq:lem3.9:2}) is contained in $V(F) \cap \Z^2$. Also recall that $k = d\ell + \O(d^2)$.
+\end{pf}
+\begin{lemma}{}{3.10}
+  Let $k \geq 1$, $0 < \delta <  1$, and $X > 0$. Further assume that $I$ is a closed bounded interval and $f \in \mathcal{C}^k(I)$. If
+  \[ \max_{x \in I}\left|\frac{f^{(i)}(x)}{i!}\right| \leq x\delta^i \forall_{0 \leq i < k}\]
+  and
+  \[ \min_{x \in I}\left|\frac{f^{(k)}(x)}{k!}\right| \geq x\delta^k,\]
+  we have $\lambda(I) \leq \frac{2}{\delta}$.
+\end{lemma}
+\begin{pf}
+  Let $I = [a,b]$. Then there exists $\xi \in I$ such that
+  \[ f(b)-f(a) = \sum_{i=1}^{k-1}\frac{f^{(i)}(a)}{i!}(b-a)^i + \frac{f^{(k)(\xi)}}{k!}(b-a)^k.\]
+  Therefore, we have
+  \[ x\delta^k\lambda(I)^k \leq \left| \frac{f^{(k)}(\xi)}{k!}(b-a)^k\right| \leq 2X+\sum_{i=1}^{k-1}x\delta^i\lambda(I)^i.\]
+  This implies that
+  \[ \delta^k\lambda(I)^k \leq 2 + \sum_{i=1}^{k-1}\delta^i\lambda(I)^i.\]
+  Write $\lambda = \delta\lambda(I)$. Then
+  \[ 2 + \sum_{i=1}^{k-1}\lambda^i = 2 + \frac{\lambda^k-\lambda}{\lambda-1}.\]
+  If $\lambda >2$, then $\lambda^k \leq 2 + \lambda^k-\lambda$, which implies $\lambda \leq 2$ \Lightning. Therefore, we have $\lambda \leq 2$, i.e. $\lambda(I) \leq \frac{2}{\delta}$.
 \end{pf}
 \end{document}

@@ -1472,20 +1472,102 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
 \end{pf}
 \begin{lemma}{}{3.10}
   Let $k \geq 1$, $0 < \delta <  1$, and $X > 0$. Further assume that $I$ is a closed bounded interval and $f \in \mathcal{C}^k(I)$. If
-  \[ \max_{x \in I}\left|\frac{f^{(i)}(x)}{i!}\right| \leq x\delta^i \forall_{0 \leq i < k}\]
+  \[ \max_{x \in I}\left|\frac{f^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{0 \leq i < k}\]
   and
-  \[ \min_{x \in I}\left|\frac{f^{(k)}(x)}{k!}\right| \geq x\delta^k,\]
+  \[ \min_{x \in I}\left|\frac{f^{(k)}(x)}{k!}\right| \geq X\delta^k,\]
   we have $\lambda(I) \leq \frac{2}{\delta}$.
 \end{lemma}
 \begin{pf}
   Let $I = [a,b]$. Then there exists $\xi \in I$ such that
-  \[ f(b)-f(a) = \sum_{i=1}^{k-1}\frac{f^{(i)}(a)}{i!}(b-a)^i + \frac{f^{(k)(\xi)}}{k!}(b-a)^k.\]
+  \[ f(b)-f(a) = \sum_{i=1}^{k-1}\frac{f^{(i)}(a)}{i!}(b-a)^i + \frac{f^{(k)}(\xi)}{k!}(b-a)^k.\]
   Therefore, we have
-  \[ x\delta^k\lambda(I)^k \leq \left| \frac{f^{(k)}(\xi)}{k!}(b-a)^k\right| \leq 2X+\sum_{i=1}^{k-1}x\delta^i\lambda(I)^i.\]
+  \[ X\delta^k\lambda(I)^k \leq \left| \frac{f^{(k)}(\xi)}{k!}(b-a)^k\right| \leq 2X+\sum_{i=1}^{k-1}X\delta^i\lambda(I)^i.\]
   This implies that
   \[ \delta^k\lambda(I)^k \leq 2 + \sum_{i=1}^{k-1}\delta^i\lambda(I)^i.\]
   Write $\lambda = \delta\lambda(I)$. Then
   \[ 2 + \sum_{i=1}^{k-1}\lambda^i = 2 + \frac{\lambda^k-\lambda}{\lambda-1}.\]
   If $\lambda >2$, then $\lambda^k \leq 2 + \lambda^k-\lambda$, which implies $\lambda \leq 2$ \Lightning. Therefore, we have $\lambda \leq 2$, i.e. $\lambda(I) \leq \frac{2}{\delta}$.
 \end{pf}
+\newLecture{12th June 2026}
+\section{Number of lattice points on a curve}
+\begin{theorem}{Number of lattice points on a curve}{3.11}
+  Let $d \geq 2$ and let $N \geq 1$ be sufficiently large in terms of $d$. Let $I \subseteq [0,N]$ be a closed interval and let $f \in \mathcal{C}^{\infty}(I)$ satisfy
+  \[ |f'(x)| \leq 1 \forall_{x \in I}.\]
+  Suppose that there exists an irreducible polynomial $F \in \R[x,y]$ of degree $d$ such that
+  \[ F(x,f(x)) = 0 \forall_{x \in I}.\]
+  Then
+  \[ \#\left(\{(x,f(x)): x \in I\}\cap \Z^2\right) \leq (\log N)^{\O(d)}N^{\frac{1}{d}}.\]
+\end{theorem}
+\begin{proof}
+  For $T > 1$, define $g(T)$ to be the maximum of $2$ and the supremum of
+  \[ \#\left(\{(x,h(x)): x \in J\}\cap\Z^2\right)\]
+  over all closed intervals $J \subseteq [0,T]$ with $\lambda(J) \geq 1$, all $h \in \mathcal{C}^{\infty}(J)$ with $|h'(x)| \leq 1$ for all $x \in J$, and all irreducible $G \in \R[x,y]$ of degree $d$ such that $G(x,h(x))=0$ on $J$. For $0 < T \leq 1$, set $g(T)=2$.
+
+  We first prove the following recursive estimate.
+  \begin{claim}{}{}
+    Given any integer $\ell \geq d$, there exists $K = K(d,\ell)$ with
+    \[ 2 \leq K \leq \ell^{\O(1)}\]
+    such that, for all $T > 0$,
+    \[ g(T) \leq K^{\O(d)}T^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)} + K g(K^{-2d}T),\]
+    where the implicit constants are absolute.
+  \end{claim}
+
+  We show that the claim implies the theorem. After increasing the implicit constants, the claim gives absolute constants $c_0,c_1,c_2>0$ such that
+  \[ g(T) \leq K^{c_1d}T^{\frac{1}{d}+\frac{c_2}{\ell}} + Kg(K^{-2d}T) \quad \text{and} \quad K \leq \ell^{c_0}.\]
+  Since $N$ is sufficiently large in terms of $d$, we may choose $\ell = \lceil \log N\rceil \geq d$. Iterating the estimate, we obtain
+  \[ g(N) \leq K^{c_1d}N^{\frac{1}{d}+\frac{c_2}{\ell}}\sum_{j=0}^{n-1}K^{-j} + K^ng(K^{-2nd}N),\]
+  where $n$ is chosen such that $K^{-2nd}N \leq 1 < K^{-2d(n-1)}N$. Thus $g(K^{-2nd}N) \leq 2$ and $K^n \leq KN^{\frac{1}{2d}}$. Hence
+  \[ g(N) \ll K^{c_1d}N^{\frac{1}{d}+\frac{c_2}{\ell}} + KN^{\frac{1}{2d}} \ll \ell^{\O(d)}N^{\frac{1}{d}+\frac{c_2}{\ell}} \ll (\log N)^{\O(d)}N^{\frac{1}{d}}.\]
+  If $\lambda(I)<1$, then the desired count is at most $2$, so the theorem follows from the bound for $g(N)$.
+
+  It remains to prove the claim.
+
+  \smallskip
+  \noindent\emph{Proof of the claim.}
+    Let $J \subseteq [0,T]$ be a closed interval with $\lambda(J)=X$, where $1 \leq X \leq T$, and let $h \in \mathcal{C}^{\infty}(J)$ be such that $|h'(x)| \leq 1$ for all $x \in J$ and $G(x,h(x))=0$ for some irreducible $G \in \R[x,y]$ of degree $d$.
+
+    Since the range of $h$ on $J$ has length at most $X$, after replacing $h$ by $h+y_0$ for a suitable $y_0 \in \Z$, and $G(x,y)$ by $G(x,y-y_0)$, we may assume
+    \[ |h(x)| \leq X \forall_{x \in J}.\]
+    This replacement does not change the number of lattice points on the graph.
+
+    Fix $\ell \geq d$, put $k=d(\ell-d+1)$, and choose a parameter $\delta \in \left(\frac{2}{X},1\right)$ for the moment. Apply Lemma \ref{lem:3.8} with $A_i=i!X\delta^i$ for $1 \leq i \leq k$. This partitions $J$ into $\O(k^2d^2)$ intervals $J_v$ such that, for each $0 \leq i \leq k$ and each $J_v$, either
+    \[ \left|\frac{h^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{x \in J_v}\]
+    or
+    \[ \left|\frac{h^{(i)}(x)}{i!}\right| \geq X\delta^i \forall_{x \in J_v}.\]
+    Here the assertion for $i=0$ is always in the first case.
+
+    Pick one of the intervals $J_v$. If $\lambda(J_v)\geq \frac{1}{\delta}$ and the first alternative holds for all $0 \leq i \leq k$, then Lemma \ref{lem:3.9}, after translating $J_v$ horizontally into $[0,X]$, gives
+    \[ \#\left(\{(x,h(x)):x\in J_v\}\cap\Z^2\right) \ll (d\ell)^cX^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)}\delta\lambda(J_v).\]
+
+    Otherwise, either $\lambda(J_v)<\frac{1}{\delta}$, or there exists $1 \leq k_0 \leq k$ such that
+    \[ \left|\frac{h^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{x \in J_v}, \ 0 \leq i < k_0,\]
+    and
+    \[ \left|\frac{h^{(k_0)}(x)}{k_0!}\right| \geq X\delta^{k_0}\forall_{x \in J_v}.\]
+    In the latter case, Lemma \ref{lem:3.10} gives $\lambda(J_v)\leq \frac{2}{\delta}$. Hence every interval in this second case contributes at most $g\left(\frac{2}{\delta}\right)$ lattice points.
+
+    Combining the two cases, we get
+    \begin{align*}
+      \#\left(\{(x,h(x)):x\in J\}\cap\Z^2\right)
+      \ll \quad & (d\ell)^cX^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)}\delta X \\
+      &+ C_1d^2(d\ell)^2g\left(\frac{2}{\delta}\right)
+    \end{align*}
+    for some absolute constant $C_1>0$.
+
+    Choose
+    \[ K=C_1d^2(d\ell)^2.\]
+    Increasing $C_1$ if necessary, we have $2 \leq K \leq \ell^{\O(1)}$. If $2K^{2d}<X$, set
+    \[ \delta=\frac{2K^{2d}}{X}.\]
+    Then
+    \[ \#\left(\{(x,h(x)):x\in J\}\cap\Z^2\right)
+      \leq K^{\O(d)}X^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)} + Kg(K^{-2d}X).\]
+    Since $X \leq T$ and $g$ is increasing, this is
+    \[ \leq K^{\O(d)}T^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)} + Kg(K^{-2d}T).\]
+
+    On the other hand, if $2K^{2d}\geq X$, then
+    \[ \#\left(\{(x,h(x)):x\in J\}\cap\Z^2\right) \leq X+1 \leq 2K^{2d}+1,\]
+    and therefore
+    \[ \#\left(\{(x,h(x)):x\in J\}\cap\Z^2\right)
+      \leq K^{\O(d)}T^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)} + Kg(K^{-2d}T),\]
+    since $T \geq 1$. Taking the supremum over all admissible $J,h,G$ proves the claim, and hence the theorem.
+\end{proof}
 \end{document}

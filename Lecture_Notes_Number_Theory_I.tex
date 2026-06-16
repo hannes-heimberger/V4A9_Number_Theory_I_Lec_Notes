@@ -49,7 +49,6 @@ and
 \end{itemize}
 \section*{Functions}
 \begin{itemize}
-  \item We write $(x,y) = \gcd(x,y)$.
   \item We have $\{ x \} = x-\lf x\rf \forall_{x \in \R}$.
 \end{itemize}
 \section*{Fields}
@@ -60,12 +59,12 @@ and
 \chapter{Geometry of Numbers}
 \section{Introduction}
 \newLecture{15th April 2026}
-\begin{definition}{$\Zprim{2}$}{1.0}
+\begin{definition}{$\Zprim{n}$}{1.0}
   We denote
-  \[ \index{$\Zprim{2}$} {\color{red} \Zprim{2}} = \{ (x,y) \in \Z^2 : (x,y) = 1\}.\]
+  \[ \index{$\Zprim{n}$} {\color{red} \Zprim{n}} = \{ (x_1, \dots, x_n) \in \Z^n : \gcd(x_1, \dots, x_n) = 1\}.\]
 \end{definition}
 \begin{theorem}{Dirichlet, 1842}{1.1}
-  Let $\alpha \in \R$. Then, for every integer $Q \geq 2$, there exists $(x,y) \in \Z^2_{\text{prim}}$ such that $0 < y \leq Q$ and $|x-\alpha y| \leq \nicefrac{1}{Q}$.
+  Let $\alpha \in \R$. Then, for every integer $Q \geq 2$, there exists $(x,y) \in \Zprim{2}$ such that $0 < y \leq Q$ and $|x-\alpha y| \leq \nicefrac{1}{Q}$.
 \end{theorem}
 \begin{pf}
   Consider the $Q+1$ numbers $0, \alpha-\lf\alpha\rf, 2\alpha-\lf 2\alpha\rf, \dots, Q\alpha-\lf Q\alpha\rf$. Each of these is in the interval $[0,1)$. Partition the interval $[0,1)$ into $Q$ subintervals of length $\nicefrac{1}{Q}$. Now, we can apply the pigeonhole principle to deduce that
@@ -310,7 +309,7 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
     Let $m \in \N$. We divide $\Lambda$ into congruence classes modulo $2m$. Each $x \in \Lambda$ is written as
     \[ x=x_1v_1 + \dots + x_nv_n,\]
     where $\{ v_1, \dots, v_n\}$ is a basis of $\Lambda$. Consider
-    \[ \Lambda_a = \{ x_1v_1 + \dots + x_nv_n: x_i \equiv a_i \mod 2m (1 \leq i \leq n)\},\]
+    \[ \Lambda_a = \{ x_1v_1 + \dots + x_nv_n: x_i \equiv a_i \mod 2m \forall_{i \in \{ 1, \dots, n\}}\},\]
     for each $a \in \{ 0, \dots, 2m-1\}^n$. Using Lemma \ref{lem:card_form_lat_bod_int}, we have
     \begin{align*}
       \#(mC \cap \Lambda) = \quad & \frac{\vol(C)}{\det(\Lambda)}m^n + \O(m^{n-1}) \\
@@ -319,31 +318,30 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
     provided that $m$ is sufficiently large. Hence, there exists $a \in \{ 0, \dots, 2m-1\}^n$ such that $\Lambda_a \cap mC$ contains at least two distinct vectors $u,v$. Then $0 \neq \nicefrac{1}{2m}(u-v) \in \Lambda$. Since we have $u,v \in mC$, we also have $u,-v \in mC$, which implies $\nicefrac{1}{2}u-\nicefrac{1}{2}v \in mC$. Finally, $\nicefrac{1}{2m}(u-v) \in C$, which completes the proof.
   \end{pf}
   \begin{corollary}{Bound for Norm of Linear Combinations}{2.6}
-    Let $\alpha_{i,j} \in \R$ for $1 \leq i,j \leq n$ and $L_i(x) = \alpha_{i,1}x_1 + \dots + \alpha_{i,n}x_n$. Suppose that $0 < |\det[\alpha_{i,j}]| \leq A_1\cdots A_n$, where $A_1, \dots, A_n > 0$. \\
+    Let $\alpha_{ij} \in \R$ for $1 \leq i,j \leq n$ and $L_i(x) = \alpha_{i1}x_1 + \dots + \alpha_{in}x_n$ for $x \in \Z^n$. Suppose that $0 < |\det(\alpha_{ij})_{1 \leq i,j \leq n}| \leq A_1\cdots A_n$, where $A_1, \dots, A_n > 0$. \\
     Then, there exists $x \in \Z^n \setminus \{ 0\}$ such that
     \[ |L_i(x)| \leq A_i \forall_{i \in \{ 1, \dots, n\}}.\]
   \end{corollary}
   \begin{pf}
     Let $\mathfrak{B} = [-1,1]^n$ and $\Lambda = \left\{ \left(\frac{L_1(x)}{A_1}, \dots, \frac{L_n(x)}{A_n}\right): x \in \Z^n\right\}$. Then this is a lattice inside $\R^n$. Also,
     \[ \Lambda = \left\{ \begin{pmatrix}
-      \frac{\alpha_{1,1}}{A_1} & \cdots & \frac{\alpha_{1,n}}{A_1} \\
+      \frac{\alpha_{11}}{A_1} & \cdots & \frac{\alpha_{1n}}{A_1} \\
       \vdots & & \vdots \\
-      \frac{\alpha_{n,1}}{A_n} & \cdots & \frac{\alpha_{n,n}}{A_n}
+      \frac{\alpha_{n1}}{A_n} & \cdots & \frac{\alpha_{nn}}{A_n}
     \end{pmatrix}\begin{pmatrix}
       x_1 \\
       \vdots \\
       x_n
     \end{pmatrix}: x \in \Z^n \right\}.\]
     We have
-    \[ \det\Lambda = \frac{|\det[\alpha_{i,j}]|}{A_1\cdots A_n} \leq 1,\]
+    \[ \det\Lambda = \frac{|\det(\alpha_{ij})_{1 \leq i,j \leq n}|}{A_1\cdots A_n} \leq 1,\]
     which implies
     \[ \frac{\vol(\mathfrak{B})}{\det(\Lambda)} = \frac{2^n}{\det\Lambda} \geq 2^n.\]
     By Minkowski's first theorem, there exists $0 \neq x \in \Lambda \cap \mathfrak{B}$.
   \end{pf}
   \begin{corollary}{Simultaneous Irrational Approximation}{2.7}
-    Let $\alpha_1, \dots, \alpha_n \in \R$, not all in $\Q$. Then,
+    Let $(\alpha_1, \dots, \alpha_n) \in \R^n\setminus\Q^n$. Then,
     \[ \# \left\{ (x_1, \dots, x_n,y) \in \Zprim{n+1}: y >0, \left| \alpha_i-\frac{x_i}{y}\right| \leq y^{-1-\nicefrac{1}{n}} \forall_{1 \leq i \leq n}\right\} = \aleph_0.\]
-    (Denote $\Zprim{n} = \{ (x_1, \dots, x_n) \in \Z^n: \gcd(x_1, \dots, x_n) = 1\}$.)
   \end{corollary}
   \begin{pf}
     Let $Q > 1$. Consider the set
@@ -389,35 +387,36 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
   \begin{lemma}{Well-definedness and Construction of the Successive Minima}{2.8}
     The successive $0 < \lambda_1 \leq \dots \leq \lambda_n < \infty$ are well-defined. Also, there are $v_1, \dots, v_n \in \Lambda$, which are linearly independent over $\R$, such that $v_i \in \lambda_iC \forall_{1 \leq i \leq n}$.
   \end{lemma}
+  \noindent \emp{Note:} The set $\{ v_1, \dots, v_n\}$ might not be a basis of $\Lambda$.
   \begin{pf}
     Recall that
     \[ \|x\|_C = \min\{ \lambda \in \R_{\geq 0}: x \in \lambda C\} \text{ and } \lambda C = \{ x \in \R^n: \|x\|_C \leq \lambda\}.\]
     Let $\Lambda \setminus \{ 0\} = \{ x_1, \dots\}$, where $0 < \| x_1 \|_C \leq \dots$. Also note that given any $m \in \N$, there are finitely many $i$ such that $m-1 \leq \|x_i\|_C \leq m$ (because $mC$ is bounded and $\lambda$ is discrete). Let $\lambda_1 = \|x_1\|_C$. For $i\in \{ 2, \dots, n\}$, define
     \[ k_i = \min\{ k \in \N: \dim\Span_\R\{ x_1, \dots, x_k\} = i\} \text{, set } v_i=x_{k_i} \text{ and let } \lambda_i = \|x_i\|_C.\]
-    Clearly, $v_i \in \lambda_iC \cap \Lambda$ and $0 < \lambda_1 \leq \dots \leq \lambda_n < \infty$. Finally, we show that these are indeed the successive minima: By construction, the
+    Clearly, $v_i \in \lambda_iC \cap \Lambda$ and $0 < \lambda_1 \leq \dots \leq \lambda_n < \infty$. {\color{blue} Take a basis $\{ v_1, \dots, v_n\} \subseteq \Lambda$ of $\R^n$. We have $\max_{i \in \{ 1, \dots, n\}}|v_i| \in \R$. There are only finitely many vectors with a smaller norm than this. Hence, the finiteness claim holds.} Finally, we show that these are indeed the successive minima: By construction, the
     \[ v_1, \dots, v_i \in \lambda_iC \cap \Lambda \text{ are linearly independent over } \R.\]
     Take $0 < \lambda < \lambda_i$ and let $\ell$ be the largest number such that $x_{\ell} \in \lambda C \cap \Lambda$. Then, we have $\ell < k_i$, and by the definition of the $k_i$, it follows that
     \[ \dim\Span_\R(\lambda C \cap \Lambda) = \dim\Span_\R\{ x_1, \dots, x_{\ell}\} < i.\]
     This shows that $\lambda_i$ is indeed the successive minimum.
     \end{pf}
-    \begin{theorem}{Minkowski's Second Convex Body Theorem}{mink_sec_conv_bod_thm}
+    \begin{theorem}{Minkowski's Second Convex Body Theorem}{2.9}
       Let $\Lambda \subseteq \R^n$ be a lattice and $C \subseteq \R^n$ a central symmetric convex body. Further assume that $\lambda_1, \dots, \lambda_n$ are the successive minima of $\Lambda$ with respect to $C$. Then, we have
       \[ \frac{2^n}{n!}\frac{\det\Lambda}{\vol(C)} \leq \lambda_1\cdots\lambda_n \leq 2^n\frac{\det\Lambda}{\vol(C)}.\]
     \end{theorem}
-    Before we prove this, let us study a couple of examples to highlight the importance of this result.
+    \noindent Before we prove this, let us study a couple of examples to highlight the importance of this result.
     \begin{example}
       Let $n \geq 2$ and
       \[ \mathfrak B = B_1^n(0).\]
-      Further let $\Lambda \subseteq \R^n$ be a lattice and $\lambda_1, \dots, \lambda_n$ be the successive minima of $\Lambda$ with respect to $\mathfrak B$. It follows from Lemma \ref{lem:2.8} that there exist $x_1, \dots, x_n \in \Lambda$ which are linearly independent over $\R$ and fulfil $x_i \in \lambda_i\mathfrak B \cap \Lambda$. By construction, we have $\|x_i\|_{\mathfrak B} = \lambda_i \iff |x_i|=\lambda_i$. Theorem \ref{thm:mink_sec_conv_bod_thm} implies
+      Further let $\Lambda \subseteq \R^n$ be a lattice and $\lambda_1, \dots, \lambda_n$ be the successive minima of $\Lambda$ with respect to $\mathfrak B$. It follows from Lemma \ref{lem:2.8} that there exist $x_1, \dots, x_n \in \Lambda$ which are linearly independent over $\R$ and fulfil $x_i \in \lambda_i\mathfrak B \cap \Lambda$. By construction, we have $\|x_i\|_{\mathfrak B} = \lambda_i \iff |x_i|=\lambda_i$. Theorem \ref{thm:2.9} implies
       \[ \prod_{i=1}^n |x_i| \leq \frac{2^n\det\Lambda}{V_n},\]
       where
       \[ V_n = \vol(\mathfrak B) = \begin{cases}
         1 & \text{if } n=1, \\
         \pi & \text{if } n=2, \\
-        \frac{2\pi}{n}V_{n-2} & \text{if } n \geq 3.
+        \frac{2\pi}{n}V_{n-2} & \text{if } n \geq 3. \hspace{8.8cm} \qedhere
       \end{cases}\]
-      Note that $\{ x_1, \dots, x_n\}$ might not be a basis of $\Lambda$.
     \end{example}
+    \noindent Both bounds are sharp. To prove this, we shall consider two more examples.
     \begin{example}
       Let $\Lambda = \Z^n$. Take any real $0 < \lambda_1 < \dots < \lambda_n$. Define $C = \{ x \in \R^n: |x_i| \leq \nicefrac{1}{\lambda_i} \forall_{1 \leq i \leq n}\}$. Then $C$ is a central symmetric convex body with
       \[ \vol(C) = \frac{2^n}{\lambda_1\cdots\lambda_n}. \hfill (*)\]
@@ -434,7 +433,20 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
       \begin{exercise}{}{}
         Show that $\vol(C) = \frac{2^n}{n!}$ and $\lambda_1 = \dots = \lambda_n = 1$.
       \end{exercise}
-      This proves that the lower bound in Theorem \ref{thm:mink_sec_conv_bod_thm} is sharp.
+      \renewcommand{\pfcolor}{blue}
+      \begin{colorpf}
+        \color{blue} We shall prove a stronger claim about the volume of such shapes. Let \[C_r = \left\{ x \in \R^n:\sum_{i=1}^n |x_i| \leq r\right\}.\]
+        Then $\vol(C_r) = \frac{(2r)^n}{n!}$. We will prove this by induction. The statement is clearly true for $n=1$. Assume that the statement holds for $n-1$. For $n$, we use Fubini's theorem with \[E_{t} = \left\{ x \in \R^{n-1}: \sum_{i=1}^{n-1}|x_i| \leq r-|t| \right\}.\]
+        We have
+        \begin{align*}
+          \vol(C) = \quad & \int_{[-r,r]} \vol(E_t) \dl{\lambda(t)} \\
+          \stackrel{\text{IH}}{=} \quad & \frac{2^{n}}{(n-1)!}\int_{[0,r]} (r-t)^{n-1} \dl{\lambda(t)} \\
+          = \quad & \frac{2^n}{n!}\Eval{t^n}{r}{0} \\
+          = \quad & \frac{(2r)^n}{n!}.
+        \end{align*}
+        For the other statement, just check that we have $\{ e_1, \dots, e_n\} \subseteq C$.
+      \end{colorpf}
+      This proves that the lower bound in Theorem \ref{thm:2.9} is sharp.
     \end{example}
     \newLecture{29th April 2026}
     \begin{lemma}{Convex Hull}{2.10}
@@ -444,7 +456,21 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
     We call $C(w_1, \dots, w_r)$ the \define[Convex Hull]{convex hull} of $w_1, \dots, w_r$.
     \end{lemma}
     \begin{pf}
-      This is an easy exercise.
+      This is an easy exercise. \\
+      {\color{blue} We shall prove this in two steps:
+      \begin{enumerate}[(i)]
+        \item{\textbf{The set $C(w_1, \dots, w_r)$ is convex and symmetric about $0$.} \\
+        The symmetry is clear. Let $x,y \in C(w_1, \dots, w_r)$. Then $[x,y] = t\sum_{i=1}^ry_iw_i + (1-t)\sum_{i=1}^rx_iw_i \subseteq C$. We have
+        \begin{align*}
+          \sum_{i=1}^r |ty_i+(1-t)x_i| \stackrel{\triangle}{\leq} \quad & t\sum_{i=1}^r|y_i| + (1-t)\sum_{i=1}^r|x_i| \\
+          \leq \quad & t+(1-t) \\
+          = \quad & 1.
+        \end{align*}}
+        \item{\textbf{The set $C(w_1, \dots, w_r)$ is minimal with this property.} \\
+        We shall prove this by induction over $r$. Let $T_r$ be the minimal convex subset of $\R^n$ containing $w_1, \dots, w_r$. For $r=1$, we have $C(w_1) = [-w_1, w_1] \subseteq T_1$. Assume that the statement holds for $r-1$. For $x = \sum_{i=1}^rx_iw_i \in C(w_1, \dots, w_r)$, we have
+        \[ \widehat{x} = \frac{1}{1-|x_r|}\sum_{i=1}^{r-1} x_iw_i \in C(w_1, \dots, w_{r-1}) \subseteq T_{r-1} \subseteq T_r\]
+        and $w_r \in T$, which implies that $[\widehat{x}, w_r] \subseteq T$ and $[\widehat{x}, -w_r] \subseteq T$, one of which gives us the claim for $t=|x_r|$. \qedhere}
+      \end{enumerate}}
     \end{pf}
     \begin{lemma}{Lattice-Base Ordering Compatible with Successive Minima}{2.11}
       Let $\lambda_1, \dots, \lambda_n$ be the successive minima of $\Lambda$ with respect to $C$. Then there exists a basis $\{ b_1, \dots, b_n\}$ of $\Lambda$ such that if
@@ -461,48 +487,16 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
       Given any $x \in \Lambda$ with $\|x\|_C < \mu_t$, we have
       \[ x = u_1a_1 + \dots + u_{k_{t-1}}a_{k_{t-1}}\]
       for some $u_i \in \R$ (!). \\
-      Then, by Lemma \ref{lem:lat_base_trans}, we obtain a basis $\{ b_1, \dots, b_n\}$ of $\Lambda$ such that
+      Then, by Lemma \ref{lem:2.1}, we obtain a basis $\{ b_1, \dots, b_n\}$ of $\Lambda$ such that
       \begin{align*}
         b_1 = \quad & \xi_{1,1}a_1 \\
         b_2 = \quad & \xi_{2,1}a_1 + \quad  \xi_{2,2}a_2 \\
         \vdots \qquad \ & \\
         b_n = \quad & \xi_{n,1}a_1 + \quad  \dots + \quad  \xi_{n,n}a_n
       \end{align*}
-      with $\xi_{i,j} \in \R, \xi_{i,i} \neq 0 \forall_{1 \leq i,j \leq n}$. This basis satisfies the desired property. Verifying this is an easy exercise.
+      with $\xi_{i,j} \in \R, \xi_{i,i} \neq 0 \forall_{1 \leq i,j \leq n}$. This basis clearly satisfies the desired property.
     \end{pf}
-    We shall now prove Minkowski's Second Theorem:
-    \begin{pf}[Proof of Theorem \ref{thm:mink_sec_conv_bod_thm}]
-      We prove the correctness of the lower and upper bound separately.
-      \begin{enumerate}[(i)]
-        \item{\textbf{Lower Bound} \\
-        Let $v_1, \dots, v_n \in \Lambda$ be linearly independent over $\R$ such that $v_i \in \lambda_i C \forall_{1 \leq i \leq n}$ (Lemma \ref{lem:2.8}). By definition, we have $\lambda_i^{-1}v_i \in C \forall_{1 \leq i \leq n}$. \\
-        Define
-        \[ D = C(\lambda_1^{-1}v_1, \dots, \lambda_n^{-1}v_n) \subseteq C\]
-        and note that this has the properties stated in Lemma \ref{lem:2.10}. Now, let $\phi: \R^n \to \R^n$ be a linear transformation by $\phi(e_i) = \lambda_i^{-1}v_i \forall_{1 \leq i \leq n}$. Then $D = \phi(\mathfrak{B}_1)$, where
-        \[ \mathfrak{B}_1 = \left\{ x \in \R^n: \sum_{i=1}^n |x_i| \leq 1\right\}.\]
-        Hence,
-        \begin{align*}
-          \vol(D) = \quad & |\det\phi|\vol(\mathfrak{B}_1) \\
-          = \quad & \frac{|\det[v_1\cdots v_n]|}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!} \\
-          = \quad & \frac{\det\widetilde{\Lambda}}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!},
-        \end{align*}
-        where $\widetilde{\Lambda}$ is a lattice with basis $\{ v_1, \dots, v_n\}$. Since $\{ v_1, \dots, v_n\} \subseteq V$, $\widetilde{\Lambda}$ is a sublattice of $\Lambda$.
-        This implies that
-        \[ \det\widetilde{\Lambda} = [\Lambda:\widetilde{\Lambda}]\det\Lambda \geq \det\Lambda.\]
-        We combine everything to get
-        \[ \vol(C) \geq \vol(D) = \frac{\det\widetilde{\Lambda}}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!} \geq \frac{\det\Lambda}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!}.\]Thus,
-        \[ \lambda_1\cdots\lambda_n \geq \frac{\det\Lambda}{\vol(C)}\frac{2^n}{n!}.\]}
-        \item{\textbf{Upper Bound} \\
-        Let $\Lambda$ be a lattice inside $\R^n$ and $C$ a central symmetric convex body inside $\R^n$. Given $t > 0$, let
-        \[ S(t) = S_F(t) = \{ \eta \in F \mid \exists_{x \in \Lambda}:\eta+x \in tC\}.\]
-        where $F$ is the fundamental parallel piped by $\Lambda$.
-        The assertion follows from Theorem \ref{thm:2.12} (below) by applying it with $t = \nicefrac{\lambda}{2}$. We have
-        \begin{align*}
-          \det\Lambda = \vol(F) \geq \vol(S(\nicefrac{\lambda}{2})) \geq \frac{\lambda_1}{2}\cdots\frac{\lambda_n}{2}\vol(C),
-        \end{align*}
-        which can be transformed into the statement. \qedhere}
-      \end{enumerate}
-    \end{pf}
+    \noindent Before we can prove Theorem \ref{thm:2.9}, we need a technical theorem.
     \begin{theorem}{Volume of $S(t)$}{2.12}
         We have
         \begin{equation*}
@@ -523,12 +517,12 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
         \|\underbrace{x_1-x_2}_{\in \Z^n}\|_C \leq \|x_1\|_C + \|x_2\|_C \leq 2t < \lambda_{j+1}. \tag{1}
       \end{equation}
       This implies $x_1-x_2 \in \Z^j \times \{ (0,\dots, 0)\}$. Denote
-      \[ S_j(t,z) = \{ (\eta_1, \dots, \eta_n) \in [0,1)^j \mid \exists_{(m_1, \dots, m_j) \in \Z^j}: \|(\eta_1+m_1, \dots, \eta_j+m_j,z)\|_C \leq t\}.\]
+      \[ S_j(t,z) = \{ (\eta_1, \dots, \eta_j) \in [0,1)^j \mid \exists_{(m_1, \dots, m_j) \in \Z^j}: \|(\eta_1+m_1, \dots, \eta_j+m_j,z)\|_C \leq t\}.\]
       Recall that
       \[ S(t) = \{ \eta \in [0,1)^n \mid \exists_{m \in \Z^n}: \|\eta+m\|_C \leq t\}.\]
       Let $\eta \in [0,1)^n$ and $t < \nicefrac{\lambda_{j+1}}{2}$. Supppose that we have $m, m' \in \Z^n$ such that
       \[ \|\eta+m\|_C \leq t \text{ and } \|\eta+m'\|_C \leq t.\]
-      Then, by (\ref{eq:mink_1}), we get $(m_{j+1}, \dots, m_n) = (m'_{j+1}, \dots, m'_n)$. Thus, for each $\eta \in [0,1)^n$ from the definition of $S(t)$, the last $n-1$ coordinates of $m$ are unique. We partition $S(t)$ based on this.
+      Then, by (\ref{eq:mink_1}), we get $(m_{j+1}, \dots, m_n) = (m'_{j+1}, \dots, m'_n)$. Thus, for each $\eta \in [0,1)^n$ from the definition of $S(t)$, the last $n-j$ coordinates of $m$ are unique. We partition $S(t)$ based on this.
       Write
       \[ S(t) = \bigsqcup_{m_{j+1}, \dots, m_n \in \Z}\bigsqcup_{\eta_{j+1}, \dots, \eta_n \in [0,1)} \{ \eta \in [0,1)^n: \exists_{(m_1, \dots, m_j) \in \Z^j}: \|\eta+m\|_C \leq t\}.\]
       (Here $m=(m_1, \dots, m_n)$ and $\eta = (\eta_1, \dots, \eta_j, \eta_{j+1}, \dots, \eta_n)$).
@@ -569,7 +563,7 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
         W
         = \{\{y + (\alpha - 1) y_0\} \in [0,1)^j \mid y \in \R^j, \|(y, z)\|_C \le t\}.
     \end{equation*}
-    Then \(\vol(S_j(t, z)) = \vol(W)\) (check this!).
+    Then \(\vol(S_j(t, z)) = \vol(W)\) (by the translation invariance of the Lebesgue measure).
     Furthermore, by~\cref{eqn:minkowski2:3}, we have
     \begin{align*}
         W
@@ -591,7 +585,7 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
         \vol(S(\alpha t))
         = \quad & \int_{\R^{n-j}} \vol(S_j(\alpha t, z)) \dl{z} \\
         = \quad & \alpha^{n-j} \int_{\R^{n-j}} \vol(S_j(\alpha t, \alpha z)) \dl{z} \\
-        \ge \quad & \alpha^{n-j} \int_{\R^{n-j}} \vol(S(t, z)) \dl{z}.
+        \ge \quad & \alpha^{n-j} \int_{\R^{n-j}} \vol(S_j(t, z)) \dl{z}.
     \end{align*}
     This gives
     \begin{equation}
@@ -643,6 +637,39 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
     \end{align*}
     (This follows from the case \(t = \lambda_n / 2\)\@.)
 \end{pf}
+    \noindent We shall now prove Minkowski's Second Theorem:
+    \begin{pf}[Proof of Theorem \ref{thm:2.9}]
+      We prove the correctness of the lower and upper bound separately.
+      \begin{enumerate}[(i)]
+        \item{\textbf{Lower Bound} \\
+        Let $v_1, \dots, v_n \in \Lambda$ be linearly independent over $\R$ such that $v_i \in \lambda_i C \forall_{1 \leq i \leq n}$ (Lemma \ref{lem:2.8}). By definition, we have $\lambda_i^{-1}v_i \in C \forall_{1 \leq i \leq n}$. \\
+        Define
+        \[ D = C(\lambda_1^{-1}v_1, \dots, \lambda_n^{-1}v_n) \subseteq C\]
+        and note that this has the properties stated in Lemma \ref{lem:2.10}. Now, let $\phi: \R^n \to \R^n$ be a linear transformation by $\phi(e_i) = \lambda_i^{-1}v_i \forall_{1 \leq i \leq n}$. Then $D = \phi(\mathfrak{B}_1)$, where
+        \[ \mathfrak{B}_1 = \left\{ x \in \R^n: \sum_{i=1}^n |x_i| \leq 1\right\}.\]
+        Hence,
+        \begin{align*}
+          \vol(D) = \quad & |\det\phi|\vol(\mathfrak{B}_1) \\
+          = \quad & \frac{|\det[v_1\cdots v_n]|}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!} \\
+          = \quad & \frac{\det\widetilde{\Lambda}}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!},
+        \end{align*}
+        where $\widetilde{\Lambda}$ is a lattice with basis $\{ v_1, \dots, v_n\}$. Since $\{ v_1, \dots, v_n\} \subseteq \Lambda$, $\widetilde{\Lambda}$ is a sublattice of $\Lambda$.
+        This implies that
+        \[ \det\widetilde{\Lambda} = [\Lambda:\widetilde{\Lambda}]\det\Lambda \geq \det\Lambda.\]
+        We combine everything to get
+        \[ \vol(C) \geq \vol(D) = \frac{\det\widetilde{\Lambda}}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!} \geq \frac{\det\Lambda}{\lambda_1\cdots\lambda_n}\frac{2^n}{n!}.\]Thus,
+        \[ \lambda_1\cdots\lambda_n \geq \frac{\det\Lambda}{\vol(C)}\frac{2^n}{n!}.\]}
+        \item{\textbf{Upper Bound} \\
+        Let $\Lambda$ be a lattice inside $\R^n$ and $C$ a central symmetric convex body inside $\R^n$. Given $t > 0$, let
+        \[ S(t) = S_F(t) = \{ \eta \in F \mid \exists_{x \in \Lambda}:\eta+x \in tC\}.\]
+        where $F$ is the fundamental parallel piped by $\Lambda$.
+        The assertion follows from Theorem \ref{thm:2.12} by applying it with $t = \nicefrac{\lambda_n}{2}$. We have
+        \begin{align*}
+          \det\Lambda = \vol(F) \geq \vol(S_F(\nicefrac{\lambda_n}{2})) \geq \frac{\lambda_1}{2}\cdots\frac{\lambda_n}{2}\vol(C),
+        \end{align*}
+        which can be transformed into the statement. \qedhere}
+      \end{enumerate}
+    \end{pf}
 
 \noindent This proof is, largely exaggerated, just a very technical induction.
 The proof of Roth's theorem will also be, largely exaggerated, a~very technical induction.
@@ -712,7 +739,7 @@ Hence,
     \end{equation*}
 
     Next, the upper bound.
-    By Theorem \ref{thm:mink_sec_conv_bod_thm}, we have
+    By Theorem \ref{thm:2.9}, we have
     \begin{equation*}
         \lambda_1 \dotsm \lambda_n
         \le \frac{2^n}{\vol(B)} \det \Lambda, \qquad
@@ -1443,7 +1470,7 @@ We begin with the following lemma.
 \end{pf}
 We use this lemma to divide up the curve based on the derivative of $f$. If all derivatives are small, then we use Lemma \ref{lem:3.2*}. If not, we prove that $\lambda(I_v)$ is small (this is the easy case).
 \begin{lemma}{}{3.9}
-  Let $\ell \geq d \geq 2$ and $I \subseteq [0,N]$ be a cloed intervall. Fix $f \in \mathcal{C}^{\infty}(I)$ with $F(x,f(x)) = 0 \forall_{x \in I}$, $F$ being of degree $d$ and irreducible over $\R$. Suppose that $N > 0$ and $\delta \geq \frac{1}{\lambda(I)}$ satisfy
+  Let $\ell \geq d \geq 2$ and $I \subseteq [0,N]$ be a closed intervall. Fix $f \in \mathcal{C}^{\infty}(I)$ with $F(x,f(x)) = 0 \forall_{x \in I}$, $F$ being of degree $d$ and irreducible over $\R$. Suppose that $N > 0$ and $\delta \geq \frac{1}{\lambda(I)}$ satisfy
   \[ \max_{x \in I}\left| \frac{f^{(i)}(x)}{i!}\right| \leq N\delta^i \forall_{0 \leq i \leq k = d(\ell-d+1)}.\]
   Then
   \[ \#\{ (x,f(x)): x \in I\} \cap \Z^2 \ll (d\ell)^cN^{\frac{1}{d} + \O\left(\frac{1}{\ell}\right)}\delta\lambda(I)\]

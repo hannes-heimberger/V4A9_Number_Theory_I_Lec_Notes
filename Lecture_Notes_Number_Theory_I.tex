@@ -1598,7 +1598,6 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
       \leq K^{\O(d)}X^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)} + Kg(K^{-2d}X).\]
     Since $X \leq T$ and $g$ is increasing, this is
     \[ \leq K^{\O(d)}T^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)} + Kg(K^{-2d}T).\]
-
     On the other hand, if $2K^{2d}\geq X$, then
     \[ \#\left(\{(x,h(x)):x\in J\}\cap\Z^2\right) \leq X+1 \leq 2K^{2d}+1,\]
     and therefore
@@ -1606,4 +1605,110 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
       \leq K^{\O(d)}T^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)} + Kg(K^{-2d}T),\]
     since $T \geq 1$. Taking the supremum over all admissible $J,h,G$ proves the claim, and hence the theorem.
 \end{proof}
+\newLecture{17th June 2026}
+Last class we proved Theorem \ref{thm:3.11}.
+\begin{exercise}{}{}
+  By modifying the proof, show that we can replace $I= [0, N]$ with any closed subinterval of $[0,1]$.
+\end{exercise}
+\section{Final Preparation for the Proof of Theorem \ref{thm:3.1}}
+Let $F \in \R[x,y]$ be of degree $d \geq 2$ and irreducible over $\R$. Further assume that $\partial_xF, \partial_yF \not\equiv 0$ (because the statement would otherwise be trivial, then
+\begin{align*} & \#\{ (x,y) \in \Z^2 \cap [0,N]^2: F(x,y)=0\} \\
+= \quad & (N+1)\#\{ x \in \Z \cap [0,N]: F(x) = 0\} \\
+= \quad & 0.)\end{align*}
+\newcommand{\Sing}{\text{Sing}}
+Let $V = V(F) = \{ (x,y) \in \R^2: F(x,y)=0\}$ and $\Sing(V) = \{ (x,y) \in \R^2: F(x,y) = \partial_xF(x,y) = \partial_yF(x,y) = 0\}$. The implicit function theorem can be combined with the fact that $V$ is algebraic to deduce that $V \setminus \Sing(V) = \bigsqcup_{i=1}^n C_i$, where the $C_i$ are the connected components (and there are only finitely many of them) and $C_i \cong_{\mathcal{C}^1} \R \text{ or } \S^1$. Therefore, we have
+\begin{align*}
+  & V \cap [0,N]^2 \\
+  = \quad & (\Sing(V) \cap [0,N]^2) \\
+  = \quad & \bigcup\bigcup_{i=1}^n C_i \cap [0,N]^2,
+\end{align*}
+where each $i$ such that $C_i \cap [0,N]^2 \neq \varnothing$ satifies one of the following:
+\begin{enumerate}[(i)]
+  \item $\overline{C_i}$ intersects $\partial[0,N]^2$,
+  \item $\overline{C_i}$ has an end point at $\Sing(V)$ and
+  \item $\overline{C_i}$ is a loop inside $(0,N)^2$.
+\end{enumerate}
+\begin{fact}{}{}
+  Given any $p \in V$,
+  \[ \#\{ i \in \{ 1, \dots, n\}: p \in \overline{C_i}\} \leq 2d.\]
+\end{fact}
+\begin{pf}[Non-rigorous proof sketch]
+  To see this, by translating if necessary assume that $p = (0,0)$ and $F = F_d + F_{d-1} + \dots + F_4 + (x-y)y^2$ (where the $F_i$ are the components of the respective degrees). Near $(0,0)$, $F=0$ looks like the plot of $x=y$ and $y=0$ with the singular point $0$.
+\end{pf}
+Then the number of $i$ satisfying (i) is
+\begin{align*}
+  \leq \quad & 2d\#(V(F) \cap \partial[0,N]^2) \\
+  \leq \quad & 2d4d \\
+  \leq \quad & 8d^2
+\end{align*}
+The number of $i$ satisfying (ii) is
+\begin{align*}
+  \leq \quad & 2d\#(V(F)\cap V(\partial_xF) \cap V(\partial_yF)) \\
+  \stackrel{\text{Bézout, } F \text{ irr.}}{\leq} \quad & 2dd^2 \\
+  = \quad & 2d^3.
+\end{align*}
+Finally, the number of $i$ satisfying (iii) is (if $C_i$ is a loop, then there exists $(x_0,y_0) \in C_i$ such that $\partial_xF(x_0,y_0) = 0$ or $\partial_yF(x_0,y_0) = 0$)
+\begin{align*}
+  \leq \quad & 2d(\#(V(F) \cap V(\partial_xF))) + \#(V(F) \cap V(\partial_yF)) \\
+  \leq \quad & 4d^3.
+\end{align*}
+Hence, the number of connected components of $V \setminus \Sing(V) \cap [0,N]^2$ is $\O(d^3)$.
+\begin{pf}[Proof of Theorem \ref{thm:3.1}]
+  Take any connected component $C_i$ such that $\overline{C_i} \cap [0,N]^2 \neq \varnothing$. Assume that this is $C_1$ without loss of generality. We first remove all the points in $(V(\partial_xF) \cup V(\partial_yF))\cap V(F)$ from $C_1$. The removed set has cardinality $\O(d^2)$. Suppose that $\partial_xF \not\equiv \pm \partial_yF$ so that $\partial_xF \pm \partial_yF$ is a polynomial of degree $\leq d-1$. By Bézout, we have
+  \[ \#(C_1 \cap V(\partial_xF + \partial_yF)) + \#(C_1 \cap V(F_x-F_y)) \leq 2d^2.\]
+  Furthermore, we remove all the points where $\partial_xF=\pm\partial_yF$. We denote the remaining set as
+  \[ \bigcup_{j=1}^{M_1} C_{1,j}.\]
+  Then, for each $j$, we either have
+  \begin{enumerate}[(i)]
+    \item $|\partial_xF(x,y)| \leq |\partial_yF(x,y)| \forall_{(x,y) \in C_{1,j}}$ or
+    \item $|\partial_xF(x,y)| \geq |\partial_yF(x,y)| \forall_{(x,y) \in C_{1,j}}$.
+  \end{enumerate}
+  If $\partial_xF \equiv \pm \partial_yF$, then these are automatically satisfied, without removing any more after $\O(d^2)$ points. Pick a $j$. Suppose that (i) holds without loss of generality (sligthly modify the argument otherwise). Let $U_j$ be a sufficiently small open set such that $C_1 \cap U_j = C_{1,j}$ and we can apply the implicit function theorem. Then there exists an open interval $I_j \subseteq [0,N]$ and a smooth function $f_j \in \mathcal{C}^{\infty}(I_j)$ satisfying $C_{1,j} = \{ (x,f_j(x)): x \in I_j\}$.and \[f_j'(x) = - \frac{\partial_xF(x,f_j(x))}{\partial_yF(x,f_j(x))} \forall_{x \in I_j}.\]
+  In particular,
+  \begin{align*}
+    |f_j'(x)| = \quad & \frac{|\partial_xF(x,f_j(x))|}{|\partial_yF(x,f_j(x))|} \\
+    \leq \quad & 1 \forall_{x \in I_j}.
+  \end{align*}
+  From Theorem \ref{thm:3.11}, we obtain that
+  \begin{align*}
+    \#C_{1,j} \cap [0,N]^2\cap\Z^2 \\
+    \leq \quad & \#\{ (x,f_j(x)): x \in \overline{I_j}\} \cap \Z^2 \\
+    \leq \quad & \log^{\O(d)}(N)N^{\frac{1}{d}}.
+  \end{align*}
+  Therefore,
+  \begin{align*}
+    \#\{ (x,y) \in \Z^2 \cap [0,N]^2: F(x,y) = 0\} \\
+    \ll \quad & d^3\left(\O(d^2) + d^2\log^{\O(d)}(N)N^{\frac{1}{N}}\right) \\
+    \ll \quad & d^5\log^{\O(d)}(N)N^{\frac{1}{d}},
+  \end{align*}
+  where the first estimate uses that the number of $C_i$ such that $\overline{C_i} \cap [0,N]^2 \neq \varnothing$, that the number of removed points is $\O(d^2)$ and the number of $j$ is $d^2$.
+\end{pf}
+In a similar manner, we can prove the following:
+\begin{theorem}{Bombieri-Pila II}{3.12}
+Let $k \geq 2$ and
+\[ D = \frac{(k+1)(k+2)}{2}.\]
+Further assume that $f: [0,N] \to [0,N]$ is stricly convex. If $f \in \mathcal{C}^D([0,N],[0,N])$ and $f^{(D)}(x) \neq 0 \forall_{x \in [0,N]}$, then
+\begin{align*}
+  \#\{ (x,f(x)): x \in [0,N]\} \cap \Z^2 \ll_k N^{\frac{1}{2}+\frac{8}{3(k+3)}+o(1)}.
+\end{align*}
+The implicit constant depends only on $k$.
+\end{theorem}
+\begin{pf}
+  Next exercise sheet.
+\end{pf}
+\chapter{Roth's Theorem on Diophantine Approximation}
+The goal of this chapter is to prove:
+\begin{theorem*}{Roth, 1955}
+  Let $\alpha \in \R \cap \AA$ and $\epsilon > 0$. Then the set
+  \[ \left\{ (a,q) \in \Zprim{2}: q>0, \left|\alpha-\frac{a}{q}\right| < \frac{1}{q^{2+\epsilon}}\right\}\]
+  is finite.
+\end{theorem*}
+\noindent \textbf{Remark:} Let $\alpha \in \AA \cap \R$. Then $\alpha$ has a minimal polynomial, which we can modify to get$\mu_{\alpha}(x) = a_nt^n + \dots + a_0 \in \Z[t]$. Then $a_n\alpha$ is a root of
+\[ t^n + \sum_{j=0}^{n-1}a_n^{n-j-1}a_jt^j,\]
+i.e. an algebraic integer. Take a sufficiently large $q$. Then
+\begin{align*}
+  \left|\alpha - \frac{a}{q}\right| < \frac{1}{q^{2+2\epsilon}} \\
+  \implies \quad & \left|a_n\alpha - \frac{aa_n}{q}\right| < \frac{|a_n|}{q^{2+2\epsilon}} < \frac{1}{q^{2+\epsilon}}.
+\end{align*}
+Therefore, it suffices to prove Theorem \ref{thm:1.3} for algebraic integers.
 \end{document}

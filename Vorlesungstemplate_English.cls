@@ -139,7 +139,7 @@
 \RequirePackage{tkz-euclide}
 \RequirePackage[
   colorlinks=true, citecolor=violet,
-  urlcolor=black, linkcolor=violet]{hyperref}
+  urlcolor=violet, linkcolor=violet]{hyperref}
 \RequirePackage[ngerman]{cleveref}
 \geometry{a4paper, top=20mm, left=25mm, right=25mm, bottom=20mm, headsep=5mm, footskip=12mm}
 % \usetkzobj{all}
@@ -402,6 +402,7 @@ borderline west={0.4mm}{0pt}{green}}
 \newcommand{\Res}[1]{\mathop{\mathfrak{Res}}_{#1}}
 \newcommand{\rf}{\right\rfloor}
 \newcommand{\lf}{\left\lfloor}
+\newcommand{\Sing}{\text{Sing}}
 \newcommand{\inp}[2]{\langle #1, #2\rangle}
 \newcommand{\para}[1]{\par \noindent \textbf{#1}}
 \newcommand{\chap}[1]{\newpage {\noindent \huge \textbf{#1}} \\ \addtocounter{chapter}{1} \setcounter{section}{0} \setcounter{tcb@cnt@exercise}{0} \setcounter{tcb@cnt@definition}{0} \addcontentsline{toc}{chapter}{#1}}

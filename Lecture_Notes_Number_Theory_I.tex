@@ -1709,4 +1709,113 @@ i.e. an algebraic integer. Take a sufficiently large $q$. Then
 \end{align*}
 Therefore, it suffices to prove Theorem \ref{thm:1.3} for algebraic integers.
 \newLecture{19th June 2026 - \href{https://ecampus.uni-bonn.de/goto_ecampus_file_4188035_download.html}{W9L2}}
+\section{Notation and the Auxiliary Polynomial}
+\noindent\textbf{Notation:} Let $\alpha \in \R$ be an algebraic integer with the minimal polynomial
+\[ t^n + a_{n-1}t^{n-1} + \dots + a_0 \in \Z[t].\]
+Then we define
+\[ H(\alpha) = \max\{ 1, |a_{n-1}|, \dots, |a_0|\}.\]
+We will make use of polynomials of the following form:
+\[ 0 \neq P(x_1, \dots, x_m) = \sum_{\vec j \in J}c(\vec j)x_1^{j_1}\cdots x_m^{j_m},\]
+where $\vec j = (j_1, \dots, j_m)$,
+\[ J = J(r_1, \dots, r_m) = \{ 0, \dots, r_1\} \times \dots \times \{ 0, \dots, r_m\} \quad \text{and} \quad c(\vec j) \in \R.\]
+We let
+\[ \|P\| = \max_{\vec j \in J}|c(\vec j)|,\]
+and
+\[ P^{[\vec k]}(x_1, \dots, x_m) = \frac{1}{k_1!}\cdots\frac{1}{k_m!}\cdot\frac{\partial^{k_1}}{\partial x_1^{k_1}}\cdots\frac{\partial^{k_m}}{\partial x_m^{k_m}}P(x_1, \dots, x_m).\]
+In particular, by Taylor's theorem,
+\[ P(x_1+y_1, \dots, x_m+y_m) = \sum_{\vec k \in J}P^{[\vec k]}(x_1, \dots, x_m)\cdot y_1^{k_1}\cdots y_m^{k_m}.\]
+\begin{lemma}{Properties of $P^{[\vec k]}$}{4.2}
+  The polynomial $P^{[\vec k]}$ satisfies the following properties:
+  \begin{enumerate}
+    \item If $P(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$, then $P^{[\vec k]}(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$ for any $\vec k \in (\Z_{\geq 0})^m$.
+    \item Given any $\vec k \in (\Z_{\geq 0})^m$, we have
+    \[ \deg_{x_i}P^{[\vec k]} = \begin{cases} \deg_{x_i}P - k_i & \text{if } k_i \leq \deg_{x_i}P, \\ -\infty & \text{otherwise.}\end{cases}\]
+    \item For any $\vec k \in (\Z_{\geq 0})^m$, we have
+    \[ \|P^{[\vec k]}\| \leq 2^{r_1 + \dots + r_m}\|P\|.\]
+  \end{enumerate}
+\end{lemma}
+\begin{pf}
+  Exercise with derivatives and binomial coefficients.
+\end{pf}
+\noindent Let $\vec\alpha \in \R^m$. We say $0 \neq P$ has \textbf{index} $I$ at $\vec\alpha$ with respect to $\vec s = (s_1, \dots, s_m) \in \N^m$ if
+\[ I = \min\left\{ \sum_{i=1}^m\frac{k_i}{s_i} : P^{[\vec k]}(\vec\alpha) \neq 0, \vec k \in J\right\}.\]
+If $P \equiv 0$, we set $I = \infty$. We denote the index of $P$ at $\vec\alpha$ with respect to $\vec s$ by
+\[ \operatorname{ind}_{\vec s}(P, \vec\alpha) = \operatorname{ind}_{\vec s}(P).\]
+\begin{lemma}{Properties of the Index}{4.3}
+  Let $\vec\alpha \in \R^m$ and $\vec s \in \N^m$. Suppose $P, P_1, P_2 \not\equiv 0$. Then
+  \begin{enumerate}[(i)]
+    \item $\operatorname{ind}_{\vec s}(P^{[\vec k]}) \geq \operatorname{ind}_{\vec s}(P) - \sum_{i=1}^m\frac{k_i}{s_i}$ for any $\vec k \in J$,
+    \item $\operatorname{ind}_{\vec s}(P_1 + P_2) \geq \min\left(\operatorname{ind}_{\vec s}(P_1), \operatorname{ind}_{\vec s}(P_2)\right)$ and
+    \item $\operatorname{ind}_{\vec s}(P_1 \cdot P_2) = \operatorname{ind}_{\vec s}(P_1) + \operatorname{ind}_{\vec s}(P_2)$.
+  \end{enumerate}
+\end{lemma}
+\begin{pf}
+  Exercise sheet.
+\end{pf}
+\begin{lemma}{}{4.4}
+  Let $\alpha$ be an algebraic integer of degree $n$ and let $\ell \in \Z_{\geq 0}$. Then there exist $a_0^{(\ell)}, \dots, a_{n-1}^{(\ell)} \in \Z$ such that
+  \[ \alpha^{\ell} = a_{n-1}^{(\ell)}\alpha^{n-1} + \dots + a_0^{(\ell)},\]
+  with $|a_j^{(\ell)}| \leq (H(\alpha) + 1)^{\ell}$.
+\end{lemma}
+\begin{pf}
+  Using the minimal polynomial of $\alpha$, we have
+  \[ \alpha^n = -a_{n-1}\alpha^{n-1} - \dots - a_0,\]
+  with $a_0, \dots, a_{n-1} \in \Z$ (since $\alpha$ is an algebraic integer of degree $n$). Therefore the statement holds for $0 \leq \ell \leq n$. Use induction to complete the proof (exercise).
+\end{pf}
+\begin{lemma}{}{4.5}
+  Let $r_1, \dots, r_m \in \N$. Given $\lambda > 0$,
+  \[ \#\left\{ \vec k \in J(r_1, \dots, r_m): \sum_{i=1}^m\frac{k_i}{r_i} \leq \tfrac{1}{2}(m-\lambda)\right\} \leq \frac{\sqrt{2m}}{\lambda}(r_1+1)\cdots(r_m+1).\]
+\end{lemma}
+\begin{pf}
+  Next exercise sheet (induction on $m$).
+\end{pf}
+\begin{theorem}{Construction of an Auxiliary Polynomial}{4.6}
+  Let $0 < \epsilon < 1$. Let $\alpha$ be an algebraic integer of degree $n$ with the minimal polynomial $f(t) = t^n + a_{n-1}t^{n-1} + \dots + a_0 \in \Z[t]$. Let $m > 8n^2\epsilon^{-2}$ be an integer, and let $r_1, \dots, r_m \in \N$. Then there exists $P(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$ with $J = J(r_1, \dots, r_m)$ such that
+  \begin{enumerate}[(i)]
+    \item $P \not\equiv 0$,
+    \item $\operatorname{ind}_{\vec r}(P, (\alpha, \dots, \alpha)) \geq \tfrac{1}{2}m(1-\epsilon)$ and
+    \item $\|P\| \leq (4(H(\alpha)+1))^{r_1 + \dots + r_m}$.
+  \end{enumerate}
+\end{theorem}
+\noindent In other words, we have constructed a polynomial $P(x_1, \dots, x_m)$ with a zero of large order at $(\alpha, \dots, \alpha)$!
+\begin{pf}
+  Let us denote
+  \[ P(x_1, \dots, x_m) = \sum_{\vec j \in J(r_1, \dots, r_m)}c(j_1, \dots, j_m)x_1^{j_1}\cdots x_m^{j_m},\]
+  with $c(j_1, \dots, j_m)$ integers to be determined. Set
+  \[ N = (r_1 + 1)\cdots(r_m+1) = \#J(r_1, \dots, r_m).\]
+  We want $P^{[\vec k]}(\alpha, \dots, \alpha) = 0$ for all $\vec k \in (\Z_{\geq 0})^m$ satisfying
+  \[ \sum_{i=1}^m\frac{k_i}{r_i} < \tfrac{1}{2}(m-\epsilon m),\]
+  since this implies $\operatorname{ind}_{\vec r}(P, (\alpha, \dots, \alpha)) \geq \tfrac{1}{2}(m-\epsilon m)$. From Lemma \ref{lem:4.4}, we know
+  \[ \alpha^{\ell} = a_{n-1}^{(\ell)}\alpha^{n-1} + \dots + a_0^{(\ell)}, \tag{$*$}\]
+  with integers $|a_j^{(\ell)}| \leq (H(\alpha)+1)^{\ell}$. Then
+  \[ P^{[\vec k]}(\alpha, \dots, \alpha) = \sum_{\substack{k_i \leq j_i \leq r_i \\ (1 \leq i \leq m)}}\binom{j_1}{k_1}\cdots\binom{j_m}{k_m}c(j_1, \dots, j_m)\alpha^{(j_1-k_1) + \dots + (j_m-k_m)}.\]
+  By substituting ($*$) and collecting the powers of $\alpha$, we obtain
+  \[ = \sum_{h=0}^{n-1}\alpha^h\underbrace{\sum_{\vec j}\binom{j_1}{k_1}\cdots\binom{j_m}{k_m}c(j_1, \dots, j_m)a_h^{(j_1-k_1+\dots+j_m-k_m)}}_{=\, Q_{\vec k, h} \,\in\, \Z}.\]
+  Since $\{ 1, \alpha, \dots, \alpha^{n-1}\}$ is linearly independent over $\Q$, we have
+  \[ P^{[\vec k]}(\alpha, \dots, \alpha) = 0 \iff 0 = Q_{\vec k, 0} = \dots = Q_{\vec k, n-1}.\]
+  Also, $|a_h^{(\ell)}| \leq (H(\alpha)+1)^{\ell}$, $\binom{j_i}{k_i} \leq 2^{j_i} \leq 2^{r_i}$ and $j_1 - k_1 + \dots + j_m - k_m \leq r_1 + \dots + r_m$. Now we view $0 = Q_{\vec k, 0} = \dots = Q_{\vec k, n-1}$ as a system of linear equations in the $c(\vec j)$, with integer coefficients whose absolute values are
+  \[ \leq (H(\alpha)+1)^{r_1 + \dots + r_m}\cdot 2^{r_1 + \dots + r_m}.\]
+  It follows from Lemma \ref{lem:4.5} that
+  \begin{align*}
+    \#\left\{ \vec k \in J(r_1, \dots, r_m): \sum_{i=1}^m\frac{k_i}{r_i} \leq \tfrac{1}{2}(m-m\epsilon)\right\} &\leq \frac{\sqrt{2m}}{m\epsilon}(r_1+1)\cdots(r_m+1) \\
+    &= \frac{\sqrt 2}{\sqrt m \cdot \epsilon}N < \frac{N}{2n},
+  \end{align*}
+  since $m > 8n^2\epsilon^{-2}$. Then
+  \[ 0 = Q_{\vec k, 0} = \dots = Q_{\vec k, n-1} \quad \left(\forall \vec k \in J(r_1, \dots, r_m) \text{ s.t. } \sum_{i=1}^m\frac{k_i}{r_i} \leq \tfrac{1}{2}(m-m\epsilon)\right)\]
+  is a system of $M$ linear equations over $\Z$ in $N$ variables, where (for each $\vec k$ there are $n$ equations)
+  \[ M < \frac{N}{2n}\cdot n = \frac{N}{2} < N = \#J(r_1, \dots, r_m),\]
+  and $|\text{coeff.}| \leq H = (2\cdot(H(\alpha)+1))^{r_1 + \dots + r_m}$. We now invoke the following result, which we will prove next class.
+  \begin{quote}
+    \textbf{(Siegel's Lemma)} Given a system of $M$ linear equations over $\Z$ in $N$ variables with $N > M$, whose coefficients satisfy $|\text{coeffs}| \leq H$, there exists a solution $\vec x \in \Z^N \setminus \{ 0\}$ such that
+    \[ \max_{1 \leq i \leq N}|x_i| \leq (N\cdot H)^{\frac{M}{N-M}}.\]
+  \end{quote}
+  Therefore, we can choose $c(\vec j) \in \Z$ for all $\vec j \in J(r_1, \dots, r_m)$, not all of them zero, such that
+  \[ \underbrace{0 = Q_{\vec k, 0} = \dots = Q_{\vec k, n-1}}_{\iff\, P^{[\vec k]}(\alpha, \dots, \alpha) = 0} \quad \left(\forall \vec k \in J(r_1, \dots, r_m) \text{ s.t. } \sum_{i=1}^m\frac{k_i}{r_i} \leq \tfrac{1}{2}(m-m\epsilon)\right)\]
+  and
+  \begin{align*}
+    0 < \max|c(\vec j)| &\leq (NH)^{\frac{M}{N-M}} \\
+    &\leq N\cdot H \tag{$2M < N$} \\
+    &\leq (4\cdot(H(\alpha)+1))^{r_1 + \dots + r_m}. \qedhere
+  \end{align*}
+\end{pf}
 \end{document}

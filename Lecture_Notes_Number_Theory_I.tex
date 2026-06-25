@@ -1119,7 +1119,14 @@ If $(*)$ does not hold, let $r \in \mathbb{Z}$ be such that $|\mu_{k,k-1} - r| \
 
 \begin{addcalc}
 If we write $c_k = b_k - rb_{k-1}$, then its Gram-Schmidt vector is:
-$$ c_k' = c_k - \sum_{j=1}^{k-1} \frac{\langle c_k, b_j' \rangle}{\langle b_j', b_j' \rangle} b_j' = c_k - \sum_{j=1}^{k-1} (\mu_{k,j} - r) b_j' = b_k' $$
+\[ c_k' = c_k - \sum_{j=1}^{k-1} \frac{\langle c_k, b_j' \rangle}{\langle b_j', b_j' \rangle} b_j' = c_k - \sum_{j=1}^{k-1} (\mu_{k,j} - r) b_j' \]
+{\color{blue} I think that this is incorrect. We have
+\begin{align*}
+  c_k' = \quad & c_k - \sum_{j=1}^{k-1}\frac{\langle c_k, b_j' \rangle}{\langle b_j', b_j' \rangle} b_j' \\
+  = \quad & c_k - \frac{\langle c_k, b_{k-1}'\rangle}{\langle b_{k-1}', b_{k-1}'\rangle} - \sum_{j=1}^{k-2} \frac{\langle c_k, b_j' \rangle}{\langle b_j', b_j' \rangle} b_j' \\
+  = \quad & c_k - \mu_{k,k-1}b_{k-1}'+\frac{\langle rb_{k-1}, b_{k-1}'\rangle}{\langle b_{k-1}', b_{k-1}'\rangle}b_{k-1}' - \sum_{j=1}^{k-2} \frac{\langle c_k, b_j' \rangle}{\langle b_j', b_j' \rangle} b_j' \\
+  = \quad & c_k - \mu_{k,k-1}b_{k-1}' + rb_{k-1}' - \sum_{j=1}^{k-2} \frac{\langle c_k, b_j' \rangle}{\langle b_j', b_j' \rangle} b_j'.
+\end{align*}}
 Note: $b_i$, $b_i'$ and $\mu_{i,j}$ are not affected for $1 \le i \le k-1$.
 \end{addcalc}
 
@@ -1128,10 +1135,10 @@ Note: $b_i$, $b_i'$ and $\mu_{i,j}$ are not affected for $1 \le i \le k-1$.
 \paragraph{Case 1 (Swap Step):} If $k \ge 2$ and
 \[ \|b_k' + \mu_{k,k-1}b_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2 \hfill (\widehat{*}) \]
 Then we switch $b_k$ and $b_{k-1}$ while keeping the rest the same. Our new basis is $c_1, \dots, c_n$ with $c_{k-1} = b_k$, $c_k = b_{k-1}$, and $c_i = b_i$ otherwise.
-This changes $\mu_{i,j}$ and $c_i'$, but it does NOT affect $b_i, b_i', \mu_{i,j}$ for $1 \le i \le k-2$. The new basis still satisfies Property$(k-1)$.
+This changes $\mu_{k-1,j}$ and $\mu_{k,j}$, but it does not affect $b_i, b_i', \mu_{i,j}$ for $1 \le i \le k-2$. The new basis still satisfies Property$(k-1)$.
 
-Now $c_{k-1}'$ is the projection of $c_{k-1} = b_k$ onto $(\Span_{\mathbb{R}}\{b_1', \dots, b_{k-2}'\})^\perp$, i.e.,
-$$ c_{k-1}' = b_k' + \mu_{k,k-1}b_{k-1}' $$
+Now $c_{k-1}'$ is the projection of $c_{k-1} = b_k$ onto $(\Span_{\mathbb{R}}\{b_1', \dots, b_{k-2}'\})^\perp$, i.e.
+\[ c_{k-1}' = b_k' + \mu_{k,k-1}b_{k-1}'. \]
 From $(\widehat{*})$, we get $\|c_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2$. So the length of the \glqq new\grqq \ $c_{k-1}'$ is shorter than the \glqq old\grqq \ $b_{k-1}'$ by a factor of $3/4$.
 \titremark{Note} This is what is used to show that $k$ can go down only finitely many times.
 
@@ -1139,24 +1146,20 @@ From $(\widehat{*})$, we get $\|c_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2$. 
 \[ \|b_k' + \mu_{k,k-1}b_{k-1}'\|_2^2 \ge \frac{3}{4} \|b_{k-1}'\|_2^2 \hfill (\widetilde{*}) \]
 First note that we already have $|\mu_{k,k-1}| \le 1/2$ (from $(*)$). Let $l$ be the largest integer such that $|\mu_{k,l}| > 1/2$. (Recall $\mu_{i,j}$ is only defined for $1 \le j < i \le n$). Let $r \in \mathbb{Z}$ be such that $|\mu_{k,l} - r| \le 1/2$. We then replace $b_k$ with $b_k - rb_l$. Thus $\mu_{k,l}$ becomes $\mu_{k,l} - r$.
 
-\noindent This change affects other $\mu_{k,j}$ for $j < l$, but it does not affect $b_i, b_i', \mu_{i,j}$ for $i < k$. It also doesn't affect $(\widetilde{*})$, as $l < k-1$. We repeat this process until we obtain that the basis satisfies $|\mu_{k,j}| \le 1/2$ for all $1 \le j \le k-1$. The final basis satisfies Property$k+1)$.
+\noindent This change affects other $\mu_{k,j}$ for $j < l$, but it does not affect $b_i, b_i', \mu_{i,j}$ for $i < k$. It also doesn't affect $(\widetilde{*})$, as $l < k-1$. We repeat this process until we obtain that the basis satisfies $|\mu_{k,j}| \le 1/2$ for all $1 \le j \le k-1$. The final basis satisfies Property$(k+1)$.
 To prove that the algorithm terminates, we need the following lemma, the proof of which will be on the next exercise sheet.
 \begin{lemma}{Lower Bound for $\Delta$}{2.21}
     Let $\{ b_1, \dots, b_n \}$ be a basis of $\Lambda$. Then
     $$ \Delta(b_1, \dots, b_n) \ge \frac{m(\Lambda)^{n^2}}{4^{n^2} V_n^{2n}} $$
-    where $m(\Lambda) = \min \{ \langle x, x \rangle : x \in \Lambda \setminus \{0\} \}$ and $V_n$ is the volume of the unit ball in $\mathbb{R}^n$.
+    where $\Delta(b_1, \dots, b_n) = D_1\cdots D_n$ with $D_i = \det \left( [b_1 \dots b_i]^T [b_1 \dots b_i] \right) = \det \left( [b_1' \dots b_i']^T [b_1' \dots b_i'] \right) \forall_{1 \leq i \leq n}$, $m(\Lambda) = \min \{ \langle x, x \rangle : x \in \Lambda \setminus \{0\} \}$ and $V_n$ is the volume of the unit ball in $\mathbb{R}^n$
 \end{lemma}
 \begin{pf}
     Exercise sheet 5.
 \end{pf}
 \noindent We can now prove that the algorithm terminates.
 \begin{pf}[Proof that the LLL-Algorithm terminates]
-We introduce the following quantity. For each $1 \le i \le n$, let
-$$ D_i = \det \left( [b_1 \dots b_i]^T [b_1 \dots b_i] \right) = \det \left( [b_1' \dots b_i']^T [b_1' \dots b_i'] \right) $$
-and define $\Delta = \Delta(b_1, \dots, b_n) = D_1 \cdots D_n$.
-
 It is clear that $D_n = (\det \Lambda)^2$. Furthermore,
-$$ D_i = \|b_1'\|_2^2 \cdots \|b_i'\|_2^2 = (\det \Lambda_i)^2 $$
+\[ D_i = \|b_1'\|_2^2 \cdots \|b_i'\|_2^2 = (\det \Lambda_i)^2 \]
 where $\Lambda_i = [b_1 \dots b_i v_{i+1} \dots v_n] \mathbb{Z}^n$ with $\langle b_j, v_t \rangle = 0$ and $\{ v_{i+1}, \dots, v_n \}$ orthonormal (Gram-Schmidt sheet 3).
 
 It can be checked that in both cases 0 and 2, $D_1, \dots, D_n$ (and hence $\Delta$) do not change. (It only involves modification of the form $b_k \to b_k - cb_i$ for some $i < k$).
@@ -1817,5 +1820,69 @@ If $P \equiv 0$, we set $I = \infty$. We denote the index of $P$ at $\vec\alpha$
     &\leq N\cdot H \tag{$2M < N$} \\
     &\leq (4\cdot(H(\alpha)+1))^{r_1 + \dots + r_m}. \qedhere
   \end{align*}
+\end{pf}
+\newLecture{24th June 2026 - \href{}{W10L1}}
+\begin{theorem}{Siegel's lemma}{4.7}
+  Let $N>M$ and $A = (a_{ij}) \in M_{M \times N}(\Z)$ with $\max_{i,j}|a_{ij}| \leq H$. Then there exists $x \in \Z^N$ such that $Ax = 0$ with $0 < \max_{1 \leq i \leq N}|x_i| \leq (NH)^{\frac{M}{N-M}}$.
+\end{theorem}
+\begin{pf}
+  For each $1 \leq i \leq M$, define $L_i(x) = \sum_{j=1}^N a_{ij}x_j$. Denote
+  \[ -C_i = \sum_{j=1}^N \min\{a_{ij},0\}\]
+  and
+  \[ D_i = \sum_{j=1}^N \max\{ a_{ij}, 0\}.\]
+  Clearly, $0 \leq C_i+D_i \leq NH$. Given any $y \in \Z^N \cap [0,B]^N$, we have $-C_iB \leq L_i(y) \leq D_iB \forall_{1 \leq i \leq M}$. Let $B \in \N$. Then
+  \begin{align*} & \#\{ (L_1(y), \dots, L_M(y)): y \in \Z^N \cap [0,B]^N\} \\
+  \leq \quad & \prod_{i=1}^M D_iB+C_iB+1 \\
+  \leq \quad & \prod_{i=1}^M (NHB+1) \\
+  = \quad & (NHB+1)^M.\end{align*}
+  If $\#\{ y \in \Z^N \cap [0,B]^N\} = (B+1)^N > (NHB+1)^M$, then there exist distinct $y_1, y_2 \in \Z^N \cap [0,B]^N$ such that $L_i(y_1) = L_i(y_2) \forall_{1 \leq i \leq M}$. Hence, $L_i(y_1-y_2) = 0 \forall_{1 \leq i \leq M}$ and $Ax = 0$ with $0 \neq x= y_1-y_2$ and $x \in \Z^N \cap [-B,B]^N$. Finally, check that \[ B = \lf (NH)^{\frac{M}{N-M}}\rf\]
+  does the job.
+\end{pf}
+Let's recall some notation.
+\[ P(x_1, \dots, x_m) = \sum_{j \in J} C(j)x_1^{j_1}x_m^{j_m},\]
+\[ J = J(r_1, \dots, r_m) = \{ 0, \dots, r_1\} \times \cdots \times \{ 0, \dots, r_m\},\]
+\[ \|P\| = \max_{j \in J}|c(j)|\]
+and
+\[ P^{[k]}(x_1, \dots, x_m) = \frac{1}{k_1!}\cdots\frac{1}{k_m!}\frac{\partial^{k_1+\dots+k_m}p}{\partial_1^{k_1}\cdots\partial_m^{k_m}}.\]
+Also define
+\[ \text{ind}_{s}(P,\alpha) = \min\left\{ \sum_{i=1}^m \frac{k_i}{s_i}: P^{[k]}(\alpha) \neq 0, k \in J\right\}\]
+for $s \in \N^m$. Last time we proved Theorem \ref{thm:4.6}. That is, we constructed a polynomial over $\Z$ with a zero of \glqq large\grqq \ order at $(\alpha, \dots, \alpha)$. We now deduce this for $\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)$, where each $\frac{a_n}{q_n} \in \Q$ is \glqq close\grqq \ to $\alpha$, from the information at $(\alpha, \dots, \alpha)$.
+\begin{theorem}{}{4.8}
+  Let $0 < \delta < \frac{1}{20}$ and $0 < \epsilon < \frac{\delta}{100}$ and $\alpha$ an algebraic integer as in Theorem \ref{thm:4.6}. Suppose that $\frac{a_h}{q_h} \in \Q$ with $1 \leq h \leq m$ fulfil
+  \[ \left| \alpha - \frac{a_h}{q_h}\right| < \frac{1}{q_h^{2+\delta}}\]
+  and $q_h^{\epsilon} > 64(H(\alpha)+1)\max\{ 1, |\alpha|\} \forall_{1 \leq h \leq m}$. Also suppose thta  $m > 8n^2\epsilon^{-2}$ and $r_1, \dots, r_m \in \N$ are such that $r_1\log q_1 \leq r_h\log q_h \leq (1+\epsilon)r_1\log q_1 \forall_{1 \leq h \leq m}$. Then the integer polynomial $P(x_1, \dots, x_m)$ constructed in Theorem \ref{thm:4.6} satisfies $\text{ind}_r\left(P,\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \geq \frac{\delta_m}{8}$.
+\end{theorem}
+\begin{pf}
+  We begin by applying Theorem \ref{thm:4.6} to get $P(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$ with $\text{ind}_r(P, (\alpha, \dots, \alpha)) \geq \frac{1}{2}m(1-\epsilon)$. We want to show: Let $k_1, \dots, k_m \in \Nzero$ fulfil
+  \[ \sum_{h=1}^m \frac{k_i}{r_i} < \frac{\delta_m}{8}. \hfill (*)\]
+  Then $P^{[k]}\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right) = 0$ $\left(\text{because this implies } \text{ind}_r\left(p, \left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \geq \frac{\delta_m}{8}\right)$. Let $k$ satisfy $(*)$ and denote $T(x_1, \dots, x_n) = P^{[k]}(x_1, \dots, x_m)$. It follows from Lemma \ref{lem:4.2} and Theorem \ref{thm:4.6} that $T(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$, $\|T\| = (8H(\alpha)+8)^{r_1+r_m}$ and $\deg_{x_h}T \leq r_h \forall_{1 \leq h \leq m}$. Given any $i = (i_1, \dots, i_m) \in J(r_1, \dots, r_m)$, we have
+  \begin{align*} \left| T^{[i]}(\alpha, \dots, \alpha)\right| \leq \quad & 2^{r_1+\dots+r_m}\|T^{[i]}|\max\{1, |\alpha|\}^{r_1+\dots+r_m} \\
+  \leq \quad & (32H(\alpha)+32)^{r_1+\dots+r_m}\max\{ 1, |\alpha|\}^{r_1+\dots+r_m}.\end{align*}
+  because $\|T^{[i]}\| \leq 2^{r_1+\dots+r_m}\|T\|$. Next, by Lemma \ref{lem:4.3}, we have
+  \begin{align*} \text{ind}_r(T, (\alpha, \dots, \alpha)) \geq \quad & \text{ind}_r(P,(\alpha, \dots, \alpha)) - \sum_{n=1}^m\frac{k_h}{r_h} \\
+  \stackrel{\text{Thm. \ref{thm:4.6}}}{>} \quad & \frac{1}{2}m(1-\epsilon)-\frac{\delta m}{8} \\
+  = \quad & \frac{1}{2}m\left(1-\epsilon-\frac{\delta}{4}\right) \\
+  > \quad & \frac{1}{2}m\left(1-\frac{\delta}{3}\right).\end{align*}
+  Therefore, $T^{[i]}(\alpha, \dots, \alpha) = 0$ if
+  \[ \sum_{h=1}^m \frac{i_h}{r_h} \leq \frac{1}{2}m\left(1-\frac{\delta}{3}\right).\]
+  Now, let us put $\beta_h = \alpha - \frac{a_h}{q_h} \forall_{1 \leq h \leq m}$. Then $|\beta_h| < \frac{1}{q_h^{2+\delta}}$. By the Taylor series expansion, we get
+  \begin{align*}
+    T\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right) = \quad & \sum_{i \in J(r_1, \dots, r_m)} T^{[i]}(\alpha, \dots, \alpha)\beta_1^{i_1}\cdots\beta_m^{i_m} \\
+    = \quad & \sum_{\stackrel{i \in J}{\sum_{h=1}^m \frac{i_h}{r_h} > \frac{1}{2}m(1-\frac{\delta}{3})}} T^{[i]}(\alpha, \dots, \alpha)\beta_1^{i_1}\cdots\beta_h^{i_h}. \hfill (**)
+  \end{align*}
+  For any $i$ in the sum,
+  \begin{align*}
+    -\log|\beta_1^{i_1}\cdots\beta_m^{i_m}| > \quad & (2+\delta)\sum_{h=1}^m\frac{i_h}{r_h}(r_h\log q_h) \\
+    \geq \quad & (2+\delta)r_1\log(q_1)\underbrace{\sum_{h=1}^m \frac{i_h}{r_h}}_{> \frac{1}{2}m\left(1-\frac{\delta}{3}\right)} \\
+    > \quad & \left(1+\frac{\delta}{2}\right)\left(1-\frac{\delta}{3}\right)mr_1\log(q_1) \\
+    \geq \quad & \left(1+\frac{\delta}{2}\right)\left(1-\frac{\delta}{3}\right)\sum_{h=1}^m r_h\log(q_h)\frac{1}{1+\epsilon}\\
+    > \quad & (1+\epsilon)^2\sum_h r_h\log(q_h)\frac{1}{1+\epsilon}
+  \end{align*}
+  for $0 < \delta < \frac{1}{20}$ and $0 < \epsilon < \frac{\delta}{100}$, which implies $|\beta_1\cdots\beta_m| <(q_1^{r_1}\cdots q_m^{r_m})^{-1-\epsilon}$. Hence, $(**)$ becomes
+  \begin{align*} & \Nzero \ni \left|q_1^{r_1}\cdots q_m^{r_m}T\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right| \\
+  < \quad & \sum_{i \in J}|T^{[i]}(\alpha, \dots, \alpha)|(q_1^{r_1}\cdots q_m^{r_m})^{-\epsilon} \\
+  \leq \quad & 2^{r_1+\dots+r_m}\left[(32H(\alpha)+32)\max\{ |\alpha|, 1\}\right]^{r_1+\dots+r_m}(q_1^{r_1}\cdots q_m^{r_m})^{-\epsilon} \\
+  \leq \quad & 1.\end{align*}
+  This proves the assumption.
 \end{pf}
 \end{document}

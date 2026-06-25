@@ -1137,7 +1137,7 @@ Note: $b_i$, $b_i'$ and $\mu_{i,j}$ are not affected for $1 \le i \le k-1$.
 Then we switch $b_k$ and $b_{k-1}$ while keeping the rest the same. Our new basis is $c_1, \dots, c_n$ with $c_{k-1} = b_k$, $c_k = b_{k-1}$, and $c_i = b_i$ otherwise.
 This changes $\mu_{k-1,j}$ and $\mu_{k,j}$, but it does not affect $b_i, b_i', \mu_{i,j}$ for $1 \le i \le k-2$. The new basis still satisfies Property$(k-1)$.
 
-Now $c_{k-1}'$ is the projection of $c_{k-1} = b_k$ onto $(\Span_{\mathbb{R}}\{b_1', \dots, b_{k-2}'\})^\perp$, i.e.
+\noindent Now $c_{k-1}'$ is the projection of $c_{k-1} = b_k$ onto $(\Span_{\mathbb{R}}\{b_1', \dots, b_{k-2}'\})^\perp$, i.e.
 \[ c_{k-1}' = b_k' + \mu_{k,k-1}b_{k-1}'. \]
 From $(\widehat{*})$, we get $\|c_{k-1}'\|_2^2 < \frac{3}{4} \|b_{k-1}'\|_2^2$. So the length of the \glqq new\grqq \ $c_{k-1}'$ is shorter than the \glqq old\grqq \ $b_{k-1}'$ by a factor of $3/4$.
 \titremark{Note} This is what is used to show that $k$ can go down only finitely many times.
@@ -1179,7 +1179,7 @@ But $\Delta$ cannot get arbitrarily small due to Lemma \ref{lem:2.21}.
   Let $\alpha_1, \dots, \alpha_n \in \R$, not all in $\Q$. Also let $\epsilon > 0$ be small. Suppose we want to find $q \in \N$ and $x_1, \dots, x_n \in \Z$ such that \begin{equation}\label{eq:ex_lll_1}
     |q\alpha_i-x_i| \leq \epsilon \forall_{1 \leq i \leq n}. \tag{1}
   \end{equation}
-  Recall that in the proof of Corollary \ref{cor:2.7}, we proved that given $Q > 1$, $\exists_{(x_1, \dots, x_n) \in \Zprim{n+1}}: 0 < q \leq Q \land |a\alpha_i-x_i| \leq Q^{-\nicefrac{1}{n}}$. Applying this with $Q^{-\nicefrac{1}{n}}=\epsilon$, we can solve (\ref{eq:ex_lll_1}) with \begin{equation}\label{eq:ex_lll_2} 0 < q \leq \epsilon^{-n}.\tag{2}\end{equation}
+  Recall that in the proof of Corollary \ref{cor:2.7}, we proved that given $Q > 1$, $\exists_{(x_1, \dots, x_n) \in \Zprim{n+1}}: 0 < q \leq Q \land |q\alpha_i-x_i| \leq Q^{-\nicefrac{1}{n}}$. Applying this with $Q^{-\nicefrac{1}{n}}=\epsilon$, we can solve (\ref{eq:ex_lll_1}) with \begin{equation}\label{eq:ex_lll_2} 0 < q \leq \epsilon^{-n}.\tag{2}\end{equation}
   Next, let's see what we get using LLL. Consider
   \begin{equation*}
     \Lambda = \begin{pmatrix}
@@ -1201,14 +1201,14 @@ But $\Delta$ cannot get arbitrarily small due to Lemma \ref{lem:2.21}.
     \delta q
   \end{pmatrix}\]
   (assume $q \geq 0$ without loss of generality). Then
-  \[ \sqrt{(x-q\alpha_1)^2+\dots+(x_n-q\alpha_n)^2+(\delta q)^2} \leq \epsilon,\]
+  \[ \sqrt{(x_1-q\alpha_1)^2+\dots+(x_n-q\alpha_n)^2+(\delta q)^2} \leq \epsilon,\]
   which implies
   \[ |x_i-q\alpha_i| \leq \epsilon \forall_{1 \leq i \leq n} \text{ and } 0 \leq q < \frac{\epsilon}{\delta} = \epsilon^{-n}2^{\frac{n(n+1)}{4}}.\]
   Note that if $q=0$, we get a contradiction.
 \end{example}
 \chapter{The Bombieri-Pila Determinant Method}
 We have done a lot with lattice points inside a central symmetric convex body. In this section, we will count lattice points on a curve\footnote{Professor Yamagishi: For our intents and purposes, this is just a zero set of a two-variable polynomial. No schemes, sheaves, connected. None of these Algebraic Geometry adjectives. Any Algebraic Geometers here? No one? Yeah, no one's taking that course.}. Our goal in this chapter is to prove the following.
-\begin{theorem}{Bombieri-Pila, 1989 (manuscript 3.1)}{3.1}
+\begin{theorem}{Bombieri-Pila, 1989}{3.1}
   Let $F \in \R[x,y]$ be an irreducible polynomial of degree $d \geq 2$. If $N$ is sufficiently large with respect only to $d$, then
   \[ \#\{ (x,y) \in [1,N]^2 \cap \Z^2: F(x,y) = 0\} \leq (\log N)^{\O(d)}N^{\frac{1}{d}}.\]
 \end{theorem}
@@ -1225,7 +1225,7 @@ Some notation for this chapter: The set $\mathcal{M} \subset \R[x,y]$ is a finit
 \[ \mathcal{M} = \{ x^{j_1}y^{j_2}: \vec j = (j_1, j_2) \in S\}\]
 with a finite $S \subset \Nzero^2$. We also denote $S(\mathcal{M}) = S$. Further, we define
 \[ J_1 = J_1(\mathcal{M}) = \sum_{x^{j_1}y^{j_2} \in \mathcal{M}} j_1 \text{ and } J_2 = J_2(\mathcal{M}) = \sum_{x^{j_1}y^{j_2} \in \mathcal{M}} j_2.\]
-\begin{lemma}{Technical Preparation for Bombieri-Pila (manuscript 3.2)}{3.2}
+\begin{lemma}{Technical Preparation for Bombieri-Pila}{3.2}
   Let $\mathcal{M}$ be as above and $D = \#\mathcal{M} \geq 2$. Assume that $I \subseteq [0,N]$ is a closed interval and $f \in \mathcal{C}^{D-1}(I)$. Further suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ satisfy that
   \[ \left| \frac{f^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{0 \leq i < D, x \in I}.\]
   If
@@ -1236,9 +1236,9 @@ with a finite $S \subset \Nzero^2$. We also denote $S(\mathcal{M}) = S$. Further
   \[ V(P)= \{ (x,y) \in \R^2: P(x,y) = 0\}.\]
 \end{lemma}
 \noindent \textbf{Remarks:} Given $z_1, \dots, z_m \in \R^2$ with $m < D$, it's easy to deduce that there exists $P \in \Span_{\R}(\mathcal{M})$ such that $z_1, \dots, z_m \in V(P)$ from elementary linear algebra results. But this lemma allows us to find $P \in \R[x,y]$ such that $\Z^2 \cap \{ (x,f(x)): x \in I\} \subseteq V(P)$ with good quantitative properties ($\deg P$ and $|I|$).
-\subsection{Preparation and Proof of Lemma 3.2}
+\subsection{Preparation and Proof of Lemma \ref{lem:3.2}}
 We will need several auxilliary lemmata.
-  \begin{lemma}{Rank Criterion (manuscript 3.3)}{3.3}
+  \begin{lemma}{Rank Criterion}{3.3}
     Let $\mathcal{M}$ be as above and $\vec z_1, \dots, \vec z_t \in \R^2$. If $\rank((\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq t}{\vec j \in S(\mathcal{M})}}) < \# \mathcal{M}$, then there exists
     \[ 0 \neq P \in \Span_{\R}(\mathcal{M}): \vec z_1, \dots, \vec z_t \in V(P).\]
   \end{lemma}
@@ -1263,13 +1263,13 @@ We will need several auxilliary lemmata.
     Hence, we have $\vec z_1, \dots, \vec z_t \in V(P).$
 \end{pf}
 \newLecture{3rd June 2026 - \href{https://ecampus.uni-bonn.de/goto_ecampus_file_4171236_download.html}{W7L1}}
-\noindent We are in the middle of proving Lemma 3.2. Here is the rough idea of how the proof goes. Say
+\noindent We are in the middle of proving Lemma \ref{lem:3.2}. Here is the rough idea of how the proof goes. Say
 \[ \{ (x_1,f(x_1)), \dots, (x_D,f(x_D))\} \subseteq \{ (x,f(x)): x \in I\}\cap \Z^2.\]
 If the matrix
 \[ \left(x_i^{j_1}f(x_i)^{j_2}\right)_{\stackrel{1 \leq i \leq D}{\vec j=(j_1,j_2) \in S(\mathcal{M})}}\]
-has full rank, then its determinant is nonzero. The derivative bounds for $f$ and the shortness of $I$ will show that this determinant is very small, but since all entries are integers, its absolute value is bounded below by $1$. This is a contradiction. Hence, the matrix does not have full rank, and Lemma 3.3 gives the desired polynomial.
+has full rank, then its determinant is nonzero. The derivative bounds for $f$ and the shortness of $I$ will show that this determinant is very small, but since all entries are integers, its absolute value is bounded below by $1$. This is a contradiction. Hence, the matrix does not have full rank, and Lemma \ref{lem:3.3} gives the desired polynomial.
 
-\begin{lemma}{Generalised Vandermonde Bound (manuscript 3.4)}{3.4}
+\begin{lemma}{Generalised Vandermonde Bound}{3.4}
   Let $n \geq 1$, let $I \subseteq \R$ be a closed interval, and suppose $f_1, \dots, f_n \in \mathcal{C}^{n-1}(I)$. Let $A_{i,j} \geq 0$ be such that
   \[ \max_{x \in I}\left| \frac{f_j^{(i-1)}(x)}{(i-1)!}\right| \leq A_{i,j} \forall_{1 \leq i,j \leq n}.\]
   Then, for any $x_1, \dots, x_n \in I$, we have
@@ -1287,7 +1287,7 @@ has full rank, then its determinant is nonzero. The derivative bounds for $f$ an
   \end{equation}
   To see this, consider
   \[ g(\xi) = \sum_{l=1}^i f_j(x_l)\prod_{\substack{1 \leq m \leq i \\ m \neq l}}\frac{\xi-x_m}{x_l-x_m}.\]
-  We have $\deg g<i$ and $g(x_l)=f_j(x_l)$ for all $1 \leq l \leq i$. Hence, by repeated applications of Rolle's theorem, there exists $\xi_{i,j} \in I$ such that
+  We have $\deg g<i$ and $g(x_\ell)=f_j(x_\ell)$ for all $1 \leq \ell \leq i$. Hence, by repeated applications of Rolle's theorem, there exists $\xi_{i,j} \in I$ such that
   \[ \frac{d^{i-1}}{d\xi^{i-1}}(g-f_j)(\xi_{i,j}) = 0.\]
   Thus,
   \[ f_j^{(i-1)}(\xi_{i,j}) = g^{(i-1)}(\xi_{i,j}) = \sum_{l=1}^i f_j(x_l)(i-1)!\prod_{\substack{1 \leq m \leq i \\ m \neq l}}\frac{1}{x_l-x_m},\]
@@ -1319,8 +1319,8 @@ has full rank, then its determinant is nonzero. The derivative bounds for $f$ an
   \end{align*}
 \end{pf}
 
-We will use this lemma with functions of the form $x^{j_1}f(x)^{j_2}$.
-\begin{lemma}{Derivative Bounds for Monomials Along a Graph (manuscript 3.5)}{3.5}
+\noindent We will use this lemma with functions of the form $x^{j_1}f(x)^{j_2}$.
+\begin{lemma}{Derivative Bounds for Monomials Along a Graph}{3.5}
   Let $k \geq 1$, let $I \subseteq [0,N]$ be a closed interval, and let $f \in \mathcal{C}^k(I)$. Suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ are such that
   \[ \max_{x \in I}\left| \frac{f^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{0 \leq i \leq k}.\]
   Then, for any $\vec j=(j_1,j_2) \in \Z_{\geq 0}^2$, the function
@@ -1332,19 +1332,19 @@ We will use this lemma with functions of the form $x^{j_1}f(x)^{j_2}$.
   Exercise sheet 6.
 \end{pf}
 
-\begin{pf}[Proof of Lemma 3.2]
+\begin{pf}[Proof of Lemma \ref{lem:3.2}]
   Let
   \[ \{ (x,f(x)): x \in I\} \cap \Z^2 = \{ \vec z_1, \dots, \vec z_t\},\]
   where $\vec z_i=(x_i,f(x_i))$.
-  By Lemma 3.3, if the matrix
+  By Lemma \ref{lem:3.3}, if the matrix
   \[ A = (\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq t}{\vec j \in S(\mathcal{M})}}\]
   satisfies $\rank A < D$, then we are done. Therefore, let us suppose $\rank A=D$. Without loss of generality, we assume
   \[ 0 \neq \Delta = \det(\vec z_i^{\vec j})_{\stackrel{1 \leq i \leq D}{\vec j \in S(\mathcal{M})}}.\]
   Since each $\vec z_i \in \Z^2$, we have $|\Delta| \in \Z_{\geq 1}$.
 
-  Let $f_{\vec j}(x)=x^{j_1}f(x)^{j_2}$, so that $f_{\vec j}(x_i)=\vec z_i^{\vec j}$. By Lemma 3.5 with $k=D-1$ and the hypothesis on the derivatives of $f$, we get
+  Let $f_{\vec j}(x)=x^{j_1}f(x)^{j_2}$, so that $f_{\vec j}(x_i)=\vec z_i^{\vec j}$. By Lemma \ref{lem:3.5} with $k=D-1$ and the hypothesis on the derivatives of $f$, we get
   \[ \max_{x \in I}\left|\frac{f_{\vec j}^{(i-1)}(x)}{(i-1)!}\right| \leq (2N)^{j_1}(DX)^{j_2}\delta^{i-1} \eqqcolon A_{i,\vec j}.\]
-  By Lemma 3.4, we get
+  By Lemma \ref{lem:3.4}, we get
   \begin{align*}
     1 \leq |\Delta|
     &= \left|\det(f_{\vec j}(x_i))_{\stackrel{1 \leq i \leq D}{\vec j \in S(\mathcal{M})}}\right| \\
@@ -1365,11 +1365,11 @@ We will use this lemma with functions of the form $x^{j_1}f(x)^{j_2}$.
 \newLecture{5th June 2026 - \href{https://ecampus.uni-bonn.de/goto_ecampus_file_4173685_download.html}{W7L2}}
 We will use this in the following manner:
 \begin{lemma}{Alternative Formulation of the Main Technical Lemma}{3.2*}
-  Let $M \subseteq \R[x,y]$ be a finite set of monomials with $\# M = D \geq 2$. Also let $I \subseteq [0,N]$ be a closed interval and $f \in \mathcal{C}^{d-1}(I)$. Suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ are such that
-  \[ \max_{x \in I}\left| \frac{f^{(i)}(x)}{i!}\right| \leq x\delta^i \forall_{0 \leq i < D}.\]
+  Let $\mathcal{M} \subseteq \R[x,y]$ be a finite set of monomials with $\# \mathcal{M} = D \geq 2$. Also let $I \subseteq [0,N]$ be a closed interval and $f \in \mathcal{C}^{d-1}(I)$. Suppose that $X > 0$ and $\delta \geq \frac{1}{N}$ are such that
+  \[ \max_{x \in I}\left| \frac{f^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{0 \leq i < D}.\]
   Then $\{ (x,f(x)): x \in I\} \cap \Z^2$ is contained in the union of
-  \[ 4\delta\lambda^1(I)((2N)^{J_1(M)}(DX)^{J_2(M)})^{\frac{1}{\binom{D}{2}}} + 1\]
-  curves $V(P)$ with $0 \not\equiv P \in \Span_\R(M)$.
+  \[ 4\delta\lambda^1(I)((2N)^{J_1(\mathcal{M})}(DX)^{J_2(\mathcal{M})})^{\frac{1}{\binom{D}{2}}} + 1\]
+  curves $V(P)$ with $0 \not\equiv P \in \Span_\R(\mathcal{M})$.
 \end{lemma}
 \titremark{Trivial Bound} We have the trivial bound $\lambda^1(I)+1$. So we do better if
 \[ \delta((2N)^{J_1(M)}(DX)^{J_2(M)})^{\frac{1}{\binom{D}{2}}} < \frac{1}{4}.\]
@@ -1378,8 +1378,8 @@ We will use this in the following manner:
   \[ \{ z_i: n_{\ell-1} \leq i < n_{\ell}\} \subseteq V(P_{\ell}) \text{ for some } 0 \not\equiv P_{\ell} \in \Span_{\R}(M).\]
   Suppose that the sequence terminates at $n_T$. Then
   \[ \{ z_1, \dots, z_t\} \subseteq V(P_1) \cup \cdots \cup V(P_T) \cup \underbrace{\{ z_{n_T} , \dots, z_t\}}_{\subseteq V(P_{T+1})},\]
-  where the statement in the underbrace follows from the definition of $n_T$. Hence, $\{ (x, f(x)): x \in I\} \cap \Z^2$ is contained in $T+1$ curves in $\Span_{\R}(M)$. For each $0 \leq \ell < T$,
-  \[ \{ z_i: n_{\ell} \leq i \leq n_{\ell+1}\} \not\subseteq\]
+  where the statement in the underbrace follows from the definition of $n_T$. Hence, $\{ (x, f(x)): x \in I\} \cap \Z^2$ is contained in $T+1$ curves in $\Span_{\R}(\mathcal{M})$. For each $0 \leq \ell < T$,
+  \[ \{ z_i: n_{\ell} \leq i \leq n_{\ell+1}\} \not\subseteq V(P_{\ell+1})\]
   for any $0 \not\equiv P \in \Span_{\R}(M)$. Use Lemma \ref{lem:3.2} with $ I = [x_{n_{\ell}}, x_{n_{\ell+1}}]$. This implies that
   \begin{align*}
     |x_{n_{\ell+1}}-x_{n_{\ell}}| \geq \quad & \frac{1}{4}\delta^{-1}((2N)^{J_1}(DX)^{J_2})^{-\frac{1}{\binom{D}{2}}}.
@@ -1394,7 +1394,7 @@ We will use this in the following manner:
 \end{pf}
 \noindent \textbf{Recall:}
 \begin{theorem}{Bézout}{3.6}
-  Let $F, G \in \R[x,y]$ be non-constant without a common divisor. Then there are at most $\deg(F)\deg(G)$ points $(\widehat{x},\widehat{y}) \in \R^2$, counted with multiplicity, such that $F(\widehat{x},\widehat{y}) = G(\widehat{x},\widehat{y}) = 0$. In particular, if $F$ is irreducible over $\R$ and $fF \nmid G$, then
+  Let $F, G \in \R[x,y]$ be non-constant without a common divisor. Then there are at most $\deg(F)\deg(G)$ points $(\widehat{x},\widehat{y}) \in \R^2$, counted with multiplicity, such that $F(\widehat{x},\widehat{y}) = G(\widehat{x},\widehat{y}) = 0$. In particular, if $F$ is irreducible over $\R$ and $F \nmid G$, then
   \[ \#\{ (\widehat{x},\widehat{y}) \in \R^2: F(\widehat{x},\widehat{y}) = G(\widehat{x},\widehat{y}) = 0\} \leq \deg(F)\deg(G).\]
 \end{theorem}
 \section{Dividing the curve}

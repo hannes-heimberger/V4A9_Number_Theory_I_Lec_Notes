@@ -1886,4 +1886,98 @@ for $s \in \N^m$. Last time we proved Theorem \ref{thm:4.6}. That is, we constru
   This proves the assumption.
 \end{pf}
 \newLecture{28th June 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4199795}{W10L2}}
+
+\newLecture{1st July 2026 - W11L1}
+\begin{theorem}{}{4.10}
+  Let $m \in \N$, $0 < \epsilon < \frac{1}{12}$, and set $\omega = \omega(m,\epsilon) = 24\cdot2^{-m}\left(\frac{\epsilon}{12}\right)^{\exp(\ln(2)(m-1))} < 1$. Let $r_1, \dots, r_m \in \N$ be such that $\omega r_h \geq r_{h+1} \forall_{1 \leq h \leq m-1}$. Let $q_1, \dots, q_m \in \N$ be such that $q_h^{r_h} \geq q_1^{r_1}$ and $q_h^{\omega} \geq 2^{3m} \forall_{1 \leq h \leq m}$. Suppose $P \in \Z[x_1, \dots, x_m] \setminus \{ 0\}$ is such that $\deg_{x_h} P \leq r_h \forall_{1 \leq h \leq m}$ and $\| P\| \leq q_1^{\omega r_1}$. Then
+  \[ \ind_r\left(P, \left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \leq \epsilon,\]
+  provided $\gcd(a_h,q_h)=1 \forall_{1 \leq h \leq m}$.
+\end{theorem}
+\begin{pf}[Rough idea of the proof]
+  Say $P(x_1, x_2)$ has large order of vanishing at $\left(\frac{a_1}{q_1},\frac{a_2}{q_2}\right)$. Write $P(x_1, x_2) = \phi_0(x_2)+\phi_1(x_2)x_1 + \dots + \phi_r(x_2)x_1^r$. Define
+  \[ 0 \not\equiv W(x_1,x_2) = \underbrace{\det(\Delta_i\phi_j(x_2))}_{U(x_2) \in \Z[x_2]}\underbrace{\det(\Delta_ix_1^{j-1})}_{V(x_1) \in \Z[x_1]}.\]
+  A large order of vanishing of $P$ at $\left(\frac{a_1}{q_1},\frac{a_2}{q_2}\right)$ would imply the same for $W$, which in turn implies the same for $V$ at $\frac{a_1}{q_1}$ or $U$ at $\frac{a_2}{q_2}$. Hence, $(q_1x_1-a_1)^N \mid V(x_1)$. But if $\|V\| < q_1^N$, then $V \equiv 0$. Thus, we have $W \equiv 0$, which contradicts our assumptions.
+\end{pf}
+\noindent We shall now give a real proof.
+\begin{pf}
+  We prove this by induction on $m$. For $m=1$, suppose that
+  \[ 0 = P\left(\frac{a_1}{q_1}\right) = \dots = P^{(t-1)}\left(\frac{a_1}{q_1}\right) \text{ and } P^{(t)}\left(\frac{a_1}{q_1}\right) \neq 0.\]
+  Here $\gcd(a_1,q_1) = 1$ and $q_1 > 0$. Write $P(x) = \left(x-\frac{a_1}{q_1}\right)^tT(x)$ for some $T \in \Q[x]$. Hence,
+  \[ P(x) = (q_1x-a_1)^t\underbrace{(q_1^{-t}T(x))}_{\in \Z[x]}\]
+  by Gauß's lemma. Thus, $q_1^t \leq \|P\| \leq q_1^{\omega r_1}$, which implies $t \leq \omega r_1$. Since $m=1$, $\omega(1,\epsilon) = \epsilon$. Since $m=1$, $\omega(1,\epsilon) = \epsilon$, we have
+  \[ \ind_{r_1}\left(P, \frac{a_1}{q_1}\right) = \frac{t}{r_1} \leq \omega = \epsilon,\]
+  which completes the base case. Now suppose that the whole thing holds for all all $m' < m \in \N$. Let us write
+  \[ P(x_1, \dots, x_m) = \sum_{1 \leq j \leq k}\phi_j(x_1, \dots, x_{m-1})\psi_j(x_m),\]
+  where $\phi_j, \psi_j$ are $\Q$-polynomials. We fix such a representation with $k$ minimal. We know that $k \leq r_m+1$ by choosing $\psi_j(x_m) = x_m^{j-1}$. Let us prove that $\phi_j$ and $\psi_j$ have two properties.
+  \begin{claim}{}{}
+    The set $\{ \phi_1, \dots, \phi_k\}$ is linearly independent over $\Q$.
+  \end{claim}
+  \begin{pf}[Proof of the claim]
+    Suppose that there exist $c_1, \dots, c_k \in \Q$, not all zero, such that
+    \[ c_1\phi_1 + \dots + c_k\phi_k \equiv 0.\]
+    Assume that $c_k = -1$ without loss of generality. This implies $\phi_k = c_1\phi_1 + \dots + c_{k-1}\phi_{k-1}$. Now substitute this into $P$ and get
+    \[ P(x_1, \dots, x_m) = \sum_{j=1}^{k-1}\phi_j(x_1, \dots, x_{m-1})(\psi_j(x_m)+c_j\psi_k(x_m)),\]
+    which contradicts the minimality of $k$ \Lightning.
+  \end{pf}
+  \begin{claim}{}{}
+    The set $\{ \psi_1, \dots, \psi_k\}$ is linearly independent over $\Q$.
+  \end{claim}
+  \begin{pf}[Proof of this claim]
+    The same argument.
+  \end{pf}
+  Since $\psi_1, \dots, \psi_k$ are polynomials over $\Q$ and linearly independent over $\Q$, it follows from Proposition \ref{prop:4.9} that
+  \[ U_1(x_m) = \left(\diff[i]{}{x_m}\psi_j(x_m)\right)_{1 \leq i,j \leq k} \not\equiv 0.\]
+  Similarly, there exist $\widetilde{\Delta}_1, \dots, \widetilde{\Delta}_k$ such that
+  \[ \widetilde{\Delta}_i = \frac{\partial^{i_1+\dots+i_{m-1}}}{\partial x_1^{i_1}\cdots\partial_{m-1}^{i_{m-1}}}\]
+  with $\ord\widetilde{\Delta} = i_1+\dots+i_{m-1} \leq i-1 \leq k-1 \leq r_m$. Then $V_1(x_1, \dots, x_{m-1}) = \det(\widetilde{\Delta}_i\phi_j)_{1 \leq i,j \leq k} \not\equiv 0$. We also denote
+  \[ \iota(i) = (i_1, \dots, i_{m-1}).\]
+  Next, we define
+  \[ W_1(x_1, \dots, x_m) = \det\left(\widetilde{\Delta}_i\frac{\partial^{j-1}}{\partial x_m^{j-1}}P(x_1, \dots, x_m)\right)_{1 \leq i,j \leq k}.\]
+  Since
+  \begin{align*} & \widetilde{\Delta}_i\frac{\partial^{j-1}}{\partial x_m^{j-1}}P(x_1, \dots, x_m) \\
+  = \quad & \widetilde{\Delta}_i\frac{\partial^{j-1}}{\partial x_m^{j-1}}\sum_{h=1}^k\phi_h(x_1, \dots, x_{m-1})\phi_h(x_m) \\
+  = \quad & \sum_{h=1}^k \widetilde{\Delta}_i\phi_h\diff[j-1]{}{x_m}\psi_h(x_m),\end{align*}
+  we have
+  \begin{align*}
+    W_1(x_1, \dots, x_m) = \quad & \det\left((\widetilde{\Delta}_i\phi_h)\left(\diff[j-1]{}{x_m}\psi_h\right)^t\right) \\
+    = \quad & V_1(x_1, \dots, x_{m-1})U_1(x_m) \\
+    \not\equiv \quad & 0.
+  \end{align*}
+  Then let
+  \begin{align*}
+    W(x_1, \dots, x_m) = \quad & \frac{W_1(x_1, \dots, x_m)}{\prod_{i=1}^k \iota(i)!\prod_{j=1}^k (j-1)!} \\
+    = \quad & \det(P^{[\iota(i), j-1]})_{1 \leq i,j \leq k}.
+  \end{align*}
+  This si still a polynomial over $\Z$ because $P^{[j]} \in \Z[x_1, \dots, x_m]$ for any $j$. We can deduce from Gauß's lemma that
+  \[ W(x_1, \dots, x_m) = V(x_1, \dots, x_{m-1})U(x_m)\]
+  with $U,V$ polynomials over $\Z$ (in fact $c_1U_1 = U$ and $c_2V_1 = V$ with $c_1,c_2 \in \Q$). Since $\deg_{x_h}P^{[j]} \leq r_h \forall_{1 \leq h \leq m}, j \in \Nzero^m$, $\deg_{x_h}w \leq r_hk \forall_{1 \leq h \leq m}$. Similarly, $\deg_{x_h}V \leq r_hk \forall_{1 \leq h \leq m-1}$ and $\deg_{x_m}U \leq r_mk$. Also,
+  \[ \| P^{[j]}\| \leq 2^{r_1+\dots+r_m}\|P\| \leq 2^{r_1+\dots+r_m}q_1^{r\omega_1}.\]
+  It follows that
+  \[ \|W\| \leq k!\left(2^{r_1+\dots+r_m}\max_{i,j}\|P^{[(\iota(i),j-1)]}\|\right)^k\]
+  by the bound for the number of summand in $P^{[j]}$. This is in turn less than or equal to
+  \begin{align*}
+    & k!\left(4^{r_1+\dots+r_m}q_1^{r\omega}\right)^k \\
+    \leq \quad & 2^{kr_m}\left(4^{r_1+\dots+r_m}q_1^{r\omega}\right)^k \\
+    \leq \quad & \left(8^{r_1+\dots+r_m}q_1^{r_1\omega}\right)^k \\
+    \leq \quad & 8^{mr_1k}q_1^{r_1\omega k} \\
+    \leq \quad & (q_1^\omega)^{r_1k}q_1^{r_1\omega k} \\
+    = \quad & q_1^{2\omega r_1k}.
+  \end{align*}
+  Recall that
+  \begin{align*}
+    W = \quad & U(x_m)V(x_1, \dots, x_{m-1}) \\
+    = \quad & \sum_{\ell} u_{\ell}x_m^{\ell}\sum_{k}v_kx_1^{k_1}\cdots x_{m-1}^{k_{m-1}} \\
+    = \quad & \sum_{(\ell, k)} u_{\ell}v_kx_1^{k_1}\cdots x_{m-1}^{k_{m-1}}x_m^{\ell}.
+  \end{align*}
+  This implies that $\|U\|, \|V\| \leq \|W\| \leq q_1^{2\omega r_1k}$.
+  Index of $V$: We consider $\ind_{kr}\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right)$. By the inductive hypothesis, we have
+  \begin{align*}
+    \ind_{kr}\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right) \leq \epsilon_0,
+  \end{align*}
+  provided that $\|V\| \leq q_1^{2\omega r_1k} \leq q_1^{\omega(m-1,\epsilon_0)r_1k}$. Since $\omega = \omega(m,\epsilon) = \frac{1}{2}\omega\left(m-1, \frac{\epsilon^2}{12}\right)$, we choose $\epsilon_0 = \frac{\epsilon^2}{12}$. Note that all of the other hypotheses are satisfied. Thus,
+  \begin{align*}
+    & \ind_{kr}\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right) \leq \frac{\epsilon^2}{12} \\
+    \implies & \ind_r\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right) \leq \frac{k\epsilon^2}{12},
+  \end{align*}
+\end{pf}
 \end{document}

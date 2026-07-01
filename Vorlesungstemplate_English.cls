@@ -426,6 +426,7 @@ borderline west={0.4mm}{0pt}{green}}
 \newcommand{\Log}{\text{Log}}
 \newcommand{\Kern}{\text{Kern}}
 \newcommand{\Eig}{\text{Eig}}
+\newcommand{\ind}{\text{ind}}
 \newcommand{\Rang}{\text{Rang}}
 \newcommand{\rank}{\text{rank}}
 \newcommand{\Bild}{\text{Bild}}

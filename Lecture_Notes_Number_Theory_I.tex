@@ -1529,7 +1529,7 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
 \newLecture{12th June 2026 - \href{https://ecampus.uni-bonn.de/goto_ecampus_file_4179119_download.html}{W8L2}}
 \section{Number of lattice points on a curve}
 \begin{theorem}{Number of lattice points on a curve}{3.11}
-  Let $d \geq 2$ and $N \geq 1$ be sufficiently large in terms of $d$. Let $I \subseteq [0,N]$ be a closed interval and $f \in \mathcal{C}^{\infty}(I)$ satisfy
+  Let $d \geq 2$ and $N \geq 1$ be sufficiently large in terms of $d$. Let $I = [0,N]$ and $f \in \mathcal{C}^{\infty}(I)$ satisfy
   \[ |f'(x)| \leq 1 \forall_{x \in I}.\]
   Suppose that there exists an irreducible polynomial $F \in \R[x,y]$ of degree $d$ such that
   \[ F(x,f(x)) = 0 \forall_{x \in I}.\]
@@ -1556,7 +1556,6 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
   \[ g(N) \leq K^{c_1d}N^{\frac{1}{d}+\frac{c_2}{\ell}}\sum_{j=0}^{n-1}K^{-j} + K^ng(K^{-2nd}N),\]
   where $n$ is chosen such that $K^{-2nd}N \leq 1 < K^{-2d(n-1)}N$. Thus $g(K^{-2nd}N) \leq 2$ and $K^n \leq KN^{\frac{1}{2d}}$. Hence
   \[ g(N) \ll K^{c_1d}N^{\frac{1}{d}+\frac{c_2}{\ell}} + KN^{\frac{1}{2d}} \ll \ell^{\O(d)}N^{\frac{1}{d}+\frac{c_2}{\ell}} \ll (\log N)^{\O(d)}N^{\frac{1}{d}}.\]
-  If $\lambda(I)<1$, then the desired count is at most $2$, so the theorem follows from the bound for $g(N)$.
 
   It remains to prove the claim.
     \begin{proof}[Proof of the Claim]
@@ -1584,8 +1583,8 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
     Combining the two cases, we get
     \begin{align*}
       \#\left(\{(x,h(x)):x\in J\}\cap\Z^2\right)
-      \ll \quad & (d\ell)^cX^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)}\delta X \\
-      &+ C_1d^2(d\ell)^2g\left(\frac{2}{\delta}\right)
+      \ll \quad & (d\ell)^cX^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)}\delta X
+      + C_1d^2(d\ell)^2g\left(\frac{2}{\delta}\right)
     \end{align*}
     for some absolute constant $C_1>0$.
 
@@ -1610,7 +1609,7 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
 \newLecture{17th June 2026 - \href{https://ecampus.uni-bonn.de/goto_ecampus_file_4186573_download.html}{W9L1}}
 Last class we proved Theorem \ref{thm:3.11}.
 \begin{exercise}{}{}
-  By modifying the proof, show that we can replace $I= [0, N]$ with any closed subinterval of $[0,1]$.
+  By modifying the proof, show that we can replace $I= [0, N]$ with any closed subinterval of $[0,N]$.
 \end{exercise}
 \section{Final Preparation for the Proof of Theorem \ref{thm:3.1}}
 Let $F \in \R[x,y]$ be of degree $d \geq 2$ and irreducible over $\R$. Further assume that $\partial_xF, \partial_yF \not\equiv 0$ because the statement would otherwise be trivial as
@@ -1620,8 +1619,7 @@ Let $F \in \R[x,y]$ be of degree $d \geq 2$ and irreducible over $\R$. Further a
 Let $V = V(F) = \{ (x,y) \in \R^2: F(x,y)=0\}$ and $\Sing(V) = \{ (x,y) \in \R^2: F(x,y) = \partial_xF(x,y) = \partial_yF(x,y) = 0\}$. The implicit function theorem can be combined with the fact that $V$ is algebraic to deduce that $V \setminus \Sing(V) = \bigsqcup_{i=1}^n C_i$, where the $C_i$ are the connected components (and there are only finitely many of them) and $C_i \cong_{\mathcal{C}^1} \R \text{ or } \S^1$. Therefore, we have
 \begin{align*}
   & V \cap [0,N]^2 \\
-  = \quad & (\Sing(V) \cap [0,N]^2) \\
-  = \quad & \bigcup\bigcup_{i=1}^n C_i \cap [0,N]^2,
+  = \quad & (\Sing(V) \cap [0,N]^2) \cup \bigcup_{i=1}^n C_i \cap [0,N]^2,
 \end{align*}
 where each $i$ such that $C_i \cap [0,N]^2 \neq \varnothing$ satifies one of the following:
 \begin{enumerate}[(i)]
@@ -1633,15 +1631,16 @@ where each $i$ such that $C_i \cap [0,N]^2 \neq \varnothing$ satifies one of the
   Given any $p \in V$,
   \[ \#\{ i \in \{ 1, \dots, n\}: p \in \overline{C_i}\} \leq 2d.\]
 \end{fact}
-\begin{pf}[Non-rigorous proof sketch]
-  To see this, by translating if necessary assume that $p = (0,0)$ and $F = F_d + F_{d-1} + \dots + F_4 + (x-y)y^2$ (where the $F_i$ are the components of the respective degrees). Near $(0,0)$, $F=0$ looks like the plot of $x=y$ and $y=0$ with the singular point $0$.
+\begin{pf}[Example where this works]
+  To see this, by translating if necessary assume that $p = (0,0)$ and $F = F_d + F_{d-1} + \dots + F_4 + (x-y)y^2$ (where the $F_i$ are the components of the respective degrees). {\color{blue} Note that this is an exemplary choice of $F$.} Near $(0,0)$, $F=0$ looks like the plot of $x=y$ and $y=0$ with the singular point $0$.
 \end{pf}
-Then the number of $i$ satisfying (i) is
+Then the number of $i$ satisfying (i) is {\color{blue}(explanation below -- credit to Gemini)}
 \begin{align*}
   \leq \quad & 2d\#(V(F) \cap \partial[0,N]^2) \\
   \leq \quad & 2d4d \\
-  \leq \quad & 8d^2
+  \leq \quad & 8d^2.
 \end{align*}
+{\color{blue} Note that we can fix the ordinate or abscissa along every edge of the rectangle. Then, this becomes a one-variable polynomial with at most $d$ zeroes.} \\
 The number of $i$ satisfying (ii) is
 \begin{align*}
   \leq \quad & 2d\#(V(F)\cap V(\partial_xF) \cap V(\partial_yF)) \\
@@ -1657,7 +1656,7 @@ Hence, the number of connected components of $V \setminus \Sing(V) \cap [0,N]^2$
 \section{The Proof of Theorem \ref{thm:3.1}}
 \begin{pf}[Proof of Theorem \ref{thm:3.1}]
   Take any connected component $C_i$ such that $\overline{C_i} \cap [0,N]^2 \neq \varnothing$. Assume that this is $C_1$ without loss of generality. We first remove all the points in $(V(\partial_xF) \cup V(\partial_yF))\cap V(F)$ from $C_1$. The removed set has cardinality $\O(d^2)$. Suppose that $\partial_xF \not\equiv \pm \partial_yF$ so that $\partial_xF \pm \partial_yF$ is a polynomial of degree $\leq d-1$. By Bézout, we have
-  \[ \#(C_1 \cap V(\partial_xF + \partial_yF)) + \#(C_1 \cap V(F_x-F_y)) \leq 2d^2.\]
+  \[ \#(C_1 \cap V(\partial_xF + \partial_yF)) + \#(C_1 \cap V(\partial_xF-\partial_yF)) \leq 2d^2.\]
   Furthermore, we remove all the points where $\partial_xF=\pm\partial_yF$. We denote the remaining set as
   \[ \bigcup_{j=1}^{M_1} C_{1,j}.\]
   Then, for each $j$, we either have
@@ -1673,17 +1672,17 @@ Hence, the number of connected components of $V \setminus \Sing(V) \cap [0,N]^2$
   \end{align*}
   From Theorem \ref{thm:3.11}, we obtain that
   \begin{align*}
-    \#C_{1,j} \cap [0,N]^2\cap\Z^2 \\
+    & \#C_{1,j} \cap [0,N]^2\cap\Z^2 \\
     \leq \quad & \#\{ (x,f_j(x)): x \in \overline{I_j}\} \cap \Z^2 \\
     \leq \quad & \log^{\O(d)}(N)N^{\frac{1}{d}}.
   \end{align*}
   Therefore,
   \begin{align*}
-    \#\{ (x,y) \in \Z^2 \cap [0,N]^2: F(x,y) = 0\} \\
+    & \#\{ (x,y) \in \Z^2 \cap [0,N]^2: F(x,y) = 0\} \\
     \ll \quad & d^3\left(\O(d^2) + d^2\log^{\O(d)}(N)N^{\frac{1}{N}}\right) \\
     \ll \quad & d^5\log^{\O(d)}(N)N^{\frac{1}{d}},
   \end{align*}
-  where the first estimate uses that the number of $C_i$ such that $\overline{C_i} \cap [0,N]^2 \neq \varnothing$, that the number of removed points is $\O(d^2)$ and the number of $j$ is $d^2$.
+  where the first estimate uses that the number of $C_i$ such that $\overline{C_i} \cap [0,N]^2 \neq \varnothing$ is in $\O(d^3)$, that the number of removed points is $\O(d^2)$ and the number of $j$ is $d^2$.
 \end{pf}
 In a similar manner, we can prove the following:
 \begin{theorem}{Bombieri-Pila II}{3.12}

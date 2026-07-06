@@ -1886,6 +1886,112 @@ for $s \in \N^m$. Last time we proved Theorem \ref{thm:4.6}. That is, we constru
   This proves the assumption.
 \end{pf}
 \newLecture{28th June 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4199795}{W10L2}}
+\noindent\textbf{Wronskians.} Let $\Delta$ denote an operator of the form
+\[
+  \frac{\partial^{i_1}}{\partial x_1^{i_1}}\cdots\frac{\partial^{i_m}}{\partial x_m^{i_m}}
+\]
+and denote $\ord(\Delta)=i_1+\dots+i_m$. Suppose we have $\Delta_1,\dots,\Delta_h$ with
+\[
+  \ord(\Delta_i)\leq i-1 \quad (\forall 1 \leq i \leq h).
+\]
+Let $g_1,\dots,g_h$ be sufficiently many times differentiable functions in $x_1,\dots,x_m$. Then
+\[
+  \det\left[\Delta_i g_j\right]_{1 \leq i,j \leq h}
+\]
+is called a \define[Generalised Wronskian]{(generalised) Wronskian}.
+
+\begin{proposition}{Wronskian criterion}{4.9}
+  Let $m \geq 1$. Let $h \geq 1$ and let $g_1,\dots,g_h$ be rational functions over $\Q$ in variables $x_1,\dots,x_m$. Suppose
+  \[
+    c_1g_1+\dots+c_hg_h \equiv 0, \quad c_1,\dots,c_h \in \Q
+  \]
+  implies $c_1=\dots=c_h=0$. Then there exists a Wronskian
+  \[
+    \det\left[\Delta_i g_j\right]_{1 \leq i,j \leq h}\not\equiv 0.
+  \]
+\end{proposition}
+\begin{pf}
+  We prove the statement by induction on $h$. Suppose first that $m=1$. In this case, consider
+  \[
+    \Delta_i=\frac{d^{i-1}}{dx_1^{i-1}} \quad (\forall 1 \leq i \leq h).
+  \]
+  Then
+  \[
+    \det\left[\Delta_i g_j\right]\not\equiv 0
+  \]
+  by an exercise.
+
+  Now suppose the statement holds for $<h$, and prove it for $h$. The case $h=1$ is trivial, since $\Delta_1g_1=g_1\not\equiv 0$. Thus we assume $g_1,\dots,g_h$ are linearly independent over $\Q$; in particular $g_1\neq 0$.
+
+  We may assume without loss of generality that $g_1\equiv 1$. Indeed, let
+  \[
+    \widetilde g_j=\frac{1}{g_1}g_j \quad (\forall 1 \leq j \leq h).
+  \]
+  Then
+  \[
+    \Delta_i\widetilde g_j=\sum_a Q_{i,a}(g_1)\Delta_i^{(a)}g_j,
+  \]
+  where each $Q_{i,a}(g_1)$ is a rational function whose numerator is a polynomial in the partial derivatives of $g_1$ (including $g_1$ itself) and whose denominator is a power of $g_1$. This is independent of $g_j$. Thus, by multilinearity of the determinant, $\det[\Delta_i\widetilde g_j]$ is a sum of Wronskians of $g_1,\dots,g_h$ multiplied by rational functions in the partial derivatives of $g_1$. Hence, if $\det[\Delta_i\widetilde g_j]\not\equiv 0$, at least one of the summands is nonzero. So we assume without loss of generality that $g_1\equiv 1$.
+
+  If $g_h\equiv c \in \Q$, then $cg_1-g_h\equiv 0$, a contradiction. Therefore, without loss of generality,
+  \[
+    \frac{\partial g_h}{\partial x_1}\not\equiv 0.
+  \]
+  Suppose there exist $c_2,\dots,c_h\in\Q$, not all zero, such that
+  \[
+    \frac{\partial}{\partial x_1}(c_2g_2+\dots+c_hg_h)\equiv 0.
+  \]
+  If not, we set $k_1=1$. Otherwise, without loss of generality $c_2=1$; replacing $g_2$ by
+  \[
+    g_2+c_3g_3+\dots+c_hg_h
+  \]
+  does not change the Wronskian by the properties of the determinant. Thus, without loss of generality,
+  \[
+    \frac{\partial g_2}{\partial x_1}\equiv 0.
+  \]
+  Continuing in this manner, without loss of generality we obtain $1 \leq k_1<h$ such that
+  \[
+    \frac{\partial g_1}{\partial x_1}\equiv \dots \equiv \frac{\partial g_{k_1}}{\partial x_1}\equiv 0,
+  \]
+  and every nontrivial $\Q$-linear combination of $g_{k_1+1},\dots,g_h$ depends on $x_1$.
+
+  By the inductive hypothesis, applied to $g_1,\dots,g_{k_1}$, there exist $\widetilde\Delta_1,\dots,\widetilde\Delta_{k_1}$ of orders $\leq 0,1,\dots,k_1-1$, respectively, such that
+  \[
+    W_1=\det\left[\widetilde\Delta_i g_j\right]_{1 \leq i,j \leq k_1}\neq 0.
+  \]
+  Moreover, there are no nontrivial $\Q$-linear relations among
+  \[
+    \frac{\partial g_{k_1+1}}{\partial x_1},\dots,\frac{\partial g_h}{\partial x_1}.
+  \]
+  Thus, again by the inductive hypothesis, there exist $\widetilde\Delta_{k_1+1},\dots,\widetilde\Delta_h$ of orders $\leq 0,1,\dots,h-k_1-1$, respectively, such that
+  \[
+    W_2=\det\left[\widetilde\Delta_i\frac{\partial g_j}{\partial x_1}\right]_{k_1+1 \leq i,j \leq h}\neq 0.
+  \]
+  Let
+  \[
+    \Delta_i=
+    \begin{cases}
+      \widetilde\Delta_i & 1 \leq i \leq k_1, \\
+      \widetilde\Delta_i\frac{\partial}{\partial x_1} & k_1+1 \leq i \leq h.
+    \end{cases}
+  \]
+  In particular, $\ord(\Delta_i)\leq i-1$ for $1 \leq i \leq h$. Then
+  \[
+    W=\det\left[\Delta_i g_j\right]_{1 \leq i,j \leq h}
+    =
+    \det\begin{pmatrix}
+      * & * \\
+      0 & *
+    \end{pmatrix}
+    = W_1W_2\neq 0. \qedhere
+  \]
+\end{pf}
+
+\noindent\textbf{Slight digression.} Note Roth's theorem is trivial for non-real algebraic numbers. Let $\alpha=\lambda+i\beta$ with $\lambda,\beta\in\R$ and $\beta\neq 0$. Then clearly
+\[
+  |\beta|\leq \left|\frac aq-\alpha\right|<\frac{1}{q^{2+\epsilon}}
+\]
+only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1$.
 
 \newLecture{1st July 2026 - W11L1}
 \begin{theorem}{}{4.10}
@@ -1980,4 +2086,194 @@ for $s \in \N^m$. Last time we proved Theorem \ref{thm:4.6}. That is, we constru
     \implies & \ind_r\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right) \leq \frac{k\epsilon^2}{12},
   \end{align*}
 \end{pf}
+\newLecture{3rd July 2026 - W11L2}
+\begin{pf}[Continuation of the proof of Theorem \ref{thm:4.10}]
+  Recall that we are proving Theorem \ref{thm:4.10} by induction. We have
+  \[
+    W(x_1,\dots,x_m)=U(x_m)V(x_1,\dots,x_{m-1})
+  \]
+  with $U\in\Z[x_m]$, $V\in\Z[x_1,\dots,x_{m-1}]$, and
+  \[
+    \|U\|,\|V\|\leq q_1^{2\omega r_1k}.
+  \]
+  We showed
+  \[
+    \ind_r\left(V,\left(\frac{a_1}{q_1},\dots,\frac{a_{m-1}}{q_{m-1}}\right)\right)\leq \frac{k\epsilon^2}{12}.
+  \]
+
+  This time we consider
+  \[
+    \ind_{kr_m}\left(U,\frac{a_m}{q_m}\right)
+  \]
+  and apply the inductive hypothesis with $m=1$. We choose $\epsilon_0$ such that
+  \[
+    \|U\|\leq q_1^{2\omega r_1k}\leq q_m^{2\omega r_mk}\leq q_m^{\omega(1,\epsilon_0)r_mk}.
+  \]
+  Again set $\epsilon_0=\frac{\epsilon^2}{12}$, since, using $m\geq 2$,
+  \[
+    2\omega=2\omega(m,\epsilon)\leq \omega\left(1,\frac{\epsilon^2}{12}\right).
+  \]
+  Hence
+  \[
+    \ind_{kr_m}\left(U,\frac{a_m}{q_m}\right)\leq \frac{\epsilon^2}{12},
+  \]
+  and therefore
+  \[
+    \ind_{r_m}\left(U,\frac{a_m}{q_m}\right)\leq \frac{k\epsilon^2}{12}.
+  \]
+  By Lemma \ref{lem:4.3}, it follows that
+  \[
+    \ind_{\vec r}\left(W,\left(\frac{a_1}{q_1},\dots,\frac{a_m}{q_m}\right)\right)\leq \frac{k\epsilon^2}{12}+\frac{k\epsilon^2}{12}=\frac{k\epsilon^2}{6}.
+  \]
+
+  We use this to bound
+  \[
+    I=\ind_{\vec r}\left(P,\left(\frac{a_1}{q_1},\dots,\frac{a_m}{q_m}\right)\right).
+  \]
+  By Lemma \ref{lem:4.3}, we have
+  \begin{align*}
+    \ind_{\vec r}\left(P^{[\iota(i),j-1]},\left(\frac{a_1}{q_1},\dots,\frac{a_m}{q_m}\right)\right)
+    &\geq I-\left(\frac{i_1}{r_1}+\dots+\frac{i_{m-1}}{r_{m-1}}+\frac{j-1}{r_m}\right) \\
+    &\geq I-\frac{i_1+\dots+i_{m-1}}{r_{m-1}}-\frac{j-1}{r_m} \\
+    &\geq I-\frac{r_m}{r_{m-1}}-\frac{j-1}{r_m} \\
+    &\geq I-\omega-\frac{j-1}{r_m} \\
+    &\geq I-\frac{\epsilon^2}{24}-\frac{j-1}{r_m},
+  \end{align*}
+  recalling that $\iota(i)=(i_1,\dots,i_{m-1})$, $i_1+\dots+i_{m-1}\leq i-1\leq k-1\leq r_m$, $r_m\leq \omega r_{m-1}$, and $\omega\leq\omega(2,\epsilon)=\frac{\epsilon^2}{24}$.
+
+  Recall
+  \[
+    W(x_1,\dots,x_m)=\det\left(P^{[\iota(i),j-1]}\right)_{1 \leq i,j \leq k}.
+  \]
+  Applying Lemma \ref{lem:4.3} to the determinant expansion gives
+  \begin{align*}
+    \frac{k\epsilon^2}{6}
+    &\geq \ind_{\vec r}\left(W,\left(\frac{a_1}{q_1},\dots,\frac{a_m}{q_m}\right)\right) \\
+    &\geq \min_{\sigma\in S_k}\ind_{\vec r}\left(
+      \prod_{i=1}^k P^{[\iota(i),\sigma(i)-1]},
+      \left(\frac{a_1}{q_1},\dots,\frac{a_m}{q_m}\right)
+    \right) \\
+    &\geq \sum_{j=1}^k\max\left(I-\frac{\epsilon^2}{24}-\frac{j-1}{r_m},0\right) \\
+    &\geq -\frac{k\epsilon^2}{24}+\sum_{j=1}^k\max\left(I-\frac{j-1}{r_m},0\right).
+  \end{align*}
+  Hence
+  \[
+    \frac{1}{k}\sum_{j=1}^k\max\left(I-\frac{j-1}{r_m},0\right)\leq \frac{5\epsilon^2}{24}<\frac{\epsilon^2}{4}.
+  \]
+
+  Finally, we consider two cases. Suppose first that $I\geq \frac{k-1}{r_m}$. Recall that $k-1\leq r_m$. Then
+  \begin{align*}
+    \frac{\epsilon^2}{4}
+    &> \frac{1}{k}\sum_{j=1}^k\max\left(I-\frac{j-1}{r_m},0\right) \\
+    &= \frac{1}{k}\sum_{j=1}^k\left(I-\frac{j-1}{r_m}\right) \\
+    &= I-\frac{k-1}{2r_m} \\
+    &= \frac I2+\frac12\left(I-\frac{k-1}{r_m}\right) \\
+    &\geq \frac I2.
+  \end{align*}
+  Hence $I<\frac{\epsilon^2}{2}<\epsilon$, as desired.
+
+  On the other hand, suppose $I<\frac{k-1}{r_m}$. Then
+  \begin{align*}
+    \frac{\epsilon^2}{4}
+    &> \frac{1}{k}\sum_{j=1}^k\max\left(I-\frac{j-1}{r_m},0\right) \\
+    &= \frac{1}{k}\sum_{1 \leq j \leq \lfloor Ir_m\rfloor+1}\left(I-\frac{j-1}{r_m}\right) \\
+    &= \frac{1}{k}(\lfloor Ir_m\rfloor+1)\left(I-\frac{\lfloor Ir_m\rfloor}{2r_m}\right) \\
+    &\geq \frac{1}{k}(\lfloor Ir_m\rfloor+1)\frac I2 \\
+    &\geq \frac{I^2r_m}{2k} \\
+    &\geq \frac{I^2}{4},
+  \end{align*}
+  since $k\leq r_m+1\leq 2r_m$. Thus $I\leq \epsilon$ in this case as well.
+\end{pf}
+
+\begin{pf}[Proof of Roth's theorem]
+  We have a real algebraic integer $\alpha$ of degree $n$. Let $0<\delta<\frac{1}{20}$ and $0<\epsilon<\frac{\delta}{100}$. Suppose
+  \[
+    \mathcal R=
+    \left\{
+      \frac aq\in\Q:
+      \left|\alpha-\frac aq\right|<\frac{1}{q^{2+\delta}},
+      \ q>0,\ \gcd(a,q)=1
+    \right\}
+  \]
+  is infinite. Set $m>8n^2\epsilon^{-2}$ and $\omega=\omega(m,\epsilon)$ as in Theorem \ref{thm:4.10}.
+
+  First we fix $\frac{a_1}{q_1}\in\mathcal R$ such that
+  \begin{enumerate}[(i)]
+    \item $q_1^\epsilon>64(H(\alpha)+1)\max\{1,|\alpha|\}$,
+    \item $q_1^\omega\geq 2^{3m}$ and
+    \item $q_1^\omega\geq 4^m(H(\alpha)+1)^m$.
+  \end{enumerate}
+  Next we choose $\frac{a_2}{q_2},\dots,\frac{a_m}{q_m}\in\mathcal R$ such that
+  \[
+    \frac12\omega\log q_{h+1}\geq \log q_h \quad (\forall 1 \leq h \leq m-1).
+  \]
+  Note, in particular, that $q_{h+1}>q_h$.
+
+  We then fix $r_1\in\N$ satisfying
+  \[
+    \epsilon r_1\log q_1\geq \log q_m
+  \]
+  and set
+  \[
+    r_h=\left\lfloor\frac{r_1\log q_1}{\log q_h}\right\rfloor+1 \quad (\forall 2 \leq h \leq m).
+  \]
+  Then we have
+  \[
+    q_h^\epsilon\geq q_1^\epsilon>64(H(\alpha)+1)\max\{1,|\alpha|\},
+  \]
+  and
+  \[
+    r_1\log q_1\leq r_h\log q_h\leq r_1\log q_1+\log q_h\leq (1+\epsilon)r_1\log q_1.
+  \]
+  Hence the conditions of Theorem \ref{thm:4.8} are satisfied, and we get a nonzero
+  \[
+    P\in\Z[x_1,\dots,x_m]
+  \]
+  with the desired properties.
+
+  We also have the conditions of Theorem \ref{thm:4.10}:
+  \begin{align*}
+    &q_h^\omega\geq q_1^\omega\geq 2^{3m} \quad (\forall 1 \leq h \leq m), \\
+    &q_h^{r_h}\geq q_h^{\frac{r_1\log q_1}{\log q_h}}=q_1^{r_1},
+  \end{align*}
+  and
+  \[
+    \frac{r_{h+1}}{r_h}
+    \leq
+    \frac{\frac{2r_1\log q_1}{\log q_{h+1}}}{\frac{r_1\log q_1}{\log q_h}}
+    =
+    \frac{2\log q_h}{\log q_{h+1}}
+    \leq \omega.
+  \]
+  Finally, by Theorem \ref{thm:4.8},
+  \begin{align*}
+    \|P\|
+    &\leq (4H(\alpha)+4)^{r_1+\dots+r_m} \\
+    &\leq (4H(\alpha)+4)^{mr_1} \\
+    &\leq q_1^{\omega r_1}.
+  \end{align*}
+  Thus the conditions of Theorem \ref{thm:4.10} are satisfied. We obtain
+  \[
+    \frac{\delta m}{8}
+    \leq
+    \ind_{\vec r}\left(P,\left(\frac{a_1}{q_1},\dots,\frac{a_m}{q_m}\right)\right)
+    \leq \epsilon,
+  \]
+  where the left inequality comes from Theorem \ref{thm:4.8} and the right inequality from Theorem \ref{thm:4.10}. This is a contradiction, because
+  \[
+    \frac{\delta m}{8}\leq \epsilon<\frac{\delta}{100}
+    \implies m<\frac{8}{100}.
+  \]
+  Therefore, $\mathcal R$ is finite.
+\end{pf}
+
+\noindent\textbf{Comment.} The proof does not lead to an effective bound for $\#\mathcal R$. The proof of Roth's theorem goes something like this: if we have good approximations
+\[
+  \frac{a_1}{q_1},\dots,\frac{a_m}{q_m}
+\]
+with $q_1>Q_0(\delta,\alpha,m)$ and
+\[
+  q_m>q_{m-1}>\dots>q_1
+\]
+with sufficiently large gaps between each $q_{i+1}$ and $q_i$, then we get a contradiction. The proof does not give some effectively computable $Q_{\mathrm{eff}}>0$ such that any good approximation $\frac aq$ satisfies $q\leq Q_{\mathrm{eff}}$.
 \end{document}

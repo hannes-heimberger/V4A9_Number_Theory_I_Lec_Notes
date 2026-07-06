@@ -1399,28 +1399,29 @@ We will use this in the following manner:
 \end{theorem}
 \section{Dividing the curve}
 We begin with the following lemma.
-\begin{lemma}{}{3.7}
+\begin{lemma}{Bound for Points on a Solution Curve}{3.7}
   Suppose that $F \in \R[x,y]$ is irreducible of degree $d$ over $\R$, with $\partial_yF(x,y) \not\equiv 0$. Let $I \subseteq \R$ be a closed interval (not a point), $k \geq 1$ and $f \in \mathcal{C}^{\infty}(I)$ satisfy $F(x,f(x)) = 0 \forall_{x \in I}$.
   Suppose that $f$ is \emp{NOT} a degree $k$ polynomial. Then, we have
   \[ \#\{ x \in I: f^{(k)}(x) = c\} \leq 2kd^2 \forall_{c \in \R^\times}.\]
 \end{lemma}
 \begin{pf}
   We basically take the $k$-th derivative of $F(x,f(x)) = 0$ and see what happens. We show by induction that for each $k \geq 1$,
-  \[ \exists_{H_k \in \R[x,y]: \deg(H_k) \leq D_k = (k-1)(2d-3)+d-1}: H_k(x,f(x)) + \partial_yF(x,f(x))^{2k-1}f^{(k)}(x) = 0 \forall x \in I. \hfill (*).\]
+  $\exists_{H_k \in \R[x,y]: \deg(H_k) \leq D_k = (k-1)(2d-3)+d-1}:$
+  \[ H_k(x,f(x)) + (\partial_yF(x,f(x)))^{2k-1}f^{(k)}(x) = 0 \forall_{x \in I}. \hfill (*)\]
   For $k=1$, we have
-  \[ \partial_xF(x,f(x)) + \partial_yF(x,f(x))f^{(1)}(x) \equiv 0 \forall_{x \in I}.\]
+  \[ \partial_xF(x,f(x)) + \partial_yF(x,f(x))f^{(1)}(x) = 0 \forall_{x \in I}.\]
   Therefore, $(*)$ holds with $H_k(x,y) = \partial_xF(x,y)$ and $\deg(H_k) \leq d-1 = D_1$. Assume that $(*)$ hold for some $k \geq 1$. Take the derivative of $(*)$ to get
-  \begin{align*} 0 \equiv \quad & \partial_xH_k(x,f(x)) + \partial_yH_k(x,f(x))f'(x) + \partial_yF(x,f(x))^{2k-1}f^{(k+1)} + \\
-  \quad & (2k-1)F_y(x,f(x))^{2k-2}f^{(k)}(\partial^2_{xy}F(x,f(x))+\partial^2_yF(x,f(x))f'(x)).\end{align*}
-  Multiply by $\partial_yF(x,f(x))^2$ (and simplify the notation) to get
-  \[ 0 = \partial_yF^2(\partial_xH_k + \partial_yH_kf') + \partial_yF^{2k+1}f^{(k+1)} + (2k-1)\partial_yF^{2k}f^{(k)}(\partial_{xy}^2F + \partial_y^2f').\]
-  Now use $(*)$ ($H_k = -\partial_yF^{2k-1}f^{(k)}$ and $\partial_xF = -\partial_yFf'$) to deduce that
-  \begin{align*} 0 = \quad & \partial_yF^2\partial_xH_k -\partial_xF\partial_yF\partial_yH_k + F_y^{2k+1}f^{(k+1)}-(2k-1)H_k\underbrace{\partial_yF(\partial_{xy}^2F + \partial_y^2Ff')}_{= \partial_yF\partial_{xy}^2F-\partial_xF\partial^2_{y}}F \\
-  = \quad & H_{k+1}(x,f(x)) + \partial_yF(x,f(x))^{2k+1}f^{k+1}(x) \forall x \in I.\end{align*}
+  \begin{align*} 0 \equiv \quad & \partial_xH_k(x,f(x)) + \partial_yH_k(x,f(x))f'(x) + (\partial_yF(x,f(x)))^{2k-1}f^{(k+1)}(x) + \\
+  \quad & (2k-1)(\partial_yF(x,f(x)))^{2k-2}f^{(k)}(x)(\partial^2_{xy}F(x,f(x))+\partial^2_yF(x,f(x))f'(x)).\end{align*}
+  Multiply by $(\partial_yF(x,f(x)))^2$ (and simplify the notation) to get
+  \[ 0 = (\partial_yF)^2(\partial_xH_k + \partial_yH_kf') + (\partial_yF)^{2k+1}f^{(k+1)} + (2k-1)(\partial_yF)^{2k}f^{(k)}(\partial_{xy}^2F + \partial_y^2f').\]
+  Now use $(*)$ ($H_k = -(\partial_yF)^{2k-1}f^{(k)}$ and $\partial_xF = -\partial_yFf'$) to deduce that
+  \begin{align*} 0 = \quad & (\partial_yF)^2\partial_xH_k -\partial_xF\partial_yF\partial_yH_k + (\partial_yF)^{2k+1}f^{(k+1)}-(2k-1)H_k\underbrace{\partial_yF(\partial_{xy}^2F + \partial_y^2Ff')}_{= \partial_yF\partial_{xy}^2F-\partial_xF\partial^2_{y}F} \\
+  = \quad & H_{k+1}(x,f(x)) + (\partial_yF(x,f(x)))^{2k+1}f^{k+1}(x) \forall x \in I.\end{align*}
   Check that $\deg H_{k+1} \leq D_k + 2d-3 = D_{k+1}$. This proves $(*)$ for $k+1$.
   It follows from $(*)$ that, given $x \in I$ and $c \in \R^{\times}$,
   \[ f^{(k)}(x) = c \implies R_c(x,f(x)) = 0,\]
-  where $R_c(x,y) = H_k(x,y) + \partial_yF(x,y)^{2k-1}c$. Check that $\deg R_c \leq 2kd$. Therefore,
+  where $R_c(x,y) = H_k(x,y) + (\partial_yF(x,y))^{2k-1}c$. Check that $\deg R_c \leq 2kd$. Therefore,
   \begin{align*}
     & \{ x \in I: f^{(k)}(x) = c\} \\
     \subseteq \quad & \{ x \in I: R_c(x,f(x)) = 0\} \\
@@ -1428,12 +1429,12 @@ We begin with the following lemma.
   \end{align*}
   This implies that (under the assumption that $F \nmid R_c$, which we will prove later)
   \begin{align*}
-    & \#\{ x \in I: f^{(k)}(c)\} \leq \#\{ (x,y) \in \R^2: F(x,y) = 0, R_c(x,y) = 0\} \\
+    \#\{ x \in I: f^{(k)}(c)\} \leq \quad & \#\{ (x,y) \in \R^2: F(x,y) = 0, R_c(x,y) = 0\} \\
     \stackrel{F \nmid R_c, \text{ Thm. \ref{thm:3.6}} }{\leq} \quad & \deg(F)\deg(R_c) \\
     \leq \quad & d2kd \\
     = \quad & 2kd^2,
   \end{align*}
-  as desired. It remains to show that $F \nmid R_c$. Let us suppose otherwise. We know that $F(x,f(x)) = 0$ implies $R_c(x,f(x)) = 0$, where we have
+  as desired. It remains to show that $F \nmid R_c$. Let us suppose otherwise. This would mean that $F(x,f(x)) = 0$ implies $R_c(x,f(x)) = 0$, where we have
   \[ R_c(x,f(x)) = H_k(x,f(x)) + \partial_yF(x,f(x))^{2k-1}c \stackrel{(*)}{=} -\partial_yF(x,f(x))^{2k-1}(f^{(k)}(x)-c).\]
   By the same argument as before,
   \begin{align*}
@@ -1442,12 +1443,12 @@ We begin with the following lemma.
     \stackrel{F \nmid \partial_yFf}{\leq} \quad & \deg(F)\deg(\partial_yF) \\
     \leq \quad & d(d-1).
   \end{align*}
-  Hence, $f^{(k)}(x) = c \neq 0 \forall_{x \in I}$, except for at mosst $d^2$ points. Thus, $f$ is of degree $k$. \Lightning \\
+  Hence, $f^{(k)}(x) = c \neq 0 \forall_{x \in I}$, except for at most $d^2$ points. Thus, $f$ is of degree $k$. \Lightning \\
   This completes the proof.
 \end{pf}
 \newLecture{10th June 2026 - \href{https://ecampus.uni-bonn.de/goto_ecampus_file_4179280_download.html}{W8L1}}
-\begin{lemma}{}{3.8}
-  Suppose $F \in \R[x,y]$ is irreducible over $\R$ and of degree $d \geq 2$. Let $I$ be a closed interval and $f \in \mathcal{C}^{\infty}(I)$ be such that $F(x,f(x)) = 0 \forall_{x \in I}$. Let $k \geq 1$ and $A_1, \dots, A_k > 0$. Then, we may partition $I$ into $\O(k^2d^2)$ intervals $I_v$ such that for each $1 \leq i \leq k$ and $I_v$, we have either
+\begin{lemma}{Partitioning the Interval for a Solution Curve}{3.8}
+  Suppose $F \in \R[x,y]$ is irreducible over $\R$ and of degree $d \geq 2$. Let $I$ be a closed interval and $f \in \mathcal{C}^{\infty}(I)$ such that $F(x,f(x)) = 0 \forall_{x \in I}$. Let $k \geq 1$ and $A_1, \dots, A_k > 0$. Then, we may partition $I$ into $\O(k^2d^2)$ intervals $I_v$ such that for each $1 \leq i \leq k$ and $I_v$, we have either
   \begin{enumerate}[(i)]
     \item \[ \left|f^{(i)}(x)\right| \leq A_i \forall_{x \in I_v} \text{ or}\]
     \item{\[ \left|f^{(i)}(x)\right| \geq A_i \forall_{x \in I_v}.\]}
@@ -1470,7 +1471,7 @@ We begin with the following lemma.
   \end{enumerate}
 \end{pf}
 We use this lemma to divide up the curve based on the derivative of $f$. If all derivatives are small, then we use Lemma \ref{lem:3.2*}. If not, we prove that $\lambda(I_v)$ is small (this is the easy case).
-\begin{lemma}{}{3.9}
+\begin{lemma}{The Case of Small Derivatives}{3.9}
   Let $\ell \geq d \geq 2$ and $I \subseteq [0,N]$ be a closed intervall. Fix $f \in \mathcal{C}^{\infty}(I)$ with $F(x,f(x)) = 0 \forall_{x \in I}$, $F$ being of degree $d$ and irreducible over $\R$. Suppose that $N > 0$ and $\delta \geq \frac{1}{\lambda(I)}$ satisfy
   \[ \max_{x \in I}\left| \frac{f^{(i)}(x)}{i!}\right| \leq N\delta^i \forall_{0 \leq i \leq k = d(\ell-d+1)}.\]
   Then
@@ -1482,17 +1483,17 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
   \begin{align*}
     \#\mathcal M = \quad & \sum_{d \leq h \leq \ell} \#\{ (j_1,j_2) \in S(\mathcal M): h = j_1+j_2\}.
   \end{align*}
-  Fix $d \leq h \leq \ell$. Clearly, $j_2 = h-j_1$. Now $x^{d-i_0}y^{i_0} \nmid x^{j_1}y^{j_2}$ implies that $d-i-0 > j_1$ or $i_0 > j_2$. Hence, $0 \leq j_1$ or $h-i_0<j_1 \leq h$. Since $h \geq d \geq i_0$, the number of choices for $j_1$ is $d-i_0+i_0 = d$. Therefore, \[\#\mathcal{M} =  \sum_{d \leq h \leq \ell} d = d(\ell-d+1) = k = d\ell + \O(d^2).\]
-  Also, \begin{align*} J_1(M) + J_2(M) = \quad & \sum_{d \leq h \leq \ell} dh \\
+  Fix $d \leq h \leq \ell$. Clearly, $j_2 = h-j_1$. Now $x^{d-i_0}y^{i_0} \nmid x^{j_1}y^{j_2}$ implies that $d-i_0 > j_1$ or $i_0 > j_2$. Hence, $0 \leq j_1 < d-i_0$ or $h-i_0<j_1 \leq h$. Since $h \geq d \geq i_0$, the number of choices for $j_1$ is $d-i_0+i_0 = d$. Therefore, \[\#\mathcal{M} =  \sum_{d \leq h \leq \ell} d = d(\ell-d+1) = k = d\ell + \O(d^2).\]
+  Also, \begin{align*} J_1(\mathcal M) + J_2(\mathcal M) = \quad & \sum_{d \leq h \leq \ell} dh \\
   = \quad & d\left(\frac{\ell(\ell+1)}{2}-\frac{d(d-1)}{2}\right) \\
   \leq \quad & \frac{\ell^2d}{2} + \O(d\ell) \\
-  = \quad & \frac{k^2}{2} + \O\left(\frac{k^2}{\ell}\right).\end{align*}
+  = \quad & \frac{k^2}{2d} + \O\left(\frac{k^2}{\ell}\right).\end{align*}
   This implies that
   \begin{equation}\label{eq:lem3.9:1}
     \frac{J_1(M)+J_2(M)}{\binom{k}{2}} \leq \frac{1}{d} + \O\left(\frac{1}{\ell}\right). \tag{1}
   \end{equation}
-  Next, we show that $F \nmid P$ for any $0 \not\equiv P \in \Span_{\R}(M)$. Suppose that $F \mid P$. This implies that $P = FG$ with $\deg G = d'$. Let $i_0'$ be the largest $i$ such that $x^{d-i}y^i$ is a monomial appearing in $G$. Then $x^{d+d'-i_0-i_0'}y^{i_0+i_0'}$ is a monomial appearing in $P$. Therefore, we have
-  \[ x^{d+d'-i_0-i_0'} \in \mathcal M,\]
+  Next, we show that $F \nmid P$ for any $0 \not\equiv P \in \Span_{\R}(\mathcal M)$. Suppose that $F \mid P$. This implies that $P = FG$ with $\deg G = d'$. Let $i_0'$ be the largest $i$ such that $x^{d-i}y^i$ is a monomial appearing in $G$. Then $x^{d+d'-i_0-i_0'}y^{i_0+i_0'}$ is a monomial appearing in $P$. Therefore, we have
+  \[ x^{d+d'-i_0-i_0'}y^{i_0+i_0'} \in \mathcal M,\]
   which is a contradiction because $x^{d-i_0}y^{i_0}$ divides this monomial. \Lightning \\
   Under the hypothesis of this lemma, it follows from Lemma \ref{lem:3.2*} that
   \begin{equation}\label{eq:lem3.9:2} \{ (x,f(x)): x \in I\} \cap \Z^2 \subseteq \bigcup_{P \in \mathfrak{P}} V(P),\tag{$*$}\end{equation}
@@ -1507,7 +1508,7 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
   \end{align*}
   where we used that the left hand side of (\ref{eq:lem3.9:2}) is contained in $V(F) \cap \Z^2$. Also recall that $k = d\ell + \O(d^2)$.
 \end{pf}
-\begin{lemma}{}{3.10}
+\begin{lemma}{The Short Interval Bound}{3.10}
   Let $k \geq 1$, $0 < \delta <  1$, and $X > 0$. Further assume that $I$ is a closed bounded interval and $f \in \mathcal{C}^k(I)$. If
   \[ \max_{x \in I}\left|\frac{f^{(i)}(x)}{i!}\right| \leq X\delta^i \forall_{0 \leq i < k}\]
   and
@@ -1528,19 +1529,19 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
 \newLecture{12th June 2026 - \href{https://ecampus.uni-bonn.de/goto_ecampus_file_4179119_download.html}{W8L2}}
 \section{Number of lattice points on a curve}
 \begin{theorem}{Number of lattice points on a curve}{3.11}
-  Let $d \geq 2$ and let $N \geq 1$ be sufficiently large in terms of $d$. Let $I \subseteq [0,N]$ be a closed interval and let $f \in \mathcal{C}^{\infty}(I)$ satisfy
+  Let $d \geq 2$ and $N \geq 1$ be sufficiently large in terms of $d$. Let $I \subseteq [0,N]$ be a closed interval and $f \in \mathcal{C}^{\infty}(I)$ satisfy
   \[ |f'(x)| \leq 1 \forall_{x \in I}.\]
   Suppose that there exists an irreducible polynomial $F \in \R[x,y]$ of degree $d$ such that
   \[ F(x,f(x)) = 0 \forall_{x \in I}.\]
   Then
   \[ \#\left(\{(x,f(x)): x \in I\}\cap \Z^2\right) \leq (\log N)^{\O(d)}N^{\frac{1}{d}}.\]
 \end{theorem}
-\begin{proof}
+\begin{pf}
   For $T > 1$, define $g(T)$ to be the maximum of $2$ and the supremum of
   \[ \#\left(\{(x,h(x)): x \in J\}\cap\Z^2\right)\]
   over all closed intervals $J \subseteq [0,T]$ with $\lambda(J) \geq 1$, all $h \in \mathcal{C}^{\infty}(J)$ with $|h'(x)| \leq 1$ for all $x \in J$, and all irreducible $G \in \R[x,y]$ of degree $d$ such that $G(x,h(x))=0$ on $J$. For $0 < T \leq 1$, set $g(T)=2$.
 
-  We first prove the following recursive estimate.
+  We will later prove the following recursive estimate.
   \begin{claim}{}{}
     Given any integer $\ell \geq d$, there exists $K = K(d,\ell)$ with
     \[ 2 \leq K \leq \ell^{\O(1)}\]
@@ -1549,7 +1550,7 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
     where the implicit constants are absolute.
   \end{claim}
 
-  We show that the claim implies the theorem. After increasing the implicit constants, the claim gives absolute constants $c_0,c_1,c_2>0$ such that
+  We show that this claim implies the theorem. After increasing the implicit constants, the claim gives absolute constants $c_0,c_1,c_2>0$ such that
   \[ g(T) \leq K^{c_1d}T^{\frac{1}{d}+\frac{c_2}{\ell}} + Kg(K^{-2d}T) \quad \text{and} \quad K \leq \ell^{c_0}.\]
   Since $N$ is sufficiently large in terms of $d$, we may choose $\ell = \lceil \log N\rceil \geq d$. Iterating the estimate, we obtain
   \[ g(N) \leq K^{c_1d}N^{\frac{1}{d}+\frac{c_2}{\ell}}\sum_{j=0}^{n-1}K^{-j} + K^ng(K^{-2nd}N),\]
@@ -1558,9 +1559,7 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
   If $\lambda(I)<1$, then the desired count is at most $2$, so the theorem follows from the bound for $g(N)$.
 
   It remains to prove the claim.
-
-  \smallskip
-  \noindent\emph{Proof of the claim.}
+    \begin{proof}[Proof of the Claim]
     Let $J \subseteq [0,T]$ be a closed interval with $\lambda(J)=X$, where $1 \leq X \leq T$, and let $h \in \mathcal{C}^{\infty}(J)$ be such that $|h'(x)| \leq 1$ for all $x \in J$ and $G(x,h(x))=0$ for some irreducible $G \in \R[x,y]$ of degree $d$.
 
     Since the range of $h$ on $J$ has length at most $X$, after replacing $h$ by $h+y_0$ for a suitable $y_0 \in \Z$, and $G(x,y)$ by $G(x,y-y_0)$, we may assume
@@ -1604,18 +1603,20 @@ We use this lemma to divide up the curve based on the derivative of $f$. If all 
     and therefore
     \[ \#\left(\{(x,h(x)):x\in J\}\cap\Z^2\right)
       \leq K^{\O(d)}T^{\frac{1}{d}+\O\left(\frac{1}{\ell}\right)} + Kg(K^{-2d}T),\]
-    since $T \geq 1$. Taking the supremum over all admissible $J,h,G$ proves the claim, and hence the theorem.
-\end{proof}
+    since $T \geq 1$. Taking the supremum over all admissible $J,h,G$ proves the claim.
+    \end{proof}
+    This completes the proof of our theorem.
+\end{pf}
 \newLecture{17th June 2026 - \href{https://ecampus.uni-bonn.de/goto_ecampus_file_4186573_download.html}{W9L1}}
 Last class we proved Theorem \ref{thm:3.11}.
 \begin{exercise}{}{}
   By modifying the proof, show that we can replace $I= [0, N]$ with any closed subinterval of $[0,1]$.
 \end{exercise}
 \section{Final Preparation for the Proof of Theorem \ref{thm:3.1}}
-Let $F \in \R[x,y]$ be of degree $d \geq 2$ and irreducible over $\R$. Further assume that $\partial_xF, \partial_yF \not\equiv 0$ (because the statement would otherwise be trivial, then
+Let $F \in \R[x,y]$ be of degree $d \geq 2$ and irreducible over $\R$. Further assume that $\partial_xF, \partial_yF \not\equiv 0$ because the statement would otherwise be trivial as
 \begin{align*} & \#\{ (x,y) \in \Z^2 \cap [0,N]^2: F(x,y)=0\} \\
 = \quad & (N+1)\#\{ x \in \Z \cap [0,N]: F(x) = 0\} \\
-= \quad & 0).\end{align*}
+= \quad & 0.\end{align*}
 Let $V = V(F) = \{ (x,y) \in \R^2: F(x,y)=0\}$ and $\Sing(V) = \{ (x,y) \in \R^2: F(x,y) = \partial_xF(x,y) = \partial_yF(x,y) = 0\}$. The implicit function theorem can be combined with the fact that $V$ is algebraic to deduce that $V \setminus \Sing(V) = \bigsqcup_{i=1}^n C_i$, where the $C_i$ are the connected components (and there are only finitely many of them) and $C_i \cong_{\mathcal{C}^1} \R \text{ or } \S^1$. Therefore, we have
 \begin{align*}
   & V \cap [0,N]^2 \\
@@ -1653,6 +1654,7 @@ Finally, the number of $i$ satisfying (iii) is (if $C_i$ is a loop, then there e
   \leq \quad & 4d^3.
 \end{align*}
 Hence, the number of connected components of $V \setminus \Sing(V) \cap [0,N]^2$ is $\O(d^3)$.
+\section{The Proof of Theorem \ref{thm:3.1}}
 \begin{pf}[Proof of Theorem \ref{thm:3.1}]
   Take any connected component $C_i$ such that $\overline{C_i} \cap [0,N]^2 \neq \varnothing$. Assume that this is $C_1$ without loss of generality. We first remove all the points in $(V(\partial_xF) \cup V(\partial_yF))\cap V(F)$ from $C_1$. The removed set has cardinality $\O(d^2)$. Suppose that $\partial_xF \not\equiv \pm \partial_yF$ so that $\partial_xF \pm \partial_yF$ is a polynomial of degree $\leq d-1$. By Bézout, we have
   \[ \#(C_1 \cap V(\partial_xF + \partial_yF)) + \#(C_1 \cap V(F_x-F_y)) \leq 2d^2.\]
@@ -1887,7 +1889,7 @@ for $s \in \N^m$. Last time we proved Theorem \ref{thm:4.6}. That is, we constru
 \end{pf}
 \newLecture{28th June 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4199795}{W10L2}}
 
-\newLecture{1st July 2026 - W11L1}
+\newLecture{1st July 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4204419}{W11L1}}
 \begin{theorem}{}{4.10}
   Let $m \in \N$, $0 < \epsilon < \frac{1}{12}$, and set $\omega = \omega(m,\epsilon) = 24\cdot2^{-m}\left(\frac{\epsilon}{12}\right)^{\exp(\ln(2)(m-1))} < 1$. Let $r_1, \dots, r_m \in \N$ be such that $\omega r_h \geq r_{h+1} \forall_{1 \leq h \leq m-1}$. Let $q_1, \dots, q_m \in \N$ be such that $q_h^{r_h} \geq q_1^{r_1}$ and $q_h^{\omega} \geq 2^{3m} \forall_{1 \leq h \leq m}$. Suppose $P \in \Z[x_1, \dots, x_m] \setminus \{ 0\}$ is such that $\deg_{x_h} P \leq r_h \forall_{1 \leq h \leq m}$ and $\| P\| \leq q_1^{\omega r_1}$. Then
   \[ \ind_r\left(P, \left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \leq \epsilon,\]
@@ -1979,5 +1981,6 @@ for $s \in \N^m$. Last time we proved Theorem \ref{thm:4.6}. That is, we constru
     & \ind_{kr}\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right) \leq \frac{\epsilon^2}{12} \\
     \implies & \ind_r\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right) \leq \frac{k\epsilon^2}{12},
   \end{align*}
+\newLecture{3rd July 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4206395}{W11L2}}
 \end{pf}
 \end{document}

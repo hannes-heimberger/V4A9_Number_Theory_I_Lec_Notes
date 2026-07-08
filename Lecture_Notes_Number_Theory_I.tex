@@ -243,7 +243,7 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
   \end{itemize}
   Let $\Lambda \subseteq \R^n$ be a lattice with basis $\{ v_1, \dots, v_n\}$. We call
   \[ F = \{ \alpha_1v_1+ \dots + \alpha_nv_n: 0 \leq \alpha_1, \dots, \alpha_n < 1\}\]
-   a \define[Fundamental Parallel Piped of $\Lambda$]{fundamental parallel} piped of $\Lambda$ (or a \define[Fundamental Domain]{fundamental domain}). We have
+   a \define[Fundamental Parallelepiped of $\Lambda$]{fundamental parallelepiped} of $\Lambda$ (or a \define[Fundamental Domain]{fundamental domain}). We have
   \[ \R^n = \bigcup_{u \in \Lambda} u+F,\]
   where the $u+F$ are pairwise disjoint. Also,
   \[ \vol(F) = \int_{[0,1)^n} |\det[v_1 \cdots v_n]|\dl{\alpha_1}\cdots\dl{\alpha_n} = \det\Lambda.\]
@@ -255,7 +255,7 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
   \begin{pf}
     First assume that $\vol(C) > 2^n\det(\Lambda)$. Then the set $\nicefrac{1}{2}C$ satisfies
     \[ \vol\left(\frac{1}{2}C\right) = \frac{1}{2^n}\vol(C) > \det\Lambda.\]
-    Let $F$ be a fundamental parallel piped of $\Lambda$ and
+    Let $F$ be a fundamental parallelepiped of $\Lambda$ and
     \[ S_a = \frac{1}{2}C \cap (a+F) \forall_{a \in \Lambda}.\]
     Then,
     \[ \sum_{a \in \Lambda}\vol(S_a) = \vol\left(\frac{1}{2}C\right) > \det\Lambda.\]
@@ -509,7 +509,7 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
         \end{equation*}
         with
         \[ S(t) = S_F(t) = \{ \eta \in F \mid \exists_{x \in \Lambda}:\eta+x \in tC\},\]
-        where $\Lambda \subseteq \R^n$ is a lattice, $C \subseteq \R^n$ is a central symmetric convex body, $\lambda_1, \dots, \lambda_n$ are the successive minima of $\Lambda$ with respect to $C$ and $F$ is the fundamental parallel piped by $\Lambda$.
+        where $\Lambda \subseteq \R^n$ is a lattice, $C \subseteq \R^n$ is a central symmetric convex body, $\lambda_1, \dots, \lambda_n$ are the successive minima of $\Lambda$ with respect to $C$ and $F$ is the fundamental parallelepiped of $\Lambda$.
     \end{theorem}
   \begin{pf}
       We can reduce the problem to the case where the basis $\{ b_1, \dots, b_n\}$ given in Lemma \ref{lem:2.11} is $\{ e_1, \dots, e_n\}$ (Exercise sheet 3). In particular, $\Lambda = \Z^n$. Let $1 \leq j \leq n-1$ and $x_1 = (x_{1,1}, \dots, x_{1,n}), x_2 = (x_{2,1}, \dots, x_{2,n})$ be two vectors in $tC$ with $t < \nicefrac{\lambda_{j+1}}{2}$, such that $x_1-x_2 \in \Lambda$. Then
@@ -662,7 +662,7 @@ where $\lambda C = \{ \lambda x: x \in C\}$.
         \item{\textbf{Upper Bound} \\
         Let $\Lambda$ be a lattice inside $\R^n$ and $C$ a central symmetric convex body inside $\R^n$. Given $t > 0$, let
         \[ S(t) = S_F(t) = \{ \eta \in F \mid \exists_{x \in \Lambda}:\eta+x \in tC\}.\]
-        where $F$ is the fundamental parallel piped by $\Lambda$.
+        where $F$ is the fundamental parallelepiped of $\Lambda$.
         The assertion follows from Theorem \ref{thm:2.12} by applying it with $t = \nicefrac{\lambda_n}{2}$. We have
         \begin{align*}
           \det\Lambda = \vol(F) \geq \vol(S_F(\nicefrac{\lambda_n}{2})) \geq \frac{\lambda_1}{2}\cdots\frac{\lambda_n}{2}\vol(C),

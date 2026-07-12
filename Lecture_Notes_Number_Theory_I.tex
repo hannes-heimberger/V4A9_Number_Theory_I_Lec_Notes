@@ -1894,11 +1894,11 @@ which proves the induction step.}
   \end{align*}
 \end{pf}
 \newLecture{24th June 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4199795}{W10L1}}
-\begin{theorem}{Siegel's lemma}{4.7}
-  Let $N>M$ and $A = (a_{ij}) \in M_{M \times N}(\Z)$ with $\max_{i,j}|a_{ij}| \leq H$. Then there exists $x \in \Z^N$ such that $Ax = 0$ with $0 < \max_{1 \leq i \leq N}|x_i| \leq (NH)^{\frac{M}{N-M}}$.
+\begin{theorem}{Siegel's Lemma}{4.7}
+  Let $N>M$ and $A = (a_{ij}) \in \emm_{M \times N}(\Z)$ with \[\max_{\stackrel{1 \leq i \leq M}{1 \leq j\leq N}}|a_{ij}| \leq H.\] Then there exists $x \in \Z^N$ such that $Ax = 0$ with \[ 0 < \max_{1 \leq i \leq N}|x_i| \leq (NH)^{\frac{M}{N-M}}.\]
 \end{theorem}
 \begin{pf}
-  For each $1 \leq i \leq M$, define $L_i(x) = \sum_{j=1}^N a_{ij}x_j$. Denote
+  For each $1 \leq i \leq M$, define \[L_i(x) = \sum_{j=1}^N a_{ij}x_j.\] Denote
   \[ -C_i = \sum_{j=1}^N \min\{a_{ij},0\}\]
   and
   \[ D_i = \sum_{j=1}^N \max\{ a_{ij}, 0\}.\]
@@ -1909,48 +1909,55 @@ which proves the induction step.}
   = \quad & (NHB+1)^M.\end{align*}
   If $\#\{ y \in \Z^N \cap [0,B]^N\} = (B+1)^N > (NHB+1)^M$, then there exist distinct $y_1, y_2 \in \Z^N \cap [0,B]^N$ such that $L_i(y_1) = L_i(y_2) \forall_{1 \leq i \leq M}$. Hence, $L_i(y_1-y_2) = 0 \forall_{1 \leq i \leq M}$ and $Ax = 0$ with $0 \neq x= y_1-y_2$ and $x \in \Z^N \cap [-B,B]^N$. Finally, check that \[ B = \lf (NH)^{\frac{M}{N-M}}\rf\]
   does the job.
+  {\color{blue} Note that $NH \geq 2$ as $\Z \ni N > M \geq 1$ and $H \geq 1$ apart from the trivial case $A = 0$. Thus,
+  \begin{align*}
+    & (NH)^{\frac{M}{N-M}}-B < 1 \\
+    \iff & (NH)^{\frac{M}{N-M}} < B+1 \\
+    \iff & \left((NH)^{\frac{N}{N-M}}\right)^M < (B+1)^N \\
+    \implies & (NHB + 1)^M < (B+1)^N. \qedhere
+  \end{align*}}
 \end{pf}
 Let's recall some notation.
-\[ P(x_1, \dots, x_m) = \sum_{j \in J} C(j)x_1^{j_1}x_m^{j_m},\]
+\[ P(x_1, \dots, x_m) = \sum_{j \in J} C(j)x_1^{j_1}\cdots x_m^{j_m},\]
 \[ J = J(r_1, \dots, r_m) = \{ 0, \dots, r_1\} \times \cdots \times \{ 0, \dots, r_m\},\]
 \[ \|P\| = \max_{j \in J}|c(j)|\]
 and
-\[ P^{[k]}(x_1, \dots, x_m) = \frac{1}{k_1!}\cdots\frac{1}{k_m!}\frac{\partial^{k_1+\dots+k_m}p}{\partial_1^{k_1}\cdots\partial_m^{k_m}}.\]
+\[ P^{[k]}(x_1, \dots, x_m) = \frac{1}{k_1!}\cdots\frac{1}{k_m!}\frac{\partial^{k_1+\dots+k_m}P}{\partial_1^{k_1}\cdots\partial_m^{k_m}}.\]
 Also define
 \[ \text{ind}_{s}(P,\alpha) = \min\left\{ \sum_{i=1}^m \frac{k_i}{s_i}: P^{[k]}(\alpha) \neq 0, k \in J\right\}\]
 for $s \in \N^m$. Last time we proved Theorem \ref{thm:4.6}. That is, we constructed a polynomial over $\Z$ with a zero of \glqq large\grqq \ order at $(\alpha, \dots, \alpha)$. We now deduce this for $\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)$, where each $\frac{a_n}{q_n} \in \Q$ is \glqq close\grqq \ to $\alpha$, from the information at $(\alpha, \dots, \alpha)$.
-\begin{theorem}{}{4.8}
-  Let $0 < \delta < \frac{1}{20}$ and $0 < \epsilon < \frac{\delta}{100}$ and $\alpha$ an algebraic integer as in Theorem \ref{thm:4.6}. Suppose that $\frac{a_h}{q_h} \in \Q$ with $1 \leq h \leq m$ fulfil
+\begin{theorem}{Behaviour of the Integer Polynomial for Good Rational Approximations}{4.8}
+  Let $0 < \delta < \frac{1}{20}$, $0 < \epsilon < \frac{\delta}{100}$ and $\alpha$ an algebraic integer as in Theorem \ref{thm:4.6}. Suppose that $\frac{a_h}{q_h} \in \Q$ with $1 \leq h \leq m$ fulfil
   \[ \left| \alpha - \frac{a_h}{q_h}\right| < \frac{1}{q_h^{2+\delta}}\]
-  and $q_h^{\epsilon} > 64(H(\alpha)+1)\max\{ 1, |\alpha|\} \forall_{1 \leq h \leq m}$. Also suppose thta  $m > 8n^2\epsilon^{-2}$ and $r_1, \dots, r_m \in \N$ are such that $r_1\log q_1 \leq r_h\log q_h \leq (1+\epsilon)r_1\log q_1 \forall_{1 \leq h \leq m}$. Then the integer polynomial $P(x_1, \dots, x_m)$ constructed in Theorem \ref{thm:4.6} satisfies $\text{ind}_r\left(P,\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \geq \frac{\delta_m}{8}$.
+  and $q_h^{\epsilon} > 64(H(\alpha)+1)\max\{ 1, |\alpha|\} \forall_{1 \leq h \leq m}$. Also suppose that  $m > 8n^2\epsilon^{-2}$ and $r_1, \dots, r_m \in \N$ are such that $r_1\log q_1 \leq r_h\log q_h \leq (1+\epsilon)r_1\log q_1 \forall_{1 \leq h \leq m}$. Then the integer polynomial $P(x_1, \dots, x_m)$ constructed in Theorem \ref{thm:4.6} satisfies $\text{ind}_r\left(P,\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \geq \frac{\delta m}{8}$.
 \end{theorem}
 \begin{pf}
   We begin by applying Theorem \ref{thm:4.6} to get $P(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$ with $\text{ind}_r(P, (\alpha, \dots, \alpha)) \geq \frac{1}{2}m(1-\epsilon)$. We want to show: Let $k_1, \dots, k_m \in \Nzero$ fulfil
-  \[ \sum_{h=1}^m \frac{k_i}{r_i} < \frac{\delta_m}{8}. \hfill (*)\]
-  Then $P^{[k]}\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right) = 0$ $\left(\text{because this implies } \text{ind}_r\left(p, \left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \geq \frac{\delta_m}{8}\right)$. Let $k$ satisfy $(*)$ and denote $T(x_1, \dots, x_n) = P^{[k]}(x_1, \dots, x_m)$. It follows from Lemma \ref{lem:4.2} and Theorem \ref{thm:4.6} that $T(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$, $\|T\| = (8H(\alpha)+8)^{r_1+r_m}$ and $\deg_{x_h}T \leq r_h \forall_{1 \leq h \leq m}$. Given any $i = (i_1, \dots, i_m) \in J(r_1, \dots, r_m)$, we have
-  \begin{align*} \left| T^{[i]}(\alpha, \dots, \alpha)\right| \leq \quad & 2^{r_1+\dots+r_m}\|T^{[i]}|\max\{1, |\alpha|\}^{r_1+\dots+r_m} \\
+  \begin{equation}\label{eq:thm:4.8:1} \sum_{h=1}^m \frac{k_h}{r_h} < \frac{\delta m}{8}. \tag{$*$} \end{equation}
+  Then $P^{[k]}\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right) = 0$ $\left(\text{because this implies } \text{ind}_r\left(P, \left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \geq \frac{\delta_m}{8}\right)$. Let $k$ satisfy (\ref{eq:thm:4.8:1}) and denote $T(x_1, \dots, x_n) = P^{[k]}(x_1, \dots, x_m)$. It follows from Lemma \ref{lem:4.2} and Theorem \ref{thm:4.6} that $T(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$, $\|T\| \leq (8H(\alpha)+8)^{r_1+\dots+r_m}$ and $\deg_{x_h}T \leq r_h \forall_{1 \leq h \leq m}$. Given any $i = (i_1, \dots, i_m) \in J(r_1, \dots, r_m)$, we have
+  \begin{align*} \left| T^{[i]}(\alpha, \dots, \alpha)\right| \leq \quad & 2^{r_1+\dots+r_m}\|T^{[i]}\|\max\{1, |\alpha|\}^{r_1+\dots+r_m} \\
   \leq \quad & (32H(\alpha)+32)^{r_1+\dots+r_m}\max\{ 1, |\alpha|\}^{r_1+\dots+r_m}.\end{align*}
   because $\|T^{[i]}\| \leq 2^{r_1+\dots+r_m}\|T\|$. Next, by Lemma \ref{lem:4.3}, we have
-  \begin{align*} \text{ind}_r(T, (\alpha, \dots, \alpha)) \geq \quad & \text{ind}_r(P,(\alpha, \dots, \alpha)) - \sum_{n=1}^m\frac{k_h}{r_h} \\
+  \begin{align*} \text{ind}_r(T, (\alpha, \dots, \alpha)) \geq \quad & \text{ind}_r(P,(\alpha, \dots, \alpha)) - \sum_{h=1}^m\frac{k_h}{r_h} \\
   \stackrel{\text{Thm. \ref{thm:4.6}}}{>} \quad & \frac{1}{2}m(1-\epsilon)-\frac{\delta m}{8} \\
   = \quad & \frac{1}{2}m\left(1-\epsilon-\frac{\delta}{4}\right) \\
   > \quad & \frac{1}{2}m\left(1-\frac{\delta}{3}\right).\end{align*}
   Therefore, $T^{[i]}(\alpha, \dots, \alpha) = 0$ if
   \[ \sum_{h=1}^m \frac{i_h}{r_h} \leq \frac{1}{2}m\left(1-\frac{\delta}{3}\right).\]
   Now, let us put $\beta_h = \alpha - \frac{a_h}{q_h} \forall_{1 \leq h \leq m}$. Then $|\beta_h| < \frac{1}{q_h^{2+\delta}}$. By the Taylor series expansion, we get
-  \begin{align*}
-    T\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right) = \quad & \sum_{i \in J(r_1, \dots, r_m)} T^{[i]}(\alpha, \dots, \alpha)\beta_1^{i_1}\cdots\beta_m^{i_m} \\
-    = \quad & \sum_{\stackrel{i \in J}{\sum_{h=1}^m \frac{i_h}{r_h} > \frac{1}{2}m(1-\frac{\delta}{3})}} T^{[i]}(\alpha, \dots, \alpha)\beta_1^{i_1}\cdots\beta_h^{i_h}. \hfill (**)
-  \end{align*}
+  \begin{align}\label{eq:thm:4.8:2}
+    T\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right) = \quad & \sum_{i \in J(r_1, \dots, r_m)} T^{[i]}(\alpha, \dots, \alpha)\beta_1^{i_1}\cdots\beta_m^{i_m} \notag \\
+    = \quad & \sum_{\stackrel{i \in J}{\sum_{h=1}^m \frac{i_h}{r_h} > \frac{1}{2}m(1-\frac{\delta}{3})}} T^{[i]}(\alpha, \dots, \alpha)\beta_1^{i_1}\cdots\beta_m^{i_m}. \tag{$**$}
+  \end{align}
   For any $i$ in the sum,
   \begin{align*}
     -\log|\beta_1^{i_1}\cdots\beta_m^{i_m}| > \quad & (2+\delta)\sum_{h=1}^m\frac{i_h}{r_h}(r_h\log q_h) \\
     \geq \quad & (2+\delta)r_1\log(q_1)\underbrace{\sum_{h=1}^m \frac{i_h}{r_h}}_{> \frac{1}{2}m\left(1-\frac{\delta}{3}\right)} \\
     > \quad & \left(1+\frac{\delta}{2}\right)\left(1-\frac{\delta}{3}\right)mr_1\log(q_1) \\
     \geq \quad & \left(1+\frac{\delta}{2}\right)\left(1-\frac{\delta}{3}\right)\sum_{h=1}^m r_h\log(q_h)\frac{1}{1+\epsilon}\\
-    > \quad & (1+\epsilon)^2\sum_h r_h\log(q_h)\frac{1}{1+\epsilon}
+    > \quad & (1+\epsilon)^2\sum_{h=1}^m r_h\log(q_h)\frac{1}{1+\epsilon}
   \end{align*}
-  for $0 < \delta < \frac{1}{20}$ and $0 < \epsilon < \frac{\delta}{100}$, which implies $|\beta_1\cdots\beta_m| <(q_1^{r_1}\cdots q_m^{r_m})^{-1-\epsilon}$. Hence, $(**)$ becomes
+  for $0 < \delta < \frac{1}{20}$ and $0 < \epsilon < \frac{\delta}{100}$, which implies $|\beta_1\cdots\beta_m| <(q_1^{r_1}\cdots q_m^{r_m})^{-1-\epsilon}$. Hence, (\ref{eq:thm:4.8:2}) becomes
   \begin{align*} & \Nzero \ni \left|q_1^{r_1}\cdots q_m^{r_m}T\left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right| \\
   < \quad & \sum_{i \in J}|T^{[i]}(\alpha, \dots, \alpha)|(q_1^{r_1}\cdots q_m^{r_m})^{-\epsilon} \\
   \leq \quad & 2^{r_1+\dots+r_m}\left[(32H(\alpha)+32)\max\{ |\alpha|, 1\}\right]^{r_1+\dots+r_m}(q_1^{r_1}\cdots q_m^{r_m})^{-\epsilon} \\
@@ -1964,16 +1971,16 @@ for $s \in \N^m$. Last time we proved Theorem \ref{thm:4.6}. That is, we constru
 \]
 and denote $\ord(\Delta)=i_1+\dots+i_m$. Suppose we have $\Delta_1,\dots,\Delta_h$ with
 \[
-  \ord(\Delta_i)\leq i-1 \quad (\forall 1 \leq i \leq h).
+  \ord(\Delta_i)\leq i-1 \forall_{1 \leq i \leq h}.
 \]
-Let $g_1,\dots,g_h$ be sufficiently many times differentiable functions in $x_1,\dots,x_m$. Then
+Let $g_1,\dots,g_h$ be sufficiently differentiable functions in $x_1,\dots,x_m$. Then
 \[
   \det\left[\Delta_i g_j\right]_{1 \leq i,j \leq h}
 \]
 is called a \define[Generalised Wronskian]{(generalised) Wronskian}.
 
 \begin{proposition}{Wronskian criterion}{4.9}
-  Let $m \geq 1$. Let $h \geq 1$ and let $g_1,\dots,g_h$ be rational functions over $\Q$ in variables $x_1,\dots,x_m$. Suppose
+  Let $m \geq 1$ and $h \geq 1$. Also let $g_1,\dots,g_h$ be rational functions over $\Q$ in variables $x_1,\dots,x_m$. Suppose
   \[
     c_1g_1+\dots+c_hg_h \equiv 0, \quad c_1,\dots,c_h \in \Q
   \]
@@ -1983,9 +1990,9 @@ is called a \define[Generalised Wronskian]{(generalised) Wronskian}.
   \]
 \end{proposition}
 \begin{pf}
-  We prove the statement by induction on $h$. Suppose first that $m=1$. In this case, consider
+  We prove the statement by induction on $m$. Suppose first that $m=1$. In this case, consider
   \[
-    \Delta_i=\frac{d^{i-1}}{dx_1^{i-1}} \quad (\forall 1 \leq i \leq h).
+    \Delta_i=\frac{d^{i-1}}{dx_1^{i-1}} \forall_{1 \leq i \leq h}.
   \]
   Then
   \[
@@ -1993,11 +2000,11 @@ is called a \define[Generalised Wronskian]{(generalised) Wronskian}.
   \]
   by an exercise.
 
-  Now suppose the statement holds for $<h$, and prove it for $h$. The case $h=1$ is trivial, since $\Delta_1g_1=g_1\not\equiv 0$. Thus we assume $g_1,\dots,g_h$ are linearly independent over $\Q$; in particular $g_1\neq 0$.
+  Now suppose the statement holds for $m-1$, and prove it for $m$ (by induction on $h$). The case $h=1$ is trivial, since $\Delta_1g_1=g_1\not\equiv 0$. Thus we assume $g_1,\dots,g_h$ are linearly independent over $\Q$; in particular $g_1\neq 0$.
 
   We may assume without loss of generality that $g_1\equiv 1$. Indeed, let
   \[
-    \widetilde g_j=\frac{1}{g_1}g_j \quad (\forall 1 \leq j \leq h).
+    \widetilde g_j=\frac{1}{g_1}g_j \forall_{1 \leq j \leq h}.
   \]
   Then
   \[
@@ -2013,7 +2020,7 @@ is called a \define[Generalised Wronskian]{(generalised) Wronskian}.
   \[
     \frac{\partial}{\partial x_1}(c_2g_2+\dots+c_hg_h)\equiv 0.
   \]
-  If not, we set $k_1=1$. Otherwise, without loss of generality $c_2=1$; replacing $g_2$ by
+  If not, we set $k_1=1$ {\color{blue} (The variable $k_1$ is introduced later)}. Otherwise, without loss of generality $c_2=1$; replacing $g_2$ by
   \[
     g_2+c_3g_3+\dots+c_hg_h
   \]

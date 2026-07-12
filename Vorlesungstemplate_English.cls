@@ -422,6 +422,7 @@ borderline west={0.4mm}{0pt}{green}}
 \newcommand{\smod}{\text{ mod }}
 \newcommand{\arsinh}{\text{arsinh}}
 \newcommand{\artanh}{\text{artanh}}
+\newcommand{\emm}{\mathcal{M}}
 \newcommand{\Lin}{\text{Lin}}
 \newcommand{\Log}{\text{Log}}
 \newcommand{\Kern}{\text{Kern}}
@@ -646,7 +647,8 @@ borderline west={0.4mm}{0pt}{green}}
 \printindex
 \fi
 \ifnum\theboolbibliography=1
-\addcontentsline{toc}{chapter}{Literature}\printbibliography
+\printbibliography
+\addcontentsline{toc}{chapter}{Literature}
 \fi
 \fi
 }

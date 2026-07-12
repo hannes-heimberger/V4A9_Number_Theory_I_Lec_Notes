@@ -1730,7 +1730,7 @@ In particular, by Taylor's theorem,
 \[ P(x_1+y_1, \dots, x_m+y_m) = \sum_{\vec k \in J}P^{[\vec k]}(x_1, \dots, x_m)\cdot y_1^{k_1}\cdots y_m^{k_m}.\]
 \begin{lemma}{Properties of $P^{[\vec k]}$}{4.2}
   The polynomial $P^{[\vec k]}$ satisfies the following properties:
-  \begin{enumerate}
+  \begin{enumerate}[(i)]
     \item If $P(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$, then $P^{[\vec k]}(x_1, \dots, x_m) \in \Z[x_1, \dots, x_m]$ for any $\vec k \in (\Z_{\geq 0})^m$.
     \item Given any $\vec k \in (\Z_{\geq 0})^m$, we have
     \[ \deg_{x_i}P^{[\vec k]} = \begin{cases} \deg_{x_i}P - k_i & \text{if } k_i \leq \deg_{x_i}P, \\ -\infty & \text{otherwise.}\end{cases}\]
@@ -1741,7 +1741,7 @@ In particular, by Taylor's theorem,
 \begin{pf}
   Exercise with derivatives and binomial coefficients.
 \end{pf}
-\noindent Let $\vec\alpha \in \R^m$. We say $0 \neq P$ has \textbf{index} $I$ at $\vec\alpha$ with respect to $\vec s = (s_1, \dots, s_m) \in \N^m$ if
+\noindent Let $\vec\alpha \in \R^m$. We say $0 \neq P$ has \define[Index of a Polynomial at a Vector]{index} $I$ at $\vec\alpha$ with respect to $\vec s = (s_1, \dots, s_m) \in \N^m$ if
 \[ I = \min\left\{ \sum_{i=1}^m\frac{k_i}{s_i} : P^{[\vec k]}(\vec\alpha) \neq 0, \vec k \in J\right\}.\]
 If $P \equiv 0$, we set $I = \infty$. We denote the index of $P$ at $\vec\alpha$ with respect to $\vec s$ by
 \[ \operatorname{ind}_{\vec s}(P, \vec\alpha) = \operatorname{ind}_{\vec s}(P).\]
@@ -1756,7 +1756,7 @@ If $P \equiv 0$, we set $I = \infty$. We denote the index of $P$ at $\vec\alpha$
 \begin{pf}
   Exercise sheet.
 \end{pf}
-\begin{lemma}{}{4.4}
+\begin{lemma}{Representation of Powers of Algebraic Integers}{4.4}
   Let $\alpha$ be an algebraic integer of degree $n$ and let $\ell \in \Z_{\geq 0}$. Then there exist $a_0^{(\ell)}, \dots, a_{n-1}^{(\ell)} \in \Z$ such that
   \[ \alpha^{\ell} = a_{n-1}^{(\ell)}\alpha^{n-1} + \dots + a_0^{(\ell)},\]
   with $|a_j^{(\ell)}| \leq (H(\alpha) + 1)^{\ell}$.
@@ -1764,9 +1764,80 @@ If $P \equiv 0$, we set $I = \infty$. We denote the index of $P$ at $\vec\alpha$
 \begin{pf}
   Using the minimal polynomial of $\alpha$, we have
   \[ \alpha^n = -a_{n-1}\alpha^{n-1} - \dots - a_0,\]
-  with $a_0, \dots, a_{n-1} \in \Z$ (since $\alpha$ is an algebraic integer of degree $n$). Therefore the statement holds for $0 \leq \ell \leq n$. Use induction to complete the proof (exercise).
+  with $a_0, \dots, a_{n-1} \in \Z$ (since $\alpha$ is an algebraic integer of degree $n$). Therefore the statement holds for $0 \leq \ell \leq n$ {\color{blue} (and trivially for $\ell \leq n-1$, choose $a^{(\ell)}_{\ell} = 1$ and set the rest to zero)}. Use induction to complete the proof (exercise).
+  {\color{blue} (Done by ChatGPT -- Sorry, no time :)) Assume that for some $\ell \ge n$ we have
+\[
+\alpha^\ell=\sum_{j=0}^{n-1} a_j^{(\ell)}\alpha^j,
+\qquad
+|a_j^{(\ell)}|\le (H(\alpha)+1)^\ell
+\]
+for all $0\le j\le n-1$. Multiplying by $\alpha$, we obtain
+\[
+\alpha^{\ell+1}
+=
+\sum_{j=0}^{n-2} a_j^{(\ell)}\alpha^{j+1}
++
+a_{n-1}^{(\ell)}\alpha^n.
+\]
+Using the relation
+\[
+\alpha^n=-a_{n-1}\alpha^{n-1}-\cdots-a_0,
+\]
+it follows that
+\[
+\alpha^{\ell+1}
+=
+\sum_{j=1}^{n-1} a_{j-1}^{(\ell)}\alpha^j
+-
+a_{n-1}^{(\ell)}
+\sum_{j=0}^{n-1} a_j\alpha^j.
+\]
+Hence
+\[
+\alpha^{\ell+1}
+=
+\sum_{j=0}^{n-1} b_j \alpha^j,
+\]
+\color{blue} where
+\[
+b_0=-a_0a_{n-1}^{(\ell)},
+\]
+and, for $1\le j\le n-1$,
+\[
+b_j=a_{j-1}^{(\ell)}-a_j a_{n-1}^{(\ell)}.
+\]
+Since $a_j,a_j^{(\ell)}\in\mathbb Z$, we have $b_j\in\mathbb Z$. Moreover,
+\[
+|b_0|
+\le
+H(\alpha)(H(\alpha)+1)^\ell
+\le
+(H(\alpha)+1)^{\ell+1},
+\]
+and for $1\le j\le n-1$,
+\[
+\begin{aligned}
+|b_j|
+&\le
+|a_{j-1}^{(\ell)}|
++
+|a_j|\,|a_{n-1}^{(\ell)}| \\
+&\le
+(H(\alpha)+1)^\ell
++
+H(\alpha)(H(\alpha)+1)^\ell \\
+&=
+(H(\alpha)+1)^{\ell+1}.
+\end{aligned}
+\]
+Therefore
+\[
+|b_j|\le (H(\alpha)+1)^{\ell+1}
+\qquad (0\le j\le n-1),
+\]
+which proves the induction step.}
 \end{pf}
-\begin{lemma}{}{4.5}
+\begin{lemma}{Cardinality Bound for a Set of Small Indices}{4.5}
   Let $r_1, \dots, r_m \in \N$. Given $\lambda > 0$,
   \[ \#\left\{ \vec k \in J(r_1, \dots, r_m): \sum_{i=1}^m\frac{k_i}{r_i} \leq \tfrac{1}{2}(m-\lambda)\right\} \leq \frac{\sqrt{2m}}{\lambda}(r_1+1)\cdots(r_m+1).\]
 \end{lemma}

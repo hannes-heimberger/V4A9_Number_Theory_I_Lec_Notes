@@ -2398,15 +2398,16 @@ Recall that in our proof of Roth's theorem, we made use of simultaneous approxim
   Let $L_1, \dots, L_n$ and $c_1, \dots, c_n$ be as in Theorem \ref{thm:5.2}. Let $\delta > 0$. Then there are finitely many rational subspaces $T_1, \dots, T_N \subset \R^n$ such that if $0 \neq x \in \Z^n$ satisfies \begin{equation}\label{eq:cor:5.3} \|L_i(x)\|_{\infty} \leq \|x\|_{\infty}^{c_i-\delta} \forall_{1 \leq i \leq n}, \tag{$*$}\end{equation} then $x \in \bigcup_{i=1}^N T_i$.
 \end{corollary}
 \begin{pf}[Proof by Contradiction]
-  Suppose that this is not the case (i.e. $x$ is not contained in finitely many proper rational subspaces of $\R^n$). Let $x_1, \dots, x_n \in \Z^n \setminus \{ 0\}$ be linearly independent over $\Q$ satisfying (\ref{eq:cor:5.3}). Then, we recursively define $x_{n+1}, x_{n+2}, \dots$ such that any $n$ of $\{ x_j\}_{j=1}^{\infty}$ are linearly independent over $\Q$. We then let $Q = \|x_j\|_{\infty}$ for some $j \geq 1$ with $\|x_j\|_{\infty}$ sufficiently large. Let $g_1, \dots, g_n \in \Z^n$ be such that $g_i \in \lambda_i(Q)\Pi(Q) \forall_{1 \leq i \leq n}$. We know that these are linearly independent over $\Q$. Let $S_i(Q) = \Span_{\R}\{ g_1, \dots, g_i\}$. Since $x_i$ satisfies (\ref{eq:cor:5.3}), we have
-  \[ \|L_i(x_j)\|_{\infty} \leq \|x_j\|_{\infty}^{c_i-\delta} = Q^{-\delta}|x_j|^{c_i} = \lambda|x_j|^{c_i}\]
+  Suppose that this is not the case (i.e. $x$ is not contained in finitely many proper rational subspaces of $\R^n$). Let $x_1, \dots, x_n \in \Z^n \setminus \{ 0\}$ be linearly independent over $\Q$ satisfying (\ref{eq:cor:5.3}). Then, we recursively define $x_{n+1}, x_{n+2}, \dots$ such that any $n$ of $\{ x_j\}_{j=1}^{\infty}$ are linearly independent over $\Q$ {\color{blue} (Assume this for $m \in \N$. Now, consider all $S \subseteq \{ x_1, \dots , x_m\}$ with $\# S = n-1$. Then $\dim_{\Q}\langle S\rangle_{\Q} = n-1$ and there are only finitely many of these. Thus, there exists \[x_{m+1} \in \Z^n \setminus \bigcup_{\stackrel{S \subseteq \{ x_1, \dots, x_m\}}{\#S = n-1}} \langle S \rangle_{\Q}.\]
+  This proves the claim)}. We then let $Q = \|x_j\|_{\infty}$ for some $j \geq 1$ with $\|x_j\|_{\infty}$ sufficiently large. Let $g_1, \dots, g_n \in \Z^n$ be such that $g_i \in \lambda_i(Q)\Pi(Q) \forall_{1 \leq i \leq n}$. We know that these are linearly independent over $\Q$. Let $S_i(Q) = \Span_{\R}\{ g_1, \dots, g_i\}$. Since $x_i$ satisfies (\ref{eq:cor:5.3}), we have
+  \[ \|L_i(x_j)\|_{\infty} \leq \|x_j\|_{\infty}^{c_i-\delta} = Q^{-\delta}\|x_j\|_{\infty}^{c_i} = \lambda\|x_j\|_{\infty}^{c_i}\]
   with $\lambda = Q^{-\delta} \forall_{1 \leq j \leq n}$. Then,
   \[ x_j \in \Z^n \cap \lambda\Pi(Q).\]
   Therefore, $\lambda_1(Q) \leq \lambda = Q^{-\delta}$. Since $\vol(\Pi(Q))$ is a constant that depends only on $L_1, \dots, L_n$ and $n$, by Minkowski's Second Theorem \ref{thm:2.9}, we have
   \[ 1 \ll \lambda_1(Q)\cdots\lambda_n(Q) \ll 1.\]
   Thus, $\lambda_n(Q) > 1$ (because otherwise, $1 \ll \lambda_1(Q)\cdots\lambda_n(Q)$ and $\lambda_1(Q)\cdots\lambda_n(Q) \leq Q^{-\delta}$, i.e. $1 \ll Q^{-\delta}$ \Lightning). In particular, it follows that $x_{j-1} \in S_{n-1}(Q)$. We let $k=k(j)$ be the smallest number such that $x_j \in S_k(Q)$. Then $\lambda_k(Q) \leq Q^{-\delta}$, and combined with $\lambda_n(Q) > 1$, we can deduce that
   \[ \exists_{d \in \{k, \dots, n-1\}}: \lambda_d(Q) < \lambda_{d+1}(Q)Q^{-\frac{\delta}{n}}.\]
-  By the pigeonhole principle, there exists a subsequence $x_{j_1}, \dots$ and $d \in \{ 1, \dots, n-1\}$ such that $\lambda_d(Q) < \lambda_{d+1}(Q)Q^{-\frac{\delta}{n}}$ with $Q = \|x_{j_i}\|_{\infty}$. We can now apply Theorem \ref{thm:5.2} with $\mathfrak N = \{ |x_{j_i}|: i \geq 1\}$. But $x_{j_i} \in S_k(Q) \subseteq S_d(Q) = S_0$, which contradicts the linear independence of the $x_{j_1}, \dots$. \Lightning
+  By the pigeonhole principle, there exists a subsequence $x_{j_1}, \dots$ and $d \in \{ 1, \dots, n-1\}$ such that $\lambda_d(Q) < \lambda_{d+1}(Q)Q^{-\frac{\delta}{n}}$ with $Q = \|x_{j_i}\|_{\infty}$. We can now apply Theorem \ref{thm:5.2} with $\mathfrak N = \{ \|x_{j_i}\|_{\infty}: i \geq 1\}$. But $x_{j_i} \in S_k(Q) \subseteq S_d(Q) = S_0$, which contradicts the linear independence of the $x_{j_1}, \dots$. \Lightning
 \end{pf}
 \noindent We are now ready to deduce Theorem \ref{thm:5.1}.
 \begin{pf}[Proof of Theorem \ref{thm:5.1}]
@@ -2416,15 +2417,15 @@ Recall that in our proof of Roth's theorem, we made use of simultaneous approxim
     \[ \{ x \in \Z^n: L_j(x) = 0\} \subset \widetilde{T}_j.\]
   \end{exercise}
   (Just use an integral basis of $\Q(\alpha_{j_1}, \dots, \alpha_{j_n})$, where $L_j(x) = \alpha_{j_1}x_1 + \dots + \alpha_{j_n}x_n$.) \\
-  Thus, we only consider $x \in \Z^n$ with $L_1(x), \dots, L_n(x) \neq 0$. Then there exists $C > 0$ such that
-  \[ \|x\|_{\infty} \leq \| L_j(x)\|_{\infty} \leq \|x\|_{\infty}^2 \forall_{1 \leq j \leq n}\]
+  Thus, we only consider $x \in \Z^n$ with $L_1(x), \dots, L_n(x) \neq 0$. Then there exists $c > 0$ such that
+  \[ \|x\|_{\infty}^{-c} \leq \| L_j(x)\|_{\infty} \leq \|x\|_{\infty}^2 \forall_{1 \leq j \leq n}\]
   for all $\|x\|_{\infty}$ sufficiently large. We divide the interval $[-c, 2)$ into
   \[ [-c, 2) = \bigcup_{t=0}^M [a_t, b_t)\]
   with $0 < b_t-a_t \leq \frac{\delta}{2n}$. Take any $n$ of these intervals and consider
   \[ \|x\|_{\infty}^{a_{t_j}} \leq \|L_j(x)\|_{\infty} < \|x\|_{\infty}^{b_{t_j}} \forall_{1 \leq j \leq n}.\]
   Since
   \[ \|L_1(x)\cdots L_n(x)\|_{\infty} < \|x\|_{\infty}^{-\delta},\]
-  we only need to consider $a_{t_1}+\dots+a_{t_n} < - \delta$. Then set $c_j = b_{t_j} - \frac{1}{n}(b_{t_1}+ \dots + b_{t_n})$, and this satisfies $c_1+\dots+c_n = 0$. Thus, $b_{t_j} \leq c_j - \frac{\delta}{2n}$, which implies $\|L_j(x)\|_{\infty} < \|x\|^{b_{t_j}} \leq \|x\|^{c_j-\frac{\delta}{2n}}$. By Corollary \ref{cor:5.3} (and since $(M+1)^n \ll 1$), we get the finite number of rational subspaces.
+  we only need to consider $a_{t_1}+\dots+a_{t_n} < - \delta$. Then set $c_j = b_{t_j} - \frac{1}{n}(b_{t_1}+ \dots + b_{t_n})$, and this satisfies $c_1+\dots+c_n = 0$. Thus, $b_{t_j} \leq c_j - \frac{\delta}{2n}$ {\color{blue} $\left(b_{t_1} + \dots + b_{t_n} \leq \frac{\delta}{2} + a_{t_1} + \dots + a_{t_n} < - \frac{\delta}{2}\right)$}, which implies $\|L_j(x)\|_{\infty} < \|x\|_{\infty}^{b_{t_j}} \leq \|x\|_{\infty}^{c_j-\frac{\delta}{2n}}$. By Corollary \ref{cor:5.3} (and since $(M+1)^n \ll 1$), we get the finite number of rational subspaces.
 \end{pf}
 \renewcommand{\lastLectureDate}{\currentLectureDate}
 \ifnum\thelecture=0
@@ -2453,7 +2454,7 @@ Recall that in our proof of Roth's theorem, we made use of simultaneous approxim
 Let $L_1, \dots, L_m$ be nonzero linear forms over $\R$, where $L_h(\vec x_h)$ is a linear form in $\vec x_h = (x_{h1}, \dots, x_{hn})$. We write $\vec L = (L_1, \dots, L_m)$. Let $r_1, \dots, r_m \in \N$ and $\vec r = (r_1, \dots, r_m)$. Given any $c \geq 0$, let $I(c)$ be the ideal in $\R[\vec x_1, \dots, \vec x_m]$ generated by
 \[ \left\{ L_1^{i_1}\cdots L_m^{i_m}: (i_1, \dots, i_m) \in (\Z_{\geq 0})^m, \frac{i_1}{r_1} + \dots + \frac{i_m}{r_m} \geq c\right\}.\]
 Given $0 \neq P \in \R[\vec x_1, \dots, \vec x_m]$, we define the \definenolabel[Index with Respect to Linear Forms]{index} $\operatorname{Ind}_{\vec r}(P, \vec L)$ to be the largest $c$ such that $P \in I(c)$. We define the index to be $+\infty$ for $P \equiv 0$.
-\begin{lemma}[coltitle=orange]{Sub-additivity and Additivity of the Index}{5.4}
+\begin{lemma}[coltitle=orange]{\color{orange} Sub-additivity and Additivity of the Index}{5.4}
   \color{orange} We have
   \begin{enumerate}[(i)]
     \item $\operatorname{Ind}_{\vec r}(P + Q, \vec L) \geq \min\left(\operatorname{Ind}_{\vec r}(P, \vec L), \operatorname{Ind}_{\vec r}(Q, \vec L)\right)$ and
@@ -2469,7 +2470,7 @@ We denote
 \[ \left| \vec i / \vec r\right|_1 = \sum_{h=1}^m \frac{i_{h1} + \dots + i_{hn}}{r_h}\]
 and
 \[ P^{[\vec i]} = \frac{1}{i_{11}!\cdots i_{mn}!}\cdot\frac{\partial^{\, i_{11}+\dots+i_{mn}}P}{\partial x_{11}^{i_{11}}\cdots\partial x_{mn}^{i_{mn}}}.\]
-\begin{lemma}[coltitle=orange]{Index of a Partial Derivative and Vanishing on $T$}{5.5}
+\begin{lemma}[coltitle=orange]{\color{orange} Index of a Partial Derivative and Vanishing on $T$}{5.5}
   \color{orange} We have
   \[ \operatorname{Ind}_{\vec r}(P^{[\vec i]}, \vec L) \geq \operatorname{Ind}_{\vec r}(P, \vec L) - \left|\vec i/\vec r\right|_1.\]
   Further, if $\left|\vec i/\vec r\right|_1 < \operatorname{Ind}_{\vec r}(P, \vec L)$, then $P^{[\vec i]} \equiv 0$ on the $(nm-m)$-dimensional subspace $T \subseteq \R^{nm}$ defined by $L_1 = \dots = L_m = 0$.
@@ -2484,7 +2485,7 @@ and
   where the minimum is taken over all $j_1, \dots, j_m \in \Z_{\geq 0}$ such that $c^{[\vec i]}(j_1, \vec a_1; \dots; j_m, \vec a_m) \neq 0$ for some choice of $\vec a_1, \dots, \vec a_m$. Since $\operatorname{Ind}_{\vec r}(P^{[\vec i]}, \vec L) > 0$, it then follows that every summand appearing in (\ref{eq:lem:5.5}) is divisible by one of $L_1, \dots, L_m$. Therefore, $P^{[\vec i]} \equiv 0$ on $T$.
 \end{colorpf}
 \noindent \textbf{Note.} If $c^{[\vec i]}(j_1, \vec a_1; \dots; j_m, \vec a_m)$ is a non-zero coefficient, then it follows that $\frac{j_1}{r_1} + \dots + \frac{j_m}{r_m} > 0$, and hence at least one of the $j_h$ is $\geq 1$.
-\begin{lemma}[coltitle=orange]{Existence of a Non-vanishing Derivative of Maximal Index}{5.6}
+\begin{lemma}[coltitle=orange]{\color{orange} Existence of a Non-vanishing Derivative of Maximal Index}{5.6}
   \color{orange} Let $T$ be as in the previous lemma and let $0 \neq P \in \R[\vec x_1, \dots, \vec x_m]$. Then there exists $\vec i$ with
   \[ \left|\vec i/\vec r\right|_1 = \operatorname{Ind}_{\vec r}(P, \vec L)\]
   such that $P^{[\vec i]} \not\equiv 0$ on $T$. Moreover, if $L_h(\vec x_h) = \alpha_{h1}x_{h1} + \dots + \alpha_{hn}x_{hn}$ with $\alpha_{h1} \neq 0 \; \forall_{1 \leq h \leq m}$, then we may take $\vec i$ to be of the form
@@ -2497,7 +2498,7 @@ and
 \[ P(\vec x_1; \dots; \vec x_m) = \sum c(\vec j_1; \dots; \vec j_m) x_{11}^{j_{11}}\cdots x_{mn}^{j_{mn}},\]
 we put
 \[ \|P\| = \max_{\vec j_1, \dots, \vec j_m}|c(\vec j_1; \dots; \vec j_m)|.\]
-\begin{lemma}[coltitle=orange]{Integrality and Norm Bound for $P^{[\vec i]}$}{5.7}
+\begin{lemma}[coltitle=orange]{\color{orange} Integrality and Norm Bound for $P^{[\vec i]}$}{5.7}
   \color{orange} Suppose $P \in \Z[\vec x_1, \dots, \vec x_m]$. Then $P^{[\vec i]} \in \Z[\vec x_1, \dots, \vec x_m]$. Further, suppose that $P$ is homogeneous in $\vec x_h$ of degree $r_h$ for all $1 \leq h \leq m$. Then
   \[ \|P^{[\vec i]}\| \leq 2^{r_1 + \dots + r_m}\|P\|.\]
 \end{lemma}
@@ -2511,14 +2512,14 @@ with each $c_{ijk} \in \Z$. Set $A = \max_{i,j,k}|c_{ijk}|$. Any $\gamma \in K$ 
 We define
 \[ \|\gamma\| = A\Delta^2\max_k|d_k|.\]
 (Note that this depends on $\beta_1, \dots, \beta_{\Delta}$.)
-\begin{lemma}[coltitle=orange]{Sub-multiplicativity of the Norm on $K$}{5.8}
+\begin{lemma}[coltitle=orange]{\color{orange} Sub-multiplicativity of the Norm on $K$}{5.8}
   \color{orange} Given $\gamma_1, \gamma_2 \in K$, we have
   \[ \|\gamma_1 + \gamma_2\| \leq \|\gamma_1\| + \|\gamma_2\| \quad \text{and} \quad \|\gamma_1\cdot\gamma_2\| \leq \|\gamma_1\|\cdot\|\gamma_2\|.\]
 \end{lemma}
 \begin{colorpf}
   Exercise.
 \end{colorpf}
-\begin{lemma}[coltitle=orange]{Coefficients of the Substituted Polynomial are Bounded Algebraic Integers}{5.9}
+\begin{lemma}[coltitle=orange]{\color{orange} Coefficients of the Substituted Polynomial are Bounded Algebraic Integers}{5.9}
   \color{orange} Suppose $\alpha_1, \dots, \alpha_n$ are algebraic integers as above. Let
   \[ P(\vec x_1; \dots; \vec x_m) = \sum c(\vec j_1; \dots; \vec j_m)x_{11}^{j_{11}}\cdots x_{mn}^{j_{mn}} \in \R[\vec x_1, \dots, \vec x_m]\]
   be homogeneous of degree $r_h$ in $\vec x_h$ for all $1 \leq h \leq m$. Let $\vec i = (j_1, \vec 0; \dots; j_m, \vec 0)$ and \color{orange} define
@@ -2532,4 +2533,6 @@ We define
   (for each $1 \leq h \leq m$) into the polynomial $P^{[\vec i]}(\vec x_1'; \dots; \vec x_m')$, and collect the monomials in $\vec x_1, \dots, \vec x_m$.
 \end{colorpf}
 \newLecture{15th July 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4215775}{W13L1}}
+
+\color{black}
 \end{document}

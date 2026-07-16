@@ -1918,6 +1918,7 @@ which proves the induction step.}
     \implies & (NHB + 1)^M < (B+1)^N. \qedhere
   \end{align*}}
 \end{pf}
+\section{Behaviour of the Integer Polynomial near $\alpha$}
 Let's recall some notation.
 \[ P(x_1, \dots, x_m) = \sum_{j \in J} C(j)x_1^{j_1}\cdots x_m^{j_m},\]
 \[ J = J(r_1, \dots, r_m) = \{ 0, \dots, r_1\} \times \cdots \times \{ 0, \dots, r_m\},\]
@@ -2074,7 +2075,7 @@ is called a \define[Generalised Wronskian]{(generalised) Wronskian}.
 only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1$.
 
 \newLecture{1st July 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4204419}{W11L1}}
-\begin{theorem}{}{4.10}
+\begin{theorem}{Main Technical Theorem}{4.10}
   Let $m \in \N$, $0 < \epsilon < \frac{1}{12}$, and set $\omega = \omega(m,\epsilon) = 24\cdot2^{-m}\left(\frac{\epsilon}{12}\right)^{\exp(\ln(2)(m-1))} < 1$. Let $r_1, \dots, r_m \in \N$ be such that $\omega r_h \geq r_{h+1} \forall_{1 \leq h \leq m-1}$. Let $q_1, \dots, q_m \in \N$ be such that $q_h^{r_h} \geq q_1^{r_1}$ and $q_h^{\omega} \geq 2^{3m} \forall_{1 \leq h \leq m}$. Suppose $P \in \Z[x_1, \dots, x_m] \setminus \{ 0\}$ is such that $\deg_{x_h} P \leq r_h \forall_{1 \leq h \leq m}$ and $\| P\| \leq q_1^{\omega r_1}$. Then
   \[ \ind_r\left(P, \left(\frac{a_1}{q_1}, \dots, \frac{a_m}{q_m}\right)\right) \leq \epsilon,\]
   provided $\gcd(a_h,q_h)=1 \forall_{1 \leq h \leq m}$.
@@ -2090,7 +2091,10 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
   \[ 0 = P\left(\frac{a_1}{q_1}\right) = \dots = P^{(t-1)}\left(\frac{a_1}{q_1}\right) \text{ and } P^{(t)}\left(\frac{a_1}{q_1}\right) \neq 0.\]
   Here $\gcd(a_1,q_1) = 1$ and $q_1 > 0$. Write $P(x) = \left(x-\frac{a_1}{q_1}\right)^tT(x)$ for some $T \in \Q[x]$. Hence,
   \[ P(x) = (q_1x-a_1)^t\underbrace{(q_1^{-t}T(x))}_{\in \Z[x]}\]
-  by Gauß's lemma. Thus, $q_1^t \leq \|P\| \leq q_1^{\omega r_1}$, which implies $t \leq \omega r_1$. Since $m=1$, $\omega(1,\epsilon) = \epsilon$. Since $m=1$, $\omega(1,\epsilon) = \epsilon$, we have
+  by Gauß's lemma. {\color{blue} We use Gauß's Lemma in the following form:
+  \begin{lemma*}[coltitle=blue]{Gauß}
+    \color{blue} If a primitive polynomial $P \in \Z[x]$ divides $Q \in \Z[x]$ over $\Q[x]$, it already does so over $\Z[x]$.
+  \end{lemma*}} Thus, $q_1^t \leq \|P\| \leq q_1^{\omega r_1}$, which implies $t \leq \omega r_1$. Since $m=1$, $\omega(1,\epsilon) = \epsilon$, we have
   \[ \ind_{r_1}\left(P, \frac{a_1}{q_1}\right) = \frac{t}{r_1} \leq \omega = \epsilon,\]
   which completes the base case. Now suppose that the whole thing holds for all all $m' < m \in \N$. Let us write
   \[ P(x_1, \dots, x_m) = \sum_{1 \leq j \leq k}\phi_j(x_1, \dots, x_{m-1})\psi_j(x_m),\]
@@ -2112,7 +2116,7 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
     The same argument.
   \end{pf}
   Since $\psi_1, \dots, \psi_k$ are polynomials over $\Q$ and linearly independent over $\Q$, it follows from Proposition \ref{prop:4.9} that
-  \[ U_1(x_m) = \left(\diff[i]{}{x_m}\psi_j(x_m)\right)_{1 \leq i,j \leq k} \not\equiv 0.\]
+  \[ U_1(x_m) = \det\left(\diff[i]{}{x_m}\psi_j(x_m)\right)_{1 \leq i,j \leq k} \not\equiv 0.\]
   Similarly, there exist $\widetilde{\Delta}_1, \dots, \widetilde{\Delta}_k$ such that
   \[ \widetilde{\Delta}_i = \frac{\partial^{i_1+\dots+i_{m-1}}}{\partial x_1^{i_1}\cdots\partial_{m-1}^{i_{m-1}}}\]
   with $\ord\widetilde{\Delta} = i_1+\dots+i_{m-1} \leq i-1 \leq k-1 \leq r_m$. Then $V_1(x_1, \dots, x_{m-1}) = \det(\widetilde{\Delta}_i\phi_j)_{1 \leq i,j \leq k} \not\equiv 0$. We also denote
@@ -2134,16 +2138,16 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
     W(x_1, \dots, x_m) = \quad & \frac{W_1(x_1, \dots, x_m)}{\prod_{i=1}^k \iota(i)!\prod_{j=1}^k (j-1)!} \\
     = \quad & \det(P^{[\iota(i), j-1]})_{1 \leq i,j \leq k}.
   \end{align*}
-  This si still a polynomial over $\Z$ because $P^{[j]} \in \Z[x_1, \dots, x_m]$ for any $j$. We can deduce from Gauß's lemma that
+  This is still a polynomial over $\Z$ because $P^{[j]} \in \Z[x_1, \dots, x_m]$ for any $j$. We can deduce from Gauß's lemma that
   \[ W(x_1, \dots, x_m) = V(x_1, \dots, x_{m-1})U(x_m)\]
-  with $U,V$ polynomials over $\Z$ (in fact $c_1U_1 = U$ and $c_2V_1 = V$ with $c_1,c_2 \in \Q$). Since $\deg_{x_h}P^{[j]} \leq r_h \forall_{1 \leq h \leq m}, j \in \Nzero^m$, $\deg_{x_h}w \leq r_hk \forall_{1 \leq h \leq m}$. Similarly, $\deg_{x_h}V \leq r_hk \forall_{1 \leq h \leq m-1}$ and $\deg_{x_m}U \leq r_mk$. Also,
-  \[ \| P^{[j]}\| \leq 2^{r_1+\dots+r_m}\|P\| \leq 2^{r_1+\dots+r_m}q_1^{r\omega_1}.\]
+  with $U,V$ polynomials over $\Z$ (in fact $c_1U_1 = U$ and $c_2V_1 = V$ with $c_1,c_2 \in \Q$). Since $\deg_{x_h}P^{[j]} \leq r_h \forall_{1 \leq h \leq m}, j \in \Nzero^m$, we have $\deg_{x_h}W \leq r_hk \forall_{1 \leq h \leq m}$. Thus, $\deg_{x_h}V \leq r_hk \forall_{1 \leq h \leq m-1}$ and $\deg_{x_m}U \leq r_mk$. Also,
+  \[ \| P^{[j]}\| \leq 2^{r_1+\dots+r_m}\|P\| \leq 2^{r_1+\dots+r_m}q_1^{r_1\omega}.\]
   It follows that
   \[ \|W\| \leq k!\left(2^{r_1+\dots+r_m}\max_{i,j}\|P^{[(\iota(i),j-1)]}\|\right)^k\]
-  by the bound for the number of summand in $P^{[j]}$. This is in turn less than or equal to
+  by the bound for the number of summands in $P^{[j]}$ {\color{blue} and the Leibniz determinant formula}. This is in turn less than or equal to
   \begin{align*}
-    & k!\left(4^{r_1+\dots+r_m}q_1^{r\omega}\right)^k \\
-    \leq \quad & 2^{kr_m}\left(4^{r_1+\dots+r_m}q_1^{r\omega}\right)^k \\
+    & k!\left(4^{r_1+\dots+r_m}q_1^{r_1\omega}\right)^k \\
+    \leq \quad & 2^{kr_m}\left(4^{r_1+\dots+r_m}q_1^{r_1\omega}\right)^k \\
     \leq \quad & \left(8^{r_1+\dots+r_m}q_1^{r_1\omega}\right)^k \\
     \leq \quad & 8^{mr_1k}q_1^{r_1\omega k} \\
     \leq \quad & (q_1^\omega)^{r_1k}q_1^{r_1\omega k} \\
@@ -2153,9 +2157,10 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
   \begin{align*}
     W = \quad & U(x_m)V(x_1, \dots, x_{m-1}) \\
     = \quad & \sum_{\ell} u_{\ell}x_m^{\ell}\sum_{k}v_kx_1^{k_1}\cdots x_{m-1}^{k_{m-1}} \\
-    = \quad & \sum_{(\ell, k)} u_{\ell}v_kx_1^{k_1}\cdots x_{m-1}^{k_{m-1}}x_m^{\ell}.
+    = \quad & \sum_{(\ell, k)} u_{\ell}v_kx_1^{k_1}\cdots x_{m-1}^{k_{m-1}}x_m^{\ell},
   \end{align*}
-  This implies that $\|U\|, \|V\| \leq \|W\| \leq q_1^{2\omega r_1k}$.
+  {\color{blue} where $U$ and $V$ have integer coefficients.}
+  This implies $\|U\|, \|V\| \leq \|W\| \leq q_1^{2\omega r_1k}$.
   Index of $V$: We consider $\ind_{kr}\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right)$. By the inductive hypothesis, we have
   \begin{align*}
     \ind_{kr}\left(V, \left(\frac{a_1}{q_1}, \dots, \frac{a_{m-1}}{q_{m-1}}\right)\right) \leq \epsilon_0,
@@ -2185,7 +2190,7 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
   \]
   and apply the inductive hypothesis with $m=1$. We choose $\epsilon_0$ such that
   \[
-    \|U\|\leq q_1^{2\omega r_1k}\leq q_m^{2\omega r_mk}\leq q_m^{\omega(1,\epsilon_0)r_mk}.
+    \|U\|\leq q_1^{2\omega r_1k}\stackrel{\text{ \color{blue} Ass.}}{\leq} q_m^{2\omega r_mk}\leq q_m^{\omega(1,\epsilon_0)r_mk}.
   \]
   Again set $\epsilon_0=\frac{\epsilon^2}{12}$, since, using $m\geq 2$,
   \[
@@ -2244,18 +2249,19 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
     \frac{\epsilon^2}{4}
     &> \frac{1}{k}\sum_{j=1}^k\max\left(I-\frac{j-1}{r_m},0\right) \\
     &= \frac{1}{k}\sum_{j=1}^k\left(I-\frac{j-1}{r_m}\right) \\
-    &= I-\frac{k-1}{2r_m} \\
+    &{\color{blue} >} \ I-\frac{k-1}{2r_m} \\
     &= \frac I2+\frac12\left(I-\frac{k-1}{r_m}\right) \\
     &\geq \frac I2.
   \end{align*}
-  Hence $I<\frac{\epsilon^2}{2}<\epsilon$, as desired.
+  {\color{blue} I think that the $=$ is a mistake. The $>$ in blue was added by me (below as well).}
+  Hence, $I<\frac{\epsilon^2}{2}<\epsilon$, as desired.
 
   On the other hand, suppose $I<\frac{k-1}{r_m}$. Then
   \begin{align*}
     \frac{\epsilon^2}{4}
     &> \frac{1}{k}\sum_{j=1}^k\max\left(I-\frac{j-1}{r_m},0\right) \\
     &= \frac{1}{k}\sum_{1 \leq j \leq \lfloor Ir_m\rfloor+1}\left(I-\frac{j-1}{r_m}\right) \\
-    &= \frac{1}{k}(\lfloor Ir_m\rfloor+1)\left(I-\frac{\lfloor Ir_m\rfloor}{2r_m}\right) \\
+    &{\color{blue} >} \ \frac{1}{k}(\lfloor Ir_m\rfloor+1)\left(I-\frac{\lfloor Ir_m\rfloor}{2r_m}\right) \\
     &\geq \frac{1}{k}(\lfloor Ir_m\rfloor+1)\frac I2 \\
     &\geq \frac{I^2r_m}{2k} \\
     &\geq \frac{I^2}{4},
@@ -2263,7 +2269,9 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
   since $k\leq r_m+1\leq 2r_m$. Thus $I\leq \epsilon$ in this case as well.
 \end{pf}
 \renewcommand{\currentLectureDate}{3rd July 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4206395}{W11L2}}
-\begin{pf}[Proof of Roth's theorem]
+\section{The Proof of Roth's Theorem \ref{thm:1.3} and a Sketch of the Proof of Thue's Theorem \ref{thm:1.4}}
+\noindent This makes us finally ready to prove Roth's theorem \ref{thm:1.3}.
+\begin{pf}[Proof of Roth's theorem \ref{thm:1.3}]
   We have a real algebraic integer $\alpha$ of degree $n$. Let $0<\delta<\frac{1}{20}$ and $0<\epsilon<\frac{\delta}{100}$. Suppose
   \[
     \mathcal R=
@@ -2283,7 +2291,7 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
   \end{enumerate}
   Next we choose $\frac{a_2}{q_2},\dots,\frac{a_m}{q_m}\in\mathcal R$ such that
   \[
-    \frac12\omega\log q_{h+1}\geq \log q_h \quad (\forall 1 \leq h \leq m-1).
+    \frac12\omega\log q_{h+1}\geq \log q_h \forall_{1 \leq h \leq m-1}.
   \]
   Note, in particular, that $q_{h+1}>q_h$.
 
@@ -2293,7 +2301,7 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
   \]
   and set
   \[
-    r_h=\left\lfloor\frac{r_1\log q_1}{\log q_h}\right\rfloor+1 \quad (\forall 2 \leq h \leq m).
+    r_h=\left\lfloor\frac{r_1\log q_1}{\log q_h}\right\rfloor+1 \forall_{2 \leq h \leq m}.
   \]
   Then we have
   \[
@@ -2311,7 +2319,7 @@ only holds for at most finitely many $\frac aq\in\Q$ with $q>0$ and $\gcd(a,q)=1
 
   We also have the conditions of Theorem \ref{thm:4.10}:
   \begin{align*}
-    &q_h^\omega\geq q_1^\omega\geq 2^{3m} \quad (\forall 1 \leq h \leq m), \\
+    &q_h^\omega\geq q_1^\omega\geq 2^{3m} \forall_{1 \leq h \leq m}, \\
     &q_h^{r_h}\geq q_h^{\frac{r_1\log q_1}{\log q_h}}=q_1^{r_1},
   \end{align*}
   and
@@ -2381,7 +2389,7 @@ Recall that in our proof of Roth's theorem, we made use of simultaneous approxim
 \end{theorem}
 \noindent We shall now state a stronger theorem. We then prove that this implies Theorem \ref{thm:5.1}. After that, we shall turn to the proof of this theorem instead.
 \begin{theorem}{Strong Subspace Theorem}{5.2}
-  Suppose that $L_1, \dots, L_n$ are linearly independent in $x = (x_1, \dots, x_n)$ with real algebraic coefficients $c_1, \dots, c_n \in \R$ such that $c_1+\dots+c_n = 0$. Given $Q > 0$, define
+  Suppose that $L_1, \dots, L_n$ are linearly independent in $x = (x_1, \dots, x_n)$ with real algebraic coefficients. Let $c_1, \dots, c_n \in \R$ fulfil $c_1+\dots+c_n = 0$. Given $Q > 0$, define
   \[ \Pi(Q) = \{ x \in\R^n: \|L_j(x)\|_{\infty} \leq Q^{c_j} \forall_{1 \leq j \leq n}\}.\]
   Let $\lambda_1(Q), \dots, \lambda_n(Q)$ be the successive minima of $\Z^n$ with respect to $\Pi(Q)$. Suppose there exists $\delta > 0$, $1 \leq d \leq n-1$ and an unbounded set $\mathfrak N \subseteq \R_{> 0}$ such that every $Q \in \mathfrak N$ satisfies $\lambda_d(Q) < \lambda_{d+1}(Q)Q^{-\delta}$. Then, there exists a rational subspace $S_0 \subseteq \R^n$ of dimension $d$ and an unbounded subset $\mathfrak N_0 \subseteq \mathfrak N$ such that given any $Q \in \mathfrak N_0$, the first $d$ successive minima are achieved by points in $S_0$.
 \end{theorem}
@@ -2403,7 +2411,7 @@ Recall that in our proof of Roth's theorem, we made use of simultaneous approxim
 \noindent We are now ready to deduce Theorem \ref{thm:5.1}.
 \begin{pf}[Proof of Theorem \ref{thm:5.1}]
   First, the statement is clear for $x \in \Z^n$ with $L_1(x), \dots, L_n(x) = 0$.
-  \begin{exercise}
+  \begin{exercise}{}{}
     Let $1 \leq j \leq n$. Then there exists a rational subspace $\widetilde{T}_j \subset \R^n$ such that
     \[ \{ x \in \Z^n: L_j(x) = 0\} \subset \widetilde{T}_j.\]
   \end{exercise}
@@ -2418,65 +2426,84 @@ Recall that in our proof of Roth's theorem, we made use of simultaneous approxim
   \[ \|L_1(x)\cdots L_n(x)\|_{\infty} < \|x\|_{\infty}^{-\delta},\]
   we only need to consider $a_{t_1}+\dots+a_{t_n} < - \delta$. Then set $c_j = b_{t_j} - \frac{1}{n}(b_{t_1}+ \dots + b_{t_n})$, and this satisfies $c_1+\dots+c_n = 0$. Thus, $b_{t_j} \leq c_j - \frac{\delta}{2n}$, which implies $\|L_j(x)\|_{\infty} < \|x\|^{b_{t_j}} \leq \|x\|^{c_j-\frac{\delta}{2n}}$. By Corollary \ref{cor:5.3} (and since $(M+1)^n \ll 1$), we get the finite number of rational subspaces.
 \end{pf}
-\newLecture{10th July 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4213277}{W12L2}}
-\noindent There will be no questions about the following in the exams.
-{\color{orange}}
+\renewcommand{\lastLectureDate}{\currentLectureDate}
+\ifnum\thelecture=0
+\else
+\begin{center}
+  \textbf{Lecture \thelecture{} (\lastLectureDate)}
+\end{center}
+\vspace{-0.6cm}
+\fi
+\addtocounter{lecture}{1}
+\ifnum\thelecture=1
+\else
+\noindent \dotfill \\
+\fi
+\renewcommand{\currentLectureDate}{{\color{orange} 10th July 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4213277}{W12L2}}}
+\ifnum\thelecture=1
+\else
+\vspace*{-0.8cm}
+\begin{center}
+  \color{orange} \textbf{Lecture \thelecture{} (\currentLectureDate)}
+\end{center}
+\fi
+\color{orange} \renewcommand{\pfcolor}{orange}
 \noindent\textbf{Notation.} Let $n, m \in \N$. We denote
 \[ (\vec x_1; \dots; \vec x_m) = (x_{11}, \dots, x_{1n}; \dots; x_{m1}, \dots, x_{mn}).\]
 Let $L_1, \dots, L_m$ be nonzero linear forms over $\R$, where $L_h(\vec x_h)$ is a linear form in $\vec x_h = (x_{h1}, \dots, x_{hn})$. We write $\vec L = (L_1, \dots, L_m)$. Let $r_1, \dots, r_m \in \N$ and $\vec r = (r_1, \dots, r_m)$. Given any $c \geq 0$, let $I(c)$ be the ideal in $\R[\vec x_1, \dots, \vec x_m]$ generated by
 \[ \left\{ L_1^{i_1}\cdots L_m^{i_m}: (i_1, \dots, i_m) \in (\Z_{\geq 0})^m, \frac{i_1}{r_1} + \dots + \frac{i_m}{r_m} \geq c\right\}.\]
 Given $0 \neq P \in \R[\vec x_1, \dots, \vec x_m]$, we define the \definenolabel[Index with Respect to Linear Forms]{index} $\operatorname{Ind}_{\vec r}(P, \vec L)$ to be the largest $c$ such that $P \in I(c)$. We define the index to be $+\infty$ for $P \equiv 0$.
-\begin{lemma}{Sub-additivity and Additivity of the Index}{5.4}
-  We have
+\begin{lemma}[coltitle=orange]{Sub-additivity and Additivity of the Index}{5.4}
+  \color{orange} We have
   \begin{enumerate}[(i)]
     \item $\operatorname{Ind}_{\vec r}(P + Q, \vec L) \geq \min\left(\operatorname{Ind}_{\vec r}(P, \vec L), \operatorname{Ind}_{\vec r}(Q, \vec L)\right)$ and
     \item $\operatorname{Ind}_{\vec r}(PQ, \vec L) = \operatorname{Ind}_{\vec r}(P, \vec L) + \operatorname{Ind}_{\vec r}(Q, \vec L)$.
   \end{enumerate}
 \end{lemma}
-\begin{pf}
-  Exercise.
-\end{pf}
+\begin{colorpf}
+  \color{orange} Exercise.
+\end{colorpf}
 \noindent Let $\vec r = (r_1, \dots, r_m)$ and
 \[ \vec i = (\vec i_1; \dots; \vec i_m) = (i_{11}, \dots, i_{1n}; \dots; i_{m1}, \dots, i_{mn}).\]
 We denote
 \[ \left| \vec i / \vec r\right|_1 = \sum_{h=1}^m \frac{i_{h1} + \dots + i_{hn}}{r_h}\]
 and
 \[ P^{[\vec i]} = \frac{1}{i_{11}!\cdots i_{mn}!}\cdot\frac{\partial^{\, i_{11}+\dots+i_{mn}}P}{\partial x_{11}^{i_{11}}\cdots\partial x_{mn}^{i_{mn}}}.\]
-\begin{lemma}{Index of a Partial Derivative and Vanishing on $T$}{5.5}
-  We have
+\begin{lemma}[coltitle=orange]{Index of a Partial Derivative and Vanishing on $T$}{5.5}
+  \color{orange} We have
   \[ \operatorname{Ind}_{\vec r}(P^{[\vec i]}, \vec L) \geq \operatorname{Ind}_{\vec r}(P, \vec L) - \left|\vec i/\vec r\right|_1.\]
   Further, if $\left|\vec i/\vec r\right|_1 < \operatorname{Ind}_{\vec r}(P, \vec L)$, then $P^{[\vec i]} \equiv 0$ on the $(nm-m)$-dimensional subspace $T \subseteq \R^{nm}$ defined by $L_1 = \dots = L_m = 0$.
 \end{lemma}
-\begin{pf}
-  The first assertion is similar to before (Exercise). Without loss of generality, assume
+\begin{colorpf}
+  \color{orange} The first assertion is similar to before (Exercise). Without loss of generality, assume
   \[ L_h(\vec x_h) = \alpha_{h1}x_{h1} + \dots + \alpha_{hn}x_{hn}, \quad \text{with } \alpha_{h1} \neq 0 \; \forall_{1 \leq h \leq m}.\]
   Then, by substituting $x_{h1} = \frac{1}{\alpha_{h1}}(L_h - \alpha_{h2}x_{h2} - \dots - \alpha_{hn}x_{hn})$, we may write
   \begin{equation}\label{eq:lem:5.5} P^{[\vec i]}(\vec x_1; \dots; \vec x_m) = \sum c^{[\vec i]}(j_1, \vec a_1; \dots; j_m, \vec a_m) L_1^{j_1}x_{12}^{a_{12}}\cdots x_{1n}^{a_{1n}}\cdots L_m^{j_m}x_{m2}^{a_{m2}}\cdots x_{mn}^{a_{mn}}. \tag{1}\end{equation}
   Then it follows that
   \[ \operatorname{Ind}_{\vec r}(P^{[\vec i]}, \vec L) = \min\left(\frac{j_1}{r_1} + \dots + \frac{j_m}{r_m}\right),\]
   where the minimum is taken over all $j_1, \dots, j_m \in \Z_{\geq 0}$ such that $c^{[\vec i]}(j_1, \vec a_1; \dots; j_m, \vec a_m) \neq 0$ for some choice of $\vec a_1, \dots, \vec a_m$. Since $\operatorname{Ind}_{\vec r}(P^{[\vec i]}, \vec L) > 0$, it then follows that every summand appearing in (\ref{eq:lem:5.5}) is divisible by one of $L_1, \dots, L_m$. Therefore, $P^{[\vec i]} \equiv 0$ on $T$.
-\end{pf}
+\end{colorpf}
 \noindent \textbf{Note.} If $c^{[\vec i]}(j_1, \vec a_1; \dots; j_m, \vec a_m)$ is a non-zero coefficient, then it follows that $\frac{j_1}{r_1} + \dots + \frac{j_m}{r_m} > 0$, and hence at least one of the $j_h$ is $\geq 1$.
-\begin{lemma}{Existence of a Non-vanishing Derivative of Maximal Index}{5.6}
-  Let $T$ be as in the previous lemma and let $0 \neq P \in \R[\vec x_1, \dots, \vec x_m]$. Then there exists $\vec i$ with
+\begin{lemma}[coltitle=orange]{Existence of a Non-vanishing Derivative of Maximal Index}{5.6}
+  \color{orange} Let $T$ be as in the previous lemma and let $0 \neq P \in \R[\vec x_1, \dots, \vec x_m]$. Then there exists $\vec i$ with
   \[ \left|\vec i/\vec r\right|_1 = \operatorname{Ind}_{\vec r}(P, \vec L)\]
   such that $P^{[\vec i]} \not\equiv 0$ on $T$. Moreover, if $L_h(\vec x_h) = \alpha_{h1}x_{h1} + \dots + \alpha_{hn}x_{hn}$ with $\alpha_{h1} \neq 0 \; \forall_{1 \leq h \leq m}$, then we may take $\vec i$ to be of the form
   \[ \vec i = (i_1, \vec 0; \dots; i_m, \vec 0).\]
 \end{lemma}
-\begin{pf}
-  Use the same substitution as in the previous lemma applied to $P$. Then the assertion follows from the definition of the index (Exercise).
-\end{pf}
+\begin{colorpf}
+  \color{orange} Use the same substitution as in the previous lemma applied to $P$. Then the assertion follows from the definition of the index (Exercise).
+\end{colorpf}
 \noindent Given
 \[ P(\vec x_1; \dots; \vec x_m) = \sum c(\vec j_1; \dots; \vec j_m) x_{11}^{j_{11}}\cdots x_{mn}^{j_{mn}},\]
 we put
 \[ \|P\| = \max_{\vec j_1, \dots, \vec j_m}|c(\vec j_1; \dots; \vec j_m)|.\]
-\begin{lemma}{Integrality and Norm Bound for $P^{[\vec i]}$}{5.7}
-  Suppose $P \in \Z[\vec x_1, \dots, \vec x_m]$. Then $P^{[\vec i]} \in \Z[\vec x_1, \dots, \vec x_m]$. Further, suppose that $P$ is homogeneous in $\vec x_h$ of degree $r_h$ for all $1 \leq h \leq m$. Then
+\begin{lemma}[coltitle=orange]{Integrality and Norm Bound for $P^{[\vec i]}$}{5.7}
+  \color{orange} Suppose $P \in \Z[\vec x_1, \dots, \vec x_m]$. Then $P^{[\vec i]} \in \Z[\vec x_1, \dots, \vec x_m]$. Further, suppose that $P$ is homogeneous in $\vec x_h$ of degree $r_h$ for all $1 \leq h \leq m$. Then
   \[ \|P^{[\vec i]}\| \leq 2^{r_1 + \dots + r_m}\|P\|.\]
 \end{lemma}
-\begin{pf}
-  Similar as before (exercise).
-\end{pf}
+\begin{colorpf}
+  \color{orange}Similar as before (exercise).
+\end{colorpf}
 \noindent Let $\alpha_1, \dots, \alpha_n$ be algebraic integers. Let $K = \Q(\alpha_1, \dots, \alpha_n)$ and $\Delta = [K : \Q]$, and let $\beta_1, \dots, \beta_{\Delta}$ be an integral basis of $K$. There are relations
 \[ \beta_i\beta_j = \sum_{k=1}^{\Delta}c_{ijk}\beta_k \quad \forall_{1 \leq i, j \leq \Delta},\]
 with each $c_{ijk} \in \Z$. Set $A = \max_{i,j,k}|c_{ijk}|$. Any $\gamma \in K$ can be uniquely written as
@@ -2484,25 +2511,25 @@ with each $c_{ijk} \in \Z$. Set $A = \max_{i,j,k}|c_{ijk}|$. Any $\gamma \in K$ 
 We define
 \[ \|\gamma\| = A\Delta^2\max_k|d_k|.\]
 (Note that this depends on $\beta_1, \dots, \beta_{\Delta}$.)
-\begin{lemma}{Sub-multiplicativity of the Norm on $K$}{5.8}
-  Given $\gamma_1, \gamma_2 \in K$, we have
+\begin{lemma}[coltitle=orange]{Sub-multiplicativity of the Norm on $K$}{5.8}
+  \color{orange} Given $\gamma_1, \gamma_2 \in K$, we have
   \[ \|\gamma_1 + \gamma_2\| \leq \|\gamma_1\| + \|\gamma_2\| \quad \text{and} \quad \|\gamma_1\cdot\gamma_2\| \leq \|\gamma_1\|\cdot\|\gamma_2\|.\]
 \end{lemma}
-\begin{pf}
+\begin{colorpf}
   Exercise.
-\end{pf}
-\begin{lemma}{Coefficients of the Substituted Polynomial are Bounded Algebraic Integers}{5.9}
-  Suppose $\alpha_1, \dots, \alpha_n$ are algebraic integers as above. Let
+\end{colorpf}
+\begin{lemma}[coltitle=orange]{Coefficients of the Substituted Polynomial are Bounded Algebraic Integers}{5.9}
+  \color{orange} Suppose $\alpha_1, \dots, \alpha_n$ are algebraic integers as above. Let
   \[ P(\vec x_1; \dots; \vec x_m) = \sum c(\vec j_1; \dots; \vec j_m)x_{11}^{j_{11}}\cdots x_{mn}^{j_{mn}} \in \R[\vec x_1, \dots, \vec x_m]\]
-  be homogeneous of degree $r_h$ in $\vec x_h$ for all $1 \leq h \leq m$. Let $\vec i = (j_1, \vec 0; \dots; j_m, \vec 0)$ and define
+  be homogeneous of degree $r_h$ in $\vec x_h$ for all $1 \leq h \leq m$. Let $\vec i = (j_1, \vec 0; \dots; j_m, \vec 0)$ and \color{orange} define
   \begin{align*} P^* = P^{[\vec i]}\big(&-\alpha_2 x_{12} - \dots - \alpha_n x_{1n}, \alpha_1 x_{12}, \dots, \alpha_1 x_{1n}; \dots; \\ &-\alpha_2 x_{m2} - \dots - \alpha_n x_{mn}, \alpha_1 x_{m2}, \dots, \alpha_1 x_{mn}\big).\end{align*}
   Then every coefficient of $P^*$ is a linear form in the $c(\vec j_1; \dots; \vec j_m)$'s whose coefficients are algebraic integers $\gamma$ of $K = \Q(\alpha_1, \dots, \alpha_n)$ satisfying
   \[ \|\gamma\| \leq (4^n B)^{r_1 + \dots + r_m}, \quad \text{where } B = \max(\|\alpha_1\|, \dots, \|\alpha_n\|).\]
 \end{lemma}
-\begin{pf}
+\begin{colorpf}
   Just plug in
   \begin{align*} x_{h1}' &= -\alpha_2 x_{h2} - \dots - \alpha_n x_{hn}, \\ x_{h2}' &= \alpha_1 x_{h2}, \\ &\;\;\vdots \\ x_{hn}' &= \alpha_1 x_{hn} \end{align*}
   (for each $1 \leq h \leq m$) into the polynomial $P^{[\vec i]}(\vec x_1'; \dots; \vec x_m')$, and collect the monomials in $\vec x_1, \dots, \vec x_m$.
-\end{pf}
+\end{colorpf}
 \newLecture{15th July 2026 - \href{https://ecampus.uni-bonn.de/ilias.php?baseClass=ilrepositorygui&cmd=sendfile&ref_id=4215775}{W13L1}}
 \end{document}

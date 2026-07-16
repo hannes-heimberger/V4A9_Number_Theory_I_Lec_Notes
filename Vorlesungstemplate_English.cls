@@ -283,7 +283,7 @@ colback=blue!15!white, borderline={0pt}{0pt}{white}, separator sign={\ --}
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 \newenvironment{pf}{\begin{proof}}{\end{proof}}
 \newcommand{\pfcolor}{black}
-\newenvironment{colorpf}{\begin{pf}[\color{\pfcolor} Proof]}{\end{pf}}
+\newenvironment{colorpf}{\begin{pf}[\color{\pfcolor} Proof] \color{\pfcolor}}{\end{pf}}
 \newenvironment{answertoquestion}{\begin{proof}[Answer]}{\end{proof}}
 \newenvironment{example}{\begin{proof}[Example]}{\end{proof}}
 \tcolorboxenvironment{solblue}{% `proof' from `amsthm'
